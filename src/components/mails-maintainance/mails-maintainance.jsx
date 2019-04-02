@@ -131,6 +131,7 @@ export default class MailsMaintainance extends React.Component {
     }
 
     receiveMail() {
+        if (this.state.mailSet.map(m => 1).reduce((x, y) => x + y) >= 30) {return}
         var xhr = new XMLHttpRequest();
         xhr.open('GET', `http://numbersapi.com/${this.requestsCounter}`, true);
         xhr.send();
