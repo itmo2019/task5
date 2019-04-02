@@ -1,0 +1,11 @@
+.MainPage__MailsMaintainanceWrapper {
+    display: inline-block;
+    width: 79%;
+}
+
+.MainPage__MenuWrapper {
+    vertical-align: top;
+    display: inline-block;
+    max-width: 168px;
+    width: 20%;
+}

@@ -1,0 +1,13 @@
+.Article0__FloatImg {
+    background: #fff;
+    float: left;
+    shape-outside: circle();
+}
+
+.Article0__P0 {
+    margin: 10px;
+}
+
+.Article0__Footer {
+    text-align: right;
+}

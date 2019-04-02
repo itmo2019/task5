@@ -1,0 +1,94 @@
+.MailTitle {
+    overflow-y: hidden;
+    line-height: 39px;
+
+    /* no explicit locating - meets BEM demands */
+    position: relative;
+}
+
+.MailTitle[to-delete],
+.MailTitle[to-appear] {
+    transition-duration: 200ms;
+}
+
+.MailTitle[from-delete],
+.MailTitle[to-delete] {
+    height: 0;
+    border: 0;
+}
+
+.MailTitle[to-appear],
+.MailTitle {
+    height: 39px;
+}
+
+.MailTitle__ImgWrapper {
+    width: 30px;
+    height: 30px;
+
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 5px;
+}
+
+.MailTitle__Sender {
+    display: inline-block;
+    vertical-align: middle;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 25%;
+    margin: auto 5px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+}
+
+.MailTitle_Unread .MailTitle__Sender,
+.MailTitle_Unread .MailTitle__Title {
+    font-weight: bold;
+}
+
+.MailTitle__UnreadFlag {
+    display: inline-block;
+    min-width: 10px;
+    height: 10px;
+    border-radius: 5px;
+    margin: auto 0;
+}
+
+.MailTitle_Unread .MailTitle__UnreadFlag {
+    background: #6287bd;
+}
+
+.MailTitle__Date {
+    line-height: normal;
+    overflow: hidden;
+    text-overflow: clip;
+    width: 48px;
+    text-align: right;
+    position: absolute;
+    top: 13px;
+    right: 20px;
+    font-size: 13px;
+    white-space: nowrap;
+    color: #9b9b9b;
+}
+
+.MailTitle__Title {
+    vertical-align: middle;
+    cursor: pointer;
+    width: 100%;
+    max-width: calc(75% - 193px);
+    display: inline-block;
+    font-size: 13px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin: auto auto auto 10px;
+}
+
+.MailTitle__Checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 7px auto 20px;
+}

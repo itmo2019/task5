@@ -1,0 +1,17 @@
+.MailsHeader {
+    line-height: 36px;
+    height: 37px;
+    border-bottom: 1px solid #e2e2e2;
+    min-width: fit-content;
+}
+
+.MailsHeader__Checkbox {
+    display: inline-block;
+    vertical-align: middle;
+    margin: auto 7px auto 20px;
+}
+
+.MailsHeader__MailsMenuWrapper {
+    vertical-align: middle;
+    display: inline-block;
+}
