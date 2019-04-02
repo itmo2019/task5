@@ -131,18 +131,19 @@ export default class MailsMaintainance extends React.Component {
     }
 
     receiveMail() {
-        if (this.state.mailSet.map(m => 1).reduce((x, y) => x + y) >= 30) {return}
+        console.log(this.state.mailSet)
+        if (this.state.mailSet.length >= 30) {return}
         var xhr = new XMLHttpRequest();
         xhr.open('GET', `http://numbersapi.com/${this.requestsCounter}`, true);
         xhr.send();
         var that = this
+        var numberTopic = this.requestsCounter++
         xhr.onreadystatechange = function() {
             if (xhr.readyState !== xhr.DONE) {return} 
             if (xhr.status !== 200) {
                 that.constructMailOnPage("Что говорить, когда нечего говорить?", "Нет соединения. Inception - ЧБУ YouTube");
             } else {
-                that.constructMailOnPage(`Did ya know?.. About ${that.requestsCounter}`, xhr.responseText);
-                that.requestsCounter++;
+                that.constructMailOnPage(`Did ya know?.. About ${numberTopic}`, xhr.responseText);
             }
         }  
     }
