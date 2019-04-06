@@ -6,18 +6,18 @@
     position: relative;
 }
 
-.MailTitle[to-delete],
-.MailTitle[to-appear] {
+.MailTitle.MailTitle_toDelete,
+.MailTitle.MailTitle_toAppear {
     transition-duration: 200ms;
 }
 
-.MailTitle[from-delete],
-.MailTitle[to-delete] {
+.MailTitle.MailTitle_fromDelete,
+.MailTitle.MailTitle_toDelete {
     height: 0;
     border: 0;
 }
 
-.MailTitle[to-appear],
+.MailTitle.MailTitle_toAppear,
 .MailTitle {
     height: 39px;
 }

@@ -83,7 +83,9 @@ export default class MailsMaintainance extends React.Component {
 
     deleteSelected() {
         this.modifyAll("map", mail => {
-            mail.modifiers = this.mailSelected.get(mail.mailID) ? 'to-delete' : ''
+            if (this.mailSelected.get(mail.mailID)) {
+                mail.classList.add("MailTitle_toDelete")
+            }
             return mail
         })
         setTimeout(() => 
@@ -91,20 +93,29 @@ export default class MailsMaintainance extends React.Component {
         , 200)
     }
 
-    newMail(isRead, avatar, sender, title, date, article, modifiers) {
+    newMail(isRead, avatar, sender, title, date, article, classList) {
+        if (classList === undefined) {
+            classList = new Set()
+        }
+        classList.add("MailTitle")
+        if ("" + isRead === "true") {
+            classList.add("MailTitle_Read")
+        } else {
+            classList.add("MailTitle_Unread")
+        }
+        
         var newID = "mail-id" + this.mailCounter++;
         return {
             callbacks: {
                 selected: checked => this.mailSelected.set(newID, checked),
                 setSelect: callback => this.mailSetSelection.set(newID, callback)},
             mailID: newID,
-            isRead: "" + isRead,
             sender: sender, 
             title: title,
             avatar: avatar,
             date: date,
             article: article,
-            modifiers: modifiers
+            classList: classList
         }
     }
 
@@ -117,11 +128,16 @@ export default class MailsMaintainance extends React.Component {
     }
 
     constructMailOnPage(title, article) {
-        var mail = this.newMail(false, null, "mysterious stranger", title, this.getDate(), <Article1 body={article} />, 'from-delete')
+        var mail = this.newMail(false, null, "mysterious stranger", title, this.getDate(), <Article1 body={article} />, 
+            new Set(['MailTitle_fromDelete']))
         var mailID = mail.mailID;
         this.setState(state => {return {mailSet: [mail].concat(state.mailSet)}})
-        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.modifiers += ' to-appear'; return mail}), 50)
-        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.modifiers = '';            return mail}), 250)
+        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.classList.add('MailTitle_toAppear'); return mail}), 50)
+        setTimeout(() => this.modifyOne(mailID, "map", mail => {
+            mail.classList.delete("MailTitle_fromDelete");
+            mail.classList.delete("MailTitle_toAppear");
+            return mail
+        }), 250)
     }
 
     month = ['янв.', 'фев.', 'март.', 'апр.', 'май.', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.'];
