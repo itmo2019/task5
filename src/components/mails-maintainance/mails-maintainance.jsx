@@ -8,6 +8,7 @@ import Article0 from '../specific/article0';
 import Article1 from '../specific/article1';
 
 import YandexAvatar from '../../resources/avatar.png';
+import OfflineReserve from '../../resources/OfflineReserve.json'
 
 import './mails-maintainance.css';
 
@@ -161,11 +162,9 @@ export default class MailsMaintainance extends React.Component {
         var numberTopic = this.requestsCounter++
         xhr.onreadystatechange = function() {
             if (xhr.readyState !== xhr.DONE) {return} 
-            if (xhr.status !== 200) {
-                that.constructMailOnPage("Что говорить, когда нечего говорить?", "Нет соединения. Inception - ЧБУ YouTube");
-            } else {
-                that.constructMailOnPage(`Did ya know?.. About ${numberTopic}`, xhr.responseText);
-            }
+            var title = OfflineReserve[numberTopic]
+            if (xhr.status === 200) { title = xhr.responseText }
+            that.constructMailOnPage(`Did ya know?.. About ${numberTopic}`, title);
         }  
     }
 }
