@@ -1,0 +1,24 @@
+.main-block__left-menu {
+  display: inline-block;
+  width: 19.5%;
+  min-width: 150px;
+}
+
+.write-letter-button {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  text-align: center;
+  height: 32px;
+  padding: 0 10px;
+  line-height: 32px;
+  border-radius: 4px;
+  background-color: #6287bd;
+  color: #fff;
+  font-size: 12px;
+}
+
+.write-letter-button:hover {
+  cursor: pointer;
+}

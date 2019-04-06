@@ -1,0 +1,44 @@
+.hidden-message {
+  position: relative;
+  display: none;
+  min-height: 500px;
+  top: 0;
+  z-index: 1;
+  background-color: #fff;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.hidden-message__text {
+  overflow: auto;
+  padding: 20px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  white-space: normal;
+}
+
+.close-message {
+  margin-right: 5px;
+  float: right;
+  font-size: 35px;
+  font-weight: 100;
+  color: #ccc;
+  cursor: pointer;
+}
+
+.hidden-message__image {
+  border-radius: 50%;
+  shape-outside: circle();
+  margin-left: 1.5rem;
+  width: 190px;
+  height: 180px;
+}
+
+.hidden-message__label:hover {
+  cursor: pointer;
+}
+
+.text-container {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

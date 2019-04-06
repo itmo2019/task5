@@ -1,0 +1,18 @@
+.footer {
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  padding: 5px 20px;
+  float: right;
+  margin: auto 0 5px 0;
+}
+
+.footer-link {
+  margin-left: 20px;
+  display: inline-block;
+  color: #ccc;
+  cursor: pointer;
+  max-width: 200px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

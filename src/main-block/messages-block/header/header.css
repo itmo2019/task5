@@ -1,0 +1,41 @@
+.messages-block-header {
+  padding: 10px 17px;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+  overflow: auto;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.messages-block-header__action {
+  width: auto;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  margin-left: 15px;
+  color: #ccc;
+  font-weight: 500;
+  display: inline-block;
+}
+
+#check-all {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.checkbox {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

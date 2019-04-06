@@ -1,0 +1,138 @@
+.messages-block {
+  display: inline-block;
+  margin-left: 2%;
+  width: 78%;
+  min-width: 600px;
+  margin-right: 0;
+
+  vertical-align: top;
+  height: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  background-color: #fff;
+}
+
+.checkbox {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: inline-block;
+
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+}
+
+.select-message__checkbox {
+  margin-left: 20px;
+  margin-right: 10px;
+  margin-top: 12px;
+}
+
+.select-message__checkbox-label {
+  width: 46px;
+  height: 40px;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.messages-list {
+  height: 100%;
+  min-height: 500px;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.message {
+  cursor: pointer;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  white-space: nowrap;
+  height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border-bottom: solid 1px #e2e2e2;
+  transition: opacity 1.5s, height 1.5s;
+  opacity: 1;
+}
+
+.message-info__sender-logo {
+  display: inline-block;
+  vertical-align: middle;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+
+  border-radius: 100px;
+  background-color: #f33;
+  color: #fff;
+  text-align: center;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.message-info__sender {
+  display: inline-block;
+  vertical-align: middle;
+  width: 175px;
+  margin-left: 10px;
+  line-height: 30px;
+  color: #000;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message-info__mark {
+  display: inline-block;
+  vertical-align: middle;
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.unread-mark {
+  border-radius: 100px;
+  background-color: #6287bd;
+}
+
+.message-info__subject {
+  display: inline-block;
+  vertical-align: middle;
+  width: calc(100% - 375px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #000;
+}
+
+.message-info__date-container {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 0;
+  width: 70px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #9b9b9b;
+}
+
+.date-container__date {
+  float: right;
+}
+
+.to-create {
+  opacity: 0;
+  height: 0;
+}
+
+.to-delete {
+  height: 0;
+  opacity: 0;
+}

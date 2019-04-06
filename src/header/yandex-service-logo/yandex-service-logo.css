@@ -1,0 +1,16 @@
+.header__yandex-service-logo {
+  width: 200px;
+  display: inline-block;
+  height: 31px;
+  vertical-align: middle;
+}
+
+.yandex-service-logo__image-link {
+  cursor: pointer;
+  display: inline-block;
+}
+
+.yandex-service-logo__image {
+  width: 153px;
+  height: 31px;
+}
