@@ -1,0 +1,22 @@
+.header__image_wrapper_yandex {
+	padding-left: 11px;
+	width: 75px;
+	height: 32px;
+	display: table-cell;
+}
+
+.header__image_wrapper_mail {
+	width: 75px;
+	height: 32px;
+	display: table-cell;
+}
+
+.header__yandex_image {
+	width: 75px;
+	height: 32px;
+}
+
+.header__mail_image {
+	width: 75px;
+	height: 32px;
+}

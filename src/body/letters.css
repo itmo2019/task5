@@ -1,0 +1,28 @@
+.letters_wrapper {
+	display: table-cell;
+	height: 100%;
+	min-width: 700px;
+	width: 100%;
+}
+
+.letters {
+	height: 100%;
+	min-width: 700px;
+	width: 100%;
+	display: table;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.34);
+	border-radius: 3px;
+	background-color: #ffffff;
+}
+
+.letters__options_footer_wrapper {
+	height: 40px;
+	width: auto;
+	display: table-row;
+}
+
+.letters__separator {
+	width: auto;
+	height: 1px;
+	border: 1px solid #e2e2e2;
+}

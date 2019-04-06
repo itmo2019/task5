@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
 
+import HeaderWrapper from '../header';
+import BodyWrapper from '../body';
+import LetterTemplate from '../template'
+
 import './app.css';
 
 export class App extends Component {
   render() {
     return (
-      <div className="app">
-        <header className="app-header">
-          <p>
-            Edit <code>src/app/app.jsx</code> and save to reload.
-          </p>
-          <a
-            className="app-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div className="outer_wrapper">
+        <HeaderWrapper/>
+        <BodyWrapper/>
+        <template id="letter_template">
+      		<LetterTemplate/>
+     	</template> 
       </div>
     );
   }

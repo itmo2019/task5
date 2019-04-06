@@ -1,0 +1,25 @@
+.letters__options {
+	display: table;
+}
+
+.letters__option {
+	display: table-cell;
+	height: 40px;
+	vertical-align: middle;
+	padding-right: 25px;
+	color: #cccccc;
+	background-color: rgba(0, 0, 0, 0);
+	border: 0px;
+	font-family: "Helvetica Neue";
+	font-size: 13px;
+}
+
+.letters__check_all_checkbox {
+	margin-left: 20px;
+	vertical-align: middle;
+	width: 16px;
+	height: 16px;
+	border-radius: 3px;
+	border: 1px solid rgba(0, 0, 0, 0.15);
+	background-color: #ffffff;
+}
