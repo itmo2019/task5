@@ -1,0 +1,4 @@
+.letter_deleted {
+  animation: delete_animation 0.5s;
+  animation-fill-mode: forwards;
+}

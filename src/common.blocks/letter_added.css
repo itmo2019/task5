@@ -1,0 +1,4 @@
+.letter_added {
+  animation: add_animation 0.5s;
+  animation-fill-mode: forwards;
+}
