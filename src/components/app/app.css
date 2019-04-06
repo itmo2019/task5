@@ -1,0 +1,17 @@
+.App__Header {
+  margin: 12px 18px;
+}
+
+.App__AsideMenu {
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 18px;
+}
+
+.App__MailBox {
+  position: absolute;
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 20px;
+  margin-bottom: 10px;
+}

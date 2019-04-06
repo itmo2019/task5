@@ -1,0 +1,76 @@
+.FullMessage {
+  width: calc(100vw - 226px);
+  background-color: white;
+}
+
+.FullMessage__Content {
+  padding-top: 10px;
+  margin-left: 22px;
+  margin-right: 15px;
+  padding-right: 15px;
+  overflow: hidden;
+  height: 464px;
+  overflow-y: scroll;
+}
+
+.FullMessage__CloseContainer {
+  display: block;
+  height: 20px;
+}
+
+.FullMessage__Close {
+  padding: 0;
+  border: none;
+  background: none;
+  float: right;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.FullMessage__Img {
+  display: inline-block;
+  shape-outside: circle(50%);
+  clip-path: circle(50%);
+}
+
+.FullMessage__Text {
+  margin-top: 60px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  text-align: justify;
+}
+
+.FullMessage__Header {
+  width: 950px;
+}
+
+.FullMessage__Sender {
+  float: left;
+}
+
+.FullMessage__Date {
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  color: rgba(0,0,0,0.5);
+  float: right;
+  margin-right: 50px;
+  margin-top: 10px;
+}
+
+.FullMessage__SenderInfo {
+  font-family: Arial, sans-serif;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: super;
+}
+
+.FullMessage__Author {
+  margin-bottom: 3px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.FullMessage__Email {
+  color: rgba(0,0,0,0.5);
+  font-size: 12px;
+}
