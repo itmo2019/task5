@@ -1,0 +1,40 @@
+.Header {
+  position: absolute;
+  top: 12px;
+  left: 22px;
+}
+
+.main-header__search {
+  width: 451px;
+  height: 32px;
+  border: none;
+  padding-left: 15px;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  outline: none;
+  background-color: white;
+  position: absolute;
+  left: 305px;
+}
+
+.main-header__search::placeholder {
+  opacity: 0.5;
+  font-family: 'Yandex Sans Text';
+}
+
+.mail-header__tools-icon {
+  width: 20px;
+  height: 17px;
+  position: absolute;
+  top: 10px;
+}
+
+.mail-header {
+  position: absolute;
+  top: 12px;
+  left: 22px;
+}
+
+.mail-header__logo {
+  position: absolute;
+  left: 31px;
+}

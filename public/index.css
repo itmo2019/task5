@@ -1,0 +1,9 @@
+html {
+  font-family: HelveticaNeue;
+}
+
+body {
+  margin: 0;
+  background-color: #e5eaf0;
+  overflow: auto;
+}
