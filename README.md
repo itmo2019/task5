@@ -12,7 +12,7 @@
 
 – Анимации тоже должны остаться и они так же должны быть сделаны с использованием CSS.
 
-Стилизовать можно любым способом описанным в документации [Create React App](https://facebook.github.io/create-react-app/docs/adding-a-stylesheet), но не забывайте о БЭМ.
+Стилизовать можно любым способом описанным в документации [Create React SearchBox](https://facebook.github.io/create-react-app/docs/adding-a-stylesheet), но не забывайте о БЭМ.
 
 ## Начало работы
 
@@ -65,6 +65,6 @@ WebStorm включает в себя всё необходимое для ра�
 
 - [React](https://reactjs.org) 🇺🇸
 - [React](https://ru.reactjs.org) 🇷🇺
-- [Create React App](https://facebook.github.io/create-react-app/docs/getting-started) 🇺🇸
+- [Create React SearchBox](https://facebook.github.io/create-react-app/docs/getting-started) 🇺🇸
 
 ![We need to go deeper](https://raw.githubusercontent.com/evgenymarkov/public-images/master/go-deeper.png)

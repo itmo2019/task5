@@ -1,0 +1,10 @@
+.mail-frame__actions-item {
+  overflow: hidden;
+  max-width: 15%;
+  padding-top: 11px;
+  cursor: pointer;
+
+  float: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

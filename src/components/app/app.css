@@ -1,0 +1,43 @@
+.App {
+  /*position: relative;*/
+
+  /*min-width: 800px;*/
+  /*min-height: 600px;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+
+  /*margin: 11px 20px 14px 22px;*/
+  /*white-space: nowrap;*/
+}
+
+.AppHeader {
+  height: 32px;
+}
+
+.AppMainMenu {
+  display: inline-block;
+  width: 147px;
+  margin-top: 13px;
+  vertical-align: top;
+}
+
+.AppMailFrame {
+  position: absolute;
+  top: 45px;
+  right: 0;
+  bottom: 0;
+  left: 169px;
+  background-color: #fff;
+
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+}
+
+@keyframes app-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

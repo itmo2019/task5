@@ -1,0 +1,10 @@
+.Actions {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.Actions__Item {
+  cursor: pointer;
+  float: left;
+}

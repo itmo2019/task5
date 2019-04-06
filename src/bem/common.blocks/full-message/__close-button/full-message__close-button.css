@@ -1,0 +1,9 @@
+.full-message__close-button {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 20px;
+  margin-left: auto;
+
+  cursor: pointer;
+}

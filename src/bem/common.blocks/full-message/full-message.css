@@ -1,0 +1,8 @@
+.full-message {
+  position: absolute;
+  top: 38px;
+
+  display: none;
+
+  height: 87%;
+}
