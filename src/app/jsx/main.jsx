@@ -254,7 +254,7 @@ export class MainPlaceholder extends Component {
   };
 
   render() {
-    let mails = this.state.mails.filter((item, index) => index <= 3);
+    let mails = this.state.mails.filter((item, index) => index < 30);
     return (
       <main className="main">
         <MainMenu addNewLetter={this.addNewMailBuClick.bind(this)}/>
