@@ -1,0 +1,172 @@
+.main-content {
+  width: 100%;
+  min-height: 715px;
+}
+
+.letters {
+  display: inline-block;
+  width: 100%;
+}
+
+.letter {
+  width: 100%;
+  height: 41px;
+
+  border-bottom: solid 2px #e2e2e2;
+}
+
+.letter__checkbox {
+  position: relative;
+
+  width: 18px;
+  height: 18px;
+  padding: 2px;
+  margin-top: 12px;
+  margin-left: 2%;
+
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  -webkit-appearance: none;
+  border-radius: 3px;
+  color: #fff;
+  float: left;
+}
+
+.letter__checkbox:checked {
+  background-clip: content-box;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.letter__author-logo {
+  position: relative;
+
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 1%;
+
+  background-color: #f33;
+  border-radius: 50%;
+  float: left;
+}
+
+.letter__author-abbr {
+  margin-top: 3px;
+  color: #fff;
+  font-family: YandexSansThin, sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.letter__text {
+  position: relative;
+
+  overflow: hidden;
+  margin-top: 15px;
+  float: left;
+
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.letter__author {
+  width: 27%;
+  min-width: 50px;
+  margin-top: 15px;
+  margin-left: 2%;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.letter__new-letter-flag {
+  position: relative;
+
+  width: 10px;
+  height: 10px;
+  margin-top: 15px;
+  margin-left: 1%;
+
+  border-radius: 100%;
+  float: left;
+}
+
+.letter__new-letter-flag_enabled {
+  background-color: #6287bd;
+}
+
+.letter__subject {
+  width: 45%;
+  min-width: 80px;
+  margin-left: 2%;
+}
+
+.letter__time {
+  position: relative;
+
+  margin-top: 15px;
+  margin-right: 1%;
+  float: right;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  opacity: 0.5;
+}
+
+.letter-page {
+  display: none;
+  width: 94%;
+  padding: 1% 3%;
+  margin: 0;
+  background-color: #fff;
+}
+
+.letter-page__text {
+  font-size: 20px;
+}
+
+.letter-page__page-close-button {
+  position: relative;
+  float: right;
+  font-size: 30px;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.letter-page__page-close-button:visited {
+  color: inherit;
+}
+
+.letter-page__page-close-button:visited:hover {
+  color: inherit;
+}
+
+.letter__animated-add-letter {
+  animation: add-new-letter 1s linear;
+}
+
+@keyframes add-new-letter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+.letter__animated-delete-letter {
+  animation: delete-letter 1s linear;
+}
+
+@keyframes delete-letter {
+  from {
+    opacity: 100%;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

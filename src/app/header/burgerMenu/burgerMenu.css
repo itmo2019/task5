@@ -1,0 +1,10 @@
+.burger-menu {
+  display: inline-block;
+}
+
+.burger-menu__rectangle {
+  width: 20px;
+  height: 3px;
+  margin-bottom: 5px;
+  background-color: #000;
+}
