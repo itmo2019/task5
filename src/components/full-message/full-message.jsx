@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './full-message.css';
 import logo from '../message/yandex-logo.png';
 
-export class FullMessage extends Component {
+class FullMessage extends Component {
   constructor(props) {
     super(props);
 

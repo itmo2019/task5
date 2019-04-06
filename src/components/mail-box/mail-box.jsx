@@ -9,7 +9,7 @@ import Footer from '../footer';
 const min = 10;
 const max = 600000;
 
-export class MailBox extends Component {
+class MailBox extends Component {
   constructor(props) {
     super(props);
 

@@ -11,7 +11,7 @@ class AsideMenuFolder extends Component {
   }
 }
 
-export class AsideMenu extends Component {
+class AsideMenu extends Component {
   render() {
     return (
       <div>

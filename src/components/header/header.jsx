@@ -6,7 +6,7 @@ import Search from '../search';
 
 import './header.css';
 
-export class Header extends Component {
+class Header extends Component {
   render() {
     return (
       <header className="Header">

@@ -9,7 +9,7 @@ class TopMenuItem extends Component {
   }
 }
 
-export class TopMenu extends Component {
+class TopMenu extends Component {
   render() {
     return (
       <div className="TopMenu">

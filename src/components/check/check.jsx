@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import './check.css';
 
-export class Check extends Component {
+class Check extends Component {
   constructor(props) {
     super(props);
 

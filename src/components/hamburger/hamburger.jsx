@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './hamburger.css';
 import hamburger from './hamburger.svg';
 
-export class Hamburger extends Component {
+class Hamburger extends Component {
   render() {
     return (
       <button type="button" className="Hamburger">

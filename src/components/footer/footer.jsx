@@ -10,7 +10,7 @@ class FooterItem extends Component {
   }
 }
 
-export class Footer extends Component {
+class Footer extends Component {
   render() {
     return (
       <div className="Footer">

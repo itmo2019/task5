@@ -4,7 +4,7 @@ import './message.css';
 import logo from './yandex-logo.png';
 import Check from '../check';
 
-export class Message extends Component {
+class Message extends Component {
   render() {
     const data = this.props.data;
     const readNameStyle = data.isRead ? '' : ' Message__SenderName_NotRead';
