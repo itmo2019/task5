@@ -6,16 +6,18 @@ import HiddenMessage from './hidden-message/hidden-message';
 import MessageTemplate from './message-template/message-template';
 import Footer from './footer/footer';
 
-function MessagesBlock() {
-  return  <div className="messages-block">
-    <Header />
-    <HiddenMessage />
-    <MessageTemplate />
-    <div className="messages-list">
+class MessagesBlock extends React.Component {
+  render() {
+    return <div className="messages-block">
+      <Header selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected}/>
+      <HiddenMessage closeMessage={this.props.closeMessage}/>
+      <MessageTemplate/>
+      <div className="messages-list">
 
-    </div>
-    <Footer />
-  </div>;
+      </div>
+      <Footer/>
+    </div>;
+  }
 }
 
 export default MessagesBlock;

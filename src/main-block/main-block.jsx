@@ -4,11 +4,13 @@ import './main-block.css';
 import LeftMenu from './left-menu/left-menu';
 import MessagesBlock from './messages-block/messages-block';
 
-function MainBlock() {
-  return  <div className="mail-page__main-block">
-    <LeftMenu />
-    <MessagesBlock />
-  </div>;
+class MainBlock extends React.Component {
+  render() {
+    return <div className="mail-page__main-block">
+      <LeftMenu/>
+      <MessagesBlock selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected} closeMessage={this.props.closeMessage}/>
+    </div>;
+  }
 }
 
 export default MainBlock;

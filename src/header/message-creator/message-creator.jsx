@@ -2,8 +2,17 @@ import React from 'react';
 
 import './message-creator.css';
 
-function MessageCreator() {
-  return <button className="header__message-creator" onClick="newMail()">Создать письмо</button>;
+class MessageCreator extends React.Component {
+
+  // constructor(props) {
+  //   super(props);
+  //   // this.props = props;
+  //   // props.newMail;
+  // }
+
+  render() {
+    return <button className="header__message-creator" onClick={this.props.nmf}>Создать письмо</button>;
+  }
 }
 
 export default MessageCreator;
