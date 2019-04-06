@@ -4,7 +4,7 @@
   left: 22px;
 }
 
-.main-header__search {
+.Header__search {
   width: 451px;
   height: 32px;
   border: none;
@@ -16,25 +16,19 @@
   left: 305px;
 }
 
-.main-header__search::placeholder {
+.Header__search::placeholder {
   opacity: 0.5;
   font-family: 'Yandex Sans Text';
 }
 
-.mail-header__tools-icon {
+.Header__tools-icon {
   width: 20px;
   height: 17px;
   position: absolute;
   top: 10px;
 }
 
-.mail-header {
-  position: absolute;
-  top: 12px;
-  left: 22px;
-}
-
-.mail-header__logo {
+.Header__logo {
   position: absolute;
   left: 31px;
 }
