@@ -1,0 +1,11 @@
+.Menu {
+  width: 20px;
+  height: 17px;
+}
+
+.Menu__Hr {
+  width: 20px;
+  height: 2px;
+  margin-top: 4px;
+  background-color: #393a3b;
+}

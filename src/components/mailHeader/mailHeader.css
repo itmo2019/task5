@@ -1,0 +1,29 @@
+.MailHeader {
+  position: relative;
+
+  height: 32px;
+  letter-spacing: -1em;
+}
+
+.MailHeader__Menu,
+.MailHeader__Logo,
+.MailHeader__Search {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.MailHeader__Menu {
+  margin-top: -6px;
+}
+
+.MailHeader__Logo {
+  margin-left: 11px;
+}
+
+.MailHeader__Search {
+  position: absolute;
+  right: 179px;
+  left: 184px;
+
+  margin-left: 114px;
+}

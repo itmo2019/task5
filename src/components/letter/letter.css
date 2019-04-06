@@ -1,0 +1,120 @@
+.Letter {
+  position: relative;
+  top: -42px;
+
+  height: 0;
+  transition: height 0.5s, top 0.5s;
+}
+
+.Letter_Unread {
+  font-weight: 700;
+}
+
+.Letter_Added {
+  top: 0;
+
+  height: 42px;
+}
+
+.Letter_Removed {
+  z-index: 0 !important;
+  top: -42px;
+
+  height: 0;
+}
+
+.Letter__Line {
+  position: relative;
+
+  height: 20px;
+  padding: 10px 20px;
+  margin: 0;
+  background-color: #fff;
+  font-size: 13px;
+}
+
+.Letter__Item {
+  display: inline-block;
+  overflow: hidden;
+  list-style-type: none;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.Letter__Item:first-child {
+  vertical-align: initial;
+}
+
+.Letter__Item:last-child {
+  font-weight: initial;
+}
+
+.Letter__Author {
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0 10px;
+}
+
+.Letter__Author_hasLogo {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.Letter__Author_noLogo {
+  width: 100%;
+  height: 100%;
+  background-color: #f33;
+  border-radius: 100px;
+  color: #fff;
+  font: 500 18px Helvetica Neue Light, sans-serif;
+  line-height: 30px;
+  text-align: center;
+}
+
+.Letter__AuthorName {
+  width: 160px;
+  margin: 0 0 5px 10px;
+}
+
+.Letter__ReadMark {
+  width: 10px;
+  height: 10px;
+  margin: 0 0 5px 5px;
+}
+
+.Letter__ReadMark_Unread {
+  background-color: #6287bd;
+  border-radius: 100px;
+}
+
+.Letter__Topic {
+  position: absolute;
+  top: 13px;
+  right: 70px;
+  left: 281px;
+
+  overflow: hidden;
+  min-width: 220px;
+}
+
+.Letter__Body {
+  display: none;
+}
+
+.Letter__Date {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+  color: #9b9b9b;
+  text-align: right;
+}
+
+.Letter__LinkOpen {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  bottom: 2px;
+  left: 45px;
+  cursor: pointer;
+}

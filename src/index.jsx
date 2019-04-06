@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import { App } from './app';
+import Mail from './components/mail/mail';
 
 import './index.css';
+import './font.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Mail />, document.getElementById('root'));

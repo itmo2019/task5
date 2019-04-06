@@ -1,0 +1,20 @@
+.MailMain {
+  position: absolute;
+  top: 42px;
+  right: 10px;
+  bottom: 4px;
+  left: 18px;
+
+  margin-top: 13px;
+}
+
+.MailMain__Nav,
+.MailMain__LetterBox {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.MailMain__WriteButton,
+.MailMain__NavList {
+  white-space: normal;
+}

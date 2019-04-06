@@ -1,0 +1,41 @@
+.Toolbar {
+  padding: 10px 20px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.Toolbar__Item {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.Toolbar__Item:first-child {
+  margin-right: -5px;
+}
+
+.Toolbar__Item:not(:first-child) {
+  margin-left: 25px;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.Toolbar__Button {
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}
+
+.Toolbar__Button:hover {
+  color: #000;
+}
+
+.Toolbar__Button:disabled {
+  color: inherit;
+}

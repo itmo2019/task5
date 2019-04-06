@@ -1,0 +1,26 @@
+.SupportLine {
+  padding: 5px 20px;
+  font: 11px 'Helvetica Neue Light', sans-serif;
+  text-align: right;
+}
+
+.SupportLine__Item {
+  display: inline-block;
+  margin-left: 25px;
+  color: #9e9e9e;
+  font-weight: 700;
+  vertical-align: center;
+}
+
+.SupportLine__Item_Link {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.SupportLine__Item_Link:hover {
+  color: #000;
+}
+
+.SupportLine__Item_Text {
+  margin-right: -25px;
+}

@@ -1,0 +1,38 @@
+.Nav {
+  width: 147px;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+
+.Nav__List {
+  padding: 0;
+  margin: 8px 0 0 0;
+  word-wrap: break-word;
+}
+
+.Nav__Item {
+  min-height: 14px;
+  color: #707070;
+  font-size: 11px;
+  list-style-type: none;
+}
+
+.Nav__Item > .Nav__ItemLink {
+  display: block;
+  width: 87%;
+  padding: 5px 10px;
+  color: #707070;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.Nav__Item:hover {
+  background-color: #d8e1ef;
+  border-radius: 3px;
+}
+
+.Nav__Item_Select {
+  background-color: #cdd6e4;
+  border-radius: 3px;
+  color: #555;
+  font-weight: 700;
+}
