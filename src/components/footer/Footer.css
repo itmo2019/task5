@@ -1,0 +1,24 @@
+.footer {
+  width: 100%;
+  border-top: solid 1px #e2e2e2;
+}
+
+.footer-bar {
+  float: right;
+  position: relative;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  margin-right: 20px;
+}
+
+.footer-bar__item {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.footer-link {
+  color: #9b9b9b;
+  font-size: 11px;
+  cursor: pointer;
+  text-decoration: none;
+}

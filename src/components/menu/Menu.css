@@ -1,0 +1,23 @@
+.menu {
+  position: relative;
+  top: 15px;
+  width: 150px;
+  height: 100vh;
+  float: left;
+}
+
+.menu__button {
+  width: 90%;
+  height: 35px;
+  font-size: 12px;
+  background-color: #6287BD;
+  color: #FFFFFF;
+  border-color: #6287BD;
+  box-shadow: 0 2px 4px #6287BD;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.menu__button_action_add-message {
+  margin-top: 5px;
+}

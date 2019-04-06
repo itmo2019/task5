@@ -1,0 +1,36 @@
+.top-bar {
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  border-bottom: solid 1px #e2e2e2;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.horizontal-nav-panel {
+  list-style-type: none;
+  position: relative;
+  left: 20px;
+  margin: auto;
+}
+
+.horizontal-nav-panel__item {
+  margin-right: 25px;
+  float: left;
+}
+
+.horizontal-nav-panel__link {
+  color: #ccc;
+}
+
+.checkbox {
+  height: 16px;
+  width: 16px;
+}
+
+.top-bar__checkbox {
+  float: left;
+  display: inline-block;
+  position: relative;
+  margin-left: 2%;
+}
