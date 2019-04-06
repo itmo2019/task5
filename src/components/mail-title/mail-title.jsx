@@ -24,8 +24,11 @@ export default class MailsTitle extends React.Component {
             this.props.modifiers.split(' ')
                      .forEach(mod => modifiers[mod]='')
         }
+        var checkboxID = this.props.mailID + "_checkbox"
         return  <div className={this.resClass} {...modifiers}>
-                    <input type="checkbox" className="MailTitle__Checkbox" checked={this.state.checked} onChange={this.changeHandler}/>
+                    <label className="MailTitle__CheckboxWrapper" for={checkboxID}>
+                        <input type="checkbox" id={checkboxID} className="MailTitle__Checkbox" checked={this.state.checked} onChange={this.changeHandler}/>
+                    </label>
                     <div className="MailTitle__ImgWrapper">{this.resAvatar}</div>
                     <div className="MailTitle__Sender">{this.props.sender}</div>
                     <div className="MailTitle__UnreadFlag"></div>

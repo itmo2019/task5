@@ -87,8 +87,12 @@
     margin: auto auto auto 10px;
 }
 
-.MailTitle__Checkbox {
+.MailTitle__CheckboxWrapper {
     display: inline-block;
+}
+
+.MailTitle__Checkbox {
+    /* display: inline-block; */
     vertical-align: middle;
     margin: auto 7px auto 20px;
 }

@@ -15,6 +15,8 @@ export default class MailsMaintainance extends React.Component {
     constructor(props) {
         super(props)
 
+        this.mailsPerPage = 30
+
         this.emptyArticle = <div>
                                 <p>Текст письма не завезли.</p> 
                                 <p>Покупайте наших слонов!</p>
@@ -25,13 +27,12 @@ export default class MailsMaintainance extends React.Component {
         this.mailSelected = new Map()
         this.mailSetSelection = new Map()
 
-        this.newEmptyYandexMail  =  this.newEmptyYandexMail.bind(this)
-        this.newYandexMail       =       this.newYandexMail.bind(this)
-        this.deleteSelected      =      this.deleteSelected.bind(this)
-        this.toggleSelectAll     =     this.toggleSelectAll.bind(this)
-        this.constructMailOnPage = this.constructMailOnPage.bind(this)
-        this.receiveMail         =         this.receiveMail.bind(this)
-        this.newMailTimeoutSetup = this.newMailTimeoutSetup.bind(this)
+        var that = this;
+        ['newEmptyYandexMail', 'newYandexMail', 'deleteSelected', 'toggleSelectAll', 
+         'constructMailOnPage', 'receiveMail', 'newMailTimeoutSetup', 'modifyFirst',
+         'modifyAll', 'modifyOne'].forEach(func => {
+             that[func] = that[func].bind(that)
+         })
 
         this.newMailTimeoutSetup(); 
 
@@ -46,8 +47,14 @@ export default class MailsMaintainance extends React.Component {
 
     render() {
         return  <div className="MailsMaintainance">
-                    <MailsHeader callbacks={{deleteCallback: this.deleteSelected, receiveCallback: this.receiveMail}} selectCallback={this.toggleSelectAll} />
-                    {this.state.mailSet.map(props => <Mail {...props} />)}
+                    <MailsHeader 
+                        callbacks={{
+                            deleteCallback: this.deleteSelected, 
+                            receiveCallback: this.receiveMail}} 
+                        selectCallback={this.toggleSelectAll} />
+                    {this.state.mailSet
+                        .slice(0, this.mailsPerPage)
+                        .map(props => <Mail {...props} />)}
                     <div className="MailsMaintainance__Pillar"></div>
                     <div className="MailsMaintainance__MailsFooterWrapper">
                         <MailsFooter />
@@ -56,18 +63,32 @@ export default class MailsMaintainance extends React.Component {
     }
 
     toggleSelectAll(checked) {
-        Array.from(this.mailSetSelection.values())
-             .forEach(m => m(checked))
+        this.state.mailSet
+            .slice(0, this.mailsPerPage)
+            .forEach(m => this.mailSetSelection.get(m.mailID)(checked))
+    }
+
+    modifyAll(action, func) {
+        this.setState(state => {return {mailSet: state.mailSet[action](func)}})
+    }
+    modifyFirst(n, action, func) {
+        this.setState(state => {return {mailSet: state.mailSet
+                                                    .slice(0, n)[action](func)
+                                                    .concat(state.mailSet.slice(n))}})
+    }
+    modifyOne(id, action, func) {
+        var defaultElm = action === "map" ? mail => mail : _ => false
+        this.modifyAll(action, mail => ((mail.mailID === id) ? func(mail) : defaultElm(mail)))
     }
 
     deleteSelected() {
-        this.setState({mailSet: this.state.mailSet.map(mail => {
+        this.modifyAll("map", mail => {
             mail.modifiers = this.mailSelected.get(mail.mailID) ? 'to-delete' : ''
             return mail
-        })})
-        setTimeout(() => {
-            this.setState({mailSet: this.state.mailSet.filter(mail => !this.mailSelected.get(mail.mailID))})
-        }, 200)
+        })
+        setTimeout(() => 
+            this.modifyAll("filter", mail => !this.mailSelected.get(mail.mailID))
+        , 200)
     }
 
     newMail(isRead, avatar, sender, title, date, article, modifiers) {
@@ -96,25 +117,11 @@ export default class MailsMaintainance extends React.Component {
     }
 
     constructMailOnPage(title, article) {
-        var mail = this.newMail(false, null, "mysterious stranger", title, this.getDate(), <Article1 body={article}/>, 'from-delete')
+        var mail = this.newMail(false, null, "mysterious stranger", title, this.getDate(), <Article1 body={article} />, 'from-delete')
         var mailID = mail.mailID;
-        this.setState({mailSet: [mail].concat(this.state.mailSet)})
-        setTimeout(() => {
-            this.setState({mailSet: this.state.mailSet.map(mail => {
-                if (mail.mailID === mailID) {
-                    mail.modifiers += ' to-appear' 
-                }
-                return mail
-            })})
-        }, 100);
-        setTimeout(() => { 
-            this.setState({mailSet: this.state.mailSet.map(mail => {
-                if (mail.mailID === mailID) {
-                    mail.modifiers = '' 
-                }
-                return mail
-            })})
-        }, 300);
+        this.setState(state => {return {mailSet: [mail].concat(state.mailSet)}})
+        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.modifiers += ' to-appear'; return mail}), 50)
+        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.modifiers = '';            return mail}), 250)
     }
 
     month = ['янв.', 'фев.', 'март.', 'апр.', 'май.', 'июн.', 'июл.', 'авг.', 'сен.', 'окт.', 'ноя.', 'дек.'];
@@ -131,8 +138,6 @@ export default class MailsMaintainance extends React.Component {
     }
 
     receiveMail() {
-        console.log(this.state.mailSet)
-        if (this.state.mailSet.length >= 30) {return}
         var xhr = new XMLHttpRequest();
         xhr.open('GET', `http://numbersapi.com/${this.requestsCounter}`, true);
         xhr.send();
