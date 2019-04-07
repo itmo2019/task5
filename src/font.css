@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'Yandex Sans Text';
+  src: url('resources/fonts/YandexSansText-Regular.eot');
+}
+
+@font-face {
+  font-family: HelveticaNeue-Light;
+  src: url('resources/fonts/HelveticaNeueCyr-Light.otf');
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url('resources/fonts/HelveticaNeueCyr-Medium.otf');
+}

@@ -1,0 +1,101 @@
+.Letter {
+  position: relative;
+  top: -42px;
+
+  height: 0;
+  font-weight: 700;
+  transition: height 0.5s, top 0.5s;
+}
+
+.Letter_Added {
+  top: 0;
+
+  height: 42px;
+}
+
+.Letter_Removed {
+  z-index: 0 !important;
+  top: -42px;
+
+  height: 0;
+}
+
+.Letter__Line {
+  position: relative;
+
+  height: 20px;
+  padding: 10px 20px;
+  margin: 0;
+  background-color: #fff;
+  font-size: 13px;
+}
+
+.Letter__Item {
+  display: inline-block;
+  overflow: hidden;
+  list-style-type: none;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.Letter__Item:first-child {
+  vertical-align: initial;
+}
+
+.Letter__Item:last-child {
+  font-weight: initial;
+}
+
+.Letter__Author {
+  width: 30px;
+  height: 30px;
+  margin: -5px 0 0 10px;
+}
+
+.Letter__AuthorLogo {
+  width: 100%;
+  height: 100%;
+  border-radius: 100px;
+}
+
+.Letter__AuthorName {
+  width: 160px;
+  margin: 0 0 5px 10px;
+}
+
+.Letter__ReadMark_Unread {
+  width: 10px;
+  height: 10px;
+  margin: 0 0 5px 5px;
+  background-color: #6287bd;
+  border-radius: 100px;
+}
+
+.Letter__Topic {
+  position: absolute;
+  top: 13px;
+  right: 70px;
+  left: 281px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.Letter__Date {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+
+  width: 50px;
+  color: #9b9b9b;
+  text-align: right;
+}
+
+.Letter__LinkOpen {
+  position: absolute;
+  top: -2px;
+  right: 0;
+  bottom: 2px;
+  left: 45px;
+  cursor: pointer;
+}

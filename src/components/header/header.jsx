@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './header.css';
+import logoImg from '../../resources/images/yandex_mail_logo.svg';
+import logoLines from '../../resources/images/logo_lines.svg';
 
-import yandexMailLogo from '../../resources/mail_logo_for_top.png';
-import logoLines from '../../resources/logo_lines.svg';
-
-export class Header extends Component {
+class Header extends React.Component {
   render() {
     return (
-      <header className="Header">
-        <img className="Header__tools-icon" src={logoLines} alt="logo-lines" />
-        <img
-          className="Header__logo"
-          src={yandexMailLogo}
-          width="153"
-          height="31"
-          alt="yandex mail logo"
-        />
-        <input className="Header__search" type="search" placeholder="Поиск" />
+      <header className="MailHeader">
+        <div className="MailHeader__LogoLines">
+          <img src={logoLines} alt="Logo lines" />
+        </div>
+        <div className="MailHeader__Logo">
+          <img src={logoImg} alt="Яндекс Почта" />
+        </div>
+        <div className="MailHeader__Searchbar">
+          <input className="MailHeader__SearchbarInput" type="search" placeholder="Поиск" />
+        </div>
       </header>
     );
   }

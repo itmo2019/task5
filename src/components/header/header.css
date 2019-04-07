@@ -1,34 +1,50 @@
-.Header {
-  position: absolute;
-  top: 12px;
-  left: 22px;
-}
+.MailHeader {
+  position: relative;
 
-.Header__search {
-  width: 451px;
   height: 32px;
-  border: none;
-  padding-left: 15px;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
-  outline: none;
-  background-color: white;
-  position: absolute;
-  left: 305px;
 }
 
-.Header__search::placeholder {
-  opacity: 0.5;
-  font-family: 'Yandex Sans Text';
-}
-
-.Header__tools-icon {
+.MailHeader__LogoLines {
+  display: inline-block;
   width: 20px;
   height: 17px;
-  position: absolute;
-  top: 10px;
+  vertical-align: middle;
 }
 
-.Header__logo {
+.MailHeader__Logo {
+  display: inline-block;
+  width: 153px;
+  height: 31px;
+  margin-left: 11px;
+  vertical-align: middle;
+}
+
+.MailHeader__Searchbar {
   position: absolute;
-  left: 31px;
+  right: 179px;
+  left: 184px;
+
+  display: inline-block;
+  min-width: 301px;
+  height: 40px;
+  margin-left: 114px;
+  vertical-align: middle;
+}
+
+.MailHeader__SearchbarInput {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 1px 30px 1px 16px;
+
+  border: none;
+  background: #f2f5f8;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+
+  font: 15px 'Helvetica Neue', sans-serif;
+  outline: none;
+}
+
+.MailHeader__SearchbarInput::placeholder {
+  opacity: 0.5;
 }

@@ -1,0 +1,67 @@
+.ApplicationContent {
+  position: absolute;
+  top: 42px;
+  right: 10px;
+  bottom: 4px;
+  left: 18px;
+
+  margin-top: 13px;
+}
+
+.ApplicationContent__Nav {
+  display: inline-block;
+  width: 147px;
+  font-family: 'Helvetica Neue', sans-serif;
+  vertical-align: top;
+}
+
+.ApplicationContent__Button {
+  width: 100%;
+  min-height: 32px;
+
+  border: none;
+  background-color: #6287bd;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  outline: none;
+  text-align: center;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.ApplicationContent__NavigationList {
+  padding: 0;
+  margin: 8px 0 0 0;
+  white-space: normal;
+  word-wrap: break-word;
+}
+
+.ApplicationContent__NavigationItem {
+  min-height: 14px;
+  color: #707070;
+  font-size: 11px;
+  list-style-type: none;
+}
+
+.ApplicationContent__NavigationItemLink {
+  display: block;
+  width: 87%;
+  padding: 5px 10px;
+  color: #707070;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.ApplicationContent__NavigationItem:hover {
+  background-color: #cdd6e4;
+  border-radius: 3px;
+  color: #555;
+  font-weight: 700;
+}
+
+.ApplicationContent__ButtonHolder {
+  margin-top: 5px;
+}

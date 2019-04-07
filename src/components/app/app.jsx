@@ -1,15 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
+
+import MailHeader from '../header/header';
+import AppContent from '../appContent/appContent';
 
 import './app.css';
-import Header from '../header/header';
-import Content from '../content/content';
 
-export class App extends Component {
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        <Content/>
+        <MailHeader />
+        <AppContent />
       </div>
     );
   }
