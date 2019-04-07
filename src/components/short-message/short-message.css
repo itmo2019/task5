@@ -1,4 +1,4 @@
-.Message {
+.ShortMessage {
   width: 100%;
   height: 40px;
 
@@ -9,11 +9,15 @@
   transition: opacity 1s ease-in-out;
 }
 
-.Message.FadeOut {
+.ShortMessage_NonDisplayed {
+  display: none;
+}
+
+.ShortMessage.FadeOut {
   opacity: 0;
 }
 
-.Message__UnreadDot {
+.ShortMessage__UnreadDot {
   width: 10px;
   height: 10px;
   margin-top: 14px;
@@ -27,11 +31,11 @@
   visibility: hidden;
 }
 
-.Message__UnreadDot.Message_Unread {
+.ShortMessage__UnreadDot.ShortMessage_Unread {
   visibility: visible;
 }
 
-.Message__Topic {
+.ShortMessage__Topic {
   overflow: hidden;
 
   min-width: 215px;
@@ -45,21 +49,21 @@
   white-space: nowrap;
 }
 
-.Message__Avatar {
+.ShortMessage__Avatar {
   width: 30px;
   height: 30px;
   padding-top: 5px;
   float: left;
 }
 
-.Message__Checkbox {
+.ShortMessage__Checkbox {
   width: 16px;
   height: 16px;
   margin: 11px 10px 0 20px;
   float: left;
 }
 
-.Message__Date {
+.ShortMessage__Date {
   overflow: hidden;
 
   max-width: 60px;
@@ -72,7 +76,7 @@
   white-space: nowrap;
 }
 
-.Message__Sender {
+.ShortMessage__Sender {
   overflow: hidden;
   width: 25%;
 
@@ -84,13 +88,13 @@
   white-space: nowrap;
 }
 
-.Message__Text {
+.ShortMessage__Text {
   color: black;
   font-family: 'HelveticaNeueCyr', serif;
   font-size: 13px;
   text-decoration: none;
 }
 
-.Message__Text.Message_Unread {
+.ShortMessage__Text.ShortMessage_Unread {
   font-weight: bold;
 }

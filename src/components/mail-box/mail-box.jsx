@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import './mail-box.css';
 import classNames from 'classnames';
+import MultiRef from 'react-multi-ref';
 import { LoremIpsum } from '@jsilvermist/lorem-ipsum-js';
 import { Message } from '../message';
 
 export class MailBox extends Component {
+  static random(x, y) {
+    const rnd = Math.random() * 2 - 1 + (Math.random() * 2 - 1) + (Math.random() * 2 - 1);
+    return Math.round(Math.abs(rnd) * x + y);
+  }
+
   constructor(props) {
     super(props);
     this.lorem = new LoremIpsum();
     this.addNewMessage = this.addNewMessage.bind(this);
     props.addNewMessage(this.addNewMessage);
-    // props.removeMessage(this.removeMessage);
+    this.toggleMessages = this.toggleMessages.bind(this);
     this.state = {
+      shownMessagesRefs: new MultiRef(),
       shownMessages: []
       // hiddenMessages: []
     };
     this.letterID = 0;
-    // this.MAX_LETTERS_NUMBER = 20;
+    this.MAX_LETTERS_NUMBER = 5;
   }
 
   generateName() {
@@ -27,28 +34,44 @@ export class MailBox extends Component {
     return this.lorem.sentence(1, 10);
   }
 
-  // generateHTMLText() {
-  // const text = document.createElement('div');
-  // text.className = 'full-message__text';
-  // const parNumbers = LoremIpsum.random(4, 10);
-  // let i;
-  // for (i = 0; i < parNumbers; i++) {
-  //   const paragraph = document.createElement('p');
-  //   paragraph.innerText = this.lorem.paragraph(5, 40);
-  //   text.appendChild(paragraph);
-  // }
-  // return text;
-  // }
+  generateFullMessage() {
+    const parNumbers = MailBox.random(4, 10);
+    let i;
+    const text = [];
+    for (i = 0; i < parNumbers; i++) {
+      text.push(this.lorem.paragraph(5, 40));
+    }
+    return text;
+  }
 
-  generateMessage() {
+  toggleMessages() {
+    this.state.shownMessagesRefs.map.forEach(mes => {
+      mes.toggleMessage();
+    });
+  }
+
+  generateMessage(state) {
     return (
-      <Message key={this.letterID++} sender={this.generateName()} topic={this.generateTopic()} />
+      <Message
+        key={this.letterID}
+        sender={this.generateName()}
+        topic={this.generateTopic()}
+        content={this.generateFullMessage()}
+        toggleMessages={this.toggleMessages}
+        ref={state.shownMessagesRefs.ref(this.letterID)}
+      />
     );
   }
 
   addNewMessage() {
     this.setState(state => {
-      state.shownMessages.unshift(this.generateMessage());
+      const message = this.generateMessage(state);
+      this.letterID++;
+      state.shownMessages.unshift(message);
+      if (state.shownMessages.length > this.MAX_LETTERS_NUMBER) {
+        // state.hiddenMessages.push(state.shownMessages.pop());
+        state.shownMessages.pop();
+      }
       return { shownMessages: state.shownMessages };
     });
   }
