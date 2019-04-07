@@ -21,13 +21,6 @@
   width: 100%;
 }
 
-.mail-navigation__link {
-  outline: none;
-  text-decoration: none;
-  color: inherit;
-  background-color: inherit;
-}
-
 .menu-actions {
   padding-top: 8px;
 }
