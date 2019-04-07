@@ -16,14 +16,16 @@ export class MailBox extends Component {
     this.lorem = new LoremIpsum();
     this.addNewMessage = this.addNewMessage.bind(this);
     props.addNewMessage(this.addNewMessage);
+    this.removeMessages = this.removeMessages.bind(this);
+    props.removeMessages(this.removeMessages);
     this.toggleMessages = this.toggleMessages.bind(this);
     this.state = {
       shownMessagesRefs: new MultiRef(),
-      shownMessages: []
-      // hiddenMessages: []
+      shownMessages: [],
+      hiddenMessages: []
     };
     this.letterID = 0;
-    this.MAX_LETTERS_NUMBER = 5;
+    this.MAX_LETTERS_NUMBER = 20;
   }
 
   generateName() {
@@ -50,7 +52,7 @@ export class MailBox extends Component {
     });
   }
 
-  generateMessage(state) {
+  generateMessage() {
     return (
       <Message
         key={this.letterID}
@@ -58,22 +60,64 @@ export class MailBox extends Component {
         topic={this.generateTopic()}
         content={this.generateFullMessage()}
         toggleMessages={this.toggleMessages}
-        ref={state.shownMessagesRefs.ref(this.letterID)}
+        ref={this.state.shownMessagesRefs.ref(this.letterID)}
       />
     );
   }
 
   addNewMessage() {
     this.setState(state => {
-      const message = this.generateMessage(state);
+      const message = this.generateMessage();
       this.letterID++;
       state.shownMessages.unshift(message);
       if (state.shownMessages.length > this.MAX_LETTERS_NUMBER) {
-        // state.hiddenMessages.push(state.shownMessages.pop());
+        const copy = state.shownMessages[state.shownMessages.length - 1];
+        state.hiddenMessages.push(copy);
         state.shownMessages.pop();
       }
       return { shownMessages: state.shownMessages };
     });
+  }
+
+  addOldMessages(numRemoved) {
+    this.setState(state => {
+      const need = Math.min(numRemoved, this.state.hiddenMessages.length);
+      let i;
+      for (i = 0; i < need; i++) {
+        const copy = this.state.hiddenMessages[this.state.hiddenMessages.length - 1];
+        state.shownMessages.push(copy);
+        state.hiddenMessages.pop();
+      }
+      return { shownMessages: state.shownMessages };
+    });
+  }
+
+  removeMessages() {
+    const unFiltered = this.state.shownMessages.filter(mes => {
+      const k = Math.round(mes.key);
+      const mesRef = this.state.shownMessagesRefs.map.get(k);
+      return mesRef.state.isTicked;
+    });
+
+    unFiltered.forEach(mes => {
+      const k = Math.round(mes.key);
+      const mesRef = this.state.shownMessagesRefs.map.get(k);
+      mesRef.fadeOutMessage();
+    });
+
+    setTimeout(
+      () =>
+        this.setState(state => {
+          const filtered = state.shownMessages.filter(mes => {
+            const k = Math.round(mes.key);
+            const mesRef = state.shownMessagesRefs.map.get(k);
+            return !mesRef.state.isTicked;
+          });
+          return { shownMessages: filtered };
+        }),
+      1000
+    );
+    setTimeout(() => this.addOldMessages(unFiltered.length), 1000);
   }
 
   render() {

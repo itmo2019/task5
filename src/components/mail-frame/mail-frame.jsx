@@ -34,7 +34,7 @@ export class MailFrame extends Component {
     super(props);
     this.state = {
       addNewMessage: undefined,
-      removeMessage: undefined
+      removeMessages: undefined
     };
   }
 
@@ -43,7 +43,7 @@ export class MailFrame extends Component {
   };
 
   setRemoveMessage = f => {
-    this.setState({ removeMessage: f });
+    this.setState({ removeMessages: f });
   };
 
   render() {
@@ -53,12 +53,12 @@ export class MailFrame extends Component {
           <ActionsItem type="checkbox" />
           <ActionsItem text="Получить письмо" onClick={this.state.addNewMessage} />
           <ActionsItem text="Переслать" />
-          <ActionsItem text="Удалить" onClick={this.state.removeMessage} />
+          <ActionsItem text="Удалить" onClick={this.state.removeMessages} />
           <ActionsItem text="Это спам!" />
           <ActionsItem text="Прочитано" />
         </ul>
 
-        <MailBox addNewMessage={this.setAddNewMessage} removeMessage={this.setRemoveMessage} />
+        <MailBox addNewMessage={this.setAddNewMessage} removeMessages={this.setRemoveMessage} />
         <Footer />
       </div>
     );

@@ -23,14 +23,16 @@ export class ShortMessage extends Component {
       wasRead: false
     };
     this.handleClick = props.handleClick;
+    this.handleTick = props.handleTick;
   }
 
   render() {
+    const fade = this.props.fadeOut ? 'FadeOut' : '';
     const isDisplayed = this.state.isVisible ? '' : 'ShortMessage_NonDisplayed';
     const wasRead = this.state.wasRead ? '' : 'ShortMessage_Unread';
     return (
-      <div className={classNames('ShortMessage', this.props.className, isDisplayed)}>
-        <input className="ShortMessage__Checkbox" type="checkbox" />
+      <div className={classNames('ShortMessage', this.props.className, isDisplayed, fade)}>
+        <input className="ShortMessage__Checkbox" type="checkbox" onClick={this.handleTick} />
         <img
           className="ShortMessage__Avatar"
           src={this.avatar}
