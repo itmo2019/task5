@@ -1,0 +1,66 @@
+.left-menu {
+  float: left;
+  width: 147px;
+  white-space: normal;
+}
+
+.new-message-btn {
+  width: 100%;
+  height: 32px;
+  border-radius: 3px;
+  background-color: #6287bd;
+  font-size: 12px;
+  font-weight: 500;
+  color: #fff;
+  outline: none;
+  cursor: pointer;
+}
+
+.menu-action-wrapper {
+  display: table;
+  width: 100%;
+}
+
+.mail-navigation__link {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+}
+
+.menu-actions {
+  padding-top: 8px;
+}
+
+.menu-actions > .menu-action-wrapper:not(:first-child) {
+  padding-top: 6px;
+}
+
+.menu-action-wrapper__link {
+  outline: none;
+  text-decoration: none;
+  color: inherit;
+  background-color: inherit;
+  word-break: break-word;
+}
+
+.menu-action-wrapper__action {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 500;
+  color: #707070;
+  padding-left: 10px;
+  height: 22px;
+}
+
+.menu-action-wrapper__action:hover:not(.selected-menu-action) {
+  border-radius: 3px;
+  background-color: #d0d6e0;
+}
+
+.selected-menu-action {
+  border-radius: 3px;
+  background-color: #cdd6e4;
+  font-weight: bold;
+}
