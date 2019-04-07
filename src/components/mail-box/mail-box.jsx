@@ -19,6 +19,7 @@ export class MailBox extends Component {
     this.removeMessages = this.removeMessages.bind(this);
     props.removeMessages(this.removeMessages);
     this.toggleMessages = this.toggleMessages.bind(this);
+    this.addRandomly = this.addRandomly.bind(this);
     this.state = {
       shownMessagesRefs: new MultiRef(),
       shownMessages: [],
@@ -26,6 +27,7 @@ export class MailBox extends Component {
     };
     this.letterID = 0;
     this.MAX_LETTERS_NUMBER = 20;
+    setTimeout(this.addRandomly, Math.floor(Math.random() * (10 * 60 * 1000 - 10 + 1) + 10));
   }
 
   generateName() {
@@ -77,6 +79,15 @@ export class MailBox extends Component {
       }
       return { shownMessages: state.shownMessages };
     });
+  }
+
+  addRandomly() {
+    const minTimeout = 5 * 60;
+    const maxTimeout = 10 * 60;
+
+    const timeout = Math.floor(Math.random() * (maxTimeout - minTimeout + 1) + minTimeout);
+    this.addNewMessage();
+    setTimeout(this.addRandomly, timeout * 1000);
   }
 
   addOldMessages(numRemoved) {
