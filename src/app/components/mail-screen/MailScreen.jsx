@@ -43,7 +43,10 @@ export class MailScreen extends Component {
       const selectedEmailsIDs = Object.assign({}, this.state.selectedEmailsIDs)
       if (this.state.allSelected) {
         for (let index = 0; index < this.props.emails.length; index++) {
-          selectedEmailsIDs[index] = true;
+          const emailID = this.props.emails[index].id
+          if (this.state.selectedEmailsIDs[emailID] !== false) {
+            selectedEmailsIDs[emailID] = true
+          }
         }
       }
       if (Object.keys(selectedEmailsIDs).length > 0) {
@@ -57,6 +60,12 @@ export class MailScreen extends Component {
       }
     }
     
+    if (this.props.animateFirst) {
+      setTimeout(() => {
+        this.props.newMessageAnimated()
+      }, 600)
+    }
+    
     return (
       <section className="mail-screen">
         <MailNavigation 
@@ -68,7 +77,8 @@ export class MailScreen extends Component {
           {
             this.props.emails.map((email, index) => {
               return <EMail
-                  emailID={index}
+                  animateAppearance={this.props.animateFirst && index === 0}
+                  emailID={email.id}
                   key={`email_${index}`}
                   iconUrl={email.iconUrl}
                   senderName={email.senderName}
@@ -78,11 +88,13 @@ export class MailScreen extends Component {
                   dateDay={email.date.day}
                   isUnread={email.isUnread}
                   isSelected={
-                    this.state.allSelected || 
-                    this.state.selectedEmailsIDs[index] === true
+                    (this.state.allSelected || 
+                    this.state.selectedEmailsIDs[email.id] === true) &&
+                    (this.state.selectedEmailsIDs[email.id] !== false)
                   }
                   onCheckboxChange={this.onCheckboxChange.bind(this)}
                   removingSelected={this.props.deleteSelected}
+                  onOpenEmail={this.props.onOpenEmail}
                 />
             })
           }

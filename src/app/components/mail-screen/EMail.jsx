@@ -7,7 +7,8 @@ export class EMail extends Component {
         <div className={`email \
                         ${this.props.isUnread ? 'unread' : ''} \
                         ${this.props.removingSelected && this.props.isSelected ?
-                            'bounceOutRight' : ''}`}>
+                            'bounceOutRight' : ''} \
+                        ${this.props.animateAppearance ? 'bounceIn' : ''}`}>
           <div className="email__mail-date">
             {this.props.dateDay}
             {' '}
@@ -24,11 +25,17 @@ export class EMail extends Component {
               src={this.props.iconUrl}
               alt="sender logo"
           />
-          <span className="email__sender-part email__sender-name">
+          <span 
+            className="email__sender-part email__sender-name"
+            onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
+          >
             {this.props.senderName}
           </span>
           <div className="email__unread-flag"></div>
-          <div className="email__sender-part email__sender-title">
+          <div 
+            className="email__sender-part email__sender-title"
+            onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
+          >
             {this.props.title}
           </div>
         </div>

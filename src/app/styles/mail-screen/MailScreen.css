@@ -163,3 +163,26 @@
     height: 24px;
   }
 }
+
+
+.content__email-content {
+  padding: 10px;
+  display: inline-block;
+  margin-left: 22px;
+  width: calc(100% - 198px);
+  height: 100%;
+  margin-bottom: 14px;
+  white-space: normal;
+  word-wrap: break-word;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+  background-color: #ffffff;
+  overflow-y: scroll;
+} 
+
+.close-email {
+  width: 100%;
+  cursor: pointer;
+  display: inline-block;
+  text-align: right;
+}
