@@ -34,32 +34,21 @@ class LetterBox extends React.Component {
             <Checkbox onclick={this.state.selectAll} />
           </li>
           <li className="Toolbar__Item">
-            <input
-              className="Toolbar__Button"
-              type="button"
-              id="forward-letter"
-              value="Переслать"
-            />
+            <input className="Toolbar__Button" type="button" value="Переслать" />
           </li>
           <li className="Toolbar__Item">
             <input
               className="Toolbar__Button"
               type="button"
-              id="remove-letter"
               value="Удалить"
               onClick={this.state.removeLetter}
             />
           </li>
           <li className="Toolbar__Item">
-            <input className="Toolbar__Button" type="button" id="spam-letter" value="Это спам!" />
+            <input className="Toolbar__Button" type="button" value="Это спам!" />
           </li>
           <li className="Toolbar__Item">
-            <input
-              className="Toolbar__Button"
-              type="button"
-              id="mark-read-letter"
-              value="Прочитано"
-            />
+            <input className="Toolbar__Button" type="button" value="Прочитано" />
           </li>
         </ul>
 
