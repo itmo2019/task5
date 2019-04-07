@@ -1,47 +1,52 @@
-function checkAll(toolbarCheckbox) {
-    let checkboxes = document.querySelectorAll('.checkbox');
-    for (let i = 1; i < checkboxes.length; i++) {
-        checkboxes[i].checked = toolbarCheckbox.checked;
-    }
+import composer from './message__composer';
+import CroissantImage from './message__image.png';
+
+const TIME_INTERVAL = 300000;
+
+export function checkAll(toolbarCheckbox) {
+  const checkboxes = document.querySelectorAll('.checkbox');
+  for (let i = 1; i < checkboxes.length; i++) {
+    checkboxes[i].checked = toolbarCheckbox.checked;
+  }
 }
 
-async function newMail() {
-    let mailList = document.getElementById("messages");
+export async function newMail() {
+  const mailList = document.getElementById('messages');
 
-    let mail = document.createElement("section");
-    mail.innerHTML = await composer();
-    mail.firstChild.id="message__id";
+  const mail = document.createElement('section');
+  mail.innerHTML = await composer();
+  mail.firstChild.id = 'message__id';
 
-    mailList.insertBefore(mail, mailList.firstChild);
+  mailList.insertBefore(mail, mailList.firstChild);
 
-    let GC = document.getElementById("message__id");
-    setTimeout(() => {
-        GC.classList.add("message_show")
-    }, 20);
-    setTimeout(() => {
-        GC.removeAttribute('id');
-    }, 500);
+  const GC = document.getElementById('message__id');
+  setTimeout(() => {
+    GC.classList.add('message_show');
+  }, 20);
+  setTimeout(() => {
+    GC.removeAttribute('id');
+  }, 500);
 }
 
-function deleteMail() {
-    let checkboxes = document.querySelectorAll('.checkbox');
-    for (let i = 1; i < checkboxes.length; i++) {
-        if ((checkboxes[i].checked === true) && (i < 30)) {
-            let container = checkboxes[i].parentElement.parentElement;
-            container.classList.remove("message_show");
-            setTimeout(() => {
-                container.parentElement.remove();
-            }, 500);
-        }
+export function deleteMail() {
+  const checkboxes = document.querySelectorAll('.checkbox');
+  for (let i = 1; i < checkboxes.length; i++) {
+    if (checkboxes[i].checked === true && i < 30) {
+      const container = checkboxes[i].parentElement.parentElement;
+      container.classList.remove('message_show');
+      setTimeout(() => {
+        container.parentElement.remove();
+      }, 500);
     }
-    checkboxes[0].checked = false;
-    checkAll(checkboxes[0]);
+  }
+  checkboxes[0].checked = false;
+  checkAll(checkboxes[0]);
 }
 
 function randomMailIncoming() {
-    let randomTimer = Math.random() * (300000 - 10) + 10;
-    setTimeout(newMail, randomTimer);
-    setTimeout(randomMailIncoming, 300000 - randomTimer);
+  const randomTimer = Math.random() * (TIME_INTERVAL - 10) + 10;
+  setTimeout(newMail, randomTimer);
+  setTimeout(randomMailIncoming, TIME_INTERVAL - randomTimer);
 }
 
 randomMailIncoming();
@@ -49,9 +54,10 @@ randomMailIncoming();
 let text = 'no text';
 let author = 'no author';
 
-function formCroissant() {
-    author = 'История круассана'
-    text = `<img alt="Свежий круассан" class="message__image" src="body/main/inner/message-list/message/message__image.png" width="180">\n
+export function formCroissant() {
+  author = 'История круассана';
+  text = `<img alt="Свежий круассан" class="message__image" src=${CroissantImage} width="180">
+
         Мучные изделия в форме полумесяцев выпекались в Австрии по меньшей мере с XIII века. Но началом
         нынешней популярности круассанов можно считать 1839 год, когда австрийский артиллерийский офицер
         Август Цанг открыл в Париже «Венскую пекарню», где пекли такие булочки.
@@ -71,25 +77,25 @@ function formCroissant() {
         В скором времени появилось целое «семейство» подобных дрожжевых и слоеных булочек, например,
         улитка с изюмом, слойка с яблочным пюре, слойка с шоколадом и т. д. В 2013 году
         антиправительственные повстанцы в Сирии запретили круассаны на контролируемой ими территории
-        в Алеппо, объясняя свой запрет вышеупомянутой австрийской легендой`
+        в Алеппо, объясняя свой запрет вышеупомянутой австрийской легендой`;
 }
 
-function formMessagePage(parent) {
-    text = parent.querySelector('.message__subject').textContent;
-    author = parent.parentElement.querySelector('.message__contact').textContent;
-}
-
-function changeMessagePage(checkbox) {
-    if (checkbox.checked == true) {
-        document.querySelector('.message__page').remove();
-        let content = document.querySelector('.message__content');
-        let page = document.createElement("div");
-        page.classList.add("message__page");
-        let page__author = document.createElement("p");
-        page__author.textContent = 'От кого: ' + author;
-        let page__text = document.createElement("p");
-        page__text.innerHTML = text;
-        page.innerHTML = page__author.outerHTML + page__text.outerHTML;
-        content.appendChild(page);
-    }
-}
+// export function formMessagePage(parent) {
+//   text = parent.querySelector('.message__subject').textContent;
+//   author = parent.parentElement.querySelector('.message__contact').textContent;
+// }
+//
+// export function changeMessagePage(checkbox) {
+//   if (checkbox.checked === true) {
+//     document.querySelector('.message__page').remove();
+//     const content = document.querySelector('.message__content');
+//     const page = document.createElement('div');
+//     page.classList.add('message__page');
+//     const pageAuthor = document.createElement('p');
+//     pageAuthor.textContent = `От кого: ${author}`;
+//     const pageText = document.createElement('p');
+//     pageText.innerHTML = text;
+//     page.innerHTML = pageAuthor.outerHTML + pageText.outerHTML;
+//     content.appendChild(page);
+//   }
+// }

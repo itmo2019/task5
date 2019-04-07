@@ -2,19 +2,21 @@ import React from 'react';
 
 import './footer.css';
 
+function FooterWrapper({ value }) {
+  return (
+    <a className="footer_link-decoration" href="#">
+      {value}
+    </a>
+  );
+}
+
 export default function Footer() {
   return (
     <footer className="footer">
       <hr className="hr" />
-      <a className="footer_link-decoration" href="#">
-        Помощь и обратная связь
-      </a>
-      <a className="footer_link-decoration" href="#">
-        Реклама
-      </a>
-      <a className="footer_link-decoration" href="#">
-        &copy; 2001-2018, Яндекс
-      </a>
+      <FooterWrapper value="Помощь и обратная связь" />
+      <FooterWrapper value="Реклама" />
+      <FooterWrapper value="&copy; 2001-2018, Яндекс" />
     </footer>
   );
 }
