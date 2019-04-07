@@ -18,10 +18,9 @@ export default class Letter extends Component {
     super(props);
     this.state = {
       className: `Letter Letter_Unread ${props.className}`,
-      hidden: false
+      hidden: false,
+      setCheckedFalse: undefined
     };
-
-    this.setHidden = this.setHidden.bind(this);
 
     props.updateSetHidden(this.setHidden);
   }
@@ -38,9 +37,14 @@ export default class Letter extends Component {
     clearTimeout(this.timerID);
   }
 
-  setHidden(value) {
+  setHidden = value => {
     this.setState({ hidden: value });
-  }
+    this.state.setCheckedFalse();
+  };
+
+  updateSetCheckedFalse = value => {
+    this.setState({ setCheckedFalse: value });
+  };
 
   /** @namespace props.authorLogo */
   /** @namespace props.authorName */
@@ -50,7 +54,7 @@ export default class Letter extends Component {
       <li className={this.state.className} hidden={this.state.hidden}>
         <ul className="Letter__Line">
           <LetterItem>
-            <Check />
+            <Check updateSetCheckedFalse={this.updateSetCheckedFalse} />
           </LetterItem>
           <LetterItem className="Letter__Author">{this.props.authorLogo}</LetterItem>
           <LetterItem className="Letter__AuthorName">{this.props.authorName}</LetterItem>

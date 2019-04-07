@@ -16,7 +16,7 @@ export default class LetterList extends Component {
 
   MAX_TIMER_ADD_MAIL = 600001;
 
-  MAX_MAIL_LIST_SIZE = 10;
+  MAX_MAIL_LIST_SIZE = 30;
 
   REMOVE_LETTER_TIME = 500;
 
@@ -32,14 +32,6 @@ export default class LetterList extends Component {
       curPage: 1,
       listLetters: []
     };
-
-    this.getRandomLetter = this.getRandomLetter.bind(this);
-    this.newMail = this.newMail.bind(this);
-    this.doActionWithLetters = this.doActionWithLetters.bind(this);
-    this.removeAnimateLetter = this.removeAnimateLetter.bind(this);
-    this.removeLetters = this.removeLetters.bind(this);
-    this.unmarkLetters = this.unmarkLetters.bind(this);
-    this.handleMainCheckBoxClick = this.handleMainCheckBoxClick.bind(this);
 
     props.updateAddLetter(this.newMail);
     props.updateRemoveLetter(this.removeLetters);
@@ -61,7 +53,7 @@ export default class LetterList extends Component {
     clearTimeout(this.timerInnerID);
   }
 
-  getRandomLetter(updateSetHidden) {
+  getRandomLetter = updateSetHidden => {
     const authorName = this.letterGenerator.getAuthorName();
     return (
       <Letter
@@ -75,9 +67,9 @@ export default class LetterList extends Component {
         handleMailClick={this.props.handleMailClick}
       />
     );
-  }
+  };
 
-  newMail() {
+  newMail = () => {
     if (this.state.curPage * this.MAX_MAIL_LIST_SIZE <= this.state.listLetters.length) {
       this.state.listLetters[this.state.curPage * this.MAX_MAIL_LIST_SIZE - 1].setHidden(true);
     }
@@ -91,9 +83,9 @@ export default class LetterList extends Component {
       return { listLetters: state.listLetters };
     });
     document.body.querySelector('.Check__Input').checked = false;
-  }
+  };
 
-  doActionWithLetters(action) {
+  doActionWithLetters = action => {
     const checkboxes = document.body.querySelectorAll('.Check__Input');
     let last = Math.min(checkboxes.length - 1, this.state.curPage * this.MAX_MAIL_LIST_SIZE);
     const first = (this.state.curPage - 1) * this.MAX_MAIL_LIST_SIZE + 1;
@@ -102,9 +94,9 @@ export default class LetterList extends Component {
         action(checkboxes[i].closest('.Letter'), last++, i - 1);
       }
     }
-  }
+  };
 
-  removeAnimateLetter(letter, newLetterIndex, letterIndex) {
+  removeAnimateLetter = (letter, newLetterIndex, letterIndex) => {
     if (newLetterIndex < this.state.listLetters.length) {
       this.state.listLetters[newLetterIndex].setHidden(false);
     }
@@ -118,27 +110,27 @@ export default class LetterList extends Component {
         });
       }, this.REMOVE_LETTER_TIME);
     }, this.DELTA_TIME);
-  }
+  };
 
-  removeLetters() {
+  removeLetters = () => {
     setTimeout(() => {
       document.body.querySelector('.Check__Input').checked = false;
     }, (this.REMOVE_LETTER_TIME * 2) / 3);
     this.doActionWithLetters(this.removeAnimateLetter);
-  }
+  };
 
-  unmarkLetters() {
+  unmarkLetters = () => {
     this.doActionWithLetters(unmarkLetter);
-  }
+  };
 
-  handleMainCheckBoxClick() {
+  handleMainCheckBoxClick = () => {
     const checkboxes = document.body.querySelectorAll('.Check__Input');
     const checkAll = checkboxes[0];
     const size = Math.min(checkboxes.length, this.state.curPage * this.MAX_MAIL_LIST_SIZE + 1);
     for (let i = 1 + (this.state.curPage - 1) * this.MAX_MAIL_LIST_SIZE; i < size; i++) {
       checkboxes[i].checked = checkAll.checked;
     }
-  }
+  };
 
   render() {
     return <ul id="LetterList">{this.state.listLetters.map(obj => obj.letter)}</ul>;

@@ -14,13 +14,10 @@ export default class LetterDialog extends Component {
       content: ''
     };
 
-    this.handleMailClick = this.handleMailClick.bind(this);
-    this.handleLetterExitClick = this.handleLetterExitClick.bind(this);
-
     props.updateHandleMailClick(this.handleMailClick);
   }
 
-  handleMailClick(event) {
+  handleMailClick = event => {
     const letter = event.target.closest('.Letter');
 
     this.setState(state => {
@@ -31,11 +28,11 @@ export default class LetterDialog extends Component {
       };
     });
     unmarkLetter(letter);
-  }
+  };
 
-  handleLetterExitClick() {
+  handleLetterExitClick = () => {
     this.setState({ className: 'LetterDialog' });
-  }
+  };
 
   render() {
     return (
