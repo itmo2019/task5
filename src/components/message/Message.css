@@ -1,0 +1,79 @@
+.message {
+  border-bottom: solid 1px #e2e2e2;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.sender-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  background-color: #f33;
+  color: #fff;
+  text-align: center;
+  line-height: 30px;
+}
+
+.message__sender-img {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 15px;
+  vertical-align: middle;
+}
+
+.message__sender {
+  display: inline-block;
+  margin-right: 10px;
+  width: 250px;
+}
+
+.message__theme {
+  display: inline-block;
+  margin-right: 10px;
+  margin-left: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  width: calc(100% - 500px);
+  vertical-align: text-bottom;
+}
+
+.message__date {
+  display: inline-block;
+  position: relative;
+  float: right;
+  top: 5px;
+  right: 20px;
+  font-weight: normal;
+  vertical-align: middle;
+  color: #9b9b9b;
+}
+
+.message__checkbox {
+  height: 16px;
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2%;
+}
+
+.message__unread-circle {
+  background: #6287bd;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.hidden-box__content {
+  margin: 5px;
+  min-height: 500px;
+}
+
+.hidden-box__cancel-btn {
+  float: right;
+  font-size: 30px;
+  font-family: YandexSansThin, serif;
+  color: gray;
+  cursor: pointer;
+}
