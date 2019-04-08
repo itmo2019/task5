@@ -15,14 +15,13 @@ export class Header extends PureComponent {
         <div className="header__mlogo"></div>
         <div className="search-bar-container">
           <div className="search-bar-container__search-bar-and-close">
-            <input 
-              type="text"
+            <input
+              type="search"
               className="search-bar-container__search-bar"
               placeholder="Поиск"
+              value={this.props.filterText}
+              onChange={this.props.onFilterChange}
             />
-            <span className="search-bar-container__search-bar-close">
-              &#x2715;
-            </span>
           </div>
         </div>
       </header>

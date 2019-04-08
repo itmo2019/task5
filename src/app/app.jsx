@@ -39,6 +39,7 @@ export class App extends Component {
     super(props)
     
     this.state = {
+      filterText: '',
       animateFirst: false,
       deleteSelected: false,
       emails: [
@@ -92,11 +93,13 @@ export class App extends Component {
     if (!paragraphs) {
       throw new Error('Failure to generate new message text')
     }
+
     const title = paragraphs[0].split(' ').slice(0, getRand(4, 10)).join(' ')
     const day   = getRand(1, 28)
     const month  = possibleMonths[getRand(0, possibleMonths.length - 1)]
     
     this.setState({
+      filterText: '',
       animateFirst: true,
       emails: [
         ...this.state.emails,
@@ -155,16 +158,46 @@ export class App extends Component {
     })
   }
   
+  onFilterTextChange(filterTextEvent) {
+    this.setState({
+      filterText: filterTextEvent.target.value
+    })
+  }
+  
+  filteredEmails() {
+    if (this.state.filterText !== '') {
+      const filterTextLowerCased = this.state.filterText.toLowerCase()
+      return this.state.emails.filter((email) => {
+        if (email.senderName.toLowerCase().indexOf(filterTextLowerCased) !== -1) {
+          return true
+        }
+        
+        if (email.title.toLowerCase().indexOf(filterTextLowerCased) !== -1) {
+          return true
+        }
+        
+        return false
+      })
+    }
+    
+    return this.state.emails
+  }
+  
   render() {
+    const emails = this.filteredEmails()
+    
     return (
       <div className="inherit-size">
-        <Header/>
+        <Header
+          filterText={this.state.filterText}
+          onFilterChange={this.onFilterTextChange.bind(this)}
+        />
         <div className="content">
-          <LeftMenu/>
+          <LeftMenu generateNewEMail={this.newMail} />
           <MailScreenWithFooter 
             animateFirst={this.state.animateFirst}
-            emails={this.state.emails.slice(
-              Math.max(0, this.state.emails.length - MAX_EMAILS_PER_PAGE)
+            emails={emails.slice(
+              Math.max(0, emails.length - MAX_EMAILS_PER_PAGE)
             ).reverse()}
             handleEmailsRemoval={this.handleEmailsRemoval.bind(this)}
             deleteSelectedClicked={this.deleteSelectedClicked.bind(this)}

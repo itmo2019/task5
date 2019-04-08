@@ -13,6 +13,22 @@ export class MailScreen extends Component {
     }
   }
   
+  getSelectedEmailsCount(selectedEmailsStatus) {
+    return Object.keys(selectedEmailsStatus)
+      .filter((emailID) => !!selectedEmailsStatus[emailID])
+      .length
+  }
+  
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.allSelected && 
+        nextProps.emails.length > this.getSelectedEmailsCount(nextState.selectedEmailsIDs)) {
+        this.setState({
+          ...nextState,
+          allSelected: false,
+        })
+    }
+  }
+  
   onCheckboxChange(index, newSelectedValue) {
     const newSelectedEmails = this.state.selectedEmailsIDs
     newSelectedEmails[index] = newSelectedValue
@@ -24,10 +40,17 @@ export class MailScreen extends Component {
   
   selectAllClicked() {
     const allSelected = !this.state.allSelected
-
+    
+    const selectedEmailsIDs = {}
+    if (allSelected) {
+        this.props.emails.forEach((email) => {
+          selectedEmailsIDs[email.id] = true
+        })
+    }
+    
     this.setState({
       allSelected,
-      selectedEmailsIDs: {},
+      selectedEmailsIDs
     })
   }
   
@@ -88,9 +111,7 @@ export class MailScreen extends Component {
                   dateDay={email.date.day}
                   isUnread={email.isUnread}
                   isSelected={
-                    (this.state.allSelected || 
-                    this.state.selectedEmailsIDs[email.id] === true) &&
-                    (this.state.selectedEmailsIDs[email.id] !== false)
+                    this.state.selectedEmailsIDs[email.id] === true
                   }
                   onCheckboxChange={this.onCheckboxChange.bind(this)}
                   removingSelected={this.props.deleteSelected}

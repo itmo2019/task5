@@ -21,7 +21,12 @@ export class LeftMenu extends Component {
   render() {
     return (
       <nav className="left-menu">
-      <button className="new-message-btn">Написать</button>
+      <button 
+        className="left-menu__get-new-message-btn pressable-button"
+        onClick={this.props.generateNewEMail}>
+        Получить письмо
+        </button>
+      <button className="new-message-btn pressable-button">Написать</button>
       <div className="menu-actions">
         {
           actions.map((action, index) => {

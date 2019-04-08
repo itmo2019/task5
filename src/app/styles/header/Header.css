@@ -40,15 +40,8 @@
   position: relative;
 }
 
- .search-bar-container__search-bar-close {
-  top: 9px;
-  right: 0;
-  width: 9px;
-  height: 9px;
-  position: absolute;
-  opacity: 0.15;
-  color: #000;
-  cursor: pointer;
+.search-bar-container__search-bar::-webkit-search-cancel-button{
+   margin-right: 3px;
 }
 
  .search-bar-container__search-bar {
