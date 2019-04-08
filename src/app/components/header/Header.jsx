@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
+import { SearchBar } from './SearchBar';
 
 import '../../styles/header/Header.css';
 
-export class Header extends PureComponent {
+export class Header extends Component {
   render() {
     return (
       <header className="header">
@@ -10,17 +11,7 @@ export class Header extends PureComponent {
           <img className="hamburger__img" alt="" />
         </button>
         <div className="header__mlogo" />
-        <div className="search-bar-container">
-          <div className="search-bar-container__search-bar-and-close">
-            <input
-              type="search"
-              className="search-bar-container__search-bar"
-              placeholder="Поиск"
-              value={this.props.filterText}
-              onChange={this.props.onFilterChange}
-            />
-          </div>
-        </div>
+        <SearchBar filterText={this.props.filterText} onFilterChange={this.props.onFilterChange} />
       </header>
     );
   }

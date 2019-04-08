@@ -3,19 +3,28 @@ import React, { Component } from 'react';
 import '../../styles/mail-screen/EMail.css';
 
 export class EMail extends Component {
+  getMainClassName() {
+    const classNames = ['email'];
+
+    if (this.props.isUnread) {
+      classNames.push('unread');
+    }
+
+    if (this.props.removingSelected && this.props.isSelected) {
+      classNames.push('bounceOutRight');
+    }
+
+    if (this.props.animateAppearance) {
+      classNames.push('bounceIn');
+    }
+
+    return classNames.join(' ');
+  }
+
   render() {
     return (
       <section className="mail-screen-element-wrapper">
-        <div
-          className={`email \
-                        ${this.props.isUnread ? 'unread' : ''} \
-                        ${
-                          this.props.removingSelected && this.props.isSelected
-                            ? 'bounceOutRight'
-                            : ''
-                        } \
-                        ${this.props.animateAppearance ? 'bounceIn' : ''}`}
-        >
+        <div className={this.getMainClassName()}>
           <div className="email__mail-date">
             {this.props.dateDay} {this.props.dateMonth}
           </div>

@@ -1,13 +1,13 @@
 @import url(./fonts/stylesheet.css);
 @import url(./animations.css);
 
-#container {
-    height: calc(100vh - 50px);
-    margin: 0;
-    padding: 11px 22px 14px 22px;
-    background-color: #e5eaf0;
-    font-family: HelveticaNeue;
-    min-width: 900px;
+.root-container {
+  height: calc(100vh - 50px);
+  margin: 0;
+  padding: 11px 22px 14px 22px;
+  background-color: #e5eaf0;
+  font-family: HelveticaNeue;
+  min-width: 900px;
 }
 
 .inherit-size {

@@ -1,126 +1,55 @@
 import React, { Component } from 'react';
 
-import { EMail } from './EMail';
-import { MailNavigation } from './MailNavigation';
+import { Footer } from './Footer';
+import { EmailsList } from './EmailsList';
+import { OpenedEmail } from './OpenedEmail';
 
-const getSelectedEmailsCount = selectedEmailsStatus => {
-  return Object.keys(selectedEmailsStatus).filter(emailID => !!selectedEmailsStatus[emailID])
-    .length;
-};
+import '../../styles/mail-screen/MailScreen.css';
 
 export class MailScreen extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      allSelected: false,
-      selectedEmailsIDs: {}
+      openedEmailId: null,
+      openedEmailText: null
     };
   }
 
-  componentDidUpdate() {
-    if (
-      this.state.allSelected &&
-      this.props.emails.length > getSelectedEmailsCount(this.state.selectedEmailsIDs)
-    ) {
-      this.setState({
-        allSelected: false
-      });
-    }
-  }
-
-  onCheckboxChange(index, newSelectedValue) {
-    this.setState(prevState => {
-      const newSelectedEmails = prevState.selectedEmailsIDs;
-      newSelectedEmails[index] = newSelectedValue;
-      return {
-        selectedEmailsIDs: newSelectedEmails
-      };
+  onCloseOpenedEmailClick() {
+    this.props.markAsRead(this.state.openedEmailId);
+    this.setState({
+      openedEmailId: null,
+      openedEmailText: null
     });
   }
 
-  onDeleteSelected() {
-    if (this.state.allSelected || Object.keys(this.state.selectedEmailsIDs).length > 0) {
-      this.props.deleteSelectedClicked();
-    }
-  }
-
-  selectAllClicked() {
-    this.setState(prevState => {
-      const allSelected = !prevState.allSelected;
-
-      const selectedEmailsIDs = {};
-      if (allSelected) {
-        this.props.emails.forEach(email => {
-          selectedEmailsIDs[email.id] = true;
-        });
-      }
-
-      return {
-        allSelected,
-        selectedEmailsIDs
-      };
+  onOpenEmail(id, text) {
+    this.setState({
+      openedEmailId: id,
+      openedEmailText: text
     });
   }
 
   render() {
-    if (this.props.deleteSelected) {
-      const selectedEmailsIDs = Object.assign({}, this.state.selectedEmailsIDs);
-      if (this.state.allSelected) {
-        for (let index = 0; index < this.props.emails.length; index++) {
-          const emailID = this.props.emails[index].id;
-          if (this.state.selectedEmailsIDs[emailID] !== false) {
-            selectedEmailsIDs[emailID] = true;
-          }
-        }
-      }
-      if (Object.keys(selectedEmailsIDs).length > 0) {
-        setTimeout(() => {
-          this.props.handleEmailsRemoval(selectedEmailsIDs);
-          this.setState({
-            allSelected: false,
-            selectedEmailsIDs: {}
-          });
-        }, 250);
-      }
-    }
-
-    if (this.props.animateFirst) {
-      setTimeout(() => {
-        this.props.newMessageAnimated();
-      }, 600);
-    }
-
-    return (
-      <section className="mail-screen">
-        <MailNavigation
-          onSelectAll={this.selectAllClicked.bind(this)}
-          isSelected={this.state.allSelected}
-          onDelete={this.onDeleteSelected.bind(this)}
+    return !this.state.openedEmailText ? (
+      <section className="content__mail-screen-and-footer">
+        <EmailsList
+          emails={this.props.emails}
+          handleEmailsRemoval={this.props.handleEmailsRemoval}
+          deleteSelectedClicked={this.props.deleteSelectedClicked}
+          deleteSelected={this.props.deleteSelected}
+          newMessageAnimated={this.props.newMessageAnimated}
+          animateFirst={this.props.animateFirst}
+          onOpenEmail={this.onOpenEmail.bind(this)}
         />
-        <section className="mail-emails">
-          {this.props.emails.map((email, index) => {
-            return (
-              <EMail
-                animateAppearance={this.props.animateFirst && index === 0}
-                emailID={email.id}
-                key={`email_${email.id}`}
-                iconUrl={email.iconUrl}
-                senderName={email.senderName}
-                title={email.title}
-                text={email.text}
-                dateMonth={email.date.month}
-                dateDay={email.date.day}
-                isUnread={email.isUnread}
-                isSelected={this.state.selectedEmailsIDs[email.id] === true}
-                onCheckboxChange={this.onCheckboxChange.bind(this)}
-                removingSelected={this.props.deleteSelected}
-                onOpenEmail={this.props.onOpenEmail}
-              />
-            );
-          })}
-        </section>
+        <Footer />
       </section>
+    ) : (
+      <OpenedEmail
+        text={this.state.openedEmailText}
+        onCloseClick={this.onCloseOpenedEmailClick.bind(this)}
+      />
     );
   }
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Header } from './components/header/Header';
 import { LeftMenu } from './components/left-menu/LeftMenu';
-import { MailScreenWithFooter } from './components/mail-screen/MailScreenWithFooter';
+import { MailScreen } from './components/mail-screen/MailScreen';
 import * as ContentGenerator from './scripts/content-generation';
 
 const MAX_EMAILS_PER_PAGE = 30;
@@ -29,13 +29,7 @@ const possibleIcons = [
   'https://static1.squarespace.com/static/53fe4a70e4b0a2293ab0e42a/t/53fe4b7ce4b03ae33c17c7d2/1464311372584/?format=1500w'
 ];
 
-const possibleSenders = [
-  'Яндекс.Музыка',
-  'Яндекс.Мясо',
-  'Lyft',
-  'Uber',
-  'Google'
-];
+const possibleSenders = ['Яндекс.Музыка', 'Яндекс.Мясо', 'Lyft', 'Uber', 'Google'];
 
 const sleep = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
@@ -74,8 +68,7 @@ export class App extends Component {
           iconUrl:
             'https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/f2/e1/51/f2e15135-a7d0-daa4-e2ec-6ddd9bf6088c/DriverAppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-5.png/320x0w.jpg',
           senderName: 'Jobs@Lyft',
-          title:
-            'Looking for a driver to make more than 3,500$/month! Sign up now!',
+          title: 'Looking for a driver to make more than 3,500$/month! Sign up now!',
           text: [
             'This is a great opportunity provided by Lyft to make some additional money or land a dream job as a driver!'
           ],
@@ -195,9 +188,7 @@ export class App extends Component {
     if (this.state.filterText !== '') {
       const filterTextLowerCased = this.state.filterText.toLowerCase();
       return this.state.emails.filter(email => {
-        if (
-          email.senderName.toLowerCase().indexOf(filterTextLowerCased) !== -1
-        ) {
+        if (email.senderName.toLowerCase().indexOf(filterTextLowerCased) !== -1) {
           return true;
         }
 
@@ -223,11 +214,9 @@ export class App extends Component {
         />
         <div className="content">
           <LeftMenu generateNewEMail={this.newMail} />
-          <MailScreenWithFooter
+          <MailScreen
             animateFirst={this.state.animateFirst}
-            emails={emails
-              .slice(Math.max(0, emails.length - MAX_EMAILS_PER_PAGE))
-              .reverse()}
+            emails={emails.slice(Math.max(0, emails.length - MAX_EMAILS_PER_PAGE)).reverse()}
             handleEmailsRemoval={this.handleEmailsRemoval.bind(this)}
             deleteSelectedClicked={this.deleteSelectedClicked.bind(this)}
             deleteSelected={this.state.deleteSelected}
