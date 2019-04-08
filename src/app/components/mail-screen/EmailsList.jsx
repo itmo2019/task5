@@ -104,7 +104,7 @@ export class EmailsList extends Component {
           {this.props.emails.map(email => {
             return (
               <EMail
-                animateAppearance={this.props.animteID === email.id}
+                animateAppearance={this.props.animateID === email.id}
                 emailID={email.id}
                 key={`email_${email.id}`}
                 iconUrl={email.iconUrl}
