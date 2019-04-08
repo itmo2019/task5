@@ -7,6 +7,9 @@ import * as ContentGenerator from './scripts/content-generation';
 const MAX_EMAILS_PER_PAGE = 30;
 const NEW_EMAIL_COOLDOWN = 1000 * 60 * 5;
 
+const FOLDER_READ = 'READ';
+const FOLDER_INBOX = 'INBOX';
+
 const possibleMonths = [
   'янв',
   'фев',
@@ -45,7 +48,8 @@ export class App extends Component {
 
     this.state = {
       filterText: '',
-      animateFirst: false,
+      folder: FOLDER_INBOX,
+      animateID: null,
       deleteSelected: false,
       emails: [
         {
@@ -119,7 +123,7 @@ export class App extends Component {
     this.setState(prevState => {
       return {
         filterText: '',
-        animateFirst: true,
+        animateID: prevState.emails.length,
         emails: [
           ...prevState.emails,
           {
@@ -165,7 +169,7 @@ export class App extends Component {
 
   newMessageAnimated() {
     this.setState({
-      animateFirst: false
+      animateID: null
     });
   }
 
@@ -184,10 +188,26 @@ export class App extends Component {
     });
   }
 
+  showInbox() {
+    this.setState({
+      folder: FOLDER_INBOX
+    });
+  }
+
+  showRead() {
+    this.setState({
+      folder: FOLDER_READ
+    });
+  }
+
   filteredEmails() {
-    if (this.state.filterText !== '') {
+    if (this.state.filterText !== '' || this.state.folder === FOLDER_READ) {
       const filterTextLowerCased = this.state.filterText.toLowerCase();
       return this.state.emails.filter(email => {
+        if (this.state.folder === FOLDER_READ && email.isUnread) {
+          return false;
+        }
+
         if (email.senderName.toLowerCase().indexOf(filterTextLowerCased) !== -1) {
           return true;
         }
@@ -215,13 +235,15 @@ export class App extends Component {
         <div className="content">
           <LeftMenu generateNewEMail={this.newMail} />
           <MailScreen
-            animateFirst={this.state.animateFirst}
+            animateID={this.state.animateID}
             emails={emails.slice(Math.max(0, emails.length - MAX_EMAILS_PER_PAGE)).reverse()}
             handleEmailsRemoval={this.handleEmailsRemoval.bind(this)}
             deleteSelectedClicked={this.deleteSelectedClicked.bind(this)}
             deleteSelected={this.state.deleteSelected}
             newMessageAnimated={this.newMessageAnimated.bind(this)}
             markAsRead={this.markAsRead.bind(this)}
+            showInbox={this.showInbox.bind(this)}
+            showRead={this.showRead.bind(this)}
           />
         </div>
       </div>

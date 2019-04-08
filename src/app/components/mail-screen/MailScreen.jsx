@@ -40,8 +40,10 @@ export class MailScreen extends Component {
           deleteSelectedClicked={this.props.deleteSelectedClicked}
           deleteSelected={this.props.deleteSelected}
           newMessageAnimated={this.props.newMessageAnimated}
-          animateFirst={this.props.animateFirst}
+          animateID={this.props.animateID}
           onOpenEmail={this.onOpenEmail.bind(this)}
+          showInbox={this.props.showInbox}
+          showRead={this.props.showRead}
         />
         <Footer />
       </section>

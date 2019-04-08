@@ -85,7 +85,7 @@ export class EmailsList extends Component {
       }
     }
 
-    if (this.props.animateFirst) {
+    if (this.props.animteID !== null) {
       setTimeout(() => {
         this.props.newMessageAnimated();
       }, 600);
@@ -97,12 +97,14 @@ export class EmailsList extends Component {
           onSelectAll={this.selectAllClicked.bind(this)}
           isSelected={this.state.allSelected}
           onDelete={this.onDeleteSelected.bind(this)}
+          showInbox={this.props.showInbox}
+          showRead={this.props.showRead}
         />
         <section className="mail-emails">
-          {this.props.emails.map((email, index) => {
+          {this.props.emails.map(email => {
             return (
               <EMail
-                animateAppearance={this.props.animateFirst && index === 0}
+                animateAppearance={this.props.animteID === email.id}
                 emailID={email.id}
                 key={`email_${email.id}`}
                 iconUrl={email.iconUrl}

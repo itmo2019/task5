@@ -17,7 +17,7 @@ export class MailNavigation extends Component {
           <button type="button" className="mail-navigation__nav-btn" onClick={this.props.onDelete}>
             Удалить
           </button>
-          <button type="button" className="mail-navigation__nav-btn">
+          <button type="button" className="mail-navigation__nav-btn" onClick={this.props.showInbox}>
             Входящие
           </button>
           <button type="button" className="mail-navigation__nav-btn">
@@ -29,7 +29,7 @@ export class MailNavigation extends Component {
           <button type="button" className="mail-navigation__nav-btn">
             Спам!
           </button>
-          <button type="button" className="mail-navigation__nav-btn">
+          <button type="button" className="mail-navigation__nav-btn" onClick={this.props.showRead}>
             Прочитано
           </button>
         </div>
