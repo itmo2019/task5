@@ -3,6 +3,11 @@ import React, { Component } from 'react';
 import { EMail } from './EMail';
 import { MailNavigation } from './MailNavigation';
 
+const getSelectedEmailsCount = selectedEmailsStatus => {
+  return Object.keys(selectedEmailsStatus).filter(emailID => !!selectedEmailsStatus[emailID])
+    .length;
+};
+
 export class MailScreen extends Component {
   constructor(props) {
     super(props);
@@ -13,57 +18,49 @@ export class MailScreen extends Component {
     };
   }
 
-  getSelectedEmailsCount(selectedEmailsStatus) {
-    return Object.keys(selectedEmailsStatus).filter(
-      emailID => !!selectedEmailsStatus[emailID]
-    ).length;
-  }
-
-  componentWillUpdate(nextProps, nextState) {
+  componentDidUpdate() {
     if (
-      nextState.allSelected &&
-      nextProps.emails.length >
-        this.getSelectedEmailsCount(nextState.selectedEmailsIDs)
+      this.state.allSelected &&
+      this.props.emails.length > getSelectedEmailsCount(this.state.selectedEmailsIDs)
     ) {
       this.setState({
-        ...nextState,
         allSelected: false
       });
     }
   }
 
   onCheckboxChange(index, newSelectedValue) {
-    const newSelectedEmails = this.state.selectedEmailsIDs;
-    newSelectedEmails[index] = newSelectedValue;
-
-    this.setState({
-      selectedEmailsIDs: newSelectedEmails
-    });
-  }
-
-  selectAllClicked() {
-    const allSelected = !this.state.allSelected;
-
-    const selectedEmailsIDs = {};
-    if (allSelected) {
-      this.props.emails.forEach(email => {
-        selectedEmailsIDs[email.id] = true;
-      });
-    }
-
-    this.setState({
-      allSelected,
-      selectedEmailsIDs
+    this.setState(prevState => {
+      const newSelectedEmails = prevState.selectedEmailsIDs;
+      newSelectedEmails[index] = newSelectedValue;
+      return {
+        selectedEmailsIDs: newSelectedEmails
+      };
     });
   }
 
   onDeleteSelected() {
-    if (
-      this.state.allSelected ||
-      Object.keys(this.state.selectedEmailsIDs).length > 0
-    ) {
+    if (this.state.allSelected || Object.keys(this.state.selectedEmailsIDs).length > 0) {
       this.props.deleteSelectedClicked();
     }
+  }
+
+  selectAllClicked() {
+    this.setState(prevState => {
+      const allSelected = !prevState.allSelected;
+
+      const selectedEmailsIDs = {};
+      if (allSelected) {
+        this.props.emails.forEach(email => {
+          selectedEmailsIDs[email.id] = true;
+        });
+      }
+
+      return {
+        allSelected,
+        selectedEmailsIDs
+      };
+    });
   }
 
   render() {
@@ -107,7 +104,7 @@ export class MailScreen extends Component {
               <EMail
                 animateAppearance={this.props.animateFirst && index === 0}
                 emailID={email.id}
-                key={`email_${index}`}
+                key={`email_${email.id}`}
                 iconUrl={email.iconUrl}
                 senderName={email.senderName}
                 title={email.title}

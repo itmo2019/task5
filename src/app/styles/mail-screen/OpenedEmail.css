@@ -1,0 +1,29 @@
+.content__email-content {
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  margin-left: 22px;
+  width: calc(100% - 198px);
+  height: 100%;
+  margin-bottom: 14px;
+  white-space: normal;
+  word-wrap: break-word;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+  background-color: #ffffff;
+  overflow-y: scroll;
+}
+
+.close-email {
+  cursor: pointer;
+  position: absolute;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.content__email-text {
+  margin-top: 20px;
+}

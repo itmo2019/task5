@@ -15,43 +15,43 @@ export const RANDOM_TEXT_FORMATS = {
 
 export const newRandomArticle = () => {
   return {
-    _format: null,
-    _type: null,
-    _paras: null,
+    selectedFormat: null,
+    selectedType: null,
+    selectedParagraphs: null,
 
-    _appendParam(url, name, value) {
+    appendParam(url, name, value) {
       // no url encode happens in here
       return `${url}&${name}=${value}`;
     },
 
-    _buildUrl() {
-      let result = `${RANDOM_TEXT_API_URL}?type=${this._type}`;
-      if (this._paras) {
-        result = this._appendParam(result, 'paras', this._paras);
+    buildUrl() {
+      let result = `${RANDOM_TEXT_API_URL}?type=${this.selectedType}`;
+      if (this.selectedParagraphs) {
+        result = this.appendParam(result, 'paras', this.selectedParagraphs);
       }
-      if (this._format) {
-        result = this._appendParam(result, 'format', this._format);
+      if (this.selectedFormat) {
+        result = this.appendParam(result, 'format', this.selectedFormat);
       }
 
       return result;
     },
 
     format(value) {
-      this._format = value;
+      this.selectedFormat = value;
       return this;
     },
     type(value) {
-      this._type = value;
+      this.selectedType = value;
       return this;
     },
     paras(value) {
-      this._paras = value;
+      this.selectedParagraphs = value;
       return this;
     },
 
     async get() {
-      if (this._type) {
-        return await Requests.fetchJSON(this._buildUrl());
+      if (this.selectedType) {
+        return Requests.fetchJSON(this.buildUrl());
       }
 
       throw new Error('Can not generate article: type is not set');

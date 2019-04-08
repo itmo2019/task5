@@ -25,7 +25,8 @@ const possibleMonths = [
 const possibleIcons = [
   'https://pbs.twimg.com/profile_images/1039921444808011778/xPfyPxjy_400x400.jpg',
   'https://is5-ssl.mzstatic.com/image/thumb/Purple113/v4/f2/e1/51/f2e15135-a7d0-daa4-e2ec-6ddd9bf6088c/DriverAppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-5.png/320x0w.jpg',
-  'https://image.flaticon.com/teams/slug/google.jpg'
+  'https://image.flaticon.com/teams/slug/google.jpg',
+  'https://static1.squarespace.com/static/53fe4a70e4b0a2293ab0e42a/t/53fe4b7ce4b03ae33c17c7d2/1464311372584/?format=1500w'
 ];
 
 const possibleSenders = [
@@ -90,14 +91,18 @@ export class App extends Component {
     this.runNewEmailGeneration();
   }
 
+  onFilterTextChange(filterTextEvent) {
+    this.setState({
+      filterText: filterTextEvent.target.value
+    });
+  }
+
   runNewEmailGeneration = async () => {
-    await sleep(getRand(10, 3000));
+    await sleep(getRand(0, 100));
     await this.newMail();
 
-    while (true) {
-      await sleep(NEW_EMAIL_COOLDOWN + getRand(0, NEW_EMAIL_COOLDOWN));
-      await this.newMail();
-    }
+    await sleep(NEW_EMAIL_COOLDOWN + getRand(0, NEW_EMAIL_COOLDOWN));
+    this.runNewEmailGeneration();
   };
 
   newMail = async () => {
@@ -118,40 +123,44 @@ export class App extends Component {
     const day = getRand(1, 28);
     const month = possibleMonths[getRand(0, possibleMonths.length - 1)];
 
-    this.setState({
-      filterText: '',
-      animateFirst: true,
-      emails: [
-        ...this.state.emails,
-        {
-          id: this.state.emails.length + 1,
-          iconUrl: possibleIcons[getRand(0, possibleIcons.length - 1)],
-          date: {
-            day,
-            month
-          },
-          title,
-          text: paragraphs,
-          senderName: possibleSenders[getRand(0, possibleSenders.length - 1)],
-          isUnread: true
-        }
-      ]
+    this.setState(prevState => {
+      return {
+        filterText: '',
+        animateFirst: true,
+        emails: [
+          ...prevState.emails,
+          {
+            id: prevState.emails.length,
+            iconUrl: possibleIcons[getRand(0, possibleIcons.length - 1)],
+            date: {
+              day,
+              month
+            },
+            title,
+            text: paragraphs,
+            senderName: possibleSenders[getRand(0, possibleSenders.length - 1)],
+            isUnread: true
+          }
+        ]
+      };
     });
   };
 
   handleEmailsRemoval(indices) {
-    const newEmails = this.state.emails
-      .map(email => {
-        if (indices[email.id] !== true) {
-          return email;
-        }
-        return null;
-      })
-      .filter(x => x !== null);
+    this.setState(prevState => {
+      const newEmails = prevState.emails
+        .map(email => {
+          if (indices[email.id] !== true) {
+            return email;
+          }
+          return null;
+        })
+        .filter(x => x !== null);
 
-    this.setState({
-      deleteSelected: false,
-      emails: newEmails
+      return {
+        deleteSelected: false,
+        emails: newEmails
+      };
     });
   }
 
@@ -168,21 +177,17 @@ export class App extends Component {
   }
 
   markAsRead(id) {
-    const newEmails = this.state.emails.map(email => {
-      if (email.id !== id) {
-        return email;
-      }
-      return Object.assign(Object.assign({}, email), { isUnread: false });
-    });
+    this.setState(prevState => {
+      const newEmails = prevState.emails.map(email => {
+        if (email.id !== id) {
+          return email;
+        }
+        return Object.assign(Object.assign({}, email), { isUnread: false });
+      });
 
-    this.setState({
-      emails: newEmails
-    });
-  }
-
-  onFilterTextChange(filterTextEvent) {
-    this.setState({
-      filterText: filterTextEvent.target.value
+      return {
+        emails: newEmails
+      };
     });
   }
 

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 
 export class MenuAction extends Component {
   render() {
-    const ifSelectedClassName = this.props.isSelected
-      ? 'selected-menu-action'
-      : '';
+    const ifSelectedClassName = this.props.isSelected ? 'selected-menu-action' : '';
     return (
       <div className="menu-action-wrapper">
         <div className={`menu-action-wrapper__action ${ifSelectedClassName}`}>

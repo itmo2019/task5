@@ -5,29 +5,14 @@ export const HTTPRequests = {
   POST: 'POST'
 };
 
-export const fetchJSON = async (
-  url /*: string */,
-  errorHandler /*: (error) => void */
-) => {
-  try {
-    const response = await makeRequest(url, HTTPRequests.GET, errorHandler);
-    const result = await response.json();
-    return result;
-  } catch (error) {
-    console.log(error);
-  }
-
-  return null;
-};
-
 export const getProxiedUrl = (url /* string */) => {
   return `${PROXY_URL}/${url}`;
 };
 
 export const makeRequest = async (
-  url /*: string */,
-  method /*: string */,
-  errorHandler /*: (error) => void */
+  url /* : string */,
+  method /* : string */,
+  errorHandler /* : (error) => void */
 ) => {
   try {
     return await fetch(getProxiedUrl(url), { method });
@@ -36,5 +21,16 @@ export const makeRequest = async (
       errorHandler(error);
       return null;
     }
+    throw error;
+  }
+};
+
+export const fetchJSON = async (url /* : string */, errorHandler /* : (error) => void */) => {
+  try {
+    const response = await makeRequest(url, HTTPRequests.GET, errorHandler);
+    const result = await response.json();
+    return result;
+  } catch (ignored) {
+    return null;
   }
 };

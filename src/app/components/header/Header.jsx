@@ -6,7 +6,7 @@ export class Header extends PureComponent {
   render() {
     return (
       <header className="header">
-        <button className="hamburger">
+        <button className="hamburger" type="button">
           <img className="hamburger__img" alt="" />
         </button>
         <div className="header__mlogo" />

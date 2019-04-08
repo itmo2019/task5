@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../../styles/mail-screen/EMail.css';
+
 export class EMail extends Component {
   render() {
     return (
@@ -21,35 +23,24 @@ export class EMail extends Component {
             type="checkbox"
             className="mail-screen__checkbox"
             checked={this.props.isSelected}
-            onChange={() =>
-              this.props.onCheckboxChange(
-                this.props.emailID,
-                !this.props.isSelected
-              )
-            }
+            onChange={() => this.props.onCheckboxChange(this.props.emailID, !this.props.isSelected)}
           />
-          <img
-            className="email__sender-photo"
-            src={this.props.iconUrl}
-            alt="sender logo"
-          />
-          <span
-            className="email__sender-part email__sender-name"
-            onClick={() =>
-              this.props.onOpenEmail(this.props.emailID, this.props.text)
-            }
+          <img className="email__sender-photo" src={this.props.iconUrl} alt="sender logo" />
+          <a
+            href={`#email_${this.props.emailID}`}
+            className="email__sender-part email__sender-name link-without-style"
+            onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
           >
             {this.props.senderName}
-          </span>
+          </a>
           <div className="email__unread-flag" />
-          <div
-            className="email__sender-part email__sender-title"
-            onClick={() =>
-              this.props.onOpenEmail(this.props.emailID, this.props.text)
-            }
+          <a
+            href={`#email_${this.props.emailID}`}
+            className="email__sender-part email__sender-title link-without-style"
+            onClick={() => this.props.onOpenEmail(this.props.emailID, this.props.text)}
           >
             {this.props.title}
-          </div>
+          </a>
         </div>
       </section>
     );

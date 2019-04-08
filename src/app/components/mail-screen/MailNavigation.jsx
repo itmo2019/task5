@@ -11,18 +11,27 @@ export class MailNavigation extends Component {
             checked={this.props.isSelected}
             onChange={this.props.onSelectAll}
           />
-          <button className="mail-navigation__nav-btn">Написать</button>
-          <button
-            className="mail-navigation__nav-btn"
-            onClick={this.props.onDelete}
-          >
+          <button type="button" className="mail-navigation__nav-btn">
+            Написать
+          </button>
+          <button type="button" className="mail-navigation__nav-btn" onClick={this.props.onDelete}>
             Удалить
           </button>
-          <button className="mail-navigation__nav-btn">Входящие</button>
-          <button className="mail-navigation__nav-btn">Отправленные</button>
-          <button className="mail-navigation__nav-btn">Удалённые</button>
-          <button className="mail-navigation__nav-btn">Спам!</button>
-          <button className="mail-navigation__nav-btn">Прочитано</button>
+          <button type="button" className="mail-navigation__nav-btn">
+            Входящие
+          </button>
+          <button type="button" className="mail-navigation__nav-btn">
+            Отправленные
+          </button>
+          <button type="button" className="mail-navigation__nav-btn">
+            Удалённые
+          </button>
+          <button type="button" className="mail-navigation__nav-btn">
+            Спам!
+          </button>
+          <button type="button" className="mail-navigation__nav-btn">
+            Прочитано
+          </button>
         </div>
       </div>
     );
