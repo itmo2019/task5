@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import '../../styles/mail-screen/MailScreen.css'
+import '../../styles/mail-screen/MailScreen.css';
 
 export class OpenedEmail extends Component {
   render() {
@@ -10,11 +10,11 @@ export class OpenedEmail extends Component {
           &#x2715;
         </div>
         <div>
-          {this.props.text.map((t) => {
-            return (<p>{t}</p>)
+          {this.props.text.map(t => {
+            return <p>{t}</p>;
           })}
         </div>
       </div>
-    )
+    );
   }
 }

@@ -12,7 +12,7 @@
 .hamburger__img {
   width: 25px;
   height: 25px;
-  content: url("../../images/hamburger.svg");
+  content: url('../../images/hamburger.svg');
 }
 
 .header__mlogo {
@@ -23,7 +23,7 @@
   height: 31px;
   width: 153px;
   background: #ccc;
-  content: url("../../images/mail_logo.png");
+  content: url('../../images/mail_logo.png');
 }
 
 .search-bar-container {
@@ -33,18 +33,18 @@
   width: calc(100% - 200px);
 }
 
- .search-bar-container__search-bar-and-close {
+.search-bar-container__search-bar-and-close {
   height: 32px;
   width: 50%;
   margin: auto;
   position: relative;
 }
 
-.search-bar-container__search-bar::-webkit-search-cancel-button{
-   margin-right: 3px;
+.search-bar-container__search-bar::-webkit-search-cancel-button {
+  margin-right: 3px;
 }
 
- .search-bar-container__search-bar {
+.search-bar-container__search-bar {
   height: 32px;
   width: 100%;
   padding-left: 16px;

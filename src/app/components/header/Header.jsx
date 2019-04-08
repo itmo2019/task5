@@ -1,18 +1,15 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent } from 'react';
 
-import '../../styles/header/Header.css'
+import '../../styles/header/Header.css';
 
 export class Header extends PureComponent {
   render() {
     return (
       <header className="header">
         <button className="hamburger">
-          <img 
-            className="hamburger__img"
-            alt=""
-          />
+          <img className="hamburger__img" alt="" />
         </button>
-        <div className="header__mlogo"></div>
+        <div className="header__mlogo" />
         <div className="search-bar-container">
           <div className="search-bar-container__search-bar-and-close">
             <input
@@ -25,6 +22,6 @@ export class Header extends PureComponent {
           </div>
         </div>
       </header>
-    )
+    );
   }
 }
