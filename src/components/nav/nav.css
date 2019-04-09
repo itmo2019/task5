@@ -1,22 +1,22 @@
-.Nav {
+.nav {
   width: 147px;
   font-family: 'Helvetica Neue', sans-serif;
 }
 
-.Nav__List {
+.nav__list {
   padding: 0;
   margin: 8px 0 0 0;
   word-wrap: break-word;
 }
 
-.Nav__Item {
+.nav__item {
   min-height: 14px;
   color: #707070;
   font-size: 11px;
   list-style-type: none;
 }
 
-.Nav__Item > .Nav__ItemLink {
+.nav__item-link {
   display: block;
   width: 87%;
   padding: 5px 10px;
@@ -25,12 +25,12 @@
   text-decoration: none;
 }
 
-.Nav__Item:hover {
+.nav__item:hover {
   background-color: #d8e1ef;
   border-radius: 3px;
 }
 
-.Nav__Item_Select {
+.nav__item_select {
   background-color: #cdd6e4;
   border-radius: 3px;
   color: #555;

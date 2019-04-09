@@ -1,16 +1,13 @@
 import React from 'react';
-
 import Check from '../check/check';
-
 import './toolbar.css';
 
 function ButtonItem(props) {
   return (
-    <li className="Toolbar__Item">
+    <li className="toolbar__item">
       <input
-        className="Toolbar__Button"
+        className="toolbar__button"
         type="button"
-        id={props.id}
         value={props.value}
         onClick={props.onclick}
       />
@@ -18,23 +15,18 @@ function ButtonItem(props) {
   );
 }
 
-function CheckItem(props) {
+export default function toolbar(props) {
+  const { handleAddMailButtonClick, handleRemoveButtonClick, handleUnmarkButtonClick } = props;
   return (
-    <li className="Toolbar__Item">
-      <Check onclick={props.onclick} />
-    </li>
-  );
-}
-
-export default function Toolbar(props) {
-  return (
-    <ul className="Toolbar">
-      <CheckItem onclick={props.selectAll} />
-      <ButtonItem id="get-letter" value="Получить сообщение" onclick={props.addLetter} />
-      <ButtonItem id="forward-letter" value="Переслать" />
-      <ButtonItem id="remove-letter" value="Удалить" onclick={props.removeLetter} />
-      <ButtonItem id="spam-letter" value="Это спам!" />
-      <ButtonItem id="mark-read-letter" value="Прочитано" onclick={props.unmarkLetter} />
+    <ul className="toolbar">
+      <li className="toolbar__item">
+        <Check {...props} isMainCheckBox />
+      </li>
+      <ButtonItem value="Получить сообщение" onclick={handleAddMailButtonClick} />
+      <ButtonItem value="Переслать" />
+      <ButtonItem value="Удалить" onclick={handleRemoveButtonClick} />
+      <ButtonItem value="Это спам!" />
+      <ButtonItem value="Прочитано" onclick={handleUnmarkButtonClick} />
     </ul>
   );
 }

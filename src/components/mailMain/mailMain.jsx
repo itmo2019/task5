@@ -7,13 +7,13 @@ import './mailMain.css';
 
 export default function MailMain() {
   return (
-    <main className="MailMain">
+    <main className="mail-main">
       <Nav
-        classNameNav="MailMain__Nav"
-        classNameNavList="MailMain__NavList"
-        classNameLinkBlock="MailMain__WriteButton"
+        classNameNav="mail-main__nav"
+        classNameNavList="mail-main__nav-list"
+        classNameLinkBlock="mail-main__write-button"
       />
-      <LetterBox className="MailMain__LetterBox" />
+      <LetterBox className="mail-main__letter-box" />
     </main>
   );
 }

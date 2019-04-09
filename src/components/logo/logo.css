@@ -1,9 +1,9 @@
-.Logo {
+.logo {
   width: 153px;
   height: 31px;
 }
 
-.Logo__Yandex {
+.logo__yandex {
   position: relative;
   left: -153px;
 
@@ -12,7 +12,7 @@
   height: 31px;
 }
 
-.Logo__Mail {
+.logo__mail {
   position: relative;
   left: -153px;
 

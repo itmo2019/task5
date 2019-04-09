@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-
 import './check.css';
-
-import { handleCheckBoxClick } from '../../utils/handleLetterFunctions';
 
 export default class Check extends Component {
   static displayName = 'Check';
@@ -12,34 +9,49 @@ export default class Check extends Component {
     this.state = {
       isChecked: false
     };
+  }
 
-    if (props.updateSetCheckedFalse !== undefined) {
-      props.updateSetCheckedFalse(this.setCheckedFalse);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isCheckAll !== this.props.isCheckAll) {
+      this.setState({ isChecked: nextProps.isCheckAll });
+      return;
+    }
+    if (nextProps.hiddenMail !== this.props.hiddenMail) {
+      this.setState({ isChecked: false });
+      return;
+    }
+    if (nextProps.isMailChecked !== this.props.isMailChecked) {
+      this.setState({ isChecked: nextProps.isMailChecked });
     }
   }
 
   toggleChange = () => {
     this.setState(state => {
+      if (this.props.isMainCheckBox) {
+        this.props.handleCheckAllClick(!state.isChecked);
+        this.props.setCheckAll(!state.isChecked);
+      } else {
+        if (state.isChecked) {
+          this.props.setCheckAll(!state.isChecked);
+        }
+        this.props.handleMailCheckClick(!state.isChecked);
+      }
       return { isChecked: !state.isChecked };
     });
   };
 
-  setCheckedFalse = () => {
-    this.setState({ isChecked: false });
-  };
-
   render() {
+    const { isChecked } = this.state;
     return (
-      <div className="Check">
+      <div className="check">
         <label>
           <input
-            className="Check__Input"
+            className="check__input"
             type="checkbox"
-            checked={this.state.isChecked}
+            checked={isChecked}
             onChange={this.toggleChange}
-            onClick={this.props.onclick === undefined ? handleCheckBoxClick : this.props.onclick}
           />
-          <span className="Check__Box" />
+          <span className={`check__box ${isChecked ? 'check__box_checked' : ''}`} />
         </label>
       </div>
     );

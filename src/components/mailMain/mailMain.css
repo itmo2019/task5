@@ -1,4 +1,4 @@
-.MailMain {
+.mail-main {
   position: absolute;
   top: 42px;
   right: 10px;
@@ -8,13 +8,13 @@
   margin-top: 13px;
 }
 
-.MailMain__Nav,
-.MailMain__LetterBox {
+.mail-main__nav,
+.mail-main__letter-box {
   display: inline-block;
   vertical-align: top;
 }
 
-.MailMain__WriteButton,
-.MailMain__NavList {
+.mail-main__write-button,
+.mail-main__nav-list {
   white-space: normal;
 }

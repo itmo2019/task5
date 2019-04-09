@@ -1,25 +1,25 @@
-.Toolbar {
+.toolbar {
   padding: 10px 20px;
   margin: 0;
   font-size: 13px;
 }
 
-.Toolbar__Item {
+.toolbar__item {
   display: inline-block;
   list-style-type: none;
 }
 
-.Toolbar__Item:first-child {
+.toolbar__item:first-child {
   margin-right: -5px;
 }
 
-.Toolbar__Item:not(:first-child) {
+.toolbar__item:not(:first-child) {
   margin-left: 25px;
   color: #ccc;
   font-weight: 500;
 }
 
-.Toolbar__Button {
+.toolbar__button {
   padding: 0;
   margin: 0;
 
@@ -32,10 +32,10 @@
   outline: none;
 }
 
-.Toolbar__Button:hover {
+.toolbar__button:hover {
   color: #000;
 }
 
-.Toolbar__Button:disabled {
+.toolbar__button:disabled {
   color: inherit;
 }

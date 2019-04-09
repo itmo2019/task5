@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-
 import Check from '../check/check';
-
 import './letter.css';
 import '../letterBox/letterBox.css';
 
 function LetterItem(props) {
-  return <li className={`Letter__Item ${props.className}`}>{props.children}</li>;
+  return <li className={`letter__item ${props.className}`}>{props.children}</li>;
 }
 
 export default class Letter extends Component {
@@ -17,19 +15,13 @@ export default class Letter extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      className: `Letter Letter_Unread ${props.className}`,
-      hidden: false,
-      setCheckedFalse: undefined
+      hasAddAnimation: false
     };
-
-    props.updateSetHidden(this.setHidden);
   }
 
   componentDidMount() {
     this.timerID = setTimeout(() => {
-      this.setState(state => {
-        return { className: `${state.className} Letter_Added` };
-      });
+      this.setState({ hasAddAnimation: true });
     }, this.DELTA_TIME);
   }
 
@@ -37,33 +29,43 @@ export default class Letter extends Component {
     clearTimeout(this.timerID);
   }
 
-  setHidden = value => {
-    this.setState({ hidden: value });
-    this.state.setCheckedFalse();
-  };
-
-  updateSetCheckedFalse = value => {
-    this.setState({ setCheckedFalse: value });
-  };
-
-  /** @namespace props.authorLogo */
-  /** @namespace props.authorName */
-  /** @namespace props.letterContent */
   render() {
+    const {
+      className,
+      authorLogo,
+      authorName,
+      topic,
+      date,
+      handleMailClick,
+      hiddenMail,
+      hasRemoveAnimation,
+      isUnread
+    } = this.props;
+    const { hasAddAnimation } = this.state;
     return (
-      <li className={this.state.className} hidden={this.state.hidden}>
-        <ul className="Letter__Line">
+      <li
+        className={`
+        letter ${className}
+        ${isUnread ? 'letter_unread' : ''}
+        ${hasAddAnimation ? 'letter_has-add-animation' : ''}
+        ${hasRemoveAnimation ? 'letter_has-remove-animation' : ''}
+        `}
+        hidden={hiddenMail}
+      >
+        <ul className="letter__line">
           <LetterItem>
-            <Check updateSetCheckedFalse={this.updateSetCheckedFalse} />
+            <Check {...this.props} />
           </LetterItem>
-          <LetterItem className="Letter__Author">{this.props.authorLogo}</LetterItem>
-          <LetterItem className="Letter__AuthorName">{this.props.authorName}</LetterItem>
-          <LetterItem className="Letter__ReadMark Letter__ReadMark_Unread" />
-          <LetterItem className="Letter__Topic">{this.props.letterContent}</LetterItem>
-          <LetterItem className="Letter__Date">{this.props.date}</LetterItem>
+          <LetterItem className="letter__author">{authorLogo}</LetterItem>
+          <LetterItem className="letter__author-name">{authorName}</LetterItem>
+          <LetterItem
+            className={`letter__read-mark ${isUnread ? 'letter__read-mark_unread' : ''}`}
+          />
+          <LetterItem className="letter__topic">{topic}</LetterItem>
+          <LetterItem className="letter__date">{date}</LetterItem>
         </ul>
-        <a className="Letter__LinkOpen" onClick={this.props.handleMailClick} />
-        <hr className="LetterBox__Hr" />
+        <a className="letter__link-open" onClick={handleMailClick} />
+        <hr className="letter-box__hr" />
       </li>
     );
   }

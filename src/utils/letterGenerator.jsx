@@ -1,12 +1,11 @@
 import React from 'react';
 import { getInt } from './randomFunctions';
+import '../components/letter/letter.css';
 
 import englandQueenLogo from '../resources/images/authors-logo/england-queen-logo.png';
 import putinLogo from '../resources/images/authors-logo/putin-logo.png';
 import uberLogo from '../resources/images/authors-logo/uber-logo.png';
 import yaLogo from '../resources/images/authors-logo/ya-logo.png';
-
-import '../components/letter/letter.css';
 
 export default function LetterGenerator() {
   const nounWords = [
@@ -110,9 +109,9 @@ export default function LetterGenerator() {
     return res;
   }
 
-  function getTopic() {
+  this.getTopic = () => {
     return topicNames[getInt(0, topicNames.length)];
-  }
+  };
 
   this.getDate = () => {
     const today = new Date();
@@ -131,22 +130,13 @@ export default function LetterGenerator() {
   this.getAuthorLogo = authorName => {
     const authorLogoName = authorLogoNames[authorName];
     return authorLogoName === undefined ? (
-      <div className="Letter__Author_noLogo">{authorName[0].toUpperCase()}</div>
+      <div className="letter__author_no-logo">{authorName[0].toUpperCase()}</div>
     ) : (
-      <img className="Letter__Author_hasLogo" src={authorLogoName} alt={authorLogoName} />
+      <img className="letter__author_has-logo" src={authorLogoName} alt={authorLogoName} />
     );
   };
 
-  function getLetterBody() {
-    return <div className="Letter__Body">{getLetter()}</div>;
-  }
-
-  this.getLetterContent = () => {
-    return (
-      <div>
-        {getTopic()}
-        {getLetterBody()}
-      </div>
-    );
+  this.getLetterBody = () => {
+    return <div className="letter__body">{getLetter()}</div>;
   };
 }

@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-
 import Toolbar from '../toolbar/toolbar';
 import LetterDialog from '../letterDialog/letterDialog';
 import LetterList from '../letterList/letterList';
 import SupportLine from '../supportLine/supportLine';
-
 import './letterBox.css';
 
 function Hr() {
-  return <hr className="LetterBox__Hr" />;
+  return <hr className="letter-box__hr" />;
 }
 
 export default class LetterBox extends Component {
@@ -17,53 +15,77 @@ export default class LetterBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addLetter: undefined,
-      removeLetter: undefined,
-      unmarkLetter: undefined,
-      selectAll: undefined,
-      handleMailClick: undefined
+      isMailVisible: false,
+      mailContent: undefined,
+      isCheckAll: false,
+      handleAddMailButtonClick: undefined,
+      handleRemoveButtonClick: undefined,
+      handleUnmarkButtonClick: undefined,
+      handleCheckAllClick: undefined
     };
   }
 
-  updateAddLetter = value => {
-    this.setState({ addLetter: value });
+  handleMailExitClick = () => {
+    this.setState({ isMailVisible: false });
   };
 
-  updateRemoveLetter = value => {
-    this.setState({ removeLetter: value });
+  handleLetterDialog = mailContent => {
+    this.setState({ isMailVisible: true, mailContent });
   };
 
-  updateUnmarkLetter = value => {
-    this.setState({ unmarkLetter: value });
+  setCheckAll = value => {
+    this.setState({ isCheckAll: value });
   };
 
-  updateSelectAll = value => {
-    this.setState({ selectAll: value });
+  updateHandleAddMailButtonClick = value => {
+    this.setState({ handleAddMailButtonClick: value });
   };
 
-  updateHandleMailClick = value => {
-    this.setState({ handleMailClick: value });
+  updateHandleRemoveButtonClick = value => {
+    this.setState({ handleRemoveButtonClick: value });
+  };
+
+  updateHandleUnmarkButtonClick = value => {
+    this.setState({ handleUnmarkButtonClick: value });
+  };
+
+  updateHandleCheckAllClick = value => {
+    this.setState({ handleCheckAllClick: value });
   };
 
   render() {
+    const {
+      isMailVisible,
+      mailContent,
+      isCheckAll,
+      handleAddMailButtonClick,
+      handleRemoveButtonClick,
+      handleUnmarkButtonClick,
+      handleCheckAllClick
+    } = this.state;
     return (
-      <div className={`LetterBox ${this.props.className}`}>
+      <div className={`letter-box ${this.props.className}`}>
         <Toolbar
-          addLetter={this.state.addLetter}
-          removeLetter={this.state.removeLetter}
-          unmarkLetter={this.state.unmarkLetter}
-          selectAll={this.state.selectAll}
+          isCheckAll={isCheckAll}
+          setCheckAll={this.setCheckAll}
+          handleAddMailButtonClick={handleAddMailButtonClick}
+          handleRemoveButtonClick={handleRemoveButtonClick}
+          handleUnmarkButtonClick={handleUnmarkButtonClick}
+          handleCheckAllClick={handleCheckAllClick}
         />
         <Hr />
-        <LetterDialog updateHandleMailClick={this.updateHandleMailClick} />
+        <LetterDialog isMailVisible={isMailVisible} handleMailExitClick={this.handleMailExitClick}>
+          {mailContent}
+        </LetterDialog>
         <LetterList
-          updateAddLetter={this.updateAddLetter}
-          updateRemoveLetter={this.updateRemoveLetter}
-          updateUnmarkLetter={this.updateUnmarkLetter}
-          updateSelectAll={this.updateSelectAll}
-          handleMailClick={this.state.handleMailClick}
+          updateHandleAddMailButtonClick={this.updateHandleAddMailButtonClick}
+          updateHandleRemoveButtonClick={this.updateHandleRemoveButtonClick}
+          updateHandleUnmarkButtonClick={this.updateHandleUnmarkButtonClick}
+          updateHandleCheckAllClick={this.updateHandleCheckAllClick}
+          handleLetterDialog={this.handleLetterDialog}
+          setCheckAll={this.setCheckAll}
         />
-        <div className="LetterBox__SupportLine">
+        <div className="letter-box__support-line">
           <Hr />
           <SupportLine />
         </div>

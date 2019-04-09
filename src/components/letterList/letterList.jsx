@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
-
 import Letter from '../letter/letter';
-
 import LetterGenerator from '../../utils/letterGenerator';
 import { getInt } from '../../utils/randomFunctions';
-import { unmarkLetter } from '../../utils/handleLetterFunctions';
-
 import './letterList.css';
 import '../letter/letter.css';
 
@@ -16,7 +12,7 @@ export default class LetterList extends Component {
 
   MAX_TIMER_ADD_MAIL = 600001;
 
-  MAX_MAIL_LIST_SIZE = 30;
+  MAX_MAIL_LIST_SIZE = 10;
 
   REMOVE_LETTER_TIME = 500;
 
@@ -30,13 +26,13 @@ export default class LetterList extends Component {
     super(props);
     this.state = {
       curPage: 1,
-      listLetters: []
+      letters: []
     };
 
-    props.updateAddLetter(this.newMail);
-    props.updateRemoveLetter(this.removeLetters);
-    props.updateUnmarkLetter(this.unmarkLetters);
-    props.updateSelectAll(this.handleMainCheckBoxClick);
+    props.updateHandleAddMailButtonClick(this.newMail);
+    props.updateHandleRemoveButtonClick(this.handleRemoveButtonClick);
+    props.updateHandleUnmarkButtonClick(this.handleUnmarkButtonClick);
+    props.updateHandleCheckAllClick(this.handleCheckAllClick);
   }
 
   componentDidMount() {
@@ -53,86 +49,128 @@ export default class LetterList extends Component {
     clearTimeout(this.timerInnerID);
   }
 
-  getRandomLetter = updateSetHidden => {
+  getRandomLetter = () => {
     const authorName = this.letterGenerator.getAuthorName();
-    return (
-      <Letter
-        key={this.letterId++}
-        className="LetterList__Letter"
-        authorName={authorName}
-        authorLogo={this.letterGenerator.getAuthorLogo(authorName)}
-        letterContent={this.letterGenerator.getLetterContent()}
-        date={this.letterGenerator.getDate()}
-        updateSetHidden={updateSetHidden}
-        handleMailClick={this.props.handleMailClick}
-      />
-    );
+    return {
+      id: this.letterId++,
+      authorName,
+      authorLogo: this.letterGenerator.getAuthorLogo(authorName),
+      topic: this.letterGenerator.getTopic(),
+      body: this.letterGenerator.getLetterBody(),
+      date: this.letterGenerator.getDate(),
+      isUnread: true
+    };
   };
 
   newMail = () => {
-    if (this.state.curPage * this.MAX_MAIL_LIST_SIZE <= this.state.listLetters.length) {
-      this.state.listLetters[this.state.curPage * this.MAX_MAIL_LIST_SIZE - 1].setHidden(true);
-    }
     this.setState(state => {
-      const newLetter = {};
-      const updateSetHidden = value => {
-        newLetter.setHidden = value;
+      return {
+        letters: [this.getRandomLetter(), ...state.letters]
       };
-      newLetter.letter = this.getRandomLetter(updateSetHidden);
-      state.listLetters.unshift(newLetter);
-      return { listLetters: state.listLetters };
     });
-    document.body.querySelector('.Check__Input').checked = false;
+    this.props.setCheckAll(false);
   };
 
   doActionWithLetters = action => {
-    const checkboxes = document.body.querySelectorAll('.Check__Input');
-    let last = Math.min(checkboxes.length - 1, this.state.curPage * this.MAX_MAIL_LIST_SIZE);
-    const first = (this.state.curPage - 1) * this.MAX_MAIL_LIST_SIZE + 1;
-    for (let i = last; i >= first; i--) {
-      if (checkboxes[i].checked) {
-        action(checkboxes[i].closest('.Letter'), last++, i - 1);
+    const { curPage, letters } = this.state;
+    const first = (curPage - 1) * this.MAX_MAIL_LIST_SIZE;
+    for (let i = Math.min(letters.length, curPage * this.MAX_MAIL_LIST_SIZE) - 1; i >= first; i--) {
+      if (letters[i].isChecked) {
+        action(i);
       }
     }
   };
 
-  removeAnimateLetter = (letter, newLetterIndex, letterIndex) => {
-    if (newLetterIndex < this.state.listLetters.length) {
-      this.state.listLetters[newLetterIndex].setHidden(false);
-    }
+  removeAnimateLetter = index => {
     setTimeout(() => {
-      letter.classList.add('Letter_Removed');
+      this.setState(state => {
+        const lettersCopy = state.letters.slice();
+        lettersCopy[index].hasRemoveAnimation = true;
+        return { letters: lettersCopy };
+      });
       setTimeout(() => {
         this.setState(state => {
-          const copy = state.listLetters.slice();
-          copy.splice(letterIndex, 1);
-          return { listLetters: copy };
+          const lettersCopy = state.letters.slice();
+          lettersCopy.splice(index, 1);
+          return { letters: lettersCopy };
         });
       }, this.REMOVE_LETTER_TIME);
     }, this.DELTA_TIME);
   };
 
-  removeLetters = () => {
+  handleRemoveButtonClick = () => {
     setTimeout(() => {
-      document.body.querySelector('.Check__Input').checked = false;
+      this.props.setCheckAll(false);
     }, (this.REMOVE_LETTER_TIME * 2) / 3);
     this.doActionWithLetters(this.removeAnimateLetter);
   };
 
-  unmarkLetters = () => {
-    this.doActionWithLetters(unmarkLetter);
+  unmarkLetter = index => {
+    this.setState(state => {
+      const lettersCopy = state.letters.slice();
+      lettersCopy[index].isUnread = false;
+      return { letters: lettersCopy };
+    });
   };
 
-  handleMainCheckBoxClick = () => {
-    const checkboxes = document.body.querySelectorAll('.Check__Input');
-    const checkAll = checkboxes[0];
-    const size = Math.min(checkboxes.length, this.state.curPage * this.MAX_MAIL_LIST_SIZE + 1);
-    for (let i = 1 + (this.state.curPage - 1) * this.MAX_MAIL_LIST_SIZE; i < size; i++) {
-      checkboxes[i].checked = checkAll.checked;
-    }
+  handleUnmarkButtonClick = () => {
+    this.doActionWithLetters(this.unmarkLetter);
+  };
+
+  handleMailCheckClick = (index, checked) => {
+    this.setState(state => {
+      const lettersCopy = state.letters.slice();
+      lettersCopy[index].isChecked = checked;
+      return { letters: lettersCopy };
+    });
+  };
+
+  handleCheckAllClick = checked => {
+    this.setState(state => {
+      const lettersCopy = state.letters.slice();
+      const size = Math.min(lettersCopy.length, state.curPage * this.MAX_MAIL_LIST_SIZE);
+      for (let i = (state.curPage - 1) * this.MAX_MAIL_LIST_SIZE; i < size; i++) {
+        lettersCopy[i].isChecked = checked;
+      }
+      return { letters: lettersCopy };
+    });
+  };
+
+  handleMailClick = index => {
+    const letterContent = (
+      <div>
+        <div className="letter__topic_is-open">{this.state.letters[index].topic}</div>
+        {this.state.letters[index].body}
+      </div>
+    );
+    this.props.handleLetterDialog(letterContent);
+    this.unmarkLetter(index);
   };
 
   render() {
-    return <ul id="LetterList">{this.state.listLetters.map(obj => obj.letter)}</ul>;
+    const { letters, curPage } = this.state;
+    const listLetters = letters.map((letter, index) => (
+      <Letter
+        {...this.props}
+        key={letter.id}
+        className="letter-list__letter"
+        authorName={letter.authorName}
+        authorLogo={letter.authorLogo}
+        topic={letter.topic}
+        body={letter.body}
+        date={letter.date}
+        hiddenMail={
+          letters.length > curPage * this.MAX_MAIL_LIST_SIZE &&
+          index >= curPage * this.MAX_MAIL_LIST_SIZE
+        }
+        hasRemoveAnimation={letter.hasRemoveAnimation}
+        handleMailCheckClick={this.handleMailCheckClick.bind(this, index)}
+        handleMailClick={this.handleMailClick.bind(this, index)}
+        isUnread={letter.isUnread}
+        isMailChecked={letter.isChecked}
+      />
+    ));
+
+    return <ul className="letter-list">{listLetters}</ul>;
   }
 }

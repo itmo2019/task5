@@ -1,4 +1,4 @@
-#LetterList {
+.letter-list {
   position: absolute;
   top: 40px;
   bottom: 25px;
@@ -10,7 +10,7 @@
   background-color: #fff;
 }
 
-.LetterList__Letter {
+.letter-list__letter {
   z-index: 1;
   list-style-type: none;
 }
