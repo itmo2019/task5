@@ -17,7 +17,7 @@ export default class LetterBox extends Component {
 
   MAX_TIMER_ADD_MAIL = 600001;
 
-  MAX_MAIL_LIST_SIZE = 10;
+  MAX_MAIL_LIST_SIZE = 30;
 
   REMOVE_LETTER_TIME = 500;
 
