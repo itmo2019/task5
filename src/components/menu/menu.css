@@ -1,4 +1,4 @@
-.Menu__WriteMail {
+.menu__write-mail {
     overflow-wrap: break-word;
     cursor: pointer;
     color: #fff;
@@ -12,7 +12,7 @@
     margin: auto auto 10px 0; 
 }
 
-.Menu__Item {
+.menu__item {
     overflow-wrap: break-word;
     cursor: pointer;
     margin: auto;
@@ -26,7 +26,7 @@
     font-size: 11px;
 }
 
-.Menu__Item:hover {
+.menu__item:hover {
     font-weight: bold;
     border-radius: 3px;
     background-color: #cdd6e4;

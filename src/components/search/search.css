@@ -1,11 +1,11 @@
-.Search {
+.search {
     overflow: hidden;
 
     /* no explicit locating - meets BEM demands */
     position: relative;
 }
 
-.Search__Field {
+.search__field {
     border: 0;
     font-size: 15px;
     height: 32px;
@@ -16,7 +16,7 @@
     box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
 }
 
-.Search__ClearButton {
+.search__clear-button {
     cursor: pointer;
     position: absolute;
     top: 12px;

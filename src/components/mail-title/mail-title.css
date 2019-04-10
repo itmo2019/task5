@@ -1,4 +1,4 @@
-.MailTitle {
+.mail-title {
     overflow-y: hidden;
     line-height: 39px;
 
@@ -6,23 +6,23 @@
     position: relative;
 }
 
-.MailTitle.MailTitle_toDelete,
-.MailTitle.MailTitle_toAppear {
+.mail-title.mail-title_to-delete,
+.mail-title.mail-title_to-appear {
     transition-duration: 200ms;
 }
 
-.MailTitle.MailTitle_fromDelete,
-.MailTitle.MailTitle_toDelete {
+.mail-title.mail-title_from-delete,
+.mail-title.mail-title_to-delete {
     height: 0;
     border: 0;
 }
 
-.MailTitle.MailTitle_toAppear,
-.MailTitle {
+.mail-title.mail-title_to-appear,
+.mail-title {
     height: 39px;
 }
 
-.MailTitle__ImgWrapper {
+.mail-title__img-wrapper {
     width: 30px;
     height: 30px;
 
@@ -31,7 +31,7 @@
     margin: auto 5px;
 }
 
-.MailTitle__Sender {
+.mail-title__sender {
     display: inline-block;
     vertical-align: middle;
     overflow: hidden;
@@ -43,12 +43,12 @@
     text-overflow: ellipsis;
 }
 
-.MailTitle_Unread .MailTitle__Sender,
-.MailTitle_Unread .MailTitle__Title {
+.mail-title_unread .mail-title__sender,
+.mail-title_unread .mail-title__title {
     font-weight: bold;
 }
 
-.MailTitle__UnreadFlag {
+.mail-title__unread-flag {
     display: inline-block;
     min-width: 10px;
     height: 10px;
@@ -56,11 +56,11 @@
     margin: auto 0;
 }
 
-.MailTitle_Unread .MailTitle__UnreadFlag {
+.mail-title_unread .mail-title__unread-flag {
     background: #6287bd;
 }
 
-.MailTitle__Date {
+.mail-title__date {
     line-height: normal;
     overflow: hidden;
     text-overflow: clip;
@@ -74,7 +74,7 @@
     color: #9b9b9b;
 }
 
-.MailTitle__Title {
+.mail-title__title {
     vertical-align: middle;
     cursor: pointer;
     width: 100%;
@@ -87,11 +87,11 @@
     margin: auto auto auto 10px;
 }
 
-.MailTitle__CheckboxWrapper {
+.mail-title__checkbox-wrapper {
     display: inline-block;
 }
 
-.MailTitle__Checkbox {
+.mail-title__checkbox {
     vertical-align: middle;
     margin: auto 7px auto 20px;
 }

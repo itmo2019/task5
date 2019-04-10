@@ -53,7 +53,7 @@ export default class MailsMaintainance extends React.Component {
             var contains = str => str.toLowerCase().indexOf(searchField) !== -1
             mailSet = mailSet.filter(mail => [mail.sender, mail.title].some(contains))
         }
-        return  <div className="MailsMaintainance">
+        return  <div className="mails-maintainance">
                     <MailsHeader 
                         callbacks={{
                             deleteCallback: this.deleteSelected, 
@@ -62,8 +62,8 @@ export default class MailsMaintainance extends React.Component {
                     {mailSet
                         .slice(0, this.mailsPerPage)
                         .map(props => <Mail {...props} />)}
-                    <div className="MailsMaintainance__Pillar"></div>
-                    <div className="MailsMaintainance__MailsFooterWrapper">
+                    <div className="mails-maintainance__pillar"></div>
+                    <div className="mails-maintainance__mails-footer-wrapper">
                         <MailsFooter />
                     </div>  
                 </div>
@@ -92,7 +92,7 @@ export default class MailsMaintainance extends React.Component {
     deleteSelected() {
         this.modifyAll("map", mail => {
             if (mail.checked) {
-                mail.classList.add("MailTitle_toDelete")
+                mail.classList.add("mail-title_to-delete")
             }
             return mail
         })
@@ -105,11 +105,11 @@ export default class MailsMaintainance extends React.Component {
         if (classList === undefined) {
             classList = new Set()
         }
-        classList.add("MailTitle")
+        classList.add("mail-title")
         if ("" + isRead === "true") {
-            classList.add("MailTitle_Read")
+            classList.add("mail-title_read")
         } else {
-            classList.add("MailTitle_Unread")
+            classList.add("mail-title_unread")
         }
         
         var newID = "mail-id" + this.mailCounter++;
@@ -142,13 +142,13 @@ export default class MailsMaintainance extends React.Component {
 
     constructMailOnPage(title, article) {
         var mail = this.newMail(false, null, "mysterious stranger", title, this.getDate(), <Article1 body={article} />, 
-            new Set(['MailTitle_fromDelete']))
+            new Set(['mail-title_from-delete']))
         var mailID = mail.mailID;
         this.setState(state => {return {mailSet: [mail].concat(state.mailSet)}})
-        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.classList.add('MailTitle_toAppear'); return mail}), 50)
+        setTimeout(() => this.modifyOne(mailID, "map", mail => {mail.classList.add('mail-title_to-appear'); return mail}), 50)
         setTimeout(() => this.modifyOne(mailID, "map", mail => {
-            mail.classList.delete("MailTitle_fromDelete");
-            mail.classList.delete("MailTitle_toAppear");
+            mail.classList.delete("mail-title_from-delete");
+            mail.classList.delete("mail-title_to-appear");
             return mail
         }), 250)
     }

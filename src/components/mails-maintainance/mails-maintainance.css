@@ -1,4 +1,4 @@
-.MailsMaintainance {
+.mails-maintainance {
     min-height: 400px;
     border-radius: 3px;
     box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
@@ -8,11 +8,11 @@
     position: relative;
 }
 
-.MailsMaintainance__Pillar {
+.mails-maintainance__pillar {
     height: 32px;
 }
 
-.MailsMaintainance__MailsFooterWrapper {
+.mails-maintainance__mails-footer-wrapper {
     position: absolute;
     bottom: 0;
     right: 0;

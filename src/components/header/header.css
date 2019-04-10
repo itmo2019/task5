@@ -1,19 +1,19 @@
-.Header {
+.header {
     padding: 11px 0 13px 0;
 
     overflow: hidden;
 }
 
-.Header__LogoWrapper {
+.header__logo-wrapper {
     float: left;
 }
 
-.Header__SearchWrapper {
+.header__search-wrapper {
     height: 32px;
     overflow: hidden;
 }
 
-.Header__SearchWrapper1 {
+.header__search-wrapper1 {
     height: 32px;
     width: 52%;
     margin: auto;

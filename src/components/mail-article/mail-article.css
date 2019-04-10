@@ -1,24 +1,24 @@
-.MailArticle__Clearfix:before,
-.MailArticle__Clearfix:after {
+.mail-article__clearfix:before,
+.mail-article__clearfix:after {
   content: "";
   display: table;
 }
- 
-.MailArticle__Clearfix:after {
+
+.mail-article__clearfix:after {
   clear: both;
 }
 
-.MailArticle__Cross {
+.mail-article__cross {
     float: right;
     cursor: pointer;
     margin: 5px 5px auto auto;
 }
 
-.MailArticle__Cross:hover {
+.mail-article__cross:hover {
     background: #e0e0e0;
 }
 
-.MailArticle {
+.mail-article {
     display: none;
     padding: 10px;
 }

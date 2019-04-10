@@ -5,9 +5,9 @@ import MailsMenu from "../mails-menu";
 import './mails-header.css';
 
 function MailsHeader({selectCallback, callbacks}) {
-    return  <div className="MailsHeader">
-                <input type="checkbox" className="MailsHeader__Checkbox" id="select-all" onChange={e => selectCallback(e.target.checked)} />
-                <div className="MailsHeader__MailsMenuWrapper">
+    return  <div className="mails-header">
+                <input type="checkbox" className="mails-header__checkbox" id="select-all" onChange={e => selectCallback(e.target.checked)} />
+                <div className="mails-header__mails-menu-wrapper">
                     <MailsMenu callbacks={callbacks} />
                 </div>  
             </div>

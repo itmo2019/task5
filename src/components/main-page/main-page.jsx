@@ -6,11 +6,11 @@ import MailsMaintainance from '../mails-maintainance';
 import './main-page.css';
 
 function MainPage(props) {
-  return    <div className="MainPage">
-                <div className="MainPage__MenuWrapper">
+  return    <div className="main-page">
+                <div className="main-page__menu-wrapper">
                     <Menu />
                 </div>
-                <div className="MainPage__MailsMaintainanceWrapper">
+                <div className="main-page__mails-maintainance-wrapper">
                     <MailsMaintainance {...props} /> 
                 </div>
             </div>

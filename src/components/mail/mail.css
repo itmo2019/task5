@@ -1,14 +1,12 @@
-.Mail {
+.mail {
     border-bottom: 1px solid #e2e2e2;
 }
 
-.Mail__Checkbox:checked + .MailTitle_Unread,
-.Mail__Checkbox:checked + .MailTitle_Read,
-.Mail__Checkbox {
+.mail__checkbox:checked + .mail-title,
+.mail__checkbox {
     display: none;
 }
 
-.Mail__Checkbox:checked + .MailTitle_Unread + .MailArticle,
-.Mail__Checkbox:checked + .MailTitle_Read   + .MailArticle {
+.mail__checkbox:checked + .mail-title + .mail-article {
     display: block;
 }

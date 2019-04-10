@@ -6,12 +6,12 @@ import Search from '../search';
 import './header.css';
 
 function Header(props) {
-    return  <header className="Header">
-                <div className="Header__LogoWrapper">
+    return  <header className="header">
+                <div className="header__logo-wrapper">
                     <Logo />
                 </div>
-                <div className="Header__SearchWrapper">
-                    <div className="Header__SearchWrapper1">
+                <div className="header__search-wrapper">
+                    <div className="header__search-wrapper1">
                         <Search {...props} />
                     </div>
                 </div>

@@ -1,9 +1,9 @@
-.Logo__Title {
+.logo__title {
     float: left;
     margin-left: 11px;
 }
 
-.Logo__Burger {
+.logo__burger {
     float: left;
 
     height: 20px;
@@ -12,9 +12,9 @@
     margin-top: 5px;
 }
 
-.Logo__Burger::before,
-.Logo__Burger-1,
-.Logo__Burger::after {
+.logo__burger::before,
+.logo__burger-1,
+.logo__burger::after {
     display: block;
     margin-bottom: 5px;
     content: "";

@@ -12,8 +12,10 @@ export default class App extends React.Component {
     }
     
     render() {
-        return  <div className="App">
-                    <Header  searchField={this.state.searchField} searchCallback={value => this.setState({searchField: value})} />
+        return  <div className="app">
+                    <Header  
+                        searchField={this.state.searchField} 
+                        searchCallback={value => this.setState({searchField: value})} />
                     <MainPage searchField={this.state.searchField} />
                 </div>
     }

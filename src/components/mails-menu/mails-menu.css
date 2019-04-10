@@ -1,4 +1,4 @@
-.MailsMenu__Item {
+.mails-menu__item {
     vertical-align: middle;
     display: inline-block;
     cursor: pointer;
@@ -7,6 +7,6 @@
     margin: auto 7px auto 7px;
 }
 
-.MailsMenu__ItemWrapper {
+.mails-menu__item-wrapper {
     display: inline-block;
 }
