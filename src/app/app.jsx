@@ -101,8 +101,6 @@ export class App extends Component {
       //   messagesList: newMessagesList,
       //   overflowMessages: newOverflowMessages
       // });
-      // нужно тут это или нет не совсем понятно. смотря как будет работать анимация
-      // но скорее всего нужно
     }, 50);
 
     this.setState({
@@ -128,7 +126,6 @@ export class App extends Component {
     window.event.stopPropagation();
 
     message.selected = !message.selected;
-    // пришлось временно убрать изменение курсора
   }
 
   deleteSelectedMessages() {
@@ -152,7 +149,7 @@ export class App extends Component {
           let newMessage = newOverflowMessages.pop();
           newMessage.toCreate = true;
           if (newMessage.toDelete) {
-            newMessage.toDelete = false; // вот эту строку пересмотреть
+            newMessage.toDelete = false;
           } else {
             newMessagesList.push(newMessage);
           }
@@ -160,7 +157,6 @@ export class App extends Component {
           // setTimeout(() => {
           //   newMessage.toCreate = false;
           // }, 50);
-          // не понятно, что делать с такими таймаутами на toCreate
         }
       }
     }
