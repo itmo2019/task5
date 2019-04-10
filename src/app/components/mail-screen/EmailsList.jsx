@@ -21,7 +21,8 @@ export class EmailsList extends Component {
   componentDidUpdate() {
     if (
       this.state.allSelected &&
-      this.props.emails.length > getSelectedEmailsCount(this.state.selectedEmailsIDs)
+      this.props.emails.filter(email => email.display).length >
+        getSelectedEmailsCount(this.state.selectedEmailsIDs)
     ) {
       this.setState({
         allSelected: false
@@ -52,7 +53,9 @@ export class EmailsList extends Component {
       const selectedEmailsIDs = {};
       if (allSelected) {
         this.props.emails.forEach(email => {
-          selectedEmailsIDs[email.id] = true;
+          if (email.display) {
+            selectedEmailsIDs[email.id] = true;
+          }
         });
       }
 
@@ -69,26 +72,35 @@ export class EmailsList extends Component {
       if (this.state.allSelected) {
         for (let index = 0; index < this.props.emails.length; index++) {
           const emailID = this.props.emails[index].id;
-          if (this.state.selectedEmailsIDs[emailID] !== false) {
+          if (this.state.selectedEmailsIDs[emailID]) {
             selectedEmailsIDs[emailID] = true;
           }
         }
       }
       if (Object.keys(selectedEmailsIDs).length > 0) {
         setTimeout(() => {
-          this.props.handleEmailsRemoval(selectedEmailsIDs);
-          this.setState({
-            allSelected: false,
-            selectedEmailsIDs: {}
+          // Прокидываю callback в родителя, который он вызовет при изменении стейта
+          // чтобы снять выделение
+          this.props.handleEmailsRemoval(selectedEmailsIDs, () => {
+            this.setState({
+              allSelected: false,
+              selectedEmailsIDs: {}
+            });
           });
         }, 250);
       }
     }
 
-    if (this.props.animteID !== null) {
+    if (
+      this.props.emails
+        .map(email => {
+          return email.wasShown ? 0 : 1;
+        })
+        .reduce((prev, cur) => prev + cur, 0) > 0
+    ) {
       setTimeout(() => {
-        this.props.newMessageAnimated();
-      }, 600);
+        this.props.newMessagesAnimated();
+      }, 300);
     }
 
     return (
@@ -104,8 +116,9 @@ export class EmailsList extends Component {
           {this.props.emails.map(email => {
             return (
               <EMail
-                animateAppearance={this.props.animateID === email.id}
+                animateAppearance={!email.wasShown}
                 emailID={email.id}
+                display={email.display}
                 key={`email_${email.id}`}
                 iconUrl={email.iconUrl}
                 senderName={email.senderName}

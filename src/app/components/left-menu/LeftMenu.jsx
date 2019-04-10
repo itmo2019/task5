@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MenuAction } from './MenuAction';
+import { NewMessageButton } from './NewMessageButton';
 
 import '../../styles/left-menu/LeftMenu.css';
 
@@ -41,9 +42,7 @@ export class LeftMenu extends Component {
         >
           Получить письмо
         </button>
-        <button type="button" className="new-message-btn pressable-button">
-          Написать
-        </button>
+        <NewMessageButton />
         <div className="menu-actions">
           {actions.map((action, index) => {
             return (

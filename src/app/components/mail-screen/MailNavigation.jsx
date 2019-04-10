@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import '../../styles/mail-screen/MailNavigation.css';
+
 export class MailNavigation extends Component {
   render() {
     return (

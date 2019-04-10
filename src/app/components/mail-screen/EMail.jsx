@@ -7,7 +7,7 @@ export class EMail extends Component {
     const classNames = ['email'];
 
     if (this.props.isUnread) {
-      classNames.push('unread');
+      classNames.push('email_unread');
     }
 
     if (this.props.removingSelected && this.props.isSelected) {
@@ -21,9 +21,19 @@ export class EMail extends Component {
     return classNames.join(' ');
   }
 
+  getWrapperStlye() {
+    if (this.props.display) {
+      return {};
+    }
+
+    return {
+      display: 'none'
+    };
+  }
+
   render() {
     return (
-      <section className="mail-screen-element-wrapper">
+      <section className="mail-screen-element-wrapper" style={this.getWrapperStlye()}>
         <div className={this.getMainClassName()}>
           <div className="email__mail-date">
             {this.props.dateDay} {this.props.dateMonth}

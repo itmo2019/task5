@@ -7,17 +7,17 @@ export class Footer extends PureComponent {
     return (
       <footer className="mail-footer">
         <span className="footer-item">
-          <a className="footer-item__link" href="#help">
+          <a className="mail-footer__item-link" href="#help">
             Помощь и обратная связь
           </a>
         </span>
         <span className="footer-item">
-          <a className="footer-item__link" href="#ads">
+          <a className="mail-footer__item-link" href="#ads">
             Реклама
           </a>
         </span>
         <span className="footer-item">
-          <a className="footer-item__link" href="https://yandex.ru">
+          <a className="mail-footer__item-link" href="https://yandex.ru">
             &copy; 2001-2018, Яндекс
           </a>
         </span>

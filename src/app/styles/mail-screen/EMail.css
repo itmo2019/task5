@@ -30,7 +30,7 @@
   width: 25%;
 }
 
-.unread .email__sender-name {
+.email_unread .email__sender-name {
   font-weight: bold;
 }
 
@@ -50,7 +50,7 @@
   text-overflow: ellipsis;
 }
 
-.unread .email__sender-title {
+.email_unread .email__sender-title {
   font-weight: bold;
 }
 
@@ -65,7 +65,7 @@
   text-align: right;
 }
 
-.unread .email__unread-flag {
+.email_unread .email__unread-flag {
   background-color: #6287bd;
 }
 
