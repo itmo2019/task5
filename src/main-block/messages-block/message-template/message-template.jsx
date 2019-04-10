@@ -1,28 +1,27 @@
 import React from 'react';
 
-function MessageTemplate() {
-  return  <template className="message-template" id="message-template">
-    <div id="1554452980192" className="message to-create">
-      <label className="select-message__checkbox-label" htmlFor="checkbox-1554452980192">
-        <input type="checkbox" className="select-message__checkbox checkbox" id="checkbox-1554452980192"/>
-      </label
-      >
-      <div className="message-info__sender-logo">П
-      </div
-      >
-      <div className="message-info__sender bold">Петя
-      </div
-      >
-      <div className="message-info__mark unread-mark"></div
-      >
-      <div className="message-info__subject bold">Hello from England
-      </div
-      >
-      <div className="message-info__date-container">
-        <div className="date-container__date">5 апр</div>
-      </div>
+class MessageTemplate extends React.Component {
+  render() {
+    console.log(this.props);
+    console.log('123');
+    console.log(this.props.message);
+    return <div id={this.props.message.id} className="message">
+      <label className="select-message__checkbox-label" htmlFor={"checkbox-" + this.props.message.id}>
+        <input type="checkbox" className="select-message__checkbox checkbox" id={"checkbox-" + this.props.message.id}/>
+      </label>
+      <label onClick={this.props.openMessage}>
+        <div className="message-info__sender-logo">{this.props.message.senderLogo}
+        </div>
+        <div className="message-info__sender bold">{this.props.message.senderName}</div>
+        <div className="message-info__mark unread-mark"></div>
+        <div className="message-info__subject bold">{this.props.message.subject}
+        </div>
+        <div className="message-info__date-container">
+          <div className="date-container__date">{this.props.message.date}</div>
+        </div>
+      </label>
     </div>
-  </template>;
+  }
 }
 
 export default MessageTemplate;
