@@ -5,11 +5,11 @@ import MailArticle from '../mail-article';
 
 import './mail.css';
 
-function Mail({mailID, callbacks, sender, avatar, title, date, article, classList}) {
-    return  <div className="Mail" key={mailID}>
-                <input className="Mail__Checkbox" id={mailID} type="checkbox" />
-                <MailTitle callbacks={callbacks} mailID={mailID} sender={sender} avatar={avatar} title={title} date={date} classList={classList} />
-                <MailArticle mailID={mailID} body={article} />
+function Mail(props /* {mailID, callbacks, sender, avatar, title, date, article, classList, checked} */) {
+    return  <div className="Mail" key={props.mailID}>
+                <input className="Mail__Checkbox" id={props.mailID} type="checkbox" />
+                <MailTitle {...props} />
+                <MailArticle mailID={props.mailID} body={props.article} />
             </div>
 }
 

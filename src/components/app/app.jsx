@@ -5,11 +5,16 @@ import MainPage from '../main-page';
 
 import './app.css';
 
-function App() {
-    return  <div className="App">
-                <Header   />
-                <MainPage />
-            </div>
+export default class App extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {searchField: ""}
+    }
+    
+    render() {
+        return  <div className="App">
+                    <Header  searchField={this.state.searchField} searchCallback={value => this.setState({searchField: value})} />
+                    <MainPage searchField={this.state.searchField} />
+                </div>
+    }
 }
-
-export default App;

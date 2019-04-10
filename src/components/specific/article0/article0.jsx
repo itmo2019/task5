@@ -1,6 +1,6 @@
 import React from 'react';
 
-import img_button from '../../../resources/button.png'; 
+import img_button from './button.png'; 
 
 import './article0.css';
 

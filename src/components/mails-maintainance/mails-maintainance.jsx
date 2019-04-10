@@ -47,13 +47,19 @@ export default class MailsMaintainance extends React.Component {
     }
 
     render() {
+        var mailSet = this.state.mailSet
+        if (this.props.searchField) {
+            var searchField = this.props.searchField.toLowerCase()
+            var contains = str => str.toLowerCase().indexOf(searchField) !== -1
+            mailSet = mailSet.filter(mail => [mail.sender, mail.title].some(contains))
+        }
         return  <div className="MailsMaintainance">
                     <MailsHeader 
                         callbacks={{
                             deleteCallback: this.deleteSelected, 
                             receiveCallback: this.receiveMail}} 
                         selectCallback={this.toggleSelectAll} />
-                    {this.state.mailSet
+                    {mailSet
                         .slice(0, this.mailsPerPage)
                         .map(props => <Mail {...props} />)}
                     <div className="MailsMaintainance__Pillar"></div>
@@ -64,9 +70,10 @@ export default class MailsMaintainance extends React.Component {
     }
 
     toggleSelectAll(checked) {
-        this.state.mailSet
-            .slice(0, this.mailsPerPage)
-            .forEach(m => this.mailSetSelection.get(m.mailID)(checked))
+        this.modifyFirst(this.mailsPerPage, "map", mail => {
+            mail.checked = checked 
+            return mail
+        })
     }
 
     modifyAll(action, func) {
@@ -84,13 +91,13 @@ export default class MailsMaintainance extends React.Component {
 
     deleteSelected() {
         this.modifyAll("map", mail => {
-            if (this.mailSelected.get(mail.mailID)) {
+            if (mail.checked) {
                 mail.classList.add("MailTitle_toDelete")
             }
             return mail
         })
         setTimeout(() => 
-            this.modifyAll("filter", mail => !this.mailSelected.get(mail.mailID))
+            this.modifyAll("filter", mail => !mail.checked)
         , 200)
     }
 
@@ -108,15 +115,20 @@ export default class MailsMaintainance extends React.Component {
         var newID = "mail-id" + this.mailCounter++;
         return {
             callbacks: {
-                selected: checked => this.mailSelected.set(newID, checked),
-                setSelect: callback => this.mailSetSelection.set(newID, callback)},
+                selected: checked => this.modifyFirst(this.mailsPerPage, "map", mail => {
+                    if (mail.mailID === newID) {
+                        mail.checked = checked
+                    }
+                    return mail
+                })},
             mailID: newID,
             sender: sender, 
             title: title,
             avatar: avatar,
             date: date,
             article: article,
-            classList: classList
+            classList: classList,
+            checked: false
         }
     }
 

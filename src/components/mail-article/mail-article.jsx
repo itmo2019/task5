@@ -1,6 +1,6 @@
 import React from 'react';
 
-import mail_cross from '../../resources/mail_cross.png';
+import mail_cross from './mail_cross.png';
 
 import './mail-article.css';
 

@@ -1,21 +1,20 @@
 import React from 'react';
 
+import cross from './cross.png'
+
 import './search.css';
 
-export default class Search extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {fieldValue: "Поиск"}
-        this.changeHandler = this.changeHandler.bind(this)
-    }
-    render() {
-        return  <div className="Search">
-                    <input type="text" className="Search__Field" 
-                        value={this.state.fieldValue} 
-                        onChange={this.changeHandler} />
-                </div>   
-    }
-    changeHandler(event) {
-        this.setState({fieldValue: event.target.value});
-    }
+function Search({searchField, searchCallback}) {
+    return  <div className="Search">
+                <input type="text" className="Search__Field"
+                    placeholder="Поиск"
+                    value={searchField} 
+                    onChange={event => searchCallback(event.target.value)} />
+                <img className="Search__ClearButton"
+                    alt="delete all"
+                    src={cross} 
+                    onClick={() => searchCallback("")} />
+            </div>   
 }
+
+export default Search

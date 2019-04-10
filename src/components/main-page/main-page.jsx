@@ -5,13 +5,13 @@ import MailsMaintainance from '../mails-maintainance';
 
 import './main-page.css';
 
-function MainPage() {
+function MainPage(props) {
   return    <div className="MainPage">
                 <div className="MainPage__MenuWrapper">
                     <Menu />
                 </div>
                 <div className="MainPage__MailsMaintainanceWrapper">
-                    <MailsMaintainance /> 
+                    <MailsMaintainance {...props} /> 
                 </div>
             </div>
 }
