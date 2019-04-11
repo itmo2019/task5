@@ -52,8 +52,13 @@
   display: none;
 }
 
-.message {
+.message-container {
+  padding-top: 12px;
+  padding-bottom: 13px;
   cursor: pointer;
+}
+
+.message {
   font-family: "Helvetica Neue", sans-serif;
   font-size: 13px;
   white-space: nowrap;

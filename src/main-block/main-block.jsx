@@ -10,8 +10,7 @@ class MainBlock extends React.Component {
       <LeftMenu/>
       <MessagesBlock selectAll={this.props.selectAll} selectCheckbox={this.props.selectCheckbox}
                      deleteSelected={this.props.deleteSelectedMessages} messagesList={this.props.messagesList}
-                     closeMessage={this.props.closeMessage} messageIsOpen={this.props.messageIsOpen}
-                     openMessage={this.props.openMessage}
+                     messageIsOpen={this.props.messageIsOpen}
       />
     </div>;
   }

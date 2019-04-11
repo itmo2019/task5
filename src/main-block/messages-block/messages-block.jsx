@@ -9,28 +9,39 @@ import Footer from './footer/footer';
 class MessagesBlock extends React.Component {
   constructor(props) {
     super(props);
-    this.setHiddenTextAndOpen = this.setHiddenTextAndOpen.bind(this);
+    this.openMessage = this.openMessage.bind(this);
+    this.closeMessage = this.closeMessage.bind(this);
 
     this.state = {
-      hiddenMessageText: 'placeholder'
+      hiddenMessageText: this.props.hiddenMessageText,
+      messageIsOpen: this.props.messageIsOpen
     };
   }
 
-  setHiddenTextAndOpen(message) {
-    // this.setState({hiddenMessageText: message.hiddenText});
-    this.props.openMessage();
+  closeMessage() {
+    this.setState({
+      messageIsOpen: false,
+    });
+  }
+
+  openMessage(message) {
+    console.log(message.hiddenText);
+    this.setState({
+      messageIsOpen: true,
+      hiddenMessageText: message.hiddenText
+    });
   }
 
   render() {
-    let messagesListClassAddition = !this.props.messageIsOpen ? '__open' : '__closed';
+    let messagesListClassAddition = !this.state.messageIsOpen ? '__open' : '__closed';
     return <div className="messages-block">
       <Header selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected}/>
-      <HiddenMessage closeMessage={this.props.closeMessage} messageIsOpen={this.props.messageIsOpen}
+      <HiddenMessage closeMessage={this.closeMessage} messageIsOpen={this.state.messageIsOpen}
                      hiddenMessageText={this.state.hiddenMessageText}/>
       <div className={"messages-list messages-list" + messagesListClassAddition}>
         {this.props.messagesList.map(message => {
           return (
-            <MessageTemplate message={message} openMessage={this.setHiddenTextAndOpen(message)}
+            <MessageTemplate message={message} openMessage={this.openMessage}
             />
           );
         })}

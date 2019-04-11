@@ -12,13 +12,10 @@ export class App extends Component {
     this.newMail = this.newMail.bind(this);
     this.selectAll = this.selectAll.bind(this);
     this.deleteSelectedMessages = this.deleteSelectedMessages.bind(this);
-    this.closeMessage = this.closeMessage.bind(this);
-    this.openMessage = this.openMessage.bind(this);
 
     this.createAndRandom = this.createAndRandom.bind(this);
     this.newRandomMessage = this.newRandomMessage.bind(this);
     this.selectCheckbox = this.selectCheckbox.bind(this);
-    this.openMessage = this.openMessage.bind(this);
     this.buildNewMessage = this.buildNewMessage.bind(this);
 
     this.state = {
@@ -27,7 +24,6 @@ export class App extends Component {
       texts: ["Привет!", "Hello!", "Bonjour!"],
       months: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
 
-      // anyCheckboxIsActive: false,
       selectAll: false,
       idToHtmlMap: new Map(),
       messagesPerPage: 30,
@@ -40,20 +36,6 @@ export class App extends Component {
 
       messageIsOpen: false
     };
-
-    // this.createAndRandom();
-  }
-
-  openMessage() {
-    // this.setState({
-    //   messageIsOpen: true
-    // });
-  }
-
-  closeMessage() {
-    // this.setState({
-    //   messageIsOpen: false
-    // });
   }
 
   createAndRandom() {
@@ -206,8 +188,7 @@ export class App extends Component {
         <Header newMailFunction={this.newMail}/>
         <MainBlock selectAll={this.selectAll} selectCheckbox={this.selectCheckbox}
                    deleteSelected={this.deleteSelectedMessages} messagesList={this.state.messagesList}
-                   closeMessage={this.closeMessage} messageIsOpen={this.state.messageIsOpen}
-                   openMessage={this.openMessage}
+                   messageIsOpen={this.state.messageIsOpen}
         />
       </div>
     );

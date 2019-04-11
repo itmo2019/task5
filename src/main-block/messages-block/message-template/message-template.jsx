@@ -8,7 +8,7 @@ class MessageTemplate extends React.Component {
       <label className="select-message__checkbox-label" htmlFor={"checkbox-" + this.props.message.id}>
         <input type="checkbox" className="select-message__checkbox checkbox" id={"checkbox-" + this.props.message.id}/>
       </label>
-      <label onClick={this.props.openMessage}>
+      <label className='message-container' onClick={() => {this.props.openMessage(this.props.message)}} htmlFor={'openMessage'}>
         <div className="message-info__sender-logo">{this.props.message.senderLogo}
         </div>
         <div className="message-info__sender bold">{this.props.message.senderName}</div>
