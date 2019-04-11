@@ -93,9 +93,11 @@ export class App extends Component {
   }
 
   selectAll() {
+    console.log('123');
     let newMessagesList = this.state.messagesList;
     for (let i = 0; i < newMessagesList.length; i++) {
       newMessagesList[i].selected = !this.state.selectAll;
+      console.log(newMessagesList[i].selected);
     }
 
     this.setState({
