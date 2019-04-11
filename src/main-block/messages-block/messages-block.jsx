@@ -12,7 +12,7 @@ class MessagesBlock extends React.Component {
     this.setHiddenTextAndOpen = this.setHiddenTextAndOpen.bind(this);
 
     this.state = {
-      hiddenMessageText: ''
+      hiddenMessageText: 'placeholder'
     };
   }
 
@@ -22,11 +22,12 @@ class MessagesBlock extends React.Component {
   }
 
   render() {
+    let messagesListClassAddition = !this.props.messageIsOpen ? '__open' : '__closed';
     return <div className="messages-block">
       <Header selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected}/>
       <HiddenMessage closeMessage={this.props.closeMessage} messageIsOpen={this.props.messageIsOpen}
                      hiddenMessageText={this.state.hiddenMessageText}/>
-      <div className="messages-list">
+      <div className={"messages-list messages-list" + messagesListClassAddition}>
         {this.props.messagesList.map(message => {
           return (
             <MessageTemplate message={message} openMessage={this.setHiddenTextAndOpen(message)}

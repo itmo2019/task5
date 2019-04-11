@@ -2,7 +2,9 @@ import React from 'react';
 
 class MessageTemplate extends React.Component {
   render() {
-    return <div id={this.props.message.id} className="message">
+    let classAddition = (this.props.message.toCreate ? ' to-create' : '') +
+      (this.props.message.toDelete ? ' to-delete' : '');
+    return <div id={this.props.message.id} className={"message"+classAddition}>
       <label className="select-message__checkbox-label" htmlFor={"checkbox-" + this.props.message.id}>
         <input type="checkbox" className="select-message__checkbox checkbox" id={"checkbox-" + this.props.message.id}/>
       </label>
