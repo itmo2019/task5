@@ -20,12 +20,11 @@ class MessagesBlock extends React.Component {
 
   closeMessage() {
     this.setState({
-      messageIsOpen: false,
+      messageIsOpen: false
     });
   }
 
   openMessage(message) {
-    console.log(message.hiddenText);
     this.setState({
       messageIsOpen: true,
       hiddenMessageText: message.hiddenText
@@ -39,9 +38,9 @@ class MessagesBlock extends React.Component {
       <HiddenMessage closeMessage={this.closeMessage} messageIsOpen={this.state.messageIsOpen}
                      hiddenMessageText={this.state.hiddenMessageText}/>
       <div className={"messages-list messages-list" + messagesListClassAddition}>
-        {this.props.messagesList.map(message => {
+        {this.props.messagesList.map((message, messageIndex) => {
           return (
-            <MessageTemplate message={message} openMessage={this.openMessage}
+            <MessageTemplate message={message} openMessage={this.openMessage} selectCheckbox={this.props.selectCheckbox} messageIndex={messageIndex}
             />
           );
         })}

@@ -6,7 +6,12 @@ class MessageTemplate extends React.Component {
       (this.props.message.toDelete ? ' to-delete' : '');
     return <div id={this.props.message.id} className={"message"+classAddition}>
       <label className="select-message__checkbox-label" htmlFor={"checkbox-" + this.props.message.id}>
-        <input type="checkbox" className="select-message__checkbox checkbox" id={"checkbox-" + this.props.message.id}/>
+        <input type="checkbox" className="select-message__checkbox checkbox" id={"checkbox-" + this.props.message.id}
+               onClick={event => {
+                 event.nativeEvent.stopImmediatePropagation();
+                 this.props.selectCheckbox(this.props.messageIndex);
+               }}
+        />
       </label>
       <label className='message-container' onClick={() => {this.props.openMessage(this.props.message)}} htmlFor={'openMessage'}>
         <div className="message-info__sender-logo">{this.props.message.senderLogo}
