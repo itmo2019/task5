@@ -88,6 +88,7 @@ export class App extends Component {
 
     this.state = {
       filterText: '',
+      allSelected: false,
       folder: FOLDER_INBOX,
       deleteSelected: false,
       emails: [
@@ -268,6 +269,10 @@ export class App extends Component {
     }
   }
 
+  setNewAllSelected(allSelected) {
+    this.setState({ allSelected });
+  }
+
   render() {
     return (
       <div className="inherit-size">
@@ -286,6 +291,8 @@ export class App extends Component {
             showInbox={this.showInbox.bind(this)}
             showRead={this.showRead.bind(this)}
             newMessagesAnimated={this.newMessagesAnimated.bind(this)}
+            setNewAllSelected={this.setNewAllSelected.bind(this)}
+            allSelected={this.state.allSelected}
           />
         </div>
       </div>

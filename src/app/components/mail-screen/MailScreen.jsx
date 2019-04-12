@@ -44,6 +44,8 @@ export class MailScreen extends Component {
           onOpenEmail={this.onOpenEmail.bind(this)}
           showInbox={this.props.showInbox}
           showRead={this.props.showRead}
+          setNewAllSelected={this.props.setNewAllSelected}
+          allSelected={this.props.allSelected}
         />
         <Footer />
       </section>

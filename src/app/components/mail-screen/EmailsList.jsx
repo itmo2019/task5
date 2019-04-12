@@ -13,20 +13,17 @@ export class EmailsList extends Component {
     super(props);
 
     this.state = {
-      allSelected: false,
       selectedEmailsIDs: {}
     };
   }
 
   componentDidUpdate() {
     if (
-      this.state.allSelected &&
+      this.props.allSelected &&
       this.props.emails.filter(email => email.display).length >
         getSelectedEmailsCount(this.state.selectedEmailsIDs)
     ) {
-      this.setState({
-        allSelected: false
-      });
+      this.props.setNewAllSelected(false);
     }
   }
 
@@ -41,35 +38,32 @@ export class EmailsList extends Component {
   }
 
   onDeleteSelected() {
-    if (this.state.allSelected || Object.keys(this.state.selectedEmailsIDs).length > 0) {
+    if (Object.keys(this.state.selectedEmailsIDs).length > 0) {
       this.props.deleteSelectedClicked();
     }
   }
 
   selectAllClicked() {
-    this.setState(prevState => {
-      const allSelected = !prevState.allSelected;
+    const allSelected = !this.props.allSelected;
 
-      const selectedEmailsIDs = {};
-      if (allSelected) {
-        this.props.emails.forEach(email => {
-          if (email.display) {
-            selectedEmailsIDs[email.id] = true;
-          }
-        });
-      }
+    const selectedEmailsIDs = {};
+    if (allSelected) {
+      this.props.emails.forEach(email => {
+        if (email.display) {
+          selectedEmailsIDs[email.id] = true;
+        }
+      });
+    }
 
-      return {
-        allSelected,
-        selectedEmailsIDs
-      };
-    });
+    this.props.setNewAllSelected(allSelected);
+
+    this.setState({ selectedEmailsIDs });
   }
 
   render() {
     if (this.props.deleteSelected) {
       const selectedEmailsIDs = Object.assign({}, this.state.selectedEmailsIDs);
-      if (this.state.allSelected) {
+      if (this.props.allSelected) {
         for (let index = 0; index < this.props.emails.length; index++) {
           const emailID = this.props.emails[index].id;
           if (this.state.selectedEmailsIDs[emailID]) {
@@ -82,8 +76,8 @@ export class EmailsList extends Component {
           // Прокидываю callback в родителя, который он вызовет при изменении стейта
           // чтобы снять выделение
           this.props.handleEmailsRemoval(selectedEmailsIDs, () => {
+            this.props.setNewAllSelected(false);
             this.setState({
-              allSelected: false,
               selectedEmailsIDs: {}
             });
           });
@@ -107,7 +101,7 @@ export class EmailsList extends Component {
       <section className="mail-screen">
         <MailNavigation
           onSelectAll={this.selectAllClicked.bind(this)}
-          isSelected={this.state.allSelected}
+          isSelected={this.props.allSelected}
           onDelete={this.onDeleteSelected.bind(this)}
           showInbox={this.props.showInbox}
           showRead={this.props.showRead}
