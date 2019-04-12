@@ -1,26 +1,27 @@
 .messages-block {
   display: inline-block;
-  margin-left: 2%;
   width: 78%;
   min-width: 600px;
+  height: 100%;
   margin-right: 0;
+  margin-left: 2%;
+  background-color: #fff;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 
   vertical-align: top;
-  height: 100%;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-  border-radius: 4px;
-  background-color: #fff;
 }
 
 .checkbox {
-  cursor: pointer;
+  display: inline-block;
   width: 16px;
   height: 16px;
-  display: inline-block;
 
-  border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #fff;
+
+  border-radius: 3px;
+  cursor: pointer;
 }
 
 #check-all {
@@ -29,27 +30,28 @@
 }
 
 .select-message__checkbox {
-  margin-left: 20px;
-  margin-right: 10px;
   margin-top: 12px;
+  margin-right: 10px;
+  margin-left: 20px;
 }
 
 .select-message__checkbox-label {
+  display: inline-block;
   width: 46px;
   height: 40px;
-  display: inline-block;
-  vertical-align: middle;
   cursor: pointer;
+  vertical-align: middle;
 }
 
 .messages-list {
   height: 100%;
   min-height: 500px;
+
   border-bottom: solid 1px #e2e2e2;
 }
 
 .messages-list__open {
-   display: block;
+  display: block;
 }
 
 .messages-list__closed {
@@ -57,39 +59,41 @@
 }
 
 .message-container {
-  padding: 0;
   width: calc(100% - 46px - 3px);
+  padding: 0;
   padding-right: 3px;
+
   border: 0;
+  cursor: pointer;
   font-family: inherit;
   font-size: 100%;
-  cursor: pointer;
 }
 
 .message {
-  font-family: "Helvetica Neue", sans-serif;
-  font-size: 13px;
-  white-space: nowrap;
-  height: 0px;
   overflow: hidden;
-  text-overflow: ellipsis;
+  height: 0px;
+
   border-bottom: solid 1px #e2e2e2;
-  transition: opacity 1.5s, height 1.5s;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 13px;
   opacity: 0;
+  text-overflow: ellipsis;
+  transition: opacity 1.5s, height 1.5s;
+  white-space: nowrap;
   will-change: transform, height, opacity;
 }
 
 .message-info__sender-logo {
   display: inline-block;
-  vertical-align: middle;
   width: 30px;
   height: 30px;
-  line-height: 30px;
+  background-color: #f33;
 
   border-radius: 100px;
-  background-color: #f33;
   color: #fff;
+  line-height: 30px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .bold {
@@ -98,53 +102,53 @@
 
 .message-info__sender {
   display: inline-block;
-  vertical-align: middle;
+  overflow: hidden;
   width: 175px;
   margin-left: 10px;
+  color: #000;
   line-height: 30px;
   text-align: left;
-  color: #000;
+  text-overflow: ellipsis;
+  vertical-align: middle;
 
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .message-info__mark {
   display: inline-block;
-  vertical-align: middle;
   width: 10px;
   height: 10px;
-  margin-left: 10px;
   margin-right: 10px;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 .unread-mark {
-  border-radius: 100px;
   background-color: #6287bd;
+  border-radius: 100px;
 }
 
 .message-info__subject {
   display: inline-block;
-  vertical-align: middle;
-  text-align: left;
-  width: calc(100% - 325px);
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  width: calc(100% - 325px);
   color: #000;
+  text-align: left;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .message-info__date-container {
   display: inline-block;
-  vertical-align: middle;
-  margin-left: 0;
-  margin-right: 10px;
-  width: 70px;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
+  width: 70px;
+  margin-right: 10px;
+  margin-left: 0;
   color: #9b9b9b;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
 }
 
 .date-container__date {
@@ -152,8 +156,8 @@
 }
 
 .to-create {
-  opacity: 1;
   height: 40px;
+  opacity: 1;
 }
 
 .to-delete {

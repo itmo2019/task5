@@ -5,18 +5,18 @@
 }
 
 .write-letter-button {
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
-
-  text-align: center;
   height: 32px;
   padding: 0 10px;
-  line-height: 32px;
-  border-radius: 4px;
   background-color: #6287bd;
+  border-radius: 4px;
   color: #fff;
   font-size: 12px;
+  line-height: 32px;
+
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .write-letter-button:hover {

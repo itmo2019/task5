@@ -1,5 +1,5 @@
 .header__message-creator {
+  cursor: pointer;
   float: right;
   opacity: 0.5;
-  cursor: pointer;
 }
