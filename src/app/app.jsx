@@ -64,7 +64,7 @@ export class App extends Component {
         newOverflowMessages.push(message);
         setTimeout(() => {
           if (message.toDelete) {
-            newMessagesList.splice(index, 1);
+            newMessagesList.splice(newMessagesList.indexOf(index), 1);
             message.toDelete = false;
           }
         }, 1500);
@@ -77,13 +77,11 @@ export class App extends Component {
     newMessagesList.unshift(newMessage);
 
     setTimeout(() => {
-      newMessage.toCreate = false;
-      // this.setState({
-      //   messagesListActualSize: newMessagesListActualSize,
-      //   messagesList: newMessagesList,
-      //   overflowMessages: newOverflowMessages
-      // });
-    }, 50);
+      newMessage.toCreate = true;
+      this.setState({
+        messagesList: newMessagesList
+      });
+    }, 500);
 
     this.setState({
       messagesListActualSize: newMessagesListActualSize,
@@ -125,6 +123,7 @@ export class App extends Component {
         }
 
         message.toDelete = true;
+        message.toCreate = false;
         newMessagesListActualSize--;
         // setTimeout(() => {
         //   newMessagesList.splice(i, 1);
@@ -180,7 +179,7 @@ export class App extends Component {
       hiddenText: hiddenText,
       selected: false,
       toDelete: false,
-      toCreate: true
+      toCreate: false
     };
   }
 

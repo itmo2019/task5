@@ -40,7 +40,9 @@ class MessagesBlock extends React.Component {
       <div className={"messages-list messages-list" + messagesListClassAddition}>
         {this.props.messagesList.map((message, messageIndex) => {
           return (
-            <MessageTemplate message={message} openMessage={this.openMessage} selectCheckbox={this.props.selectCheckbox} messageIndex={messageIndex}
+            <MessageTemplate message={message} openMessage={this.openMessage}
+                             selectCheckbox={this.props.selectCheckbox} messageIndex={messageIndex}
+                             key={message.id}
             />
           );
         })}
