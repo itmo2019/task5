@@ -8,7 +8,6 @@ import SearchBar from './search-bar/search-bar';
 import MessageCreator from './message-creator/message-creator';
 
 class Header extends React.Component {
-
   // constructor(props) {
   //   super(props);
   //   // this.props = props;
@@ -16,12 +15,14 @@ class Header extends React.Component {
   // }
 
   render() {
-    return <header className="mail-page-header">
-      <Menu/>
-      <YandexServiceLogo/>
-      <SearchBar/>
-      <MessageCreator nmf={this.props.newMailFunction}/>
-    </header>;
+    return (
+      <header className="mail-page-header">
+        <Menu />
+        <YandexServiceLogo />
+        <SearchBar />
+        <MessageCreator nmf={this.props.newMailFunction} />
+      </header>
+    );
   }
 }
 

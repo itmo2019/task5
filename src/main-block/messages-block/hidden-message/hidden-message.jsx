@@ -12,15 +12,21 @@ class HiddenMessage extends React.Component {
   }
 
   render() {
-    let classAddition = this.props.messageIsOpen ? '__open' : '__closed';
-    return <div className={"hidden-message hidden-message" + classAddition}>
-      <div className="close-message" onClick={() => {this.props.closeMessage()}}>&times;</div>
+    const classAddition = this.props.messageIsOpen ? '__open' : '__closed';
+    return (
+      <div className={`hidden-message hidden-message${classAddition}`}>
+        <div
+          className="close-message"
+          onClick={() => {
+            this.props.closeMessage();
+          }}
+        >
+          &times;
+        </div>
 
-      <div className="hidden-message__content">
-        {this.props.hiddenMessageText}
+        <div className="hidden-message__content">{this.props.hiddenMessageText}</div>
       </div>
-
-    </div>;
+    );
   }
 }
 

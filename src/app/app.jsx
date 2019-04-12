@@ -6,7 +6,6 @@ import Header from '../header/header';
 import MainBlock from '../main-block/main-block';
 
 export class App extends Component {
-
   constructor(props) {
     super(props);
     this.newMail = this.newMail.bind(this);
@@ -19,10 +18,23 @@ export class App extends Component {
     this.buildNewMessage = this.buildNewMessage.bind(this);
 
     this.state = {
-      senders: ["Петя", "Вася", "Маша"],
-      subjects: ["Привет из России", "Hello from England", "Bonjour de France"],
-      texts: ["Привет!", "Hello!", "Bonjour!"],
-      months: ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'],
+      senders: ['Петя', 'Вася', 'Маша'],
+      subjects: ['Привет из России', 'Hello from England', 'Bonjour de France'],
+      texts: ['Привет!', 'Hello!', 'Bonjour!'],
+      months: [
+        'январь',
+        'февраль',
+        'март',
+        'апрель',
+        'май',
+        'июнь',
+        'июль',
+        'август',
+        'сентябрь',
+        'октябрь',
+        'ноябрь',
+        'декабрь'
+      ],
 
       selectAll: false,
       idToHtmlMap: new Map(),
@@ -44,18 +56,20 @@ export class App extends Component {
   }
 
   newRandomMessage() {
-    setTimeout(this.createAndRandom,
-      Math.random() * (this.state.timeoutUpper - this.state.timeoutLower) + this.state.timeoutLower);
+    setTimeout(
+      this.createAndRandom,
+      Math.random() * (this.state.timeoutUpper - this.state.timeoutLower) + this.state.timeoutLower
+    );
   }
 
   newMail() {
     let newMessagesListActualSize = this.state.messagesListActualSize;
-    let newMessagesList = this.state.messagesList;
-    let newOverflowMessages = this.state.overflowMessages;
+    const newMessagesList = this.state.messagesList;
+    const newOverflowMessages = this.state.overflowMessages;
 
     while (newMessagesListActualSize >= this.state.messagesPerPage) {
       for (let index = newMessagesList.length - 1; index >= 0; index--) {
-        let message = newMessagesList[index];
+        const message = newMessagesList[index];
         if (message.toDelete) {
           continue;
         }
@@ -71,7 +85,7 @@ export class App extends Component {
         break;
       }
     }
-    let newMessage = this.buildNewMessage();
+    const newMessage = this.buildNewMessage();
 
     newMessagesListActualSize++;
     newMessagesList.unshift(newMessage);
@@ -91,7 +105,7 @@ export class App extends Component {
   }
 
   selectAll() {
-    let newMessagesList = this.state.messagesList;
+    const newMessagesList = this.state.messagesList;
     for (let i = 0; i < newMessagesList.length; i++) {
       newMessagesList[i].selected = !this.state.selectAll;
     }
@@ -103,7 +117,7 @@ export class App extends Component {
   }
 
   selectCheckbox(messageIndex) {
-    let newMessagesList = this.state.messagesList;
+    const newMessagesList = this.state.messagesList;
     newMessagesList[messageIndex].selected = !newMessagesList[messageIndex].selected;
     this.setState({
       messagesList: newMessagesList
@@ -112,11 +126,11 @@ export class App extends Component {
 
   deleteSelectedMessages() {
     let newMessagesListActualSize = this.state.messagesListActualSize;
-    let newMessagesList = this.state.messagesList;
-    let newOverflowMessages = this.state.overflowMessages;
+    const newMessagesList = this.state.messagesList;
+    const newOverflowMessages = this.state.overflowMessages;
 
     for (let i = 0; i < newMessagesList.length; i++) {
-      let message = newMessagesList[i];
+      const message = newMessagesList[i];
       if (message.selected) {
         if (message.toDelete) {
           continue;
@@ -129,7 +143,7 @@ export class App extends Component {
         //   newMessagesList.splice(i, 1);
         // }, 1500);
         if (newOverflowMessages.length > 0) {
-          let newMessage = newOverflowMessages.pop();
+          const newMessage = newOverflowMessages.pop();
           newMessage.toCreate = true;
           if (newMessage.toDelete) {
             newMessage.toDelete = false;
@@ -152,31 +166,31 @@ export class App extends Component {
     });
 
     setTimeout(() => {
-        this.setState({
-          messagesList: this.state.messagesList.filter(message => !message.selected)
-        });
-    },1500);
+      this.setState({
+        messagesList: this.state.messagesList.filter(message => !message.selected)
+      });
+    }, 1500);
   }
 
   buildNewMessage() {
-    let currentDate = new Date();
+    const currentDate = new Date();
 
-    let id = currentDate.getTime();
-    let langInd = Math.floor(Math.random() * this.state.senders.length);
-    let hiddenText = this.state.texts[langInd];
+    const id = currentDate.getTime();
+    const langInd = Math.floor(Math.random() * this.state.senders.length);
+    const hiddenText = this.state.texts[langInd];
 
-    let monthInd = currentDate.getMonth().toLocaleString('rus');
-    let month = this.state.months[monthInd];
-    let day = currentDate.getDate();
+    const monthInd = currentDate.getMonth().toLocaleString('rus');
+    const month = this.state.months[monthInd];
+    const day = currentDate.getDate();
 
-    let senderName = this.state.senders[Math.floor(Math.random() * this.state.senders.length)];
+    const senderName = this.state.senders[Math.floor(Math.random() * this.state.senders.length)];
     return {
-      id: id,
-      senderName: senderName,
+      id,
+      senderName,
       senderLogo: senderName[0],
       subject: this.state.subjects[langInd],
-      date: day + ' ' + month.substr(0, 3),
-      hiddenText: hiddenText,
+      date: `${day} ${month.substr(0, 3)}`,
+      hiddenText,
       selected: false,
       toDelete: false,
       toCreate: false
@@ -186,10 +200,13 @@ export class App extends Component {
   render() {
     return (
       <div className="app">
-        <Header newMailFunction={this.newMail}/>
-        <MainBlock selectAll={this.selectAll} selectCheckbox={this.selectCheckbox}
-                   deleteSelected={this.deleteSelectedMessages} messagesList={this.state.messagesList}
-                   messageIsOpen={this.state.messageIsOpen}
+        <Header newMailFunction={this.newMail} />
+        <MainBlock
+          selectAll={this.selectAll}
+          selectCheckbox={this.selectCheckbox}
+          deleteSelected={this.deleteSelectedMessages}
+          messagesList={this.state.messagesList}
+          messageIsOpen={this.state.messageIsOpen}
         />
       </div>
     );

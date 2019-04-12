@@ -32,23 +32,31 @@ class MessagesBlock extends React.Component {
   }
 
   render() {
-    let messagesListClassAddition = !this.state.messageIsOpen ? '__open' : '__closed';
-    return <div className="messages-block">
-      <Header selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected}/>
-      <HiddenMessage closeMessage={this.closeMessage} messageIsOpen={this.state.messageIsOpen}
-                     hiddenMessageText={this.state.hiddenMessageText}/>
-      <div className={"messages-list messages-list" + messagesListClassAddition}>
-        {this.props.messagesList.map((message, messageIndex) => {
-          return (
-            <MessageTemplate message={message} openMessage={this.openMessage}
-                             selectCheckbox={this.props.selectCheckbox} messageIndex={messageIndex}
-                             key={message.id}
-            />
-          );
-        })}
+    const messagesListClassAddition = !this.state.messageIsOpen ? '__open' : '__closed';
+    return (
+      <div className="messages-block">
+        <Header selectAll={this.props.selectAll} deleteSelected={this.props.deleteSelected} />
+        <HiddenMessage
+          closeMessage={this.closeMessage}
+          messageIsOpen={this.state.messageIsOpen}
+          hiddenMessageText={this.state.hiddenMessageText}
+        />
+        <div className={`messages-list messages-list${messagesListClassAddition}`}>
+          {this.props.messagesList.map((message, messageIndex) => {
+            return (
+              <MessageTemplate
+                message={message}
+                openMessage={this.openMessage}
+                selectCheckbox={this.props.selectCheckbox}
+                messageIndex={messageIndex}
+                key={message.id}
+              />
+            );
+          })}
+        </div>
+        <Footer />
       </div>
-      <Footer/>
-    </div>;
+    );
   }
 }
 
