@@ -1,77 +1,77 @@
 .letter-view {
   height: calc(100% - 1px);
-  font: 15px "Helvetica Neue", sans-serif;
   cursor: pointer;
+  font: 15px 'Helvetica Neue', sans-serif;
 }
 
 .letter-view:before {
-  content: "";
   display: inline-block;
-  vertical-align: middle;
   height: 100%;
+  content: '';
+  vertical-align: middle;
 }
 
 .letter-view__photo {
   display: inline-block;
-  vertical-align: middle;
-  border-radius: 50%;
   width: 30px;
   height: 30px;
-  background-image: url('../../../../images/myPhoto.svg');
   margin-right: 16px;
+  background-image: url('../../../../images/myPhoto.svg');
+  border-radius: 50%;
   pointer-events: none;
+  vertical-align: middle;
 }
 
 .letter-view__author {
   display: inline-block;
-  vertical-align: middle;
   overflow: hidden;
   width: 180px;
   height: 18px;
   letter-spacing: normal;
   pointer-events: none;
+  vertical-align: middle;
 }
 
 .letter-view__readed {
   display: inline-block;
-  vertical-align: middle;
   width: 10px;
   height: 10px;
+  margin: 0 10px;
   background: #6287bd;
   border-radius: 50%;
-  margin: 0 10px;
+  vertical-align: middle;
 }
 
 .letter-view__theme {
-  overflow: hidden;
   display: inline-block;
-  vertical-align: middle;
+  overflow: hidden;
   width: 150px;
   height: 18px;
   letter-spacing: normal;
   pointer-events: none;
+  vertical-align: middle;
 }
 
 .letter-view__content {
-  overflow: hidden;
   display: inline-block;
-  vertical-align: middle;
+  overflow: hidden;
   width: calc(100% - 610px);
   height: 18px;
   margin-left: 20px;
   letter-spacing: normal;
   opacity: 0.5;
   pointer-events: none;
+  vertical-align: middle;
 }
 
 .letter-view__data {
   display: inline-block;
-  vertical-align: middle;
   width: 100px;
   height: 18px;
-  text-align: right;
+  margin-left: 20px;
   color: #9b9b9b;
   letter-spacing: normal;
-  margin-left: 20px;
   pointer-events: none;
+  text-align: right;
+  vertical-align: middle;
 }

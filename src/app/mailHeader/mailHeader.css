@@ -1,76 +1,75 @@
 .mail-header {
-  height: 60px;
   width: 100%;
+  height: 60px;
 }
 
 .mail-header:before {
-  content: "";
   display: inline-block;
-  vertical-align: middle;
   height: 100%;
+  content: '';
+  vertical-align: middle;
 }
 
 .mail-header__svgicon-menu {
   display: inline-block;
-  vertical-align: middle;
   width: 16px;
   height: 16px;
   margin-left: 20px;
   background-image: url('../../images/menu.svg');
+  vertical-align: middle;
 }
 
 .mail-header__logo-container {
-  margin-left: 10px;
-  vertical-align: middle;
   display: inline-block;
   width: 128px;
   height: 32px;
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 .mail-header__logo-container-svgicon-Yandex {
   display: inline-block;
   width: 75px;
   height: 32px;
-  /*background-image: url('../../images/yandexLogo.svg');*/
 }
 
 .mail-header__logo-container-svgicon-mail {
   display: inline-block;
   width: 52px;
   height: 32px;
-  background-image: url('../../images/yandexServiceLogo.svg');
 }
 
 .mail-header__search-container {
-  margin-left: 8px;
-  vertical-align: middle;
   display: inline-block;
   width: calc(100% - 215px);
   height: 34px;
+  margin-left: 8px;
   text-align: center;
+  vertical-align: middle;
 }
 
 .search-container__search {
   min-width: 500px;
   height: 100%;
-  background: #f2f4f7;
-  border-style: none;
-  padding-left: 16px;
   padding-right: 10px;
-  font: 15px "Helvetica Neue", sans-serif ;
+  padding-left: 16px;
+
+  border-style: none;
+  background: #f2f4f7;
   box-shadow: inset 0 0 0 1px #d9dbde;
+  font: 15px 'Helvetica Neue', sans-serif;
 }
 
 .search-container__search::-webkit-input-placeholder {
-  font: 15px "Helvetica Neue", sans-serif ;
   color: #727477;
+  font: 15px 'Helvetica Neue', sans-serif;
 }
 
 .search-container__search::-webkit-search-cancel-button {
-  -webkit-appearance: none;
   display: block;
-  height: 10px;
   width: 10px;
+  height: 10px;
+  -webkit-appearance: none;
   background-image: url('../../images/cross.jpg');
   background-size: contain;
 }

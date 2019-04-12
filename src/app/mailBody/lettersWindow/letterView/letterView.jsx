@@ -7,8 +7,14 @@ import { Checkbox } from '../checkbox/checkbox';
 export class LetterView extends Component {
   render() {
     return (
-      <div className="letter-view" onClick={this.props.showLetter}>
-        <Checkbox id={this.props.checkboxId}/>
+      <div
+        className="letter-view"
+        onClick={this.props.showLetter}
+        onKeyPress=""
+        role="button"
+        aria-hidden
+      >
+        <Checkbox id={this.props.checkboxId} />
         <div className="letter-view__photo" />
         <div className="letter-view__author">{this.props.author}</div>
         <div className="letter-view__readed" />

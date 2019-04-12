@@ -25,7 +25,7 @@ export class LettersWindowHeader extends Component {
         <button
           className="letters-window__header-button shift"
           type="submit"
-          onClick={this.props.fooRemoving}
+          onClick={this.props.fooRemovingLetters}
         >
           Удалить
         </button>

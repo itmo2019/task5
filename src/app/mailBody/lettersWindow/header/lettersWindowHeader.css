@@ -3,23 +3,24 @@
 }
 
 .letters-window__header:before {
-  content: "";
   display: inline-block;
-  vertical-align: middle;
   height: 100%;
+  content: '';
+  vertical-align: middle;
 }
 
 .letters-window__header-button {
-  padding: 0;
   display: inline-block;
-  vertical-align: middle;
-  color: #b6b6b6;
-  font: 13px "Helvetica Neue", sans-serif;
-  background-color: #fff;
-  border-style: none;
-  outline: none;
   height: 100%;
+  padding: 0;
+
+  border-style: none;
+  background-color: #fff;
+  color: #b6b6b6;
+  font: 13px 'Helvetica Neue', sans-serif;
   letter-spacing: normal;
+  outline: none;
+  vertical-align: middle;
 }
 
 .letters-window__header-button:hover {
