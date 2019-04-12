@@ -37,7 +37,6 @@ export class App extends Component {
       ],
 
       selectAll: false,
-      idToHtmlMap: new Map(),
       messagesPerPage: 30,
       overflowMessages: [],
       messagesList: [],
@@ -63,113 +62,118 @@ export class App extends Component {
   }
 
   newMail() {
-    let newMessagesListActualSize = this.state.messagesListActualSize;
-    const newMessagesList = this.state.messagesList;
-    const newOverflowMessages = this.state.overflowMessages;
+    this.setState(prevState => {
+      let newMessagesListActualSize = prevState.messagesListActualSize;
+      const newMessagesList = prevState.messagesList;
+      const newOverflowMessages = prevState.overflowMessages;
 
-    while (newMessagesListActualSize >= this.state.messagesPerPage) {
-      for (let index = newMessagesList.length - 1; index >= 0; index--) {
-        const message = newMessagesList[index];
-        if (message.toDelete) {
-          continue;
-        }
-        message.toDelete = true;
-        newMessagesListActualSize--;
-        newOverflowMessages.push(message);
-        setTimeout(() => {
-          if (message.toDelete) {
-            newMessagesList.splice(newMessagesList.indexOf(index), 1);
-            message.toDelete = false;
+      while (newMessagesListActualSize >= prevState.messagesPerPage) {
+        for (let index = newMessagesList.length - 1; index >= 0; index--) {
+          const message = newMessagesList[index];
+          if (!message.toDelete) {
+            message.toDelete = true;
+            newMessagesListActualSize--;
+            newOverflowMessages.push(message);
+            setTimeout(() => {
+              if (message.toDelete) {
+                newMessagesList.splice(newMessagesList.indexOf(index), 1);
+                message.toDelete = false;
+              }
+            }, 1500);
+            break;
           }
-        }, 1500);
-        break;
+        }
       }
-    }
-    const newMessage = this.buildNewMessage();
+      const newMessage = this.buildNewMessage();
 
-    newMessagesListActualSize++;
-    newMessagesList.unshift(newMessage);
+      newMessagesListActualSize++;
+      newMessagesList.unshift(newMessage);
 
-    setTimeout(() => {
-      newMessage.toCreate = true;
-      this.setState({
-        messagesList: newMessagesList
-      });
-    }, 500);
+      setTimeout(() => {
+        newMessage.toCreate = true;
+        this.setState({
+          messagesList: newMessagesList
+        });
+      }, 500);
 
-    this.setState({
-      messagesListActualSize: newMessagesListActualSize,
-      messagesList: newMessagesList,
-      overflowMessages: newOverflowMessages
+      return {
+        messagesListActualSize: newMessagesListActualSize,
+        messagesList: newMessagesList,
+        overflowMessages: newOverflowMessages
+      };
     });
   }
 
   selectAll() {
-    const newMessagesList = this.state.messagesList;
-    for (let i = 0; i < newMessagesList.length; i++) {
-      newMessagesList[i].selected = !this.state.selectAll;
-    }
+    this.setState(prevState => {
+      const newMessagesList = prevState.messagesList;
+      for (let i = 0; i < newMessagesList.length; i++) {
+        newMessagesList[i].selected = !prevState.selectAll;
+      }
 
-    this.setState({
-      messagesList: newMessagesList,
-      selectAll: !this.state.selectAll
+      return {
+        messagesList: newMessagesList,
+        selectAll: !prevState.selectAll
+      };
     });
   }
 
   selectCheckbox(messageIndex) {
-    const newMessagesList = this.state.messagesList;
-    newMessagesList[messageIndex].selected = !newMessagesList[messageIndex].selected;
-    this.setState({
-      messagesList: newMessagesList
+    this.setState(prevState => {
+      const newMessagesList = prevState.messagesList;
+      newMessagesList[messageIndex].selected = !newMessagesList[messageIndex].selected;
+      return {
+        messagesList: newMessagesList
+      };
     });
   }
 
   deleteSelectedMessages() {
-    let newMessagesListActualSize = this.state.messagesListActualSize;
-    const newMessagesList = this.state.messagesList;
-    const newOverflowMessages = this.state.overflowMessages;
+    this.setState(prevState => {
+      let newMessagesListActualSize = prevState.messagesListActualSize;
+      const newMessagesList = prevState.messagesList;
+      const newOverflowMessages = prevState.overflowMessages;
 
-    for (let i = 0; i < newMessagesList.length; i++) {
-      const message = newMessagesList[i];
-      if (message.selected) {
-        if (message.toDelete) {
-          continue;
-        }
-
-        message.toDelete = true;
-        message.toCreate = false;
-        newMessagesListActualSize--;
-        // setTimeout(() => {
-        //   newMessagesList.splice(i, 1);
-        // }, 1500);
-        if (newOverflowMessages.length > 0) {
-          const newMessage = newOverflowMessages.pop();
-          newMessage.toCreate = true;
-          if (newMessage.toDelete) {
-            newMessage.toDelete = false;
-          } else {
-            newMessagesList.push(newMessage);
+      for (let i = 0; i < newMessagesList.length; i++) {
+        const message = newMessagesList[i];
+        if (message.selected) {
+          if (!message.toDelete) {
+            message.toDelete = true;
+            message.toCreate = false;
+            newMessagesListActualSize--;
+            if (newOverflowMessages.length > 0) {
+              const newMessage = newOverflowMessages.pop();
+              newMessage.toCreate = false;
+              setTimeout(() => {
+                newMessage.toCreate = true;
+                this.setState({
+                  messagesList: newMessagesList
+                });
+              }, 500);
+              if (newMessage.toDelete) {
+                newMessage.toDelete = false;
+              } else {
+                newMessagesList.push(newMessage);
+              }
+              newMessagesListActualSize++;
+            }
           }
-          newMessagesListActualSize++;
-          // setTimeout(() => {
-          //   newMessage.toCreate = false;
-          // }, 50);
         }
       }
-    }
 
-    this.setState({
-      messagesListActualSize: newMessagesListActualSize,
-      messagesList: newMessagesList,
-      overflowMessages: newOverflowMessages,
-      selectAll: false
+      setTimeout(() => {
+        this.setState({
+          messagesList: prevState.messagesList.filter(message => !message.selected)
+        });
+      }, 1500);
+
+      return {
+        messagesListActualSize: newMessagesListActualSize,
+        messagesList: newMessagesList,
+        overflowMessages: newOverflowMessages,
+        selectAll: false
+      };
     });
-
-    setTimeout(() => {
-      this.setState({
-        messagesList: this.state.messagesList.filter(message => !message.selected)
-      });
-    }, 1500);
   }
 
   buildNewMessage() {

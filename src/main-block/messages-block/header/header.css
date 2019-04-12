@@ -11,6 +11,7 @@
   width: auto;
   white-space: nowrap;
   text-overflow: ellipsis;
+  cursor: pointer;
 
   margin-left: 15px;
   color: #ccc;

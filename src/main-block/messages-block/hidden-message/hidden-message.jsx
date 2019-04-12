@@ -3,14 +3,6 @@ import React from 'react';
 import './hidden-message.css';
 
 class HiddenMessage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      hiddenMessageText: this.props.hiddenMessageText
-    };
-  }
-
   render() {
     const classAddition = this.props.messageIsOpen ? '__open' : '__closed';
     return (
