@@ -16,12 +16,16 @@
   cursor: pointer;
   width: 16px;
   height: 16px;
-  margin-bottom: 0;
   display: inline-block;
 
   border-radius: 3px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   background-color: #fff;
+}
+
+#check-all {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .select-message__checkbox {
@@ -53,8 +57,12 @@
 }
 
 .message-container {
-  padding-top: 12px;
-  padding-bottom: 13px;
+  padding: 0;
+  width: calc(100% - 46px - 3px);
+  padding-right: 3px;
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
   cursor: pointer;
 }
 
@@ -94,6 +102,7 @@
   width: 175px;
   margin-left: 10px;
   line-height: 30px;
+  text-align: left;
   color: #000;
 
   white-space: nowrap;
@@ -118,7 +127,8 @@
 .message-info__subject {
   display: inline-block;
   vertical-align: middle;
-  width: calc(100% - 375px);
+  text-align: left;
+  width: calc(100% - 325px);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -129,6 +139,7 @@
   display: inline-block;
   vertical-align: middle;
   margin-left: 0;
+  margin-right: 10px;
   width: 70px;
   white-space: nowrap;
   overflow: hidden;

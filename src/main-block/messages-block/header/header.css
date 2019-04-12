@@ -19,6 +19,14 @@
   display: inline-block;
 }
 
+.button-to-div {
+  padding: 0;
+
+  border: 0;
+  font-family: inherit;
+  font-size: 100%;
+}
+
 #check-all {
   display: inline-block;
   vertical-align: top;

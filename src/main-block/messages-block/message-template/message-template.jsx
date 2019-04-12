@@ -21,12 +21,13 @@ class MessageTemplate extends React.Component {
             }}
           />
         </label>
-        <label
+
+        <button
+          type="button"
           className="message-container"
           onClick={() => {
             this.props.openMessage(this.props.message);
           }}
-          htmlFor="openMessage"
         >
           <div className="message-info__sender-logo">{this.props.message.senderLogo}</div>
           <div className="message-info__sender bold">{this.props.message.senderName}</div>
@@ -35,7 +36,7 @@ class MessageTemplate extends React.Component {
           <div className="message-info__date-container">
             <div className="date-container__date">{this.props.message.date}</div>
           </div>
-        </label>
+        </button>
       </div>
     );
   }

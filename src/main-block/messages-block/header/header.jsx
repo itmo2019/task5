@@ -14,18 +14,25 @@ class Header extends React.Component {
             this.props.selectAll();
           }}
         />
-        <div className="messages-block-header__action">Переслать</div>
-        <div
-          className="messages-block-header__action"
+        <button type="button" className="messages-block-header__action button-to-div">
+          Переслать
+        </button>
+        <button
+          type="button"
+          className="messages-block-header__action button-to-div"
           id="delete-messages"
           onClick={() => {
             this.props.deleteSelected();
           }}
         >
           Удалить
-        </div>
-        <div className="messages-block-header__action">Это спам!</div>
-        <div className="messages-block-header__action">Прочитано</div>
+        </button>
+        <button type="button" className="messages-block-header__action button-to-div">
+          Это спам!
+        </button>
+        <button type="button" className="messages-block-header__action button-to-div">
+          Прочитано
+        </button>
       </div>
     );
   }

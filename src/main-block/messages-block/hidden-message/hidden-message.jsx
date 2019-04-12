@@ -7,14 +7,15 @@ class HiddenMessage extends React.Component {
     const classAddition = this.props.messageIsOpen ? '__open' : '__closed';
     return (
       <div className={`hidden-message hidden-message${classAddition}`}>
-        <div
+        <button
+          type="button"
           className="close-message"
           onClick={() => {
             this.props.closeMessage();
           }}
         >
           &times;
-        </div>
+        </button>
 
         <div className="hidden-message__content">{this.props.hiddenMessageText}</div>
       </div>
