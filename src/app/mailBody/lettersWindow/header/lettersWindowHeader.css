@@ -1,0 +1,32 @@
+.letters-window__header {
+  height: 6.25%;
+}
+
+.letters-window__header:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.letters-window__header-button {
+  padding: 0;
+  display: inline-block;
+  vertical-align: middle;
+  color: #b6b6b6;
+  font: 13px "Helvetica Neue", sans-serif;
+  background-color: #fff;
+  border-style: none;
+  outline: none;
+  height: 100%;
+  letter-spacing: normal;
+}
+
+.letters-window__header-button:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.shift {
+  margin-left: 20px;
+}

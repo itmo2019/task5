@@ -1,0 +1,23 @@
+.letters-window__footer {
+  text-align: right;
+  height: 6.25%;
+  width: 100%;
+}
+
+.letters-window__footer:before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.letters-window__footer-a {
+  display: inline-block;
+  vertical-align: middle;
+  color: #ccc;
+  font: 11px "Helvetica Neue", sans-serif;
+  letter-spacing: normal;
+  margin-right: 40px;
+  text-decoration: none;
+  cursor: pointer;
+}

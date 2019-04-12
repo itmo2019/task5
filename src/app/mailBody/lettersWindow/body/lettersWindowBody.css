@@ -1,0 +1,10 @@
+.letters-window__body {
+  height: 87.5%;
+  width: 100%;
+  overflow-y: auto;
+}
+
+.letter-with-line {
+  width: 100%;
+  height: 7.15%;
+}
