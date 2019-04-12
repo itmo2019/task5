@@ -7,13 +7,13 @@ import logoMail from '../images/mail-icon.svg'
 
 function HeaderImageYandex() {
     return  <div className="header__image_wrapper_yandex">
-				<img src={logoYandex} className="header__yandex_image"></img>
+				<img src={logoYandex} className="header__yandex_image" alt=""></img>
 			</div>; 
 }
 
 function HeaderImageMail() {
     return  <div className="header__image_wrapper_mail">
-				<img src={logoMail} className="header__mail_image"></img>
+				<img src={logoMail} className="header__mail_image" alt=""></img>
 			</div>;
 }
 

@@ -13,7 +13,7 @@ function LettersFooter() {
 }
 
 function Option({name}) {
-	return  <a href="#" class="letters__footer_option">{name}</a>
+	return  <a href="#" className="letters__footer_option">{name}</a>
 }
 
 

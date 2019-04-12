@@ -1,13 +1,3 @@
-.letters__checkbox {
-	margin-left: 20px;
-	vertical-align: middle;
-	width: 16px;
-	height: 16px;
-	border-radius: 3px;
-	border: 1px solid rgba(0, 0, 0, 0.15);
-	background-color: #ffffff;
-}
-
 .letters__letterbox_wrapper {
 	display: table-row;
 	width: 100%;
@@ -23,63 +13,6 @@
 .letters__letterbox {
 	display: table;
 	width: 100%;
-}
-
-.letters__single_letter {
-	height: 40px;
-	width: 100%;
-	display: table-row;
-	transition: opacity 1s;
-}
-
-.letters__letter_element {
-	height: 100%;
-	border-bottom: 1px solid #e2e2e2;
-	display: table-cell;
-	vertical-align: middle;
-	width: 40px;
-	padding-right: 10px;
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-}
-
-.letters__letter_header {
-	width: 185px;
-	max-width: 185px;
-	min-width: 185px;
-	color: #000000;
-	font-family: "Helvetica Neue - Light";
-	font-size: 13px;
-}
-
-.bullet_unread {
-	background-color: #ffffff;
-}
-
-.letters__unread_letter .bullet_unread {
-	width: 10px;
-	height: 10px;
-	background-color: #6287bd;
-	border-radius: 10px;
-}
-
-.letters__letter_text {
-	width: 100%;
-}
-
-.letters__unread_letter .letters__letter_header {
-	font-family: "Helvetica Neue";
-}
-
-.letters__letter_date {
-	color: #9b9b9b;
-	font-family: "Helvetica Neue - Light";
-	font-size: 13px;
-	width: 70px;
-	max-width: 70px;
-	min-width: 70px;
-	padding-right: 20px;
 }
 
 .letter {
@@ -108,8 +41,4 @@
 
 #show_letter:checked + .letter {
 	z-index: 2;
-}
-
-.zeroOpacity {
-	opacity: 0;
 }
