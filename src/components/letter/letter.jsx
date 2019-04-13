@@ -3,16 +3,24 @@ import React from 'react';
 import './letter.css';
 import YaCheckbox from '../ya-checkbox';
 
-function Letter({ id, unread, avatar, sender, title, receiveTime, text, checked, check }) {
-  const letterClass = unread ? 'unread' : '';
+function Letter({ id, unread, avatar, sender, title, receiveTime, text, checked, check, deleted, firstShow }) {
+  let letterClass = unread ? 'unread' : '';
   const labelId = `letter_open${id}`;
+
+  if (deleted) {
+    letterClass += ' letters_mail_will_be_removed';
+  }
+
+  if (firstShow) {
+    letterClass += ' letters_mail_show';
+  }
 
   const onClick = () => {
     check(id);
   };
 
   return (
-    <div className={`letters_mail ${letterClass}`}>
+    <div className={`letters_mail letters_mail_new ${letterClass} `}>
       <input id={labelId} className="letter_open" type="checkbox" />
       <div className="letter_head">
         <YaCheckbox checked={checked} check={onClick} />

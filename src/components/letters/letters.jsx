@@ -18,6 +18,8 @@ export class Letters extends Component {
             receiveTime={x.receiveTime}
             checked={x.checked}
             check={this.props.selectLetter}
+            deleted={x.deleted}
+            firstShow={x.firstShow}
           />
         ))}
       </div>

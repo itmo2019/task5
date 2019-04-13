@@ -49,7 +49,8 @@ export class MainContainer extends Component {
           title: 'Доступ к аккаунту восстановлен',
           text: "There's a lady who's sure.\n All that glitters is gold",
           unread: true,
-          checked: false
+          checked: false,
+          firstShow: true
         },
         {
           id: 1,
@@ -59,7 +60,8 @@ export class MainContainer extends Component {
           title: 'Как читать почту с мобильного',
           text: "And she's buying a stairway to heaven",
           unread: true,
-          checked: false
+          checked: false,
+          firstShow: true
         },
         {
           id: 2,
@@ -69,7 +71,8 @@ export class MainContainer extends Component {
           title: 'Как читать почту с мобильного',
           text: 'When she gets there she knows.If the stores are all closed',
           unread: false,
-          checked: false
+          checked: false,
+          firstShow: true
         },
         {
           id: 3,
@@ -79,7 +82,8 @@ export class MainContainer extends Component {
           title: 'Соберите всю почту в этот ящик',
           text: 'With a word she can get what she came for.',
           unread: false,
-          checked: false
+          checked: false,
+          firstShow: true
         },
         {
           id: 4,
@@ -89,7 +93,8 @@ export class MainContainer extends Component {
           title: 'Съешь ещё этих мягких французскихбулок, да выпей чаю',
           text: "Oh oh oh oh and she's\n buying a stairway to heaven",
           unread: false,
-          checked: false
+          checked: false,
+          firstShow: true
         }
       ],
       lastTimeout: randomInteger(minNewMessageTimeout, maxNewMessageTimeout)
@@ -109,6 +114,10 @@ export class MainContainer extends Component {
         return x;
       })
     );
+    setTimeout(this.removeDeleted, 400);
+  };
+
+  removeDeleted = () => {
     this.updateLetter(it => it.filter(x => !x.deleted));
   };
 
@@ -149,6 +158,19 @@ export class MainContainer extends Component {
   newMail = () => {
     const year = randomInteger(100, 2019);
     this.loadFactAboutYear(year);
+  };
+
+  setFirstShow = id => {
+    this.updateLetter(it =>
+      it.map(x => {
+        if (x.id === id) {
+          const copy = Object.assign({}, x);
+          copy.firstShow = true;
+          return copy;
+        }
+        return x;
+      })
+    );
   };
 
   newMessagePerRandomTime = () => {
@@ -201,6 +223,8 @@ export class MainContainer extends Component {
     };
 
     this.updateLetter(old => [newLetter, ...old]);
+
+    setTimeout(() => this.setFirstShow(newLetter.id), 5);
   };
 
   loadFactAboutYear(year) {
