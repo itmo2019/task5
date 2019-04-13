@@ -50,6 +50,11 @@ export class App extends Component {
     };
   }
 
+  componentDidMount() {
+    const thisHolder = this;
+    thisHolder.createAndRandom();
+  }
+
   createAndRandom() {
     this.newMail();
     this.newRandomMessage();

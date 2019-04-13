@@ -18,7 +18,7 @@ class Message extends React.Component {
             type="checkbox"
             className="select-message__checkbox checkbox"
             id={`checkbox-${this.props.message.id}`}
-            onClick={event => {
+            onChange={event => {
               event.nativeEvent.stopImmediatePropagation();
               this.props.selectCheckbox(this.props.messageIndex);
             }}
