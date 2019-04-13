@@ -1,0 +1,51 @@
+.ya-search {
+  position: relative;
+
+  display: inline-block;
+
+  width: 500px;
+  height: 32px;
+  margin-left: 10%;
+}
+
+.ya-search input::-ms-clear {
+  display: none;
+}
+
+#ya-search__input {
+  display: inline-block;
+  width: 80%;
+
+  padding-right: 24px;
+  padding-left: 16px;
+  margin-left: 10%;
+
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #000000;
+
+  cursor: pointer;
+  font-family: YandexSansRegular, serif;
+  font-size: 15px;
+  line-height: 2.13;
+  opacity: 0.5;
+  outline: 0;
+}
+
+.ya-search__clear-button {
+  position: absolute;
+  top: 4px;
+  right: 9px;
+
+  width: 12px;
+  height: 12px;
+  padding: 0 8px;
+  cursor: pointer;
+
+  font-size: 1.5em;
+  font-style: normal;
+
+  opacity: 0.15;
+
+  user-select: none;
+}

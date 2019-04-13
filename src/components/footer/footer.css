@@ -1,0 +1,26 @@
+footer {
+  position: absolute;
+  bottom: 0;
+
+  overflow: hidden;
+  width: 100%;
+  height: 40px;
+
+  border-top: 1px solid #e2e2e2;
+  color: #9b9b9b;
+  font-family: HelveticaNeueLight, serif;
+  font-size: 11px;
+  line-height: 15px;
+  text-align: right;
+  vertical-align: bottom;
+}
+
+.credential__item {
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.credential {
+  display: inline-block;
+  padding: 10px 10px 10px 20px;
+}

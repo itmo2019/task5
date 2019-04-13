@@ -1,0 +1,21 @@
+#mails__actions {
+  padding: 10px 10px 10px 15px;
+
+  border-bottom: 1px solid #e2e2e2;
+
+  color: #cccccc;
+
+  font-family: HelveticaNeue, serif;
+  font-size: 13px;
+}
+
+.mail__action {
+  display: inline-block;
+  margin-right: 26px;
+
+  vertical-align: middle;
+}
+
+#select-all {
+  margin-right: 20px;
+}

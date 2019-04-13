@@ -1,0 +1,14 @@
+.ya-checkbox {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  filter: brightness(1.2);
+  vertical-align: middle;
+}

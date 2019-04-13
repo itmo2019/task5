@@ -1,0 +1,14 @@
+#ya-services {
+  display: inline-block;
+  width: 20px;
+  height: 16px;
+  padding-bottom: 2px;
+  margin-right: 6px;
+}
+
+.ya-services__logo-item {
+  width: 20px;
+  height: 2px;
+  margin: 5px;
+  background: #000000;
+}

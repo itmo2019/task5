@@ -1,0 +1,161 @@
+.letters_mail {
+  position: relative;
+
+  z-index: 2;
+
+  padding: 2px 10px 2px 15px;
+
+  border-bottom: 1px solid #e2e2e2;
+
+  background-color: white;
+  color: #000000;
+  font-family: HelveticaNeueLight, serif;
+  font-size: 0;
+  line-height: normal;
+
+  vertical-align: middle;
+
+  white-space: nowrap;
+}
+
+.letters_mail_new {
+  height: 0;
+
+  opacity: 0;
+}
+
+.letters_mail_show {
+  height: 40px;
+
+  opacity: 1;
+
+  transition: all 250ms;
+  transition-timing-function: ease;
+}
+
+.letters_mail_will_be_removed {
+  opacity: 0;
+  transition: opacity 400ms;
+  transition-timing-function: ease;
+}
+
+.letter_open {
+  display: none;
+}
+
+.letter_open:checked ~ .letter_head {
+  display: none;
+}
+
+.letters__mail_user-avatar {
+  width: 30px;
+  height: 30px;
+
+  padding-right: 5px;
+  padding-left: 5px;
+  margin: 5px;
+  border-radius: 15px;
+
+  vertical-align: middle;
+}
+
+.letters__mail_sender {
+  display: inline-block;
+
+  overflow: hidden;
+
+  width: 185px;
+  max-height: 16px;
+
+  font-size: 13px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.letters__mail_message-title {
+  display: inline-block;
+
+  overflow: hidden;
+  max-width: 80%;
+
+  font-size: 13px;
+
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.letters__mail_read-mark {
+  display: inline-block;
+
+  width: 10px;
+  height: 10px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #6287bd;
+  border-radius: 50%;
+  outline: 0;
+
+  vertical-align: middle;
+  visibility: hidden;
+}
+
+.letters__mail_read-mark:checked {
+  background-color: #e5eaf0;
+}
+
+.unread .letters__mail_read-mark {
+  visibility: visible;
+}
+
+.unread span:not(.letters__mail_receive-time) {
+  font-family: HelveticaNeue, serif;
+  font-weight: bold;
+}
+
+.unread label:not(.letter_message_close) {
+  font-family: HelveticaNeue, serif;
+  font-weight: bold;
+}
+
+.letters__mail_receive-time {
+  display: inline-block;
+  color: #9b9b9b;
+  float: right;
+
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 40px;
+  vertical-align: middle;
+}
+
+.letter_message {
+  display: none;
+  background-color: white;
+  font-family: HelveticaNeueLight, serif;
+  font-size: 16px;
+
+  vertical-align: middle;
+}
+
+.letter_open:checked ~ .letter_message {
+  display: block;
+}
+
+.letter_message_close {
+  width: 15px;
+  height: 15px;
+
+  float: right;
+  font-weight: 100;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.letter_message_text {
+  vertical-align: middle;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

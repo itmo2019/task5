@@ -1,12 +1,46 @@
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #e5eaf0;
+  height: 100%;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+html {
+  height: 100%;
+}
+
+#root {
+  height: 100%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+@font-face {
+  font-family: YandexSansBold;
+  src: url('resources/fonts/YandexSansDisplay-Bold.ttf');
+}
+
+@font-face {
+  font-family: YandexSansThin;
+  src: url('resources/fonts/YandexSansDisplay-Thin.ttf');
+}
+
+@font-face {
+  font-family: YandexSansLight;
+  src: url('resources/fonts/YandexSansDisplay-Light.ttf');
+}
+
+@font-face {
+  font-family: YandexSansRegular;
+  src: url('resources/fonts/YandexSansDisplay-Regular.ttf');
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url('resources/fonts/HelveticaNeueCyr-Medium.otf');
+}
+
+@font-face {
+  font-family: HelveticaNeueLight;
+  src: url('resources/fonts/HelveticaNeueCyr-Light.otf');
 }
