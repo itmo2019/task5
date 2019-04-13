@@ -1,0 +1,26 @@
+.letter-page {
+  width: 94%;
+  padding: 1% 3%;
+  margin: 0;
+  background-color: #fff;
+}
+
+.letter-page__text {
+  font-size: 20px;
+}
+
+.letter-page__page-close-button {
+  position: relative;
+  float: right;
+  font-size: 30px;
+  opacity: 0.5;
+  text-decoration: none;
+}
+
+.letter-page__page-close-button:visited {
+  color: inherit;
+}
+
+.letter-page__page-close-button:visited:hover {
+  color: inherit;
+}

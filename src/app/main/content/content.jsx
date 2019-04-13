@@ -9,8 +9,16 @@ export class Content extends Component {
   render() {
     return (
       <div className="content">
-        <ContentHeader />
-        <MainContent />
+        <ContentHeader
+          isAllChecked={this.props.isAllChecked}
+          selectAll={this.props.selectAll}
+          deleteLetters={this.props.deleteLetters}
+        />
+        <MainContent
+          letters={this.props.letters}
+          checkedLetterIds={this.props.checkedLetterIds}
+          onCheckboxChange={this.props.onCheckboxChange}
+        />
         <ContentFooter />
       </div>
     );

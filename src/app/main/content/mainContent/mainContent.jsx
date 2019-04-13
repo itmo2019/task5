@@ -1,19 +1,46 @@
 import React, { Component } from 'react';
 
 import './mainContent.css';
-import { closeLetter } from '../../../../js/script';
+import { LetterPage } from './letterPage';
+import { Letters } from './letters';
 
 export class MainContent extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isLetterOpened: false,
+      openedLetterText: null
+    };
+  }
+
+  openLetter(text) {
+    this.setState({
+      isLetterOpened: true,
+      openedLetterText: text
+    });
+  }
+
+  closeLetter() {
+    this.setState({
+      isLetterOpened: false,
+      openedLetterText: null
+    });
+  }
+
   render() {
-    return (
+    return this.state.isLetterOpened ? (
       <div className="main-content">
-        <div className="letters" />
-        <div id="opened-letter" className="letter-page">
-          <a className="letter-page__page-close-button" href="#" onClick={closeLetter}>
-            &#x2715;
-          </a>
-          <div className="letter-page__text" />
-        </div>
+        <LetterPage text={this.state.openedLetterText} closeLetter={this.closeLetter.bind(this)} />
+      </div>
+    ) : (
+      <div className="main-content">
+        <Letters
+          letters={this.props.letters}
+          openLetter={this.openLetter.bind(this)}
+          checkedLetterIds={this.props.checkedLetterIds}
+          onCheckboxChange={this.props.onCheckboxChange}
+        />
       </div>
     );
   }
