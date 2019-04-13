@@ -229,7 +229,7 @@ export class MainContainer extends Component {
 
   loadFactAboutYear(year) {
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `http://numbersapi.com/${year}/year`, true);
+    xhr.open('GET', `//numbersapi.com/${year}/year`, true);
     const that = this;
     xhr.onload = () => {
       if (xhr.readyState === 4) {
