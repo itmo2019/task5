@@ -1,0 +1,65 @@
+.left-buttons {
+  width: 147px;
+  margin-left: 22px;
+  position: relative;
+  display: inline-block;
+}
+.left-buttons__write {
+  background-color: #6287bd;
+  font-weight: 500;
+  border-radius: 3px;
+  border: none;
+  position: relative;
+  font-family: Helvetica Neue, sans-serif;
+  width: 147px;
+  color:#ffffff;
+  font-size: 12px;
+  height: 32px;
+  top: 13px;
+  cursor: pointer;
+}
+.categories__ul {
+  top: 16px;
+  position: relative;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+.left-list {
+  width: 147px;
+  height: 22px;
+  position: relative;
+  line-height: 30px;
+  margin-top: 4px;
+  padding-left: 10px;
+  padding-bottom: 7px;
+}
+.left-list:hover {
+  background-color: #cdd6e4;
+  font-weight: 700;
+}
+.left-links {
+  font-weight: 500;
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 11px;
+  border: 0;
+  height: 14px;
+  background-color: transparent;
+  color:#707070;
+  /*font-family: inherit;*/
+  text-decoration: none;
+  cursor: pointer;
+}
+
+@font-face {
+  font-family: yandexFont;
+  src: url("/resources/YandexSansDisplay-Bold.woff");
+}
+@font-face {
+  font-family: mailFont;
+  src: url("/resources/YandexSansDisplay-Light.woff");
+}
+@font-face {
+  font-family: Helvetica Neue;
+  src: local("Helvetica Neue"), url("/resources/HelveticaNeueCyr-Medium.woff");
+}

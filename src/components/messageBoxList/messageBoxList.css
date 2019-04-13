@@ -1,0 +1,53 @@
+.message-box__list-wrap {
+  /*overflow: auto;*/
+  min-height: 420px;
+}
+.manul-text {
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 10px;
+  height: 100%;
+  white-space: normal;
+}
+.special-kitten {
+  position: relative;
+  height: 100%;
+}
+.kitten-page {
+  height: 100%;
+  /*z-index: 1;*/
+  top:0;
+  position: absolute;
+  display: none;
+  width: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+.close-page {
+  cursor: pointer;
+  font-size: 32px;
+  font-family: Arial, sans-serif;
+  text-align: right;
+  margin: 0.5em;
+}
+.message-box__list {
+  width: 100%;
+  overflow: auto;
+  display: table;
+  list-style-type: none;
+  padding: 0;
+  position: relative;
+  margin: 0;
+}
+@font-face {
+  font-family: yandexFont;
+  src: url("/resources/YandexSansDisplay-Bold.woff");
+}
+@font-face {
+  font-family: mailFont;
+  src: url("/resources/YandexSansDisplay-Light.woff");
+}
+@font-face {
+  font-family: Helvetica Neue;
+  src: local("Helvetica Neue"), url("/resources/HelveticaNeueCyr-Medium.woff");
+}

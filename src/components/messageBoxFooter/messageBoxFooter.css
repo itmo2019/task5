@@ -1,0 +1,33 @@
+.refs__ref {
+  display: table-cell;
+  vertical-align: middle;
+  color:#9b9b9b;
+  text-decoration: none;
+  padding-right: 20px;
+}
+.certificate {
+  display: table-cell;
+  vertical-align: middle;
+  color:#9b9b9b;
+}
+.refs {
+  height: 40px;
+  text-align: right;
+  font-family: "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  display: table;
+  float: right;
+  margin-right:20px;
+}
+@font-face {
+  font-family: yandexFont;
+  src: url("/resources/YandexSansDisplay-Bold.woff");
+}
+@font-face {
+  font-family: mailFont;
+  src: url("/resources/YandexSansDisplay-Light.woff");
+}
+@font-face {
+  font-family: Helvetica Neue;
+  src: local("Helvetica Neue"), url("/resources/HelveticaNeueCyr-Medium.woff");
+}

@@ -1,0 +1,48 @@
+.message-box__element {
+  cursor: pointer;
+  display: block;
+  height: 40px;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.message-buttons {
+  float:left;
+  margin-top: 11px;
+  margin-left: 10px;
+  display: inline-block;
+  text-align: center;
+  color: #cccccc;
+  font-size: 13px;
+  font-family: Helvetica Neue, sans-serif;
+  cursor: pointer;
+  background-color: transparent;
+  border: 0;
+}
+
+
+.checkbox {
+  cursor: pointer;
+  float: left;
+  margin-top: 11px;
+  margin-left: 20px;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: #ffffff;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+
+@font-face {
+  font-family: yandexFont;
+  src: url("/resources/YandexSansDisplay-Bold.woff");
+}
+@font-face {
+  font-family: mailFont;
+  src: url("/resources/YandexSansDisplay-Light.woff");
+}
+@font-face {
+  font-family: Helvetica Neue;
+  src: local("Helvetica Neue"), url("/resources/HelveticaNeueCyr-Medium.woff");
+}
