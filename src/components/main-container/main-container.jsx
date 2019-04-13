@@ -228,13 +228,18 @@ export class MainContainer extends Component {
   };
 
   loadFactAboutYear(year) {
+    function getText(json) {
+      const text = JSON.parse(json).text_out;
+      return text.replace('<h1>', ` ${  year  } `).replace('</h1>', ` ${  year  } `)
+    }
+
     const xhr = new XMLHttpRequest();
-    xhr.open('GET', `//numbersapi.com/${year}/year`, true);
+    xhr.open('GET', `https://www.randomtext.me/api/lorem/h1/10`, true);
     const that = this;
     xhr.onload = () => {
       if (xhr.readyState === 4) {
         if (xhr.status === 200) {
-          that.buildMail(year, xhr.responseText);
+          that.buildMail(year, getText(xhr.responseText));
         } else {
           console.error(xhr.statusText);
         }
