@@ -21,14 +21,18 @@ const senders = [
 const avatars = [Anonymous, Munch, Maggritte];
 const month = ['янв', 'фев', 'март', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
+function minutesToMillis(minutes) {
+  return 1000 * 60 * minutes;
+}
+
+const newMessageTimeoutMax = minutesToMillis(5);
+const minNewMessageTimeout = 10;
+const maxNewMessageTimeout = minutesToMillis(10);
+
 function randomInteger(min, max) {
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   rand = Math.round(rand);
   return rand;
-}
-
-function minutesToMillis(minutes) {
-  return 1000 * 60 * minutes;
 }
 
 export class MainContainer extends Component {
@@ -87,8 +91,11 @@ export class MainContainer extends Component {
           unread: false,
           checked: false
         }
-      ]
+      ],
+      lastTimeout: randomInteger(minNewMessageTimeout, maxNewMessageTimeout)
     };
+
+    setTimeout(this.newMessagePerRandomTime, this.state.lastTimeout);
   }
 
   removeLetters = () => {
@@ -119,7 +126,7 @@ export class MainContainer extends Component {
   isAllSelected = letters => letters.reduce((acc, next) => acc && next.checked, true);
 
   updateLetter = f => {
-    this.setState((prevState) => {
+    this.setState(prevState => {
       return {
         letters: f(prevState.letters)
       };
@@ -142,6 +149,17 @@ export class MainContainer extends Component {
   newMail = () => {
     const year = randomInteger(100, 2019);
     this.loadFactAboutYear(year);
+  };
+
+  newMessagePerRandomTime = () => {
+    this.newMail();
+    const randomTimeout = randomInteger(minNewMessageTimeout, maxNewMessageTimeout);
+    const timeout = Math.max(randomTimeout, newMessageTimeoutMax);
+    setTimeout(
+      this.newMessagePerRandomTime,
+      newMessageTimeoutMax - this.state.lastTimeout + timeout
+    );
+    this.state.lastTimeout = timeout;
   };
 
   buildMail = (year, text) => {
