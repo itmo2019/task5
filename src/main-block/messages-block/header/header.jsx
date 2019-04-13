@@ -10,6 +10,7 @@ class Header extends React.Component {
           type="checkbox"
           className="checkbox"
           id="check-all"
+          checked={this.props.selectAllCheckbox}
           onClick={() => {
             this.props.selectAll();
           }}

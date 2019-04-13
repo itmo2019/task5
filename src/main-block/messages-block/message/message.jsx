@@ -1,6 +1,8 @@
 import React from 'react';
 
-class MessageTemplate extends React.Component {
+import './message.css';
+
+class Message extends React.Component {
   render() {
     const classAddition =
       (this.props.message.toCreate ? ' to-create' : '') +
@@ -12,6 +14,7 @@ class MessageTemplate extends React.Component {
           htmlFor={`checkbox-${this.props.message.id}`}
         >
           <input
+            checked={this.props.message.selected}
             type="checkbox"
             className="select-message__checkbox checkbox"
             id={`checkbox-${this.props.message.id}`}
@@ -42,4 +45,4 @@ class MessageTemplate extends React.Component {
   }
 }
 
-export default MessageTemplate;
+export default Message;
