@@ -1,0 +1,12 @@
+.inbox__footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  height: 31px;
+
+  border-top: solid 1px #e2e2e2;
+  text-align: right;
+  white-space: nowrap;
+}
