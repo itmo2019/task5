@@ -1,0 +1,24 @@
+.mail-toolbar__element {
+  display: block;
+  overflow: hidden;
+  height: 18px;
+
+  padding-top: 4px;
+  padding-left: 10px;
+  margin-top: 4px;
+  color: #707070;
+  cursor: pointer;
+
+  font-size: 11px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mail-toolbar__element:hover {
+  background-color: #cdd6e4;
+  border-radius: 3px;
+
+  color: #555;
+  font-weight: bold;
+}
