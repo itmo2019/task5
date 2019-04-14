@@ -2,11 +2,15 @@
     border-bottom: 1px solid #e2e2e2;
 }
 
-.mail__checkbox:checked + .mail-title,
+.mail__checkbox + .mail__mail-title-wrapper + .mail__mail-article-wrapper {
+    display: none;
+}
+
+.mail__checkbox:checked + .mail__mail-title-wrapper,
 .mail__checkbox {
     display: none;
 }
 
-.mail__checkbox:checked + .mail-title + .mail-article {
+.mail__checkbox:checked + .mail__mail-title-wrapper + .mail__mail-article-wrapper {
     display: block;
 }
