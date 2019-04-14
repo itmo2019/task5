@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './lettersWindowBody.css';
+import './letters-window-body.css';
 import { LetterView } from '../letterView/letterView';
 import { Line } from '../line/line';
 import { LetterContent } from '../letterContent/letterContent';

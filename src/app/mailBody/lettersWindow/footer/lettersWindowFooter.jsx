@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 
-import './lettersWindowFooter.css';
+import './letters-window-footer.css';
 
 export class LettersWindowFooter extends Component {
   render() {
     return (
       <footer className="letters-window__footer">
         <a
-          className="letters-window__footer-a"
+          className="letters-window__footer-link"
           target="_blank"
           rel="noopener noreferrer"
           href="https://yandex.ru/adv/"
@@ -15,7 +15,7 @@ export class LettersWindowFooter extends Component {
           Помощь и обратная связь
         </a>
         <a
-          className="letters-window__footer-a"
+          className="letters-window__footer-link"
           target="_blank"
           rel="noopener noreferrer"
           href="https://yandex.ru/support/mail/"
@@ -23,7 +23,7 @@ export class LettersWindowFooter extends Component {
           Реклама
         </a>
         <a
-          className="letters-window__footer-a"
+          className="letters-window__footer-link"
           target="_blank"
           rel="noopener noreferrer"
           href="https://yandex.ru/"

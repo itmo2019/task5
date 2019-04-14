@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './lettersWindowHeader.css';
+import './letters-window-header.css';
 import { Checkbox } from '../checkbox/checkbox';
 
 function mainCheckboxClicked() {
@@ -23,16 +23,16 @@ export class LettersWindowHeader extends Component {
           Переслать
         </button>
         <button
-          className="letters-window__header-button shift"
+          className="letters-window__header-button"
           type="submit"
           onClick={this.props.fooRemovingLetters}
         >
           Удалить
         </button>
-        <button className="letters-window__header-button shift" type="submit">
+        <button className="letters-window__header-button" type="submit">
           Это спам!
         </button>
-        <button className="letters-window__header-button shift" type="submit">
+        <button className="letters-window__header-button" type="submit">
           Прочитано
         </button>
       </header>

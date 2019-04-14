@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './mailHeader.css';
+import './mail-header.css';
 import logoYandex from '../../images/yandexLogo.svg';
 import logoYandexService from '../../images/yandexServiceLogo.svg';
 
@@ -11,7 +11,7 @@ export class MailHeader extends Component {
         <div className="mail-header__svgicon-menu" />
         <div className="mail-header__logo-container">
           <a
-            className="mail-header__logo-container-svgicon-Yandex"
+            className="mail-header__logo-container-svgicon-yandex"
             target="_blank"
             rel="noopener noreferrer"
             href="https://yandex.ru/"

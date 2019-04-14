@@ -2,7 +2,7 @@
   height: 6.25%;
 }
 
-.letters-window__header:before {
+.letters-window__header::before {
   display: inline-block;
   height: 100%;
   content: '';
@@ -28,6 +28,6 @@
   cursor: pointer;
 }
 
-.shift {
+.letters-window__header-button + .letters-window__header-button {
   margin-left: 20px;
 }

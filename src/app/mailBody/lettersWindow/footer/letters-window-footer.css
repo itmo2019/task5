@@ -4,14 +4,14 @@
   text-align: right;
 }
 
-.letters-window__footer:before {
+.letters-window__footer::before {
   display: inline-block;
   height: 100%;
   content: '';
   vertical-align: middle;
 }
 
-.letters-window__footer-a {
+.letters-window__footer-link {
   display: inline-block;
   margin-right: 40px;
   color: #ccc;

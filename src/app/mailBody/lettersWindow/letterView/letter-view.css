@@ -4,7 +4,7 @@
   font: 15px 'Helvetica Neue', sans-serif;
 }
 
-.letter-view:before {
+.letter-view::before {
   display: inline-block;
   height: 100%;
   content: '';
@@ -16,7 +16,7 @@
   width: 30px;
   height: 30px;
   margin-right: 16px;
-  background-image: url('../../../../images/myPhoto.svg');
+  background-image: url('../../../../images/tempPhoto.png');
   border-radius: 50%;
   pointer-events: none;
   vertical-align: middle;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './letterContent.css';
+import './letter-content.css';
 
 export class LetterContent extends Component {
   render() {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './letterView.css';
+import './letter-view.css';
 
 import { Checkbox } from '../checkbox/checkbox';
 

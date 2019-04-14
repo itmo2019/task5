@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import './lettersWindow.css';
+import './letters-window.css';
 
 import { LettersWindowHeader } from './header/lettersWindowHeader';
 import { LettersWindowBody } from './body/lettersWindowBody';

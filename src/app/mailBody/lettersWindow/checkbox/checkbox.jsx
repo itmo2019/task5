@@ -14,7 +14,7 @@ export class Checkbox extends Component {
           role="button"
           aria-hidden
         >
-          <div className="check__box__border" />
+          <div className="check__box-border" />
         </div>
       </label>
     );

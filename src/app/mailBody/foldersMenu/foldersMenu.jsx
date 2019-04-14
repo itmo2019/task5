@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import './folders-menu.css';
+
 export class FoldersMenu extends Component {
   render() {
     return (
@@ -8,7 +10,10 @@ export class FoldersMenu extends Component {
           Написать
         </button>
         <div className="folders-menu__folders-list">
-          <button className="folders-menu__folders-list-button selected" type="submit">
+          <button
+            className="folders-menu__folders-list-button folders-menu__folders-list-button_selected"
+            type="submit"
+          >
             Входящие
           </button>
           <button className="folders-menu__folders-list-button" type="submit">
