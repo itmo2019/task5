@@ -1,0 +1,10 @@
+.page-content {
+  position: absolute;
+  top: 56px;
+  left: 22px;
+
+  width: 98%;
+  min-width: 800px;
+  height: 92%;
+  min-height: 600px;
+}
