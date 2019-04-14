@@ -1,0 +1,7 @@
+.inbox__header {
+  padding-top: 11px;
+  padding-left: 20px;
+
+  border-bottom: solid 1px #ededed;
+  white-space: nowrap;
+}
