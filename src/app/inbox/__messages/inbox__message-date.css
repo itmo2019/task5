@@ -1,0 +1,8 @@
+.inbox__message-date {
+  position: absolute;
+  top: 13px;
+  right: 20px;
+  color: #9b9b9b;
+  font-size: 13px;
+  text-align: right;
+}

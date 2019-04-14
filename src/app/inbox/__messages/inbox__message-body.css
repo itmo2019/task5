@@ -1,0 +1,11 @@
+.inbox__message-body {
+  position: absolute;
+  top: 12px;
+  right: 100px;
+  left: 281px;
+
+  overflow: hidden;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

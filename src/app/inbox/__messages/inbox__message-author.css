@@ -1,0 +1,12 @@
+.inbox__message-author {
+  position: absolute;
+  top: 12px;
+  left: 86px;
+
+  overflow: hidden;
+
+  width: 170px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
