@@ -8,8 +8,11 @@ export class MainBlock extends React.Component {
   render() {
     return (
       <div className="main-block page__main-block">
-        <TopBar />
-        <MessagesBox />
+        <TopBar
+          deleteMessages={this.props.deleteMessages}
+          topBarCheckboxHandler={this.props.topBarCheckboxHandler}
+        />
+        <MessagesBox messages={this.props.messages} checkboxHandler={this.props.checkboxHandler} />
         <Footer />
       </div>
     );

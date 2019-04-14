@@ -1,17 +1,20 @@
 .top-bar {
+  position: relative;
+
   display: inline-block;
   width: 100%;
-  position: relative;
-  border-bottom: solid 1px #e2e2e2;
   padding-top: 10px;
   padding-bottom: 10px;
+
+  border-bottom: solid 1px #e2e2e2;
 }
 
 .horizontal-nav-panel {
-  list-style-type: none;
   position: relative;
   left: 20px;
+
   margin: auto;
+  list-style-type: none;
 }
 
 .horizontal-nav-panel__item {
@@ -19,18 +22,24 @@
   float: left;
 }
 
-.horizontal-nav-panel__link {
+.horizontal-nav-panel__button {
+  border-style: none;
+  background-color: #fff;
   color: #ccc;
+  cursor: pointer;
+  font: 13px 'Helvetica Neue', sans-serif;
+  outline: none;
 }
 
 .checkbox {
-  height: 16px;
   width: 16px;
+  height: 16px;
 }
 
 .top-bar__checkbox {
-  float: left;
-  display: inline-block;
   position: relative;
+
+  display: inline-block;
   margin-left: 2%;
+  float: left;
 }

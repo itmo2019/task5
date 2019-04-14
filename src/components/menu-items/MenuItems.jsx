@@ -5,7 +5,7 @@ export class MenuItems extends React.Component {
   createMenuItem = name => {
     return (
       <li className="menu__item">
-        <a className="menu-link" href="#">
+        <a className="menu-link" href="#name">
           {name}
         </a>
       </li>
@@ -17,7 +17,7 @@ export class MenuItems extends React.Component {
     return (
       <ul className="menu__items">
         <li className="menu__item menu__item_active">
-          <a className="menu-link" href="#">
+          <a className="menu-link" href="#incomeMessages">
             Входящие
           </a>
         </li>

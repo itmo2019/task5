@@ -9,10 +9,14 @@ export class Menu extends React.Component {
         <button type="button" className="menu__button">
           Написать
         </button>
-        <button type="button" className="menu__button menu__button_action_add-message" id="button-add-message">
+        <button
+          type="button"
+          className="menu__button menu__button_action_add-message"
+          onClick={this.props.newMail}
+        >
           Добавить письмо
         </button>
-        <MenuItems/>
+        <MenuItems />
       </div>
     );
   }

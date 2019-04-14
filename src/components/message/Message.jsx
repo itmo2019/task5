@@ -4,42 +4,43 @@ import './Message.css';
 export class Message extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      opened: false
-    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const messageID = e.target.id;
+    this.props.checkboxHandler(messageID);
   }
 
   render() {
-    const messageData = this.props.messageData;
+    const { messageData } = this.props;
+    const animation =
+      (messageData.toCreate ? ' to-create' : '') + (messageData.toDelete ? ' to-delete' : '');
     return (
-      <div>
-        {this.state.opened === true ? (
-          <div className="hidden-box">
-            <div
-              className="hidden-box__cancel-btn"
-              onClick={() => {
-                this.setState({ opened: false });
-              }}
-            >
-              X
-            </div>
-            <div className="hidden-box__content">{messageData.text}</div>
-          </div>
-        ) : (
-          <div
-            className="message"
-            onClick={() => {
-              this.setState({ opened: true });
-            }}
-          >
-            <input className="message__checkbox" type="checkbox" />
-            <div className="sender-img message__sender-img">{messageData.firstLetterSender}</div>
-            <div className="message__sender">{messageData.sender}</div>
-            <span className="message__unread-circle" />
-            <div className="message__theme">{messageData.theme}</div>
-            <div className="message__date">{messageData.date}</div>
-          </div>
-        )}
+      <div
+        onKeyPress=""
+        role="button"
+        aria-hidden
+        className={`message${animation}`}
+        onClick={event => {
+          if (event.target.className !== 'message__checkbox') {
+            this.props.openMessage(messageData.text);
+          }
+        }}
+        style={messageData.display ? {} : { display: 'none' }}
+      >
+        <input
+          className="message__checkbox"
+          type="checkbox"
+          checked={messageData.isChecked}
+          id={messageData.id}
+          onChange={this.handleChange}
+        />
+        <div className="sender-img message__sender-img">{messageData.firstLetterSender}</div>
+        <div className="message__sender">{messageData.sender}</div>
+        <span className="message__unread-circle" />
+        <div className="message__theme">{messageData.theme}</div>
+        <div className="message__date">{messageData.date}</div>
       </div>
     );
   }

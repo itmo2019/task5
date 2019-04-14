@@ -1,17 +1,21 @@
 .message {
-  border-bottom: solid 1px #e2e2e2;
+  height: 0px;
   padding-top: 5px;
   padding-bottom: 5px;
+
+  border-bottom: solid 1px #e2e2e2;
+  opacity: 0;
+  transition: opacity 1s, height 1s;
 }
 
 .sender-img {
   width: 30px;
   height: 30px;
-  border-radius: 100px;
   background-color: #f33;
+  border-radius: 100px;
   color: #fff;
-  text-align: center;
   line-height: 30px;
+  text-align: center;
 }
 
 .message__sender-img {
@@ -23,57 +27,70 @@
 
 .message__sender {
   display: inline-block;
-  margin-right: 10px;
   width: 250px;
+  margin-right: 10px;
 }
 
 .message__theme {
   display: inline-block;
+  overflow: hidden;
+  width: calc(100% - 500px);
   margin-right: 10px;
   margin-left: 10px;
   text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  width: calc(100% - 500px);
   vertical-align: text-bottom;
+  white-space: nowrap;
 }
 
 .message__date {
-  display: inline-block;
   position: relative;
-  float: right;
   top: 5px;
   right: 20px;
+
+  display: inline-block;
+  color: #9b9b9b;
+  float: right;
   font-weight: normal;
   vertical-align: middle;
-  color: #9b9b9b;
 }
 
 .message__checkbox {
-  height: 16px;
-  width: 16px;
   display: inline-block;
-  vertical-align: middle;
+  width: 16px;
+  height: 16px;
   margin-left: 2%;
+  vertical-align: middle;
 }
 
 .message__unread-circle {
-  background: #6287bd;
+  display: inline-block;
   width: 10px;
   height: 10px;
+  background: #6287bd;
   border-radius: 50%;
-  display: inline-block;
 }
 
 .hidden-box__content {
-  margin: 5px;
   min-height: 500px;
+  margin: 5px;
 }
 
 .hidden-box__cancel-btn {
-  float: right;
-  font-size: 30px;
-  font-family: YandexSansThin, serif;
   color: gray;
   cursor: pointer;
+  float: right;
+  font-family: YandexSansThin, serif;
+  font-size: 30px;
+}
+
+.to-create {
+  height: 30px;
+  opacity: 1;
+}
+
+.to-delete {
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
 }
