@@ -24,7 +24,7 @@ export class Checkbox extends Component {
         <div
           className="check__box"
           onClick={this.doFunctions}
-          onKeyPress=""
+          onKeyPress={null}
           role="button"
           aria-hidden
         >

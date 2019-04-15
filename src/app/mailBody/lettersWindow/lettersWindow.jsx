@@ -117,6 +117,7 @@ export class LettersWindow extends Component {
             toolbarIsActive: state.toolbarIsActive
           }));
           document.getElementById('mainCheckbox').checked = false;
+          this.activatingToolbar();
         });
       }
     }

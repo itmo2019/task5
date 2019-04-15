@@ -10,7 +10,7 @@ export class LetterView extends Component {
       <div
         className="letter-view"
         onClick={this.props.showLetter}
-        onKeyPress=""
+        onKeyPress={null}
         role="button"
         aria-hidden
       >
