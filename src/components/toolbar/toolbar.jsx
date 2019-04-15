@@ -6,7 +6,9 @@ function ButtonItem(props) {
   return (
     <li className="toolbar__item">
       <input
-        className="toolbar__button"
+        className={`toolbar__button ${
+          props.isAnySelect || props.giveMsgButton ? 'toolbar__button_has-select-letter' : ''
+        }`}
         type="button"
         value={props.value}
         onClick={props.onclick}
@@ -22,11 +24,11 @@ export default function toolbar(props) {
       <li className="toolbar__item">
         <Check {...props} isMainCheckBox />
       </li>
-      <ButtonItem value="Получить сообщение" onclick={handleAddMailButtonClick} />
-      <ButtonItem value="Переслать" />
-      <ButtonItem value="Удалить" onclick={handleRemoveButtonClick} />
-      <ButtonItem value="Это спам!" />
-      <ButtonItem value="Прочитано" onclick={handleUnmarkButtonClick} />
+      <ButtonItem giveMsgButton value="Получить сообщение" onclick={handleAddMailButtonClick} />
+      <ButtonItem {...props} value="Переслать" />
+      <ButtonItem {...props} value="Удалить" onclick={handleRemoveButtonClick} />
+      <ButtonItem {...props} value="Это спам!" />
+      <ButtonItem {...props} value="Прочитано" onclick={handleUnmarkButtonClick} />
     </ul>
   );
 }

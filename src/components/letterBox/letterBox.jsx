@@ -35,7 +35,8 @@ export default class LetterBox extends Component {
       letters: [],
       isMailVisible: false,
       mailContent: undefined,
-      isCheckAll: false
+      isCheckAll: false,
+      selectLetterCount: 0
     };
   }
 
@@ -74,11 +75,16 @@ export default class LetterBox extends Component {
   newMail = () => {
     this.setState(state => {
       const letters = state.letters.slice();
+      let { selectLetterCount } = state;
       if (letters.length >= state.curPage * this.MAX_MAIL_LIST_SIZE) {
+        if (letters[state.curPage * this.MAX_MAIL_LIST_SIZE - 1].isChecked) {
+          selectLetterCount--;
+        }
         letters[state.curPage * this.MAX_MAIL_LIST_SIZE - 1].isChecked = false;
       }
       return {
-        letters: [this.getRandomLetter(), ...letters]
+        letters: [this.getRandomLetter(), ...letters],
+        selectLetterCount
       };
     });
     this.setCheckAll(false);
@@ -105,7 +111,7 @@ export default class LetterBox extends Component {
         this.setState(state => {
           const letters = state.letters.slice();
           letters.splice(index, 1);
-          return { letters };
+          return { letters, selectLetterCount: state.selectLetterCount - 1 };
         });
       }, this.REMOVE_LETTER_TIME);
     }, this.DELTA_TIME);
@@ -114,7 +120,7 @@ export default class LetterBox extends Component {
   handleRemoveButtonClick = () => {
     setTimeout(() => {
       this.setCheckAll(false);
-    }, (this.REMOVE_LETTER_TIME * 2) / 3);
+    }, this.REMOVE_LETTER_TIME);
     this.doActionWithLetters(this.removeAnimateLetter);
   };
 
@@ -135,8 +141,9 @@ export default class LetterBox extends Component {
       const letters = state.letters.slice();
       const checked = letters[index].isChecked;
       const isCheckAllNew = checked ? !checked : state.isCheckAll;
+      const selectLetterCount = state.selectLetterCount + (checked ? -1 : 1);
       letters[index].isChecked = !checked;
-      return { letters, isCheckAll: isCheckAllNew };
+      return { letters, isCheckAll: isCheckAllNew, selectLetterCount };
     });
   };
 
@@ -147,7 +154,8 @@ export default class LetterBox extends Component {
       for (let i = (state.curPage - 1) * this.MAX_MAIL_LIST_SIZE; i < size; i++) {
         letters[i].isChecked = !state.isCheckAll;
       }
-      return { letters, isCheckAll: !state.isCheckAll };
+      const selectLetterCount = state.isCheckAll ? 0 : size;
+      return { letters, isCheckAll: !state.isCheckAll, selectLetterCount };
     });
   };
 
@@ -169,7 +177,14 @@ export default class LetterBox extends Component {
   };
 
   render() {
-    const { curPage, letters, isMailVisible, mailContent, isCheckAll } = this.state;
+    const {
+      curPage,
+      letters,
+      isMailVisible,
+      mailContent,
+      isCheckAll,
+      selectLetterCount
+    } = this.state;
 
     const listLetters = letters.map((letter, index) => (
       <Letter
@@ -195,6 +210,7 @@ export default class LetterBox extends Component {
     return (
       <div className={`letter-box ${this.props.className}`}>
         <Toolbar
+          isAnySelect={selectLetterCount > 0}
           isChecked={isCheckAll}
           handleAddMailButtonClick={this.newMail}
           handleRemoveButtonClick={this.handleRemoveButtonClick}

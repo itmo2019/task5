@@ -32,10 +32,6 @@
   outline: none;
 }
 
-.toolbar__button:hover {
+.toolbar__button_has-select-letter {
   color: #000;
-}
-
-.toolbar__button:disabled {
-  color: inherit;
 }
