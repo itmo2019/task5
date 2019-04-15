@@ -14,7 +14,7 @@ export class LetterView extends Component {
         role="button"
         aria-hidden
       >
-        <Checkbox id={this.props.checkboxId} />
+        <Checkbox id={this.props.checkboxId} foo={this.props.fooForCheckbox} />
         <div className="letter-view__photo" />
         <div className="letter-view__author">{this.props.author}</div>
         <div className="letter-view__readed" />

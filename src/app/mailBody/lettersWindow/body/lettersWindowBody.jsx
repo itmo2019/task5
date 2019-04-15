@@ -21,6 +21,7 @@ export class LettersWindowBody extends Component {
             <div className="letter-with-line" key={letter.id}>
               <LetterView
                 checkboxId={letter.id}
+                fooForCheckbox={this.props.fooForCheckbox}
                 author={letter.author}
                 theme={letter.theme}
                 content={letter.content}

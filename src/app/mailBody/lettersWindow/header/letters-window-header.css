@@ -12,7 +12,7 @@
 .letters-window__header-button {
   display: inline-block;
   height: 100%;
-  padding: 0;
+  padding: 0 10px;
 
   border-style: none;
   background-color: #fff;
@@ -23,11 +23,11 @@
   vertical-align: middle;
 }
 
-.letters-window__header-button:hover {
+.letters-window__header-button_actived {
   color: #000;
   cursor: pointer;
 }
 
-.letters-window__header-button + .letters-window__header-button {
-  margin-left: 20px;
+.letters-window__header-button_actived:hover {
+  background-color: #f2f2f2;
 }

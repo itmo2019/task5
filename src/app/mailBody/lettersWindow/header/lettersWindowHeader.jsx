@@ -16,23 +16,31 @@ function mainCheckboxClicked() {
 
 export class LettersWindowHeader extends Component {
   render() {
+    const classNameForButtons = this.props.toolbarIsActive
+      ? 'letters-window__header-button letters-window__header-button_actived'
+      : 'letters-window__header-button';
+
     return (
       <header className="letters-window__header">
-        <Checkbox id="mainCheckbox" foo={mainCheckboxClicked} />
-        <button className="letters-window__header-button" type="submit">
+        <Checkbox
+          id="mainCheckbox"
+          fooForMainCheckbox={mainCheckboxClicked}
+          foo={this.props.fooForCheckbox}
+        />
+        <button className={classNameForButtons} type="submit">
           Переслать
         </button>
         <button
-          className="letters-window__header-button"
+          className={classNameForButtons}
           type="submit"
           onClick={this.props.fooRemovingLetters}
         >
           Удалить
         </button>
-        <button className="letters-window__header-button" type="submit">
+        <button className={classNameForButtons} type="submit">
           Это спам!
         </button>
-        <button className="letters-window__header-button" type="submit">
+        <button className={classNameForButtons} type="submit">
           Прочитано
         </button>
       </header>

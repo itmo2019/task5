@@ -13,14 +13,18 @@ export class LettersWindow extends Component {
 
   maxLettersOnPage = 30;
 
+  toolbar = false;
+
   constructor(props) {
     super(props);
     this.showLetter = this.showLetter.bind(this);
     this.closeLetter = this.closeLetter.bind(this);
     this.removingLetters = this.removingLetters.bind(this);
+    this.activatingToolbar = this.activatingToolbar.bind(this);
     this.state = {
       letters: [],
-      showLetterContent: [false, null]
+      showLetterContent: [false, null],
+      toolbarIsActive: false
     };
   }
 
@@ -34,6 +38,23 @@ export class LettersWindow extends Component {
     }, 1000);
   }
 
+  activatingToolbar() {
+    const lettersBody = document.getElementById('lettersBody');
+    this.toolbar = false;
+    for (const childNode of lettersBody.childNodes) {
+      const checkbox = childNode.children[0].querySelector('.check__input');
+      if (!checkbox.checked) {
+        this.toolbar = true;
+        break;
+      }
+    }
+    this.setState(state => ({
+      letters: state.letters,
+      showLetterContent: state.showLetterContent,
+      toolbarIsActive: this.toolbar
+    }));
+  }
+
   addNewLetter() {
     const letter = LetterCreation();
     if (this.state.letters.length >= this.maxLettersOnPage) {
@@ -42,7 +63,8 @@ export class LettersWindow extends Component {
     }
     this.setState(state => ({
       letters: state.letters.concat(letter),
-      showLetterContent: state.showLetterContent
+      showLetterContent: state.showLetterContent,
+      toolbarIsActive: state.toolbarIsActive
     }));
   }
 
@@ -59,14 +81,16 @@ export class LettersWindow extends Component {
     };
     this.setState(state => ({
       letters: state.letters,
-      showLetterContent: [true, info]
+      showLetterContent: [true, info],
+      toolbarIsActive: state.toolbarIsActive
     }));
   }
 
   closeLetter() {
     this.setState(state => ({
       letters: state.letters,
-      showLetterContent: [false, null]
+      showLetterContent: [false, null],
+      toolbarIsActive: state.toolbarIsActive
     }));
   }
 
@@ -89,7 +113,8 @@ export class LettersWindow extends Component {
           }
           this.setState(state => ({
             letters: newLetters,
-            showLetterContent: state.showLetterContent
+            showLetterContent: state.showLetterContent,
+            toolbarIsActive: state.toolbarIsActive
           }));
           document.getElementById('mainCheckbox').checked = false;
         });
@@ -100,13 +125,18 @@ export class LettersWindow extends Component {
   render() {
     return (
       <div id="letters" className="letters-window">
-        <LettersWindowHeader fooRemovingLetters={this.removingLetters} />
+        <LettersWindowHeader
+          fooRemovingLetters={this.removingLetters}
+          toolbarIsActive={this.state.toolbarIsActive}
+          fooForCheckbox={this.activatingToolbar}
+        />
         <Line />
         <LettersWindowBody
           letters={this.state.letters}
           showLetterContent={this.state.showLetterContent}
           fooShowLetter={this.showLetter}
           fooCloseLetter={this.closeLetter}
+          fooForCheckbox={this.activatingToolbar}
         />
         <Line />
         <LettersWindowFooter />
