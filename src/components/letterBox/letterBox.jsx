@@ -4,6 +4,7 @@ import LetterDialog from '../letterDialog/letterDialog';
 import SupportLine from '../supportLine/supportLine';
 import LetterGenerator from '../../utils/letterGenerator';
 import Letter from '../letter/letter';
+import { getInt } from '../../utils/randomFunctions';
 import './letterBox.css';
 
 function Hr() {
@@ -36,6 +37,20 @@ export default class LetterBox extends Component {
       mailContent: undefined,
       isCheckAll: false
     };
+  }
+
+  componentDidMount() {
+    const self = this;
+    this.timerOuterID = setTimeout(function run() {
+      self.newMail();
+      const timer = getInt(self.MIN_TIMER_ADD_MAIL, self.MAX_TIMER_ADD_MAIL);
+      self.timerInnerID = setTimeout(run, timer);
+    }, getInt(self.DELTA_TIME, self.MAX_TIMER_ADD_MAIL));
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.timerOuterID);
+    clearTimeout(this.timerInnerID);
   }
 
   setCheckAll = value => {

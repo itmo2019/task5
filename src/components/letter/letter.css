@@ -101,6 +101,7 @@
 .letter__topic_is-open {
   font: 700 30px Helvetica Neue, sans-serif;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .letter__body {
