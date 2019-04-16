@@ -9,6 +9,7 @@ import './inbox__message-date.css';
 import './inbox__message_bold.css';
 import './inbox__message-author.css';
 import './inbox__message-checkbox.css';
+import '../../util.css';
 
 export class InboxMessage extends Component {
   static getCurrentDate() {
@@ -28,7 +29,10 @@ export class InboxMessage extends Component {
 
   render() {
     return (
-      <div className="inbox__message" id={`message_${this.props.id}`}>
+      <div
+        className={`inbox__message ${this.props.display ? '' : 'not-displayed'}`}
+        id={`message_${this.props.id}`}
+      >
         <div className="inbox__message-checkbox">
           <YandexCheckbox
             id={this.props.id}

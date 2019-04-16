@@ -27,8 +27,10 @@ export class Inbox extends Component {
       messages: [],
       counter: 0,
       checkboxes: {},
-      isCheckAll: false
+      isCheckAll: false,
+      displayed: {}
     };
+    this.maxPageMessages = 5;
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
     this.selectAllAction = this.selectAllAction.bind(this);
     this.removeSelected = this.removeSelected.bind(this);
@@ -37,19 +39,28 @@ export class Inbox extends Component {
   handleNewMessageClick() {
     const updatedCheckboxes = Object.assign({}, this.state.checkboxes);
     updatedCheckboxes[this.state.counter] = false;
+    const updatedDisplayed = Object.assign({}, this.state.displayed);
+    for (let i = 0; i < this.state.messages.length; i++) {
+      const { id } = this.state.messages[i];
+      updatedDisplayed[id] = i < this.maxPageMessages - 1;
+    }
+    updatedDisplayed[this.state.counter] = true;
     const message = Inbox.newMessageInfo(this.state.counter, updatedCheckboxes);
     this.setState(state => ({
       messages: [message, ...state.messages],
       checkboxes: updatedCheckboxes,
       counter: state.counter + 1,
-      isCheckAll: false
+      isCheckAll: false,
+      displayed: updatedDisplayed
     }));
   }
 
   selectAllAction() {
     const updatedCheckboxes = Object.assign({}, this.state.checkboxes);
     Object.keys(updatedCheckboxes).forEach(key => {
-      updatedCheckboxes[key] = !this.state.isCheckAll;
+      if (this.state.displayed[key]) {
+        updatedCheckboxes[key] = !this.state.isCheckAll;
+      }
     });
     this.setState(state => ({
       isCheckAll: !state.isCheckAll,
@@ -72,9 +83,15 @@ export class Inbox extends Component {
         newArray.push(message);
       }
     });
+    const updatedDisplayed = Object.assign({}, this.state.displayed);
+    for (let i = 0; i < Math.min(newArray.length, this.maxPageMessages); i++) {
+      const { id } = newArray[i];
+      updatedDisplayed[id] = true;
+    }
     this.setState(() => ({
       messages: newArray,
-      isCheckAll: false
+      isCheckAll: false,
+      displayed: updatedDisplayed
     }));
   }
 
@@ -102,6 +119,7 @@ export class Inbox extends Component {
                 }));
                 this.selectCheckbox(message.id);
               }}
+              display={this.state.displayed[message.id]}
             />
           ))}
         </div>
