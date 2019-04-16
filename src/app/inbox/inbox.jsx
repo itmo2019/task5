@@ -31,6 +31,7 @@ export class Inbox extends Component {
     };
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
     this.selectAllAction = this.selectAllAction.bind(this);
+    this.removeSelected = this.removeSelected.bind(this);
   }
 
   handleNewMessageClick() {
@@ -64,6 +65,19 @@ export class Inbox extends Component {
     }));
   }
 
+  removeSelected() {
+    const newArray = [];
+    this.state.messages.forEach(message => {
+      if (!this.state.checkboxes[message.id]) {
+        newArray.push(message);
+      }
+    });
+    this.setState(() => ({
+      messages: newArray,
+      isCheckAll: false
+    }));
+  }
+
   render() {
     return (
       <div className="inbox">
@@ -71,6 +85,7 @@ export class Inbox extends Component {
           handleNewMessageClick={this.handleNewMessageClick}
           isChecked={this.state.isCheckAll}
           onCheckAction={this.selectAllAction}
+          removeSelected={this.removeSelected}
         />
         <div className="inbox__messages" id="messages">
           {this.state.messages.map(message => (

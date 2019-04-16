@@ -9,10 +9,15 @@ export class InboxHeader extends Component {
   constructor(props) {
     super(props);
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
+    this.removeSelected = this.removeSelected.bind(this);
   }
 
   handleNewMessageClick() {
     this.props.handleNewMessageClick();
+  }
+
+  removeSelected() {
+    this.props.removeSelected();
   }
 
   render() {
@@ -35,7 +40,15 @@ export class InboxHeader extends Component {
           Создать письмо
         </div>
         <div className="inbox_header-element">Переслать</div>
-        <div className="inbox_header-element">Удалить</div>
+        <div
+          className="inbox_header-element"
+          onClick={this.removeSelected}
+          onKeyPress={this.removeSelected}
+          role="button"
+          tabIndex={0}
+        >
+          Удалить
+        </div>
         <div className="inbox_header-element">Это спам!</div>
         <div className="inbox_header-element">Прочитано</div>
       </header>
