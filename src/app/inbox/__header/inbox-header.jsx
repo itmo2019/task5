@@ -8,10 +8,10 @@ import { YandexCheckbox } from '../../yandex-checkbox/yandex-checkbox';
 export class InboxHeader extends Component {
   constructor(props) {
     super(props);
-    this.s = this.s.bind(this);
+    this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
   }
 
-  s() {
+  handleNewMessageClick() {
     this.props.handleNewMessageClick();
   }
 
@@ -19,12 +19,16 @@ export class InboxHeader extends Component {
     return (
       <header className="inbox__header">
         <div className="inbox__checkbox-all">
-          <YandexCheckbox />
+          <YandexCheckbox
+            id="all"
+            isChecked={this.props.isChecked}
+            onChangeAction={this.props.onCheckAction}
+          />
         </div>
         <div
           className="inbox_header-element"
-          onClick={this.s}
-          onKeyPress={this.s}
+          onClick={this.handleNewMessageClick}
+          onKeyPress={this.handleNewMessageClick}
           role="button"
           tabIndex={0}
         >

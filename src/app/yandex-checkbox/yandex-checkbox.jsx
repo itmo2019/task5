@@ -4,15 +4,11 @@ import './yandex-checkbox.css';
 export class YandexCheckbox extends Component {
   constructor(props) {
     super(props);
-    this.id = props.id;
-    this.state = { isChecked: false };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange() {
-    this.setState(state => ({
-      isChecked: !state.isChecked
-    }));
+    this.props.onChangeAction();
   }
 
   render() {
@@ -26,7 +22,7 @@ export class YandexCheckbox extends Component {
             onChange={this.handleChange}
           />
           <span
-            className={`yandex-checkbox ${this.state.isChecked ? 'yandex-checkbox-checked' : ''}`}
+            className={`yandex-checkbox ${this.props.isChecked ? 'yandex-checkbox-checked' : ''}`}
           />
         </label>
       </div>

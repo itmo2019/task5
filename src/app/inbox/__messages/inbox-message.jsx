@@ -11,15 +11,6 @@ import './inbox__message-author.css';
 import './inbox__message-checkbox.css';
 
 export class InboxMessage extends Component {
-  constructor(props) {
-    super(props);
-    this.img = props.img;
-    this.author = props.author;
-    this.id = props.id;
-    this.date = InboxMessage.getCurrentDate();
-    this.message = props.message;
-  }
-
   static getCurrentDate() {
     const approxTime = new Date();
     const approxTimeISO = approxTime.toISOString();
@@ -30,22 +21,34 @@ export class InboxMessage extends Component {
     return [approxTimeISO, approxTimeShort];
   }
 
+  constructor(props) {
+    super(props);
+    this.date = InboxMessage.getCurrentDate();
+  }
+
   render() {
     return (
-      <div className="inbox__message" id={`message_${this.id}`}>
+      <div className="inbox__message" id={`message_${this.props.id}`}>
         <div className="inbox__message-checkbox">
-          <YandexCheckbox id={this.id} />
+          <YandexCheckbox
+            id={this.props.id}
+            isChecked={this.props.isChecked}
+            onChangeAction={this.props.onCheckAction}
+          />
         </div>
-        <img className="inbox__message-icon" src={this.img} alt="Автор" />
+        <img className="inbox__message-icon" src={this.props.img} alt="Автор" />
         <span
           className="inbox__message-author inbox__message_bold"
-          id={`message-author_${this.id}`}
+          id={`message-author_${this.props.id}`}
         >
-          {this.author}
+          {this.props.author}
         </span>
-        <div className="inbox__message-read" id={`message-read_${this.id}`} />
-        <div className="inbox__message-body inbox__message_bold" id={`message-body_${this.id}`}>
-          {this.message}
+        <div className="inbox__message-read" id={`message-read_${this.props.id}`} />
+        <div
+          className="inbox__message-body inbox__message_bold"
+          id={`message-body_${this.props.id}`}
+        >
+          {this.props.message}
         </div>
         <time className="inbox__message-date" dateTime={this.date[0]}>
           {this.date[1]}
