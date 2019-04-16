@@ -42,14 +42,17 @@ export class InboxMessage extends Component {
         </div>
         <img className="inbox__message-icon" src={this.props.img} alt="Автор" />
         <span
-          className="inbox__message-author inbox__message_bold"
+          className={`inbox__message-author ${this.props.read ? '' : 'inbox__message_bold'}`}
           id={`message-author_${this.props.id}`}
         >
           {this.props.author}
         </span>
-        <div className="inbox__message-read" id={`message-read_${this.props.id}`} />
         <div
-          className="inbox__message-body inbox__message_bold"
+          className={`inbox__message-read ${!this.props.read ? '' : 'not-displayed'}`}
+          id={`message-read_${this.props.id}`}
+        />
+        <div
+          className={`inbox__message-body ${this.props.read ? '' : 'inbox__message_bold'}`}
           id={`message-body_${this.props.id}`}
         >
           {this.props.message}

@@ -28,17 +28,21 @@ export class Inbox extends Component {
       counter: 0,
       checkboxes: {},
       isCheckAll: false,
-      displayed: {}
+      displayed: {},
+      read: {}
     };
     this.maxPageMessages = 5;
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
     this.selectAllAction = this.selectAllAction.bind(this);
     this.removeSelected = this.removeSelected.bind(this);
+    this.markAsRead = this.markAsRead.bind(this);
   }
 
   handleNewMessageClick() {
     const updatedCheckboxes = Object.assign({}, this.state.checkboxes);
     updatedCheckboxes[this.state.counter] = false;
+    const updatedRead = Object.assign({}, this.state.read);
+    updatedRead[this.state.counter] = false;
     const updatedDisplayed = Object.assign({}, this.state.displayed);
     for (let i = 0; i < this.state.messages.length; i++) {
       const { id } = this.state.messages[i];
@@ -51,7 +55,8 @@ export class Inbox extends Component {
       checkboxes: updatedCheckboxes,
       counter: state.counter + 1,
       isCheckAll: false,
-      displayed: updatedDisplayed
+      displayed: updatedDisplayed,
+      read: updatedRead
     }));
   }
 
@@ -95,6 +100,19 @@ export class Inbox extends Component {
     }));
   }
 
+  markAsRead() {
+    const updatedRead = Object.assign({}, this.state.read);
+    for (let i = 0; i < Math.min(this.state.messages.length, this.maxPageMessages); i++) {
+      const { id } = this.state.messages[i];
+      if (this.state.checkboxes[id]) {
+        updatedRead[id] = true;
+      }
+    }
+    this.setState(() => ({
+      read: updatedRead
+    }));
+  }
+
   render() {
     return (
       <div className="inbox">
@@ -103,6 +121,7 @@ export class Inbox extends Component {
           isChecked={this.state.isCheckAll}
           onCheckAction={this.selectAllAction}
           removeSelected={this.removeSelected}
+          markAsRead={this.markAsRead}
         />
         <div className="inbox__messages" id="messages">
           {this.state.messages.map(message => (
@@ -120,6 +139,7 @@ export class Inbox extends Component {
                 this.selectCheckbox(message.id);
               }}
               display={this.state.displayed[message.id]}
+              read={this.state.read[message.id]}
             />
           ))}
         </div>
