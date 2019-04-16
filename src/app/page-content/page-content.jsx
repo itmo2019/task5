@@ -10,12 +10,12 @@ export class PageContent extends Component {
   render() {
     return (
       <div className="page-content">
-        <article className="page-content__left-toolbar">
+        <section className="page-content__left-toolbar">
           <MailToolbar />
-        </article>
-        <article className="page-content__content">
+        </section>
+        <section className="page-content__content">
           <Inbox />
-        </article>
+        </section>
       </div>
     );
   }
