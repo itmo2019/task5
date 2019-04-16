@@ -28,6 +28,7 @@ export class Inbox extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      // TODO: it's better to use TreeMap here.
       messages: [],
       counter: 0,
       isCheckAll: false,
