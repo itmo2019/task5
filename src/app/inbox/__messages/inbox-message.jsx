@@ -11,24 +11,44 @@ import './inbox__message-author.css';
 import './inbox__message-checkbox.css';
 
 export class InboxMessage extends Component {
-  authorImg;
+  constructor(props) {
+    super(props);
+    this.img = props.img;
+    this.author = props.author;
+    this.id = props.id;
+    this.date = InboxMessage.getCurrentDate();
+    this.message = props.message;
+  }
+
+  static getCurrentDate() {
+    const approxTime = new Date();
+    const approxTimeISO = approxTime.toISOString();
+    const approxTimeShort = approxTime.toLocaleDateString('ru-RU', {
+      day: 'numeric',
+      month: 'short'
+    });
+    return [approxTimeISO, approxTimeShort];
+  }
 
   render() {
     return (
-      <div className="inbox__message" id="message_5">
+      <div className="inbox__message" id={`message_${this.id}`}>
         <div className="inbox__message-checkbox">
-          <YandexCheckbox />
+          <YandexCheckbox id={this.id} />
         </div>
-        <img className="inbox__message-icon" src={this.props.authorImg} alt="Автор" />
-        <span className="inbox__message-author inbox__message_bold" id="message-author_5">
-          Котик #472 из Яндекса
+        <img className="inbox__message-icon" src={this.img} alt="Автор" />
+        <span
+          className="inbox__message-author inbox__message_bold"
+          id={`message-author_${this.id}`}
+        >
+          {this.author}
         </span>
-        <div className="inbox__message-read" id="message-read_5" />
-        <div className="inbox__message-body inbox__message_bold" id="message-body_5">
-          kek
+        <div className="inbox__message-read" id={`message-read_${this.id}`} />
+        <div className="inbox__message-body inbox__message_bold" id={`message-body_${this.id}`}>
+          {this.message}
         </div>
-        <time className="inbox__message-date" dateTime="2019-04-14T11:49:41.387Z">
-          14 апр.
+        <time className="inbox__message-date" dateTime={this.date[0]}>
+          {this.date[1]}
         </time>
       </div>
     );
