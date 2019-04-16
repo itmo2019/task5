@@ -9,6 +9,7 @@ import './inbox__message-date.css';
 import './inbox__message_bold.css';
 import './inbox__message-author.css';
 import './inbox__message-checkbox.css';
+import './inbox__message-open-link.css';
 import '../../util.css';
 
 export class InboxMessage extends Component {
@@ -45,7 +46,13 @@ export class InboxMessage extends Component {
             onChangeAction={this.props.onCheckAction}
           />
         </div>
-        <div onClick={this.openLetter} onKeyPress={this.openLetter} role="button" tabIndex={0}>
+        <div
+          className="inbox__message-open-link"
+          onClick={this.openLetter}
+          onKeyPress={this.openLetter}
+          role="button"
+          tabIndex={0}
+        >
           <img className="inbox__message-icon" src={this.props.img} alt="Автор" />
           <span
             className={`inbox__message-author ${this.props.read ? '' : 'inbox__message_bold'}`}
