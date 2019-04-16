@@ -25,6 +25,11 @@ export class InboxMessage extends Component {
   constructor(props) {
     super(props);
     this.date = InboxMessage.getCurrentDate();
+    this.openLetter = this.openLetter.bind(this);
+  }
+
+  openLetter() {
+    this.props.openLetter(this.props.id);
   }
 
   render() {
@@ -40,26 +45,28 @@ export class InboxMessage extends Component {
             onChangeAction={this.props.onCheckAction}
           />
         </div>
-        <img className="inbox__message-icon" src={this.props.img} alt="Автор" />
-        <span
-          className={`inbox__message-author ${this.props.read ? '' : 'inbox__message_bold'}`}
-          id={`message-author_${this.props.id}`}
-        >
-          {this.props.author}
-        </span>
-        <div
-          className={`inbox__message-read ${!this.props.read ? '' : 'not-displayed'}`}
-          id={`message-read_${this.props.id}`}
-        />
-        <div
-          className={`inbox__message-body ${this.props.read ? '' : 'inbox__message_bold'}`}
-          id={`message-body_${this.props.id}`}
-        >
-          {this.props.message}
+        <div onClick={this.openLetter} onKeyPress={this.openLetter} role="button" tabIndex={0}>
+          <img className="inbox__message-icon" src={this.props.img} alt="Автор" />
+          <span
+            className={`inbox__message-author ${this.props.read ? '' : 'inbox__message_bold'}`}
+            id={`message-author_${this.props.id}`}
+          >
+            {this.props.author}
+          </span>
+          <div
+            className={`inbox__message-read ${!this.props.read ? '' : 'not-displayed'}`}
+            id={`message-read_${this.props.id}`}
+          />
+          <div
+            className={`inbox__message-body ${this.props.read ? '' : 'inbox__message_bold'}`}
+            id={`message-body_${this.props.id}`}
+          >
+            {this.props.message}
+          </div>
+          <time className="inbox__message-date" dateTime={this.date[0]}>
+            {this.date[1]}
+          </time>
         </div>
-        <time className="inbox__message-date" dateTime={this.date[0]}>
-          {this.date[1]}
-        </time>
       </div>
     );
   }

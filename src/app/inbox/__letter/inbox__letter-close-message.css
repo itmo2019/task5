@@ -1,0 +1,12 @@
+.inbox__letter-close-letter {
+  position: absolute;
+  top: 10px;
+  right: 30px;
+
+  width: 35px;
+  height: 35px;
+
+  cursor: pointer;
+  font-size: 25px;
+  outline: none;
+}

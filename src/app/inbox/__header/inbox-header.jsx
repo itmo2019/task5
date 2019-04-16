@@ -11,18 +11,31 @@ export class InboxHeader extends Component {
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
     this.removeSelected = this.removeSelected.bind(this);
     this.markAsRead = this.markAsRead.bind(this);
+    this.changeMainCheckbox = this.changeMainCheckbox.bind(this);
   }
 
   handleNewMessageClick() {
-    this.props.handleNewMessageClick();
+    if (!this.props.disabled) {
+      this.props.handleNewMessageClick();
+    }
   }
 
   removeSelected() {
-    this.props.removeSelected();
+    if (!this.props.disabled) {
+      this.props.removeSelected();
+    }
   }
 
   markAsRead() {
-    this.props.markAsRead();
+    if (!this.props.disabled) {
+      this.props.markAsRead();
+    }
+  }
+
+  changeMainCheckbox() {
+    if (!this.props.disabled) {
+      this.props.onCheckAction();
+    }
   }
 
   render() {
@@ -32,7 +45,7 @@ export class InboxHeader extends Component {
           <YandexCheckbox
             id="all"
             isChecked={this.props.isChecked}
-            onChangeAction={this.props.onCheckAction}
+            onChangeAction={this.changeMainCheckbox}
           />
         </div>
         <div

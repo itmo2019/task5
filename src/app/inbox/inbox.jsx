@@ -9,6 +9,7 @@ import './__messages/inbox__messages.css';
 import { InboxMessage } from './__messages/inbox-message';
 
 import authorAvatar from '../../img/ya-default.svg';
+import { InboxLetter } from './__letter/inbox-letter';
 
 export class Inbox extends Component {
   static newMessageInfo(counter) {
@@ -29,13 +30,17 @@ export class Inbox extends Component {
       checkboxes: {},
       isCheckAll: false,
       displayed: {},
-      read: {}
+      read: {},
+      isLetterDisplayed: false,
+      letterContent: '',
+      headerDisabled: false
     };
     this.maxPageMessages = 5;
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
     this.selectAllAction = this.selectAllAction.bind(this);
     this.removeSelected = this.removeSelected.bind(this);
     this.markAsRead = this.markAsRead.bind(this);
+    this.openLetter = this.openLetter.bind(this);
   }
 
   handleNewMessageClick() {
@@ -113,6 +118,23 @@ export class Inbox extends Component {
     }));
   }
 
+  openLetter(id) {
+    let messageContent = null;
+    this.state.messages.forEach(message => {
+      if (message.id === id) {
+        messageContent = message.message;
+      }
+    });
+    const updatedRead = Object.assign({}, this.state.read);
+    updatedRead[id] = true;
+    this.setState(() => ({
+      isLetterDisplayed: true,
+      letterContent: messageContent,
+      read: updatedRead,
+      headerDisabled: true
+    }));
+  }
+
   render() {
     return (
       <div className="inbox">
@@ -122,6 +144,7 @@ export class Inbox extends Component {
           onCheckAction={this.selectAllAction}
           removeSelected={this.removeSelected}
           markAsRead={this.markAsRead}
+          disabled={this.state.headerDisabled}
         />
         <div className="inbox__messages" id="messages">
           {this.state.messages.map(message => (
@@ -140,9 +163,20 @@ export class Inbox extends Component {
               }}
               display={this.state.displayed[message.id]}
               read={this.state.read[message.id]}
+              openLetter={this.openLetter}
             />
           ))}
         </div>
+        <InboxLetter
+          display={this.state.isLetterDisplayed}
+          content={this.state.letterContent}
+          closeLetter={() => {
+            this.setState(() => ({
+              headerDisabled: false,
+              isLetterDisplayed: false
+            }));
+          }}
+        />
         <InboxFooter />
       </div>
     );
