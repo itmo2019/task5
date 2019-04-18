@@ -1,48 +1,69 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './message.css';
 import logo from './yandex-logo.png';
 import Check from '../check';
 
+const b = block('message');
+
 class Message extends Component {
-  render() {
-    const data = this.props.data;
-    const readNameStyle = data.isRead ? '' : ' Message__SenderName_NotRead';
-    const readTextStyle = data.isRead ? '' : ' Message__TextInner_NotRead';
-    const readMarkStyle = data.isRead ? ' ReadMark_Read' : ' ReadMark_NotRead';
-    const avatar = data.avatarSrc === '' ? logo : data.avatarSrc;
-    const newMessageFlag = this.props.first ? ' Message_NewMessage' : '';
-    const updCheckMsg = this.props.updCheckMsg;
-    const deleteAnim = data.deleteAnim ? ' Message_DeletedMessage' : '';
+  constructor(props) {
+    super(props);
+
+    this.openMessage = this.openMessage.bind(this);
+  }
+
+  openMessage() {
+    this.props.openMsg(this.props.data);
+  }
+
+  componentDidMount() {
     this.props.updateSent();
+  }
+
+  onAnimationEnd(evt) {
+    if (evt.animationName === 'delete-message') {
+      this.props.delete();
+    }
+  }
+
+  render() {
+    const { data, updCheckMsg, first } = this.props;
+    const { isRead, avatarSrc, deleteAnim, text, name, date, checked } = data;
+    const avatar = avatarSrc === '' ? logo : avatarSrc;
 
     return (
       <li
-        onAnimationEnd={this.removeNewMessageAnimation}
-        className={`Message${newMessageFlag}${deleteAnim}`}
+        onAnimationEnd={(evt)=>this.onAnimationEnd(evt)}
+        className={b({ new: first, deleted: deleteAnim }).toString()}
       >
-        <div className="Message__Check">
-          <Check callback={updCheckMsg} checked={data.checked} />
+        <div className={b('check').toString()}>
+          <Check callback={updCheckMsg} checked={checked} />
         </div>
         <label
-          onClick={() => {
-            this.props.openMsg(data);
-          }}
+          onClick={this.openMessage}
           htmlFor="open-message"
           id="open-message-label"
           className="open-message-label"
         >
-          <span className="Message__Content">
-            <span className="Message__Sender">
-              <img className="Message__SenderPicture" alt="" src={avatar} width="30" height="30" />
-              <span className={`Message__SenderName${readNameStyle}`}>{data.name}</span>
+          <span className={b('content').toString()}>
+            <span className={b('sender').toString()}>
+              <img
+                className={b('sender-picture').toString()}
+                alt=""
+                src={avatar}
+                width="30"
+                height="30"
+              />
+              <span className={b('sender-name', { notread: !isRead }).toString()}>{name}</span>
             </span>
-            <span className={`ReadMark Message__ReadMark${readMarkStyle}`} />
-            <span className="Message__Text">
-              <span className={`Message__TextInner${readTextStyle}`}>{data.text}</span>
+            <span className={b('read-mark', { read: isRead.toString() }).toString()} />
+            <span className={b('text').toString()}>
+              <span className={b('text-inner', { notread: !isRead }).toString()}>{text}</span>
             </span>
-            <span className="Message__Date">
-              <time dateTime="08-06">{data.date}</time>
+            <span className={b('date').toString()}>
+              <time dateTime="08-06">{date}</time>
             </span>
           </span>
         </label>

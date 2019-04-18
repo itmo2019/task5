@@ -1,4 +1,4 @@
-.MailBox {
+.mail-box {
   width: calc(100vw - 226px);
   border-radius: 3px;
   box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
@@ -7,146 +7,39 @@
   overflow: hidden;
 }
 
-.MailBox__FullMessage {
+.mail-box__full-message {
   z-index: 1;
   position: absolute;
   top: 41px;
   left: 0;
 }
 
-.MailBox__FullMessage_Opened {
-  display: block;
-}
-
-.MailBox__FullMessage_Closed {
+.mail-box__full-message_closed {
   display: none;
 }
 
-.MailBox__MessageListScrollContainer {
+.mail-box__message-list-scroll-container {
   height: 474px;
   overflow-y: scroll;
   position: absolute;
   width: calc(100vw - 226px);
 }
 
-.MailBox__MessageListContainer {
+.mail-box__message-list-container {
   position: absolute;
   width: calc(100vw - 226px);
   max-height: 1230px;
   overflow: hidden;
 }
 
-.MailBox__MessageList {
+.mail-box__message-list {
   list-style-type: none;
   padding: 0;
   margin: 0;
   min-height: 446px;
 }
 
-.Message {
-  min-width: 500px;
-  width: initial;
-  height: 40px;
-  padding-left: 20px;
-  border-bottom: solid 1px #e2e2e2;
-}
-
-.Message__Content {
-  margin-left: 20px;
-}
-
-.Message__Check {
-  display: inline-block;
-  vertical-align: middle;
-  position: absolute;
-}
-
-.Message__Sender {
-  display: inline-block;
-  vertical-align: middle;
-  margin-left: 7px;
-  width: 223px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.Message__SenderPicture {
-  margin-top: 1px;
-  vertical-align: middle;
-  clip-path: circle(50%);
-}
-
-.Message__SenderName {
-  display: inline;
-  margin-left: 6px;
-  font-family: HelveticaNeue, sans-serif;
-  font-size: 13px;
-  line-height: 39px;
-  text-align: left;
-  border: none;
-  background-color: white;
-  vertical-align: middle;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.Message__TextInner {
-  position: absolute;
-  padding-top: 12px;
-  min-width: 160px;
-  width: calc(100vw - 590px);
-  margin-left: 6px;
-  font-family: HelveticaNeue, sans-serif;
-  font-size: 13px;
-  text-align: left;
-  border: none;
-  background-color: white;
-  vertical-align: middle;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.Message__TextInner_NotRead {
-  font-weight: bold;
-}
-
-.Message__SenderName_NotRead {
-  font-weight: bold;
-}
-
-.Message__ReadMark {
-  display: inline-block;
-  vertical-align: middle;
-  margin-top: 2px;
-}
-
-.Message__Text {
-  width: 300px;
-  display: inline;
-  vertical-align: middle;
-}
-
-.Message__Date {
-  float: right;
-  width: 80px;
-  display: inline-block;
-  text-align: right;
-  font-family: HelveticaNeue, sans-serif;
-  color: #9b9b9b;
-  font-size: 13px;
-  font-weight: 100;
-  padding-right: 20px;
-  margin-top: 5px;
-  line-height: 32px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.MailBox__Footer {
+.mail-box__footer {
   position: absolute;
   left: 0;
   right: 0;

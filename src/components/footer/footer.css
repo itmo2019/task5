@@ -1,22 +1,21 @@
-.Footer {
+.footer {
   border-top: solid 1px #e2e2e2;
   height: 40px;
   overflow: hidden;
   white-space: nowrap;
 }
 
-.Footer__Menu {
+.footer__menu {
   margin: 0 auto;
   padding-top: 3px;
   padding-right: 24px;
   float: right;
 }
 
-.FooterItem {
+.footer__item {
   display: inline-block;
   line-height: 35px;
   text-align: center;
-  padding: auto;
   font-family: HelveticaNeue, sans-serif;
   font-size: 12px;
   font-weight: normal;
@@ -29,9 +28,8 @@
   padding-left: 18px;
   padding-right: 0;
   text-decoration: none;
-
 }
 
-.FooterItem_Author {
+.footer__item_author {
   padding-left: 0;
 }

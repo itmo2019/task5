@@ -1,4 +1,4 @@
-.AsideMenu__ComposeButton {
+.aside-menu__compose-button {
   width: 150px;
   height: 34px;
   background-color: #6287bd;
@@ -17,11 +17,11 @@
   display: block;
 }
 
-.AsideMenu__FolderList {
+.aside-menu__folder-list {
   margin-top: 9px;
 }
 
-.AsideMenuFolder {
+.aside-menu__folder {
   width: 140px;
   font-size: 11px;
   color: #707070;
@@ -39,12 +39,12 @@
   padding-bottom: 5px;
 }
 
-.AsideMenu__Folder_Active {
+.aside-menu__folder_active {
   border-radius: 3px;
   background-color: #cdd6e4;
 }
 
-.AsideMenu__Folder_Main {
+.aside-menu__folder_main {
   font-weight: bold;
   color: #555555;
   margin-bottom: 3px;

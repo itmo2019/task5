@@ -1,3 +1,1 @@
-import TopMenu from './top-menu';
-
-export default TopMenu;
+export { default } from './top-menu';

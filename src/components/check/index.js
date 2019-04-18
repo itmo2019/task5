@@ -1,3 +1,1 @@
-import Check from './check';
-
-export default Check;
+export { default } from './check';

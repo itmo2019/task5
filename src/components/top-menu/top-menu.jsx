@@ -1,24 +1,33 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './top-menu.css';
 import Check from '../check';
 
-class TopMenuItem extends Component {
-  render() {
-    return <span onClick={this.props.onClick} className="TopMenuItem">{this.props.text}</span>;
-  }
+const b = block('top-menu');
+
+function TopMenuItem({ children, onClick }) {
+  return (
+    <span onClick={onClick} className={b('item').toString()}>
+      {children}
+    </span>
+  );
 }
 
 class TopMenu extends Component {
   render() {
     return (
-      <div className="TopMenu">
-        <Check callback={this.props.checkAll} />
-        <div className="TopMenu__ButtonList">
-          <TopMenuItem text="Переслать" />
-          <TopMenuItem onClick={this.props.deleteChecked} text="Удалить" />
-          <TopMenuItem text="Это спам!" />
-          <TopMenuItem text="Прочитано" />
+      <div className={b().toString()}>
+        <Check
+          checked={this.props.checked}
+          callback={this.props.checkAll}
+          disabled={this.props.disableCheckbox}
+        />
+        <div className={b('button-list').toString()}>
+          <TopMenuItem>Переслать</TopMenuItem>
+          <TopMenuItem onClick={this.props.animateChecked}>Удалить</TopMenuItem>
+          <TopMenuItem>Это спам!</TopMenuItem>
+          <TopMenuItem>Прочитано</TopMenuItem>
         </div>
       </div>
     );

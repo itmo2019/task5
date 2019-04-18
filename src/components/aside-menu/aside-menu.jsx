@@ -1,32 +1,28 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './aside-menu.css';
 
-class AsideMenuFolder extends Component {
-  render() {
-    const active = this.props.active ? ' AsideMenu__Folder_Active' : '';
-    const main = this.props.main ? ' AsideMenu__Folder_Main' : '';
+const b = block('aside-menu');
 
-    return <a className={`AsideMenuFolder${active}${main}`}>{this.props.text}</a>;
-  }
+function AsideMenuFolder({ children, active, main }) {
+  return <a className={b('folder', {active: active, main: main}).toString()}>{children}</a>;
 }
 
 class AsideMenu extends Component {
   render() {
     return (
       <div>
-        <button type="button" className="AsideMenu__ComposeButton">
+        <button type="button" className={b('compose-button').toString()}>
           Написать
         </button>
-        <div className="AsideMenu__FolderList">
-          <div className="AsideMenu__Folder_Active AsideMenu__Folder_Main">
-            <AsideMenuFolder text="Входящие" active main />
-          </div>
-          <AsideMenuFolder text="Отправленные" />
-          <AsideMenuFolder text="Удаленные" />
-          <AsideMenuFolder text="Спам" />
-          <AsideMenuFolder text="Черновики" />
-          <AsideMenuFolder text="Создать папку" />
+        <div className={b('folder-list').toString()}>
+          <AsideMenuFolder active main>Входящие</AsideMenuFolder>
+          <AsideMenuFolder>Отправленные</AsideMenuFolder>
+          <AsideMenuFolder>Удаленные</AsideMenuFolder>
+          <AsideMenuFolder>Спам</AsideMenuFolder>
+          <AsideMenuFolder>Черновики</AsideMenuFolder>
+          <AsideMenuFolder>Создать папку</AsideMenuFolder>
         </div>
       </div>
     );

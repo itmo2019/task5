@@ -1,3 +1,1 @@
-import FullMessage from './full-message';
-
-export default FullMessage;
+export { default } from './full-message';

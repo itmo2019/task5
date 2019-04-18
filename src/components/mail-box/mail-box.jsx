@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
+import MessageSender from '../../utils/messageSender';
 
 import './mail-box.css';
 import TopMenu from '../top-menu';
@@ -6,21 +8,26 @@ import FullMessage from '../full-message';
 import Message from '../message';
 import Footer from '../footer';
 
-const min = 10;
-const max = 600000;
+const b = block('mail-box');
 
 class MailBox extends Component {
   constructor(props) {
     super(props);
 
-    this.newMail = this.newMail.bind(this);
+    this.setMessage = this.setMessage.bind(this);
     this.openMsg = this.openMsg.bind(this);
     this.closeMsg = this.closeMsg.bind(this);
     this.checkAll = this.checkAll.bind(this);
+    this.animateChecked = this.animateChecked.bind(this);
+    this.updCheckMsg = this.updCheckMsg.bind(this);
+    this.createMessage = this.createMessage.bind(this);
+    this.deleteMsg = this.deleteMsg.bind(this);
+
+    this.globalCount = 0;
 
     this.state = {
       messages: [
-        MailBox.createMessage(
+        this.createMessage(
           /* sent */ true,
           /* isRead */ false,
           /* avatar */ '',
@@ -30,7 +37,7 @@ class MailBox extends Component {
           /* checked */ false,
           /* deleteAnim */ false
         ),
-        MailBox.createMessage(
+        this.createMessage(
           /* sent */ true,
           /* isRead */ false,
           /* avatar */ '',
@@ -40,7 +47,7 @@ class MailBox extends Component {
           /* checked */ false,
           /* deleteAnim */ false
         ),
-        MailBox.createMessage(
+        this.createMessage(
           /* sent */ true,
           /* isRead */ true,
           /* avatar */ '',
@@ -50,7 +57,7 @@ class MailBox extends Component {
           /* checked */ false,
           /* deleteAnim */ false
         ),
-        MailBox.createMessage(
+        this.createMessage(
           /* sent */ true,
           /* isRead */ true,
           /* avatar */ '',
@@ -71,10 +78,25 @@ class MailBox extends Component {
       checkAll: false
     };
 
-    const self = this;
-    (async function() {
-      await self.getMail();
-    })();
+    const sender = new MessageSender(this.setMessage);
+    sender.run().catch(console.log);
+  }
+  setMessage(message) {
+    const newMessages = [...this.state.messages];
+    newMessages.unshift(
+      this.createMessage(
+        message.sent,
+        message.isRead,
+        message.avatarSrc,
+        message.name,
+        message.text,
+        message.time,
+        message.deleteAnim
+      )
+    );
+    this.setState({
+      messages: newMessages
+    });
   }
 
   openMsg(newData) {
@@ -85,13 +107,14 @@ class MailBox extends Component {
   }
 
   closeMsg() {
-    this.setState({
-      fullFlag: false
-    });
+    const state = { ...this.state };
+    state.fullMessage.isRead = true;
+    state.fullFlag = false;
+    this.setState(state);
   }
 
-  static createMessage(sent, isRead, avatarSrc, name, text, date, checked, deleteAnim) {
-    return {
+  createMessage(sent, isRead, avatarSrc, name, text, date, checked, deleteAnim) {
+    const message = {
       sent,
       isRead,
       avatarSrc,
@@ -101,86 +124,38 @@ class MailBox extends Component {
       checked,
       deleteAnim
     };
-  }
 
-  static getRandomInterval() {
-    return Math.floor(Math.random() * Math.floor(min + max) - min);
-  }
+    message.key = this.globalCount++;
 
-  static sleep(interval) {
-    return new Promise(resolve => setTimeout(resolve, interval));
-  }
+    message.updateSent = () => {
+      MailBox.updateSent(message);
+    };
 
-  async getMail() {
-    await MailBox.sleep(MailBox.getRandomInterval());
-    await this.newMail();
-    while (true) {
-      await MailBox.sleep(MailBox.getRandomInterval() + max);
-      await this.newMail();
-    }
-  }
+    message.updateChecked = () => {
+      this.updCheckMsg(message);
+    };
 
-  static parseText(text) {
-    const div = document.createElement('div');
-    div.innerHTML = text;
-    let cleanText = div.innerText.replace(/\r?\n|\r/g, '');
-    const ind = cleanText.indexOf('References[edit]');
-    if (ind > 0) {
-      cleanText = cleanText.substring(0, ind);
-    }
-    return cleanText;
-  }
+    message.delete = () => {
+      this.deleteMsg(message);
+    };
 
-  async newMail() {
-    const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-    const endpointRandom =
-      'https://en.wikipedia.org/w/api.php?action=query&list=random&utf8=&format=json&rnlimit=1&rnnamespace=0&prop=info';
-    const endpointPage =
-      'https://en.wikipedia.org/w/api.php?action=parse&format=json&prop=text|images|links&pageid=';
-    const imagePath = 'https://commons.wikimedia.org/wiki/Special:FilePath/';
-
-    const randomPageIdRaw = await fetch(proxyUrl + endpointRandom);
-    const randomPageId = await randomPageIdRaw.json();
-    const id = randomPageId.query.random[0].id;
-    const randomPageRaw = await fetch(proxyUrl + endpointPage + id);
-    const randomPage = await randomPageRaw.json();
-
-    const name = randomPage.parse.title;
-    const text = MailBox.parseText(randomPage.parse.text['*']);
-    const today = new Date();
-    const time = `${today.getHours()}:${today.getMinutes()}`;
-    let avatarSrc = '';
-    if (randomPage.parse.images.length > 0) {
-      avatarSrc = imagePath + randomPage.parse.images[0];
-    }
-
-    const newMessages = this.state.messages;
-    newMessages.unshift(
-      MailBox.createMessage(
-        /* sent */ false,
-        /* isRead */ false,
-        avatarSrc,
-        name,
-        text,
-        time,
-        /* deleteAnim */ false
-      )
-    );
-    this.setState({
-      messages: newMessages
-    });
+    return message;
   }
 
   static updateSent(message) {
     message.sent = true;
   }
 
-  static updCheckMsg(message) {
+  updCheckMsg(message) {
     message.checked = !message.checked;
+    if (this.state.checkAll === true && message.checked === false) {
+      this.state.checkAll = false;
+    }
+    this.forceUpdate();
   }
 
   checkAll() {
-    const newMessages = this.state.messages.map(msg => {
+    const newMessages = [...this.state.messages].map(msg => {
       msg.checked = !this.state.checkAll;
       return msg;
     });
@@ -191,8 +166,8 @@ class MailBox extends Component {
     });
   }
 
-  deleteChecked() {
-    const newMessages = this.state.messages.map(msg => {
+  animateChecked() {
+    const newMessages = [...this.state.messages].map(msg => {
       if (msg.checked) {
         msg.deleteAnim = true;
       }
@@ -202,58 +177,49 @@ class MailBox extends Component {
     this.setState({
       messages: newMessages
     });
+  }
 
-    setTimeout(
-      () =>
-        this.setState({
-          messages: this.state.messages.filter(msg => !msg.checked)
-        }),
-      450
-    );
+  deleteMsg(message) {
+    this.setState({
+      messages: [...this.state.messages].filter(msg => !(msg === message)),
+      checkAll: false
+    });
   }
 
   render() {
-    const messages = this.state.messages;
-    const opened = this.state.fullFlag
-      ? ' MailBox__FullMessage_Opened'
-      : ' MailBox__FullMessage_Closed';
+    const { messages, fullFlag, checkAll } = this.state;
 
     return (
-      <main className="MailBox">
+      <main className={b().toString()}>
         <TopMenu
-          checkAll={() => {
-            this.checkAll();
-          }}
-          deleteChecked={() => {
-            this.deleteChecked();
-          }}
+          checked={checkAll}
+          checkAll={this.checkAll}
+          animateChecked={this.animateChecked}
+          disableCheckbox={fullFlag}
         />
-        <div className={`MailBox__FullMessage${opened}`}>
+        <div className={b('full-message', { closed: !fullFlag })}>
           <FullMessage data={this.state.fullMessage} closeMsg={this.closeMsg} />
         </div>
-        <div className="MailBox__MessageListScrollContainer">
-          <div className="MailBox__MessageListContainer">
-            <ul id="message-list" className="MailBox__MessageList">
+        <div className={b('message-list-scroll-container').toString()}>
+          <div className={b('message-list-container').toString()}>
+            <ul id="message-list" className={b('message-list').toString()}>
               {messages.map((message, index) => {
                 return (
                   <Message
                     data={message}
-                    key={Math.random()}
+                    key={message.key}
                     first={index === 0 && !message.sent}
                     openMsg={this.openMsg}
-                    updateSent={() => {
-                      MailBox.updateSent(message);
-                    }}
-                    updCheckMsg={() => {
-                      MailBox.updCheckMsg(message);
-                    }}
+                    updateSent={message.updateSent}
+                    updCheckMsg={message.updateChecked}
+                    delete={message.delete}
                   />
                 );
               })}
             </ul>
           </div>
         </div>
-        <div className="MailBox__Footer">
+        <div className={b('footer').toString()}>
           <Footer />
         </div>
       </main>

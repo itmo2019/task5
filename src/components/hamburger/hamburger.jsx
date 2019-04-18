@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './hamburger.css';
 import hamburger from './hamburger.svg';
 
+const b = block('hamburger');
+
 class Hamburger extends Component {
   render() {
     return (
-      <button type="button" className="Hamburger">
+      <button type="button" className={b().toString()}>
         <img
-          className="Hamburger__img"
           alt="hamburger icon"
           src={hamburger}
           width="25px"

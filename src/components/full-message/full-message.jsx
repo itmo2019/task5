@@ -1,53 +1,46 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './full-message.css';
 import logo from '../message/yandex-logo.png';
 
+const b = block('full-message');
+
 class FullMessage extends Component {
-  constructor(props) {
-    super(props);
-
-    const self = this;
-    this.state = {
-      data: self.props.data
-    };
-  }
-
   render() {
-    const data = this.props.data;
-    const closeMsg = this.props.closeMsg;
-    const avatarSrc = data.avatarSrc;
+    const { data, closeMsg } = this.props;
+    const { avatarSrc } = data;
 
     return (
-      <div className="FullMessage">
-        <div className="FullMessage__Content">
-          <div className="FullMessage__CloseContainer" onClick={() => {closeMsg()}}>
+      <div className={b().toString()}>
+        <div className={b('content').toString()}>
+          <div className={b('close-container').toString()} onClick={closeMsg}>
             <label htmlFor="open-message">
-              <span className="FullMessage__Close">╳</span>
+              <span className={b('close').toString()}>╳</span>
             </label>
           </div>
-          <div className="FullMessage__Header">
-            <div className="FullMessage__Sender">
+          <div className={b('header').toString()}>
+            <div className={b('sender').toString()}>
               <img
                 id="full-message-img"
-                alt="full-message-img"
-                className="FullMessage__Img"
+                alt=""
+                className={b('img').toString()}
                 src={avatarSrc === '' ? logo : avatarSrc}
                 width="42"
                 height="42"
               />
-              <div className="FullMessage__SenderInfo">
-                <div id="full-message-sender" className="FullMessage__Author">
+              <div className={b('sender-info').toString()}>
+                <div id="full-message-sender" className={b('author').toString()}>
                   {data.name}
                 </div>
-                <div className="FullMessage__Email">wikipedia@yandex.ru</div>
+                <div className={b('email').toString()}>wikipedia@yandex.ru</div>
               </div>
             </div>
-            <div id="full-message-date" className="FullMessage__Date">
+            <div id="full-message-date" className={b('date').toString()}>
               <time dateTime="08-06">6 авг</time>
             </div>
           </div>
-          <p id="full-message-text" className="FullMessage__Text">
+          <p id="full-message-text" className={b('text').toString()}>
             {data.text}
           </p>
         </div>

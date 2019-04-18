@@ -1,3 +1,1 @@
-import MailBox from './mail-box';
-
-export default MailBox;
+export { default } from './mail-box';

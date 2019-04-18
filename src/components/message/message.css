@@ -1,4 +1,4 @@
-.Message {
+.message {
   min-width: 500px;
   width: initial;
   height: 40px;
@@ -6,17 +6,17 @@
   border-bottom: solid 1px #e2e2e2;
 }
 
-.Message__Content {
+.message__content {
   margin-left: 20px;
 }
 
-.Message__Check {
+.message__check {
   display: inline-block;
   vertical-align: middle;
   position: absolute;
 }
 
-.Message__Sender {
+.message__sender {
   display: inline-block;
   vertical-align: middle;
   margin-left: 7px;
@@ -26,13 +26,13 @@
   text-overflow: ellipsis;
 }
 
-.Message__SenderPicture {
+.message__sender-picture {
   margin-top: 1px;
   vertical-align: middle;
   clip-path: circle(50%);
 }
 
-.Message__SenderName {
+.message__sender-name {
   display: inline;
   margin-left: 6px;
   font-family: HelveticaNeue, sans-serif;
@@ -47,7 +47,7 @@
   text-overflow: ellipsis;
 }
 
-.Message__TextInner {
+.message__text-inner {
   position: absolute;
   padding-top: 12px;
   min-width: 160px;
@@ -64,27 +64,38 @@
   text-overflow: ellipsis;
 }
 
-.Message__TextInner_NotRead {
+.message__text-inner_notread {
   font-weight: bold;
 }
 
-.Message__SenderName_NotRead {
+.message__sender-name_notread {
   font-weight: bold;
 }
 
-.Message__ReadMark {
+.message__read-mark {
   display: inline-block;
   vertical-align: middle;
   margin-top: 2px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
 }
 
-.Message__Text {
+.message__read-mark_read_false {
+  background-color: #6287bd;
+}
+
+.message__read-mark_read_true {
+  background-color: white;
+}
+
+.message__text {
   width: 300px;
   display: inline;
   vertical-align: middle;
 }
 
-.Message__Date {
+.message__date {
   float: right;
   width: 80px;
   display: inline-block;
@@ -101,7 +112,7 @@
   white-space: nowrap;
 }
 
-.Message_NewMessage {
+.message_new {
   animation-name: new-message;
   animation-duration: 2s;
   animation-fill-mode: backwards;
@@ -116,9 +127,9 @@
   }
 }
 
-.Message_DeletedMessage {
+.message_deleted {
   animation-name: delete-message;
-  animation-duration: 0.5s;
+  animation-duration: 0.37s;
   animation-fill-mode: forwards;
 }
 

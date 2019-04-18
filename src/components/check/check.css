@@ -1,4 +1,4 @@
-.Check__Box {
+.check__box {
   width: 15px;
   height: 15px;
   position: absolute;
@@ -9,18 +9,18 @@
   background-color: #ffffff;
 }
 
-.Check__Input {
+.check__input {
   position: absolute;
   -webkit-appearance: none;
 }
 
-.Check__Box:after {
+.check__box:after {
   content: "";
   position: absolute;
   display: none;
 }
 
-.Check .Check__Box:after {
+.check .check__box:after {
   left: 5px;
   top: 1px;
   width: 3px;
@@ -32,10 +32,19 @@
   transform: rotate(45deg);
 }
 
-.Check input:checked ~ .Check__Box {
+.check input:checked ~ .check__box {
   background-color: #999999;
 }
 
-.Check input:checked ~ .Check__Box:after {
+.check input:checked ~ .check__box:after {
   display: block;
+}
+
+.check input:disabled:checked ~ .check__box {
+  background-color: #CCCCCC;
+  border-color: rgba(0, 0, 0, 0.05);
+}
+
+.check input:disabled ~ .check__box {
+  border-color: rgba(0, 0, 0, 0.09);
 }

@@ -1,3 +1,1 @@
-import AsideMenu from './aside-menu';
-
-export default AsideMenu;
+export { default } from './aside-menu';

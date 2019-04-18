@@ -1,4 +1,4 @@
-.Search {
+.search {
   top: 17px;
   left: 220px;
   width: 301px;
@@ -16,7 +16,7 @@
   margin-bottom: 5px;
 }
 
-.Search__text {
+.search__text {
   float: left;
   vertical-align: middle;
   line-height: 26px;
@@ -29,7 +29,7 @@
   color: #000000;
 }
 
-.Search__close {
+.search__close {
   float: right;
   padding-right: 10px;
   opacity: 0.55;

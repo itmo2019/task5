@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
+import { block } from 'bem-cn';
 
 import './search.css';
+
+const b = block('search');
 
 class Search extends Component {
   render() {
     return (
-      <div className="Search">
-        <input className="Search__text" placeholder="Поиск" />
-        <button type="button" className="Search__close">
+      <div className={b().toString()}>
+        <input className={b('text').toString()} placeholder="Поиск" />
+        <button type="button" className={b('close').toString()}>
           ╳
         </button>
       </div>
