@@ -1,6 +1,6 @@
 import React from 'react';
 import './MessagesBox.css';
-import { Message } from '../message/Message';
+import { Message } from './message/Message';
 
 export class MessagesBox extends React.Component {
   constructor(props) {
@@ -36,16 +36,14 @@ export class MessagesBox extends React.Component {
           </div>
         ) : (
           <div className="messages-box">
-            {this.props.messages.map(messageData => {
-              return (
-                <Message
-                  key={messageData.id}
-                  messageData={messageData}
-                  openMessage={this.openMessage}
-                  checkboxHandler={this.props.checkboxHandler}
-                />
-              );
-            })}
+            {this.props.messages.map(messageData => (
+              <Message
+                key={messageData.id}
+                messageData={messageData}
+                openMessage={this.openMessage}
+                checkboxHandler={this.props.checkboxHandler}
+              />
+            ))}
           </div>
         )}
       </div>

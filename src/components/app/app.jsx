@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
 import './app.css';
-import { Header } from '../header/Header';
-import { MainBlock } from '../main-block/MainBlock';
-import { Menu } from '../menu/Menu';
+import { Header } from './header/Header';
+import { MainBlock } from './main-block/MainBlock';
+import { Menu } from './menu/Menu';
 import * as utils from './message-templates';
 
 const maxMessageInterval = 10 * 60 * 1000;
 const testMaxMessageInterval = 100;
 const timeMessageInterval = 5 * 60 * 1000;
-const maxMessagePerPage = 5;
+const maxMessagePerPage = 30;
 
 export class App extends Component {
   static createMessageValues(
@@ -79,9 +79,8 @@ export class App extends Component {
     App.generateMessage = App.generateMessage.bind(this);
     this.getTimeForMessage = this.getTimeForMessage.bind(this);
     this.showHiddenMessages = this.showHiddenMessages.bind(this);
-    const self = this;
-    setTimeout(function callNewMail() {
-      self.newMail();
+    setTimeout(() => {
+      this.newMail();
     }, App.getRandomArbitrary(10, testMaxMessageInterval));
   }
 
@@ -100,16 +99,9 @@ export class App extends Component {
 
   checkboxHandler = id => {
     this.setState(prevState => {
-      let i = -1;
-      for (let k = 0; k < prevState.messages.length; k++) {
-        const curMessage = prevState.messages[k];
-        if (curMessage.id.toString() === id) {
-          i = k;
-          break;
-        }
-      }
+      const msgIndex = prevState.messages.findIndex(curMessage => curMessage.id.toString() === id);
       const newMessages = prevState.messages;
-      newMessages[i].isChecked = !newMessages[i].isChecked;
+      newMessages[msgIndex].isChecked = !newMessages[msgIndex].isChecked;
       return { messages: newMessages };
     });
   };
@@ -173,9 +165,8 @@ export class App extends Component {
       }, 10);
       return { messages: newMessages };
     });
-    const self = this;
-    setTimeout(function callNewMail() {
-      self.newMail();
+    setTimeout(() => {
+      this.newMail();
     }, timeForMessage);
   }
 

@@ -36,7 +36,7 @@ export class Message extends React.Component {
           id={messageData.id}
           onChange={this.handleChange}
         />
-        <div className="sender-img message__sender-img">{messageData.firstLetterSender}</div>
+        <div className="message__sender-img">{messageData.firstLetterSender}</div>
         <div className="message__sender">{messageData.sender}</div>
         <span className="message__unread-circle" />
         <div className="message__theme">{messageData.theme}</div>

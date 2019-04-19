@@ -8,20 +8,17 @@
   transition: opacity 1s, height 1s;
 }
 
-.sender-img {
+.message__sender-img {
+  display: inline-block;
   width: 30px;
   height: 30px;
+  margin-right: 10px;
+  margin-left: 15px;
   background-color: #f33;
   border-radius: 100px;
   color: #fff;
   line-height: 30px;
   text-align: center;
-}
-
-.message__sender-img {
-  display: inline-block;
-  margin-right: 10px;
-  margin-left: 15px;
   vertical-align: middle;
 }
 
