@@ -1,9 +1,12 @@
 import React from 'react';
+import { block } from 'bem-cn';
 
 import './folders.css';
 
+const b = block('folders')
+
 function Folders() {
-    return  <div className="folders">
+    return  <div className={b()}>
     			<NewLetter/>
                 <Folder name="Входящие"/>
                 <Folder name="Отправленные"/>
@@ -15,11 +18,11 @@ function Folders() {
 }
 
 function Folder({name}) {
-	return  <button className="folders__button">{name}</button>
+	return  <button className={b('button')}>{name}</button>
 }
 
 function NewLetter() {
-	return  <button className="folders__new_letter">Написать</button>
+	return  <button className={b('new_letter')}>Написать</button>
 }
 
 export default Folders;

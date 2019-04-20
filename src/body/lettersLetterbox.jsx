@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Letterbox from './letterbox'
+import Letterbox from './letterbox';
+import { b } from './letters';
 
 import './lettersLetterbox.css';
 
@@ -19,17 +20,19 @@ export default class LettersLetterbox extends Component {
 	}
 
 	render() {
-	    return  <div className="letters__letterbox_wrapper">
-					<div className="letters__letterbox_relative_wrapper">
+	    return  <div className={b('letterbox_wrapper')}>
+					<div className={b('letterbox_relative_wrapper')}>
 						<LetterInvisibleCheckbox/>
 						<Letter text={this.state.letterText} sender={this.state.letterSender}/>
 						<Letterbox 
 							updateLetter={this.updateLetterText}
 							uncheckSelectAllCheckbox={this.props.uncheckSelectAllCheckbox}
-							setSelectAll={this.props.setSelectAll}
-							setUnselectAll={this.props.setUnselectAll}
-							setNewMail={this.props.setNewMail}
-							setDeleteLetters={this.props.setDeleteLetters}
+							messages={this.props.messages}
+							setMessageAppeared={this.props.setMessageAppeared}
+							setLetterRef={this.props.setLetterRef}
+							setMessageRead={this.props.setMessageRead}
+							MAX_MESSAGES={this.props.MAX_MESSAGES}
+							removeLetter={this.props.removeLetter}
 						/>
 					</div>
 				</div>;

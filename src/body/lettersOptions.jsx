@@ -1,10 +1,11 @@
 import React from 'react';
+import { b } from './letters';
 
 import './lettersOptions.css';
 
 function LettersOptions(props) {
-    return  <div className="letters__options_footer_wrapper">
-	    		<div className="letters__options">
+    return  <div className={b('options_footer_wrapper')}>
+	    		<div className={b('options')}>
 	    			<SelectAllCheckbox
 	    				clickSelectAll={props.clickSelectAll}
 	    				isChecked={props.isChecked}
@@ -12,16 +13,16 @@ function LettersOptions(props) {
 	    			<Option name="Переслать"/>
 	    			<Option name="Удалить" callback={props.deleteLetters}/>
 	    			<Option name="Это спам!"/>
-	    			<Option name="Прочитано"/>
+	    			<Option name="Прочитано" callback={props.markAsRead}/>
 	    			<Option name="Получить еще одно письмо (не сбрасывает таймер)" callback={props.newMail}/>
 	            </div>
 	        </div>;  
 }
 
 function SelectAllCheckbox(props) {
-	return  <div className="letters__option">
+	return  <div className={b('option')}>
 				<input 
-					className="letters__check_all_checkbox" 
+					className={b('check_all_checkbox')}
 					type="checkbox"
 					checked={props.isChecked}
 					onChange={props.clickSelectAll}
@@ -30,7 +31,7 @@ function SelectAllCheckbox(props) {
 }
 
 function Option({name, callback}) {
-	return  <button className="letters__option" onClick={callback}>{name}</button>;
+	return  <button className={b('option')} onClick={callback}>{name}</button>;
 }
 
 export default LettersOptions;

@@ -1,9 +1,10 @@
 import React from 'react';
+import { b } from './header'
 
 import './headerLogo.css';
 
 function HeaderLogo() {
-    return  <div className="header__logo">
+    return  <div className={b('logo')}>
                 <HeaderLogoLine/>
                 <HeaderLogoLine/>
                 <HeaderLogoLine/>
@@ -11,7 +12,7 @@ function HeaderLogo() {
 }
 
 function HeaderLogoLine() {
-	return  <div className="header__logo__line">
+	return  <div className={b('logo', 'line')}>
 			</div>
 }
 

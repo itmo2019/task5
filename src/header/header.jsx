@@ -1,9 +1,12 @@
 import React from 'react';
+import { block } from 'bem-cn';
 import HeaderLogo from './headerLogo'
 import HeaderImageYandex, { HeaderImageMail } from './headerImages'
 import HeaderSearch from './headerSearch'
 
 import './header.css';
+
+const b = block('header')
 
 function HeaderWrapper() {
     return  <div className="header_wrapper">
@@ -12,7 +15,7 @@ function HeaderWrapper() {
 }
 
 function Header() {
-	return <div className="header">
+	return <div className={b()}>
 		       <HeaderLogo/>
 		       <HeaderImageYandex/>
 		       <HeaderImageMail/>
@@ -21,3 +24,4 @@ function Header() {
 }
 
 export default HeaderWrapper;
+export { b }; 
