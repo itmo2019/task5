@@ -1,5 +1,73 @@
-.App {
-  margin: 8px 18px;
+.mail-page {
+  margin-top: 8px;
+  margin-right: 18px;
+  margin-bottom: 8px;
+  margin-left: 18px;
   background: #e5eaf0;
   white-space: nowrap;
+}
+
+.header {
+  position: relative;
+
+  height: 32px;
+  letter-spacing: -1em;
+}
+
+.header__menu {
+  display: inline-block;
+  margin-top: -6px;
+  vertical-align: middle;
+}
+
+.header__logo {
+  display: inline-block;
+  width: 153px;
+  height: 31px;
+  margin-left: 11px;
+  vertical-align: middle;
+}
+
+.search {
+  position: absolute;
+  right: 179px;
+  left: 184px;
+
+  display: inline-block;
+  min-width: 301px;
+  height: 32px;
+  margin-left: 114px;
+  vertical-align: middle;
+}
+
+.search_textfield {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  padding: 1px 30px 1px 16px;
+
+  border: none;
+  background: #f2f5f8;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  color: black;
+
+  font: 15px 'Helvetica Neue', sans-serif;
+  outline: none;
+}
+
+.search_textfield::placeholder {
+  color: black;
+  opacity: 0.5;
+}
+
+.search_textfield::-webkit-search-cancel-button {
+  display: inline-block;
+  cursor: pointer;
+}
+
+.header__logo-lines {
+  display: inline-block;
+  width: 20px;
+  height: 17px;
+  vertical-align: middle;
 }

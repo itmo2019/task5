@@ -1,0 +1,33 @@
+.messages-options {
+  padding: 10px 20px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.messages-options__button-holder {
+  display: inline-block;
+  list-style-type: none;
+}
+
+.messages-options__button-holder:first-child {
+  margin-right: -5px;
+}
+
+.messages-options__button-holder:not(:first-child) {
+  margin-left: 25px;
+  color: #ccc;
+  font-weight: 500;
+}
+
+.messages-options__button {
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  background-color: inherit;
+  color: #cccccc;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  outline: none;
+}

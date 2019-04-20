@@ -1,0 +1,114 @@
+.letters-window {
+  position: absolute;
+  top: 42px;
+  right: 10px;
+  bottom: 4px;
+  left: 18px;
+
+  margin-top: 13px;
+}
+
+.letter-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 159px;
+
+  display: inline-block;
+  overflow: hidden;
+  min-width: 700px;
+  min-height: 350px;
+  margin: 0 10px 10px;
+  background-color: white;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.34);
+  font-family: 'Helvetica Neue', sans-serif;
+  vertical-align: top;
+}
+
+.letter-box__hr {
+  margin: 0;
+  opacity: 0.4;
+}
+
+.letter-box__contacts-holder {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.letter-box__letter-list {
+  position: absolute;
+  top: 40px;
+  bottom: 25px;
+
+  overflow: auto;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+}
+
+.letter-box__letter {
+  z-index: 1;
+  list-style-type: none;
+}
+
+.contacts {
+  padding: 5px 20px;
+  font: 11px 'Helvetica Neue Light', sans-serif;
+  text-align: right;
+}
+
+.contacts__item {
+  display: inline-block;
+  margin-left: 25px;
+  color: #9e9e9e;
+  font-weight: 700;
+  vertical-align: center;
+}
+
+.opened-letter {
+  position: absolute;
+  top: 40px;
+  bottom: 25px;
+
+  overflow: auto;
+  width: 100%;
+  background-color: white;
+}
+
+.opened-letter_visible {
+  position: absolute;
+  z-index: 2;
+  top: 40px;
+  bottom: 25px;
+
+  overflow: auto;
+  width: 100%;
+  background-color: white;
+}
+
+.opened-letter__content {
+  padding: 20px;
+  font-family: sans-serif;
+  font-size: 14px;
+  white-space: normal;
+}
+
+.opened-letter__cross {
+  margin-top: -5px;
+  margin-right: 5px;
+  margin-bottom: 0;
+  margin-left: 0;
+  color: black;
+  cursor: pointer;
+  float: right;
+  font-size: 35px;
+}
+
+.opened-letter__cross:hover {
+  color: blue;
+}

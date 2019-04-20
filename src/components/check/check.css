@@ -1,9 +1,9 @@
-.MainCheck {
+.check {
   width: 16px;
   height: 16px;
 }
 
-.MainCheck__Input {
+.check__input {
   position: absolute;
   top: 1px;
   left: 10px;
@@ -16,7 +16,7 @@
   outline: none;
 }
 
-.MainCheck__Box {
+.check__box {
   position: absolute;
 
   width: 16px;
@@ -28,12 +28,7 @@
   cursor: pointer;
 }
 
-.MainCheck__Input:checked ~ .MainCheck__Box {
-  border-color: rgba(153, 122, 0, 0.5);
-  box-shadow: inset 0 90px #ffeba0;
-}
-
-.MainCheck__Box:after {
+.check__box:after {
   position: absolute;
   top: 0;
   left: 0;
@@ -44,11 +39,17 @@
 
   border-right: 2px solid;
   border-bottom: 2px solid;
-  color: #000;
+  color: black;
   content: '';
+  transform: rotate(45deg);
   visibility: hidden;
 }
 
-.MainCheck__Input:checked ~ .MainCheck__Box:after {
+.check__box_checked {
+  border-color: rgba(153, 122, 0, 0.5);
+  box-shadow: inset 0 90px #ffeba0;
+}
+
+.check__box_checked:after {
   visibility: inherit;
 }

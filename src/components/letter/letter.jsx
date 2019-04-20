@@ -1,59 +1,70 @@
 import React from 'react';
-
-import Checkbox from '../checkbox/checkbox';
+import Check from '../check/check';
 
 import './letter.css';
-import '../letterBox/letterBox.css';
+import '../lettersWindow/lettersWindow.css';
 
-export default class Letter extends React.Component {
+const DELAY_TIME = 20;
+
+class Letter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      className: `Letter ${props.className}`,
-      hidden: false,
-      setCheckedFalse: undefined
+      hasAddAnimation: false
     };
-
-    this.setHidden = this.setHidden.bind(this);
-
-    props.updateSetHidden(this.setHidden);
   }
 
   componentDidMount() {
     const self = this;
-    function animate() {
-      self.setState(state => {
-        return { className: `Letter_Added ${state.className}` };
-      });
+    function animateImpl() {
+      self.setState({ hasAddAnimation: true });
     }
-    setTimeout(animate, 20);
+    this.animationTimeoutId = setTimeout(animateImpl, DELAY_TIME);
   }
 
-  setHidden(value) {
-    this.setState({ hidden: value });
-    this.state.setCheckedFalse();
+  componentWillUnmount() {
+    clearTimeout(this.animationTimeoutId);
   }
-
-  updateSetCheckedFalse = value => {
-    this.setState({ setCheckedFalse: value });
-  };
 
   render() {
+    const {
+      date,
+      openMessage,
+      isLetterHidden,
+      hasRemoveAnimation,
+      senderPic,
+      senderName,
+      messageText
+    } = this.props;
+    const { hasAddAnimation } = this.state;
+    let liClassName = '';
+    if (hasAddAnimation && hasRemoveAnimation) {
+      liClassName =
+        'letter letter-box__letter letter_has-add-animation letter_has-remove-animation';
+    } else if (hasAddAnimation && !hasRemoveAnimation) {
+      liClassName = 'letter letter-box__letter letter_has-add-animation';
+    } else if (!hasAddAnimation && hasRemoveAnimation) {
+      liClassName = 'letter letter-box__letter letter_has-remove-animation';
+    } else {
+      liClassName = 'letter letter-box__letter';
+    }
     return (
-      <li className={this.state.className} hidden={this.state.hidden}>
-        <ul className="Letter__Line">
-          <li className="Letter__Item">
-            <Checkbox updateSetCheckedFalse={this.updateSetCheckedFalse} />
+      <li className={liClassName} hidden={isLetterHidden}>
+        <ul className="letter__line">
+          <li className="letter__item">
+            <Check {...this.props} />
           </li>
-          <li className="Letter__Item Letter__Author">{this.props.authorLogo}</li>
-          <li className="Letter__Item Letter__AuthorName">{this.props.authorName}</li>
-          <li className="Letter__Item Letter__ReadMark_Unread" />
-          <li className="Letter__Item Letter__Topic">{this.props.letterContent}</li>
-          <li className="Letter__Item Letter__Date">{this.props.date}</li>
+          <li className="letter__item letter__sender-pic">{senderPic}</li>
+          <li className="letter__item letter__sender-name">{senderName}</li>
+          <li className="letter__item letter__read-circle" />
+          <li className="letter__item letter__text">{messageText}</li>
+          <li className="letter__item letter__date">{date}</li>
         </ul>
-        <a className="Letter__LinkOpen" onClick={this.props.handleMailClick} />
-        <hr className="LetterBox__Hr" />
+        <a className="letter__open-trigger" onClick={openMessage} />
+        <hr className="letter-box__hr" />
       </li>
     );
   }
 }
+
+export default Letter;

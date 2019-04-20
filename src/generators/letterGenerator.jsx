@@ -1,17 +1,8 @@
-import sender1 from '../resources/images/stolipin.png';
-import sender2 from '../resources/images/stolypin-2.png';
-import sender3 from '../resources/images/coat-of-arms.png';
-
 import '../components/letter/letter.css';
 
-const minWordsInLetter = 100;
-const maxWordsInLetter = 200;
-const minWordsInSentence = 2;
-const maxWordsInSentence = 15;
-
-function getRandomFromRange(min, max) {
-  return Math.round(Math.random() * (max - min) + min);
-}
+import logo1 from '../resources/images/senders_pics/coat-of-arms.png';
+import logo2 from '../resources/images/senders_pics/stolipin.png';
+import logo3 from '../resources/images/senders_pics/stolypin-2.png';
 
 const citations = [
   'Им',
@@ -365,6 +356,15 @@ const citations = [
   'распада'
 ];
 
+const minWordsInLetter = 100;
+const maxWordsInLetter = 200;
+const minWordsInSentence = 2;
+const maxWordsInSentence = 15;
+
+function getRandomFromRange(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
 function letterReady(letter, expectedCount) {
   return letter.split(' ').length >= expectedCount;
 }
@@ -387,13 +387,13 @@ function chooseWeighted(arr, weights) {
 }
 
 function addCommas(words) {
+  const newWords = words;
   let index = 0;
-  const wordsCopy = words;
   while (index < words.length - 2) {
-    wordsCopy[index] += ',';
+    newWords[index] += ',';
     index += getRandomFromRange(2, 15);
   }
-  return wordsCopy;
+  return newWords;
 }
 
 function generateWords() {
@@ -446,18 +446,20 @@ const possibleSenders = [
   'Пётр Аркадиевич Столыпин',
   'Председатель Совета министров Российской империи',
   'Министр внутренних дел Российской империи',
-  'статс-секретарь Его Императорского Величества',
+  'Статс-секретарь Его Императорского Величества',
   'Яндекс.Столыпин'
 ];
 
-const senderPics = [sender1, sender2, sender3];
-
-function generateAuthorName() {
-  return possibleSenders[getRandomFromRange(0, possibleSenders.length - 1)];
+function getSender() {
+  const index = getRandomFromRange(0, possibleSenders.length - 1);
+  return possibleSenders[index];
 }
 
-function generateAuthorLogo() {
-  return senderPics[getRandomFromRange(0, senderPics.length - 1)];
+const possibleLogos = [logo1, logo2, logo3];
+
+function getLogo() {
+  const index = getRandomFromRange(0, possibleLogos.length - 1);
+  return possibleLogos[index];
 }
 
-export { generateAuthorName, generateAuthorLogo, getRandomFromRange, generateLetter };
+export { getSender, getLogo, generateLetter, getRandomFromRange };
