@@ -20,7 +20,7 @@ function minutesToMillis(minutes) {
 const MIN_NEW_LETTER_TIMING = 10;
 const MAX_NEW_LETTER_TIMING = minutesToMillis(10);
 const TIME_WINDOW_SIZE = minutesToMillis(5);
-const MAX_MAIL_LIST_SIZE = 5;
+const MAX_MAIL_LIST_SIZE = 30;
 const REMOVE_LETTER_TIME = 500;
 const DELAY_TIME = 20;
 const ivanovText =
