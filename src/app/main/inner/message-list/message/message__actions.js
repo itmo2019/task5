@@ -1,7 +1,7 @@
-import composer from './message__composer';
+// import composer from './message__composer';
 import CroissantImage from './message__image.png';
 
-const TIME_INTERVAL = 300000;
+// const TIME_INTERVAL = 300000;
 
 export function checkAll(toolbarCheckbox) {
   const checkboxes = document.querySelectorAll('.checkbox');
@@ -10,25 +10,25 @@ export function checkAll(toolbarCheckbox) {
   }
 }
 
-export async function newMail() {
-  const mailList = document.getElementById('messages');
+// export async function newMessage() {
+//   const mailList = document.getElementById('messages');
+//
+//   const mail = document.createElement('section');
+//   mail.innerHTML = await composer();
+//   mail.firstChild.id = 'message__id';
+//
+//   mailList.insertBefore(mail, mailList.firstChild);
+//
+//   const GC = document.getElementById('message__id');
+//   setTimeout(() => {
+//     GC.classList.add('message_show');
+//   }, 20);
+//   setTimeout(() => {
+//     GC.removeAttribute('id');
+//   }, 500);
+// }
 
-  const mail = document.createElement('section');
-  mail.innerHTML = await composer();
-  mail.firstChild.id = 'message__id';
-
-  mailList.insertBefore(mail, mailList.firstChild);
-
-  const GC = document.getElementById('message__id');
-  setTimeout(() => {
-    GC.classList.add('message_show');
-  }, 20);
-  setTimeout(() => {
-    GC.removeAttribute('id');
-  }, 500);
-}
-
-export function deleteMail() {
+export function deleteMessage() {
   const checkboxes = document.querySelectorAll('.checkbox');
   for (let i = 1; i < checkboxes.length; i++) {
     if (checkboxes[i].checked === true && i < 30) {
@@ -43,13 +43,9 @@ export function deleteMail() {
   checkAll(checkboxes[0]);
 }
 
-function randomMailIncoming() {
-  const randomTimer = Math.random() * (TIME_INTERVAL - 10) + 10;
-  setTimeout(newMail, randomTimer);
-  setTimeout(randomMailIncoming, TIME_INTERVAL - randomTimer);
-}
 
-randomMailIncoming();
+
+// randomMailIncoming();
 
 let text = 'no text';
 let author = 'no author';

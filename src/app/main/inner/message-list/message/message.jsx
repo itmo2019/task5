@@ -1,64 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './message.css';
-import {
-  randomizeAuthor,
-  randomizeText,
-  randomizeDate,
-  randomizeNumber
-} from './message__composer';
+import Checkbox from '../../checkbox';
 
-export function formMessagePage(parent) {
-  const prg = parent.parentElement;
-  prg.id = 'abracadabra';
-  const text = document.querySelector('.message__subject').textContent;
-  const author = document.parentElement.querySelector('.message__contact').textContent;
-  document.querySelector('.message__page').remove();
-  const content = document.querySelector('.message__content');
-  const page = document.createElement('div');
-  page.classList.add('message__page');
-  const pageAuthor = document.createElement('p');
-  pageAuthor.textContent = `От кого: ${author}`;
-  const pageText = document.createElement('p');
-  pageText.innerHTML = text;
-  page.innerHTML = pageAuthor.outerHTML + pageText.outerHTML;
-  content.appendChild(page);
-}
-
-export default class Message extends Component {
-  logoSource = `message__logo-${randomizeNumber(0, 3)}.png`;
-
-  render() {
-    const result = (
-      <section>
-        {/* <div className="message message_show message_not-read"> */}
-        {/*  <label> */}
-        {/*    <input className="checkbox checkbox_message" type="checkbox" /> */}
-        {/*  </label> */}
-        {/*  <label htmlFor="message-list__cutter" onClick={formCroissant}> */}
-        {/*    <img className="message__logo" src={Logo} /> */}
-        {/*    <div className="message__contact">Яндекс.Паспорт</div> */}
-        {/*    <div className="message__read-icon" /> */}
-        {/*    <div className="message__subject">Доступ к аккаунту восстановлен</div> */}
-        {/*    <div className="message__date">6 авг</div> */}
-        {/*  </label> */}
-        {/* </div> */}
-        {/* <hr className="hr" /> */}
-        <div className="message message_not-read">
-          <label>
-            <input className="checkbox checkbox_message" type="checkbox" />
-          </label>
-          <label htmlFor="message-list__cutter" onClick={formMessagePage(this)}>
-            <img className="message__logo" src={this.logoSource} />
-            <div className="message__contact"> {randomizeAuthor()}</div>
-            <div className="message__read-icon" />
-            <div className="message__subject"> {randomizeText()} </div>
-            <div className="message__date">{randomizeDate()}</div>
-          </label>
-        </div>
-        <hr className="hr" />
-      </section>
-    );
-    return result;
+export default function Message(props) {
+  let bold;
+  if (!props.isRead) {
+    bold = 'message message_show message_not-read';
+  } else {
+    bold = 'message message_show';
   }
+
+  return (
+    <section>
+      <div className={bold}>
+        <Checkbox
+          id={props.messageId}
+          className="checkbox checkbox_message"
+          checked={props.isChecked}
+          onClick={props.onClick}
+        />
+        <span
+          className="message__body"
+          onClick={() => {
+            props.handleOpen(props.messageId);
+          }}
+        >
+          <img alt="message logo" className="message__logo" src={props.image} />
+          <div className="message__contact"> {props.contact}</div>
+          {!props.isRead ? (
+            <div className="message__read-icon" />
+          ) : (
+            <div className="message__read-icon message__read-icon_invisible" />
+          )}
+          <div className="message__subject"> {props.subject} </div>
+          <div className="message__date">{props.date}</div>
+        </span>
+      </div>
+      <hr className="hr" />
+    </section>
+  );
 }

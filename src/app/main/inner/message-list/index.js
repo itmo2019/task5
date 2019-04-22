@@ -1,3 +1,3 @@
-import MessageList from './message-list';
+import  MessageList  from './message-list';
 
 export default MessageList;

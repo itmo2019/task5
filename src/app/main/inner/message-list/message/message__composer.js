@@ -1,3 +1,7 @@
+import logo1 from './message__logo-1.png';
+import logo2 from './message__logo-2.png';
+import logo3 from './message__logo-3.png';
+
 const messageContact = [
   'Яндекс.Облако',
   'Яндекс.Переводчик',
@@ -13,8 +17,19 @@ const messageContact = [
   'Яндекс.Алиса'
 ];
 
-export function randomizeArrayNumber(text) {
-  return Math.floor(Math.random() * text.length);
+const messageImage = [
+  'https://ae01.alicdn.com/kf/HTB13moiPpXXXXXmaXXXq6xXFXXXA/Cammitever-55.jpg_640x640.jpg',
+  logo1,
+  logo2,
+  logo3
+];
+
+function randomizeArrayNumber(array) {
+  return Math.floor(Math.random() * array.length);
+}
+
+export function randomizeImage() {
+  return messageImage[randomizeArrayNumber(messageImage)];
 }
 
 export function randomizeNumber(from, to) {
@@ -52,35 +67,3 @@ export async function randomizeText() {
 export function randomizeAuthor() {
   return messageContact[randomizeArrayNumber(messageContact)];
 }
-
-export default async function composer() {
-  const text = `<div class="message message_not-read" id="message__id">
-                  <label>
-                    <input class="checkbox checkbox_message" type="checkbox" />
-                  </label>
-                  <label for="message-list__cutter" onclick="formMessagePage(this)">
-                    <img class="message__logo" src="./message__logo-${randomizeNumber(0, 3)}.png" />
-                    <div class="message__contact">${randomizeAuthor}</div>
-                    <div class="message__read-icon"></div>
-                    <div class="message__subject">${await randomizeText()}</div>
-                    <div class="message__date">${randomizeDate()}</div>
-                  </label>
-                </div>
-                <hr class="hr" />`;
-  return text;
-}
-
-// async function composer2() {
-//     let mail = document.getElementById("message__template");
-//     let backup = mail.cloneNode();
-//     document.getElementById("message__template").querySelector("message__logo").setAttribute('src', "body/main/inner/message-list/message/message__logo-"+randomizeNumber(0, 3)+".png");
-//     document.getElementById("message__template").querySelector(".message__contact").innerHTML = messageContact[randomizeArrayNumber(messageContact)];
-//     // ' + messageContact[randomizeArrayNumber(messageContact)] + '
-//     document.getElementById("message__template").querySelector(".message__subject").innerHTML = await randomizeText();
-//     // ' + randomizeText(messageTextArray) + '
-//     document.getElementById("message__template").querySelector(".message__date").innerHTML = randomizeDate();
-//     // ' + randomizeDate() + '
-//     let result = mail.innerHTML;
-//     mail = backup;
-//     return result;
-// }

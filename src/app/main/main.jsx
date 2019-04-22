@@ -6,12 +6,12 @@ import LeftPanel from './left-panel';
 import './main.css';
 
 function Main() {
-  return(
+  return (
     <main className="main">
       <LeftPanel />
       <Inner />
     </main>
-  )
+  );
 }
 
 export default Main;
