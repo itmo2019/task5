@@ -21,7 +21,7 @@ export default function Toolbar(props) {
       <Checkbox
         className="checkbox"
         id="checkbox__toolbar"
-        tick={props.isAllSelected}
+        checked={props.isAllSelected}
         onClick={props.onClick}
       />
       <ToolbarButton onClick={props.newMail} value="Новое письмо" />

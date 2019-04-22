@@ -62,37 +62,38 @@ export default class Inner extends React.Component {
   }
 
   selectAll() {
-    const messages = this.state.messages.map(message => {
-      message.isChecked = this.state.isAllSelected;
+    const { messages } = this.state.messages;
+    this.state.messages.forEach(message => {
+      messages[message.id].isChecked = this.state.isAllSelected;
     });
     this.setState({ messages });
   }
 
-  onCheckBoxChange(checkId, isChecked) {
-    const isAllChecked = checkId === 'all' && isChecked;
-    const isAllUnChecked = checkId === 'all' && !isChecked;
-
-    const messages = this.state.messages.map(message => {
-      if (isAllChecked || message.id === checkId) {
-        return Object.assign({}, message, {
-          checked: isChecked
-        });
-      }
-      if (isAllUnChecked) {
-        return Object.assign({}, message, {
-          checked: false
-        });
-      }
-
-      return message;
-    });
-
-    const isAllSelected = messages.findIndex(item => item.checked === false) === -1 || isAllChecked;
-
-    this.setState({
-      isAllSelected
-    });
-  }
+  // onCheckBoxChange(checkId, isChecked) {
+  //   const isAllChecked = checkId === 'all' && isChecked;
+  //   const isAllUnChecked = checkId === 'all' && !isChecked;
+  //
+  //   const messages = this.state.messages.map(message => {
+  //     if (isAllChecked || message.id === checkId) {
+  //       return Object.assign({}, message, {
+  //         checked: isChecked
+  //       });
+  //     }
+  //     if (isAllUnChecked) {
+  //       return Object.assign({}, message, {
+  //         checked: false
+  //       });
+  //     }
+  //
+  //     return message;
+  //   });
+  //
+  //   const isAllSelected = messages.findIndex(item => item.checked === false) === -1 || isAllChecked;
+  //
+  //   this.setState({
+  //     isAllSelected
+  //   });
+  // }
 
   async randomMailIncoming() {
     const randomTimer = Math.random() * (300000 - 10) + 10;

@@ -8,24 +8,27 @@ export default class MessageList extends React.Component {
     super(props);
 
     this.state = {
-      openedMessageId: null
+      openedMessageId: null,
+      isMessageOpen: false
     };
   }
 
   onOpenedMessageId(id) {
     this.setState({
+      isMessageOpen: true,
       openedMessageId: id
     });
   }
 
   onCloseMessage() {
     this.setState({
+      isMessageOpen: false,
       openedMessageId: null
     });
   }
 
   render() {
-    return !this.state.openedMessageId ? (
+    return !this.state.isMessageOpen ? (
       <div className="message-list">
         {this.props.messages.map(message => {
           return (
@@ -54,14 +57,10 @@ export default class MessageList extends React.Component {
           >
             ✖
           </button>
-          {this.props.messages.map(message => {
-            return (
-              <div key={this.state.openedMessageId} className="message__page">
-                <p>От кого: {message.contact}</p>
-                <p>{message.text}</p>
-              </div>
-            );
-          })}
+          <div className="message__page">
+            <p>От кого: {this.props.messages[this.state.openedMessageId].contact}</p>
+            <p>{this.props.messages[this.state.openedMessageId].text}</p>
+          </div>
         </section>
       </div>
     );

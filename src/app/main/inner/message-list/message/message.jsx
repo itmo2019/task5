@@ -18,7 +18,7 @@ export default function Message(props) {
           id={props.messageId}
           className="checkbox checkbox_message"
           checked={props.isChecked}
-          onClick={props.onClick}
+          onChange={props.onClick}
         />
         <span
           className="message__body"
