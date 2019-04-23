@@ -42,7 +42,7 @@ export default class MessageList extends React.Component {
               handleOpen={this.onOpenedMessageId.bind(this)}
               isRead={message.isRead}
               date={message.date}
-              onClick={this.props.onClick}
+              onChangeCheckBox={this.props.onChangeCheckBox}
             />
           );
         })}

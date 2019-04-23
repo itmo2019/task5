@@ -38,23 +38,17 @@ export default class Inner extends React.Component {
     this.randomMailIncoming();
   }
 
-  // checkAll() {
-  //   this.state.messages.forEach(message => {
-  //     message.isChecked = this.state.mainCheck;
-  //   });
-  //   this.setState(prevState => {
-  //     return {};
-  //   });
-  // }
-
-  checkForAllSelect() {
-    let counter = 0;
-    this.state.messages.forEach(message => {
-      if (message.isChecked === true) {
-        counter++;
-      }
-    });
-    if (this.state.messages.length === counter) {
+  onChangeCheckBox(id) {
+    const check = this.state.isCheckedIdList;
+    check[id] = !check[id];
+    this.setState({ isCheckedIdList: check });
+    // let counter = 0;
+    // this.state.messages.forEach(message => {
+    //   if (message.isChecked === true) {
+    //     counter++;
+    //   }
+    // });
+    if (this.state.messages.length === this.state.isCheckedIdList.length) {
       this.setState({ isAllSelected: true });
     } else {
       this.setState({ isAllSelected: false });
@@ -138,12 +132,15 @@ export default class Inner extends React.Component {
       <div className="inner">
         <Toolbar
           isAllSelected={this.state.isAllSelected}
-          onClick={this.selectAll.bind(this)}
+          onChangeCheckBox={this.selectAll.bind(this)}
           newMail={this.newMail.bind(this)}
           deleteMessage={this.deleteMessage.bind(this)}
           // setRead={setRead}
         />
-        <MessageList messages={this.state.messages} onClick={this.checkForAllSelect.bind(this)} />
+        <MessageList
+          messages={this.state.messages}
+          onChangeCheckBox={this.onChangeCheckBox.bind(this)}
+        />
         <Footer />
       </div>
     );

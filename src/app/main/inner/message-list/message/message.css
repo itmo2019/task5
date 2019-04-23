@@ -88,9 +88,12 @@
 }
 
 .message__close-button {
-    padding: 10px;
-    float: right;
-    cursor: pointer;
+  margin: 10px;
+  padding: 0;
+  float: right;
+  cursor: pointer;
+  border-color: transparent;
+  background-color: transparent;
 }
 
 .message_show {
