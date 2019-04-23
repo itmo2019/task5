@@ -35,7 +35,7 @@ export default class MessageList extends React.Component {
             <Message
               key={message.id}
               messageId={message.id}
-              isChecked={message.isChecked}
+              isChecked={this.props.isCheckedIdList[message.id]}
               image={message.image}
               contact={message.contact}
               subject={message.text}

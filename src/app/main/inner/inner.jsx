@@ -32,7 +32,7 @@ export default class Inner extends React.Component {
         }
       ],
       isAllSelected: false,
-      isCheckedIdList: []
+      isCheckedIdList: [true]
     };
 
     this.randomMailIncoming();
@@ -140,6 +140,7 @@ export default class Inner extends React.Component {
         <MessageList
           messages={this.state.messages}
           onChangeCheckBox={this.onChangeCheckBox.bind(this)}
+          isCheckedIdList={this.state.isCheckedIdList}
         />
         <Footer />
       </div>
