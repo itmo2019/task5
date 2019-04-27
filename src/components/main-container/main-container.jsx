@@ -121,18 +121,15 @@ export class MainContainer extends Component {
     this.updateLetter(it => it.filter(x => !x.deleted));
   };
 
-  selectAll = () => {
-    const cur = this.isAllSelected(this.state.letters);
+  selectAll = (checked) => {
     this.updateLetter(letters =>
       letters.map(it => {
         const copy = Object.assign({}, it);
-        copy.checked = !cur;
+        copy.checked = checked;
         return copy;
       })
     );
   };
-
-  isAllSelected = letters => letters.reduce((acc, next) => acc && next.checked, true);
 
   updateLetter = f => {
     this.setState(prevState => {
@@ -241,7 +238,7 @@ export class MainContainer extends Component {
 
     this.updateLetter(old => [newLetter, ...old]);
 
-    setTimeout(() => this.setFirstShow(newLetter.id), 5);
+    setTimeout(() => this.setFirstShow(letterId), 5);
 
     return letterId
   };
