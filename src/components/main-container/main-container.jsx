@@ -114,7 +114,7 @@ export class MainContainer extends Component {
         return x;
       })
     );
-    setTimeout(this.removeDeleted, 400);
+    document.addEventListener("transitionend", this.removeDeleted);
   };
 
   removeDeleted = () => {
