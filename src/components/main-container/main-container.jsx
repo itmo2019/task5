@@ -47,7 +47,7 @@ export class MainContainer extends Component {
           avatar: YandexAvatar,
           receiveTime: '6 авг',
           title: 'Доступ к аккаунту восстановлен',
-          text: "There's a lady who's sure.\n All that glitters is gold",
+          text: 'There\'s a lady who\'s sure.\n All that glitters is gold',
           unread: true,
           checked: false,
           firstShow: true
@@ -58,7 +58,7 @@ export class MainContainer extends Component {
           avatar: YandexAvatar,
           receiveTime: '6 июл',
           title: 'Как читать почту с мобильного',
-          text: "And she's buying a stairway to heaven",
+          text: 'And she\'s buying a stairway to heaven',
           unread: true,
           checked: false,
           firstShow: true
@@ -91,7 +91,7 @@ export class MainContainer extends Component {
           avatar: YandexAvatar,
           receiveTime: '26 мар',
           title: 'Съешь ещё этих мягких французскихбулок, да выпей чаю',
-          text: "Oh oh oh oh and she's\n buying a stairway to heaven",
+          text: 'Oh oh oh oh and she\'s\n buying a stairway to heaven',
           unread: false,
           checked: false,
           firstShow: true
@@ -155,9 +155,25 @@ export class MainContainer extends Component {
     );
   };
 
+  setLetterText = (id, letterText) => {
+    this.updateLetter(it =>
+      it.map(x => {
+        if (x.id === id) {
+          const copy = Object.assign({}, x);
+          copy.text = letterText;
+          return copy;
+        }
+        return x;
+      })
+    );
+  };
+
   newMail = () => {
-    const year = randomInteger(100, 2019);
-    this.loadFactAboutYear(year);
+    if (this.state.letters.length < 30) {
+      const year = randomInteger(100, 2019);
+      const letterId = this.buildMail(year);
+      this.loadFactAboutYear(year, letterId);
+    }
   };
 
   setFirstShow = id => {
@@ -184,7 +200,7 @@ export class MainContainer extends Component {
     this.state.lastTimeout = timeout;
   };
 
-  buildMail = (year, text) => {
+  buildMail = (year) => {
     function getDate() {
       const temp = new Date();
       return `${temp.getDate()} ${month[temp.getMonth()]}`;
@@ -212,49 +228,48 @@ export class MainContainer extends Component {
     const sender = getSender();
     const avatar = getAvatar();
 
+    const letterId = this.state.letters.length + 1;
     const newLetter = {
-      id: this.state.letters.length + 1,
+      id: letterId,
       sender,
       avatar,
       receiveTime: getDate(),
       title: getTitle(year),
-      text,
+      text: "Loading...",
       unread: true
     };
 
     this.updateLetter(old => [newLetter, ...old]);
 
     setTimeout(() => this.setFirstShow(newLetter.id), 5);
+
+    return letterId
   };
 
-  loadFactAboutYear(year) {
+  loadFactAboutYear(year, letterId) {
     function getText(json) {
       const text = JSON.parse(json).text_out;
-      return text.replace('<h1>', ` ${  year  } `).replace('</h1>', ` ${  year  } `)
+      return text.replace('<h1>', ` ${year} `).replace('</h1>', ` ${year} `);
     }
 
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', `https://www.randomtext.me/api/lorem/h1/10`, true);
-    const that = this;
-    xhr.onload = () => {
-      if (xhr.readyState === 4) {
-        if (xhr.status === 200) {
-          that.buildMail(year, getText(xhr.responseText));
+    let that = this;
+    fetch(`https://www.randomtext.me/api/lorem/h1/10`)
+      .then(function(response) {
+        if (response.status === 200) {
+          return response.text().then(text => {
+              that.setLetterText(letterId, getText(text));
+            }
+          );
         } else {
-          console.error(xhr.statusText);
+          console.error(response.statusText);
         }
-      }
-    };
-    xhr.onerror = () => {
-      console.error(xhr.statusText);
-    };
-    xhr.send(null);
+      });
   }
 
   render() {
     return (
       <div className="main-container">
-        <ActionsBar newMail={this.newMail} />
+        <ActionsBar newMail={this.newMail}/>
         <Mails
           letters={this.state.letters}
           selectAll={this.selectAll}
