@@ -1,8 +1,4 @@
 .letters_mail {
-  position: relative;
-
-  z-index: 2;
-
   padding: 2px 10px 2px 15px;
 
   border-bottom: 1px solid #e2e2e2;
@@ -43,8 +39,10 @@
   display: none;
 }
 
-.letter_open:checked ~ .letter_head {
-  display: none;
+.letter_open:checked ~ .letter_message {
+  z-index: 5;
+
+  display: block;
 }
 
 .letters__mail_user-avatar {
@@ -132,11 +130,22 @@
 }
 
 .letter_message {
+  position: absolute;
+  z-index: -1;
+
+  top: 43px;
+  right: 0;
+  left: 0;
+
   display: none;
+  height: calc(100% - 84px - 20px);
+  padding: 10px;
   background-color: white;
   font-family: HelveticaNeueLight, serif;
   font-size: 16px;
 
+  overflow-x: hidden;
+  overflow-y: hidden;
   vertical-align: middle;
 }
 
