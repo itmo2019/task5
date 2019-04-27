@@ -1,3 +1,1 @@
-import YaCheckbox from './ya-checkbox';
-
-export default YaCheckbox;
+export { default } from './ya-checkbox';

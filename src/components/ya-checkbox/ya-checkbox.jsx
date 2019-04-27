@@ -2,9 +2,9 @@ import React from 'react';
 
 import './ya-checkbox.css';
 
-function YaCheckbox({ id, check, checked }) {
+function YaCheckbox(props) {
   return (
-    <input id={id} className="ya-checkbox" type="checkbox" onClick={e => check(e.target.checked)} checked={checked}/>
+    <input id={props.id} className="ya-checkbox" type="checkbox" onClick={props.onClick} checked={props.checked}/>
   );
 }
 

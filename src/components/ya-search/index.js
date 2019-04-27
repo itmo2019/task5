@@ -1,3 +1,1 @@
-import YaSearch from './ya-search';
-
-export default YaSearch;
+export { default } from './ya-search';

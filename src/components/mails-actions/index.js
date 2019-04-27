@@ -1,3 +1,1 @@
-import MailsActions from './mails-actions';
-
-export default MailsActions;
+export { default } from './mails-actions';

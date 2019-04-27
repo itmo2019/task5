@@ -1,3 +1,1 @@
-import YaServices from './ya-services';
-
-export default YaServices;
+export { default } from './ya-services';

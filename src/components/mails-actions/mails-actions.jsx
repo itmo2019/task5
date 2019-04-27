@@ -5,10 +5,16 @@ import YaLink from '../ya-link';
 import YaCheckbox from '../ya-checkbox';
 
 export class MailsActions extends Component {
+
   render() {
+    const checkboxProps = {
+      id: "select-all",
+      onClick: (e) => this.props.selectAll(e.target.checked)
+    };
+
     return (
       <div id="mails__actions">
-        <YaCheckbox id="select-all" check={this.props.selectAll} />
+        <YaCheckbox {...checkboxProps} />
         <div className="mail__action">
           <YaLink text="Переслать" />
         </div>

@@ -6,10 +6,11 @@ import NavBar from '../nav-bar';
 
 export class ActionsBar extends PureComponent {
   render() {
+    const btnProps = { text: 'Написать' };
     return (
       <div id="actions-bar">
-        <YaBigButton text="Написать" action={this.props.newMail} />
-        <NavBar />
+        <YaBigButton {...btnProps} {...this.props}/>
+        <NavBar/>
       </div>
     );
   }

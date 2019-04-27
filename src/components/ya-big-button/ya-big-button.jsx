@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './ya-big-button.css';
 
-export class YaBigButton extends Component {
-  render() {
-    return (
-      <button className="ya-big-button" type="button" onClick={this.props.action}>
-        Написать
-      </button>
-    );
-  }
+function YaBigButton(props) {
+  return (
+    <button className="ya-big-button" type="button" onClick={props.onClick}>
+      {props.text}
+    </button>
+  );
 }
 
 export default YaBigButton;

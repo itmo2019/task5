@@ -1,3 +1,1 @@
-import MailLogo from './mail-logo';
-
-export default MailLogo;
+export { default } from './mail-logo';

@@ -1,3 +1,1 @@
-import ActionsBar from './actions-bar';
-
-export default ActionsBar;
+export { default } from './actions-bar';

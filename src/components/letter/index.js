@@ -1,3 +1,1 @@
-import Letter from './letter';
-
-export default Letter;
+export { default } from './letter';

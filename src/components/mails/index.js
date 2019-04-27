@@ -1,3 +1,1 @@
-import Mails from './mails';
-
-export default Mails;
+export { default } from './mails';

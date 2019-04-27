@@ -15,15 +15,16 @@ function Letter({ id, unread, avatar, sender, title, receiveTime, text, checked,
     letterClass += ' letters_mail_show';
   }
 
-  const onClick = () => {
-    check(id);
+  const checkBoxProps = {
+    checked: checked,
+    onClick: () => check(id)
   };
 
   return (
     <div className={`letters_mail letters_mail_new ${letterClass} `}>
       <input id={labelId} className="letter_open" type="checkbox" />
       <div className="letter_head">
-        <YaCheckbox checked={checked} check={onClick} />
+        <YaCheckbox {...checkBoxProps}/>
         <img className="letters__mail_user-avatar" src={avatar} alt="avatar" />
         <span className="letters__mail_sender">{sender}</span>
         <input className="letters__mail_read-mark" type="checkbox" />

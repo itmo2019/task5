@@ -1,3 +1,1 @@
-import YaBigButton from './ya-big-button';
-
-export default YaBigButton;
+export { default } from './ya-big-button';

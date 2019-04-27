@@ -1,3 +1,1 @@
-import YaLink from './ya-link';
-
-export default YaLink;
+export { default } from './ya-link';

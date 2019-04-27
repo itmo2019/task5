@@ -266,7 +266,7 @@ export class MainContainer extends Component {
   render() {
     return (
       <div className="main-container">
-        <ActionsBar newMail={this.newMail}/>
+        <ActionsBar onClick={this.newMail}/>
         <Mails
           letters={this.state.letters}
           selectAll={this.selectAll}
