@@ -1,25 +1,14 @@
 import React, { Component } from 'react';
 
+import buildMail from '../mail-builder';
+import randomInteger from  '../random-integer'
+import loadInfo from '../info-loader';
+
 import './main-container.css';
 import ActionsBar from '../actions-bar';
 import Mails from '../mails';
 
 import YandexAvatar from '../../resources/img/ya-default.svg';
-import Anonymous from '../../resources/img/anonymous.svg';
-import Munch from '../../resources/img/munch.png';
-import Maggritte from '../../resources/img/magritte.png';
-
-const senders = [
-  'Антоша',
-  'Брат моего брата',
-  'Врач без пациентов',
-  'Вспыльчивый человек',
-  'Гайка № 6',
-  'Гайка №9',
-  'Numeric Master'
-];
-const avatars = [Anonymous, Munch, Maggritte];
-const month = ['янв', 'фев', 'март', 'апр', 'май', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
 
 function minutesToMillis(minutes) {
   return 1000 * 60 * minutes;
@@ -28,12 +17,6 @@ function minutesToMillis(minutes) {
 const newMessageTimeoutMax = minutesToMillis(5);
 const minNewMessageTimeout = 10;
 const maxNewMessageTimeout = minutesToMillis(10);
-
-function randomInteger(min, max) {
-  let rand = min - 0.5 + Math.random() * (max - min + 1);
-  rand = Math.round(rand);
-  return rand;
-}
 
 export class MainContainer extends Component {
   constructor(props) {
@@ -167,9 +150,14 @@ export class MainContainer extends Component {
 
   newMail = () => {
     if (this.state.letters.length < 30) {
-      const year = randomInteger(100, 2019);
-      const letterId = this.buildMail(year);
-      this.loadFactAboutYear(year, letterId);
+      const letterId = this.state.letters.length + 1;
+      const newLetter = buildMail(letterId);
+
+      this.updateLetter(old => [newLetter, ...old]);
+
+      loadInfo(text => this.setLetterText(letterId, text));
+
+      setTimeout(() => this.setFirstShow(letterId), 5);
     }
   };
 
@@ -196,72 +184,6 @@ export class MainContainer extends Component {
     );
     this.state.lastTimeout = timeout;
   };
-
-  buildMail = (year) => {
-    function getDate() {
-      const temp = new Date();
-      return `${temp.getDate()} ${month[temp.getMonth()]}`;
-    }
-
-    function getSender() {
-      return senders[randomInteger(0, senders.length - 1)];
-    }
-
-    function getAvatar() {
-      return avatars[randomInteger(0, avatars.length - 1)];
-    }
-
-    function getTitle() {
-      switch (randomInteger(0, 2)) {
-        case 0:
-          return `В ${year} нужно всего лишь...`;
-        case 1:
-          return `А ты знал что в ${year} году...`;
-        default:
-          return `Раз в ${year} происходит...`;
-      }
-    }
-
-    const sender = getSender();
-    const avatar = getAvatar();
-
-    const letterId = this.state.letters.length + 1;
-    const newLetter = {
-      id: letterId,
-      sender,
-      avatar,
-      receiveTime: getDate(),
-      title: getTitle(year),
-      text: "Loading...",
-      unread: true
-    };
-
-    this.updateLetter(old => [newLetter, ...old]);
-
-    setTimeout(() => this.setFirstShow(letterId), 5);
-
-    return letterId
-  };
-
-  loadFactAboutYear(year, letterId) {
-    function getText(json) {
-      const text = JSON.parse(json).text_out;
-      return text.replace('<h1>', ` ${year} `).replace('</h1>', ` ${year} `);
-    }
-
-    let that = this;
-    fetch(`https://www.randomtext.me/api/lorem/h1/10`)
-      .then(function(response) {
-        if (response.status === 200) {
-          return response.text().then(text => {
-              that.setLetterText(letterId, getText(text));
-            }
-          );
-        } else {
-          console.error(response.statusText);
-        }
-      });
-  }
 
   render() {
     return (
