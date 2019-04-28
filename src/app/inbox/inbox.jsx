@@ -133,7 +133,7 @@ export class Inbox extends Component {
           markAsRead={this.markAsRead}
           disabled={this.state.headerDisabled}
         />
-        <div className="inbox__messages" id="messages">
+        <div className="inbox__messages">
           {this.state.messages.map(message => (
             <InboxMessage
               key={message.key}

@@ -17,7 +17,7 @@ export class InboxLetter extends Component {
 
   render() {
     return (
-      <div className={`inbox__letter ${this.props.display ? '' : 'not-displayed'}`} id="letter">
+      <div className={`inbox__letter ${this.props.display ? '' : 'not-displayed'}`}>
         <div
           className="inbox__letter-close-letter"
           onClick={this.closeLetter}
@@ -27,9 +27,7 @@ export class InboxLetter extends Component {
         >
           x
         </div>
-        <div className="inbox__letter-content" id="letter-content">
-          {this.props.content}
-        </div>
+        <div className="inbox__letter-content">{this.props.content}</div>
       </div>
     );
   }
