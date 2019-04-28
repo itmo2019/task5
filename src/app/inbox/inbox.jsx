@@ -58,8 +58,8 @@ export class Inbox extends Component {
   selectAllMessages() {
     const updatedMessages = this.state.messages.slice();
     const newValue = this.state.isCheckAll;
-    for (let i = 0; i < updatedMessages.length; i++) {
-      updatedMessages[i].checked = updatedMessages[i].display && !newValue;
+    for (const message of updatedMessages) {
+      message.checked = message.display && !newValue;
     }
     this.setState(state => ({
       isCheckAll: !state.isCheckAll,
@@ -69,8 +69,7 @@ export class Inbox extends Component {
 
   selectCheckbox(id) {
     const updatedMessages = this.state.messages.slice();
-    for (let i = 0; i < updatedMessages.length; i++) {
-      const message = updatedMessages[i];
+    for (const message of updatedMessages) {
       if (message.id === id) {
         message.checked = !message.checked;
         break;
@@ -99,8 +98,7 @@ export class Inbox extends Component {
 
   markAsRead() {
     const updatedMessages = this.state.messages.slice();
-    for (let i = 0; i < updatedMessages.length; i++) {
-      const message = updatedMessages[i];
+    for (const message of updatedMessages) {
       if (message.checked) {
         message.read = true;
       }
@@ -113,8 +111,7 @@ export class Inbox extends Component {
   openLetter(id) {
     let messageContent = null;
     const updatedMessages = this.state.messages.slice();
-    for (let i = 0; i < updatedMessages.length; i++) {
-      const message = updatedMessages[i];
+    for (const message of updatedMessages) {
       if (message.id === id) {
         messageContent = message.message;
         message.read = true;
