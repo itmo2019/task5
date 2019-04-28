@@ -49,7 +49,7 @@ export class InboxHeader extends Component {
           />
         </div>
         <div
-          className="inbox_header-element"
+          className="inbox__header-element"
           onClick={this.handleNewMessageClick}
           onKeyPress={this.handleNewMessageClick}
           role="button"
@@ -57,9 +57,9 @@ export class InboxHeader extends Component {
         >
           Создать письмо
         </div>
-        <div className="inbox_header-element">Переслать</div>
+        <div className="inbox__header-element">Переслать</div>
         <div
-          className="inbox_header-element"
+          className="inbox__header-element"
           onClick={this.removeSelected}
           onKeyPress={this.removeSelected}
           role="button"
@@ -67,9 +67,9 @@ export class InboxHeader extends Component {
         >
           Удалить
         </div>
-        <div className="inbox_header-element">Это спам!</div>
+        <div className="inbox__header-element">Это спам!</div>
         <div
-          className="inbox_header-element"
+          className="inbox__header-element"
           onClick={this.markAsRead}
           onKeyPress={this.markAsRead}
           role="button"

@@ -1,4 +1,4 @@
-.inbox_header-element {
+.inbox__header-element {
   display: inline-block;
   overflow: hidden;
   padding-bottom: 3px;
@@ -17,6 +17,6 @@
   white-space: nowrap;
 }
 
-.inbox_header-element:hover {
+.inbox__header-element:hover {
   color: #000;
 }
