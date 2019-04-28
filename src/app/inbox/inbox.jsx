@@ -136,8 +136,8 @@ export class Inbox extends Component {
         <div className="inbox__messages" id="messages">
           {this.state.messages.map(message => (
             <InboxMessage
-              img={message.img}
               key={message.key}
+              img={message.img}
               id={message.id}
               author={message.author}
               message={message.message}
