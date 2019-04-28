@@ -36,7 +36,7 @@ export class Inbox extends Component {
     };
     this.maxPageMessages = 10;
     this.handleNewMessageClick = this.handleNewMessageClick.bind(this);
-    this.selectAllAction = this.selectAllAction.bind(this);
+    this.selectAllMessages = this.selectAllMessages.bind(this);
     this.removeSelected = this.removeSelected.bind(this);
     this.markAsRead = this.markAsRead.bind(this);
     this.openLetter = this.openLetter.bind(this);
@@ -55,7 +55,7 @@ export class Inbox extends Component {
     }));
   }
 
-  selectAllAction() {
+  selectAllMessages() {
     const updatedMessages = this.state.messages.slice();
     const newValue = this.state.isCheckAll;
     for (let i = 0; i < updatedMessages.length; i++) {
@@ -135,7 +135,7 @@ export class Inbox extends Component {
         <InboxHeader
           handleNewMessageClick={this.handleNewMessageClick}
           isChecked={this.state.isCheckAll}
-          onCheckAction={this.selectAllAction}
+          onCheckAction={this.selectAllMessages}
           removeSelected={this.removeSelected}
           markAsRead={this.markAsRead}
           disabled={this.state.headerDisabled}
