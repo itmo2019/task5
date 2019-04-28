@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-
-import './inbox.css';
-import { getRandomFromRange, LoremIpsum } from '../util';
+import { InboxLetter } from './__letter/inbox-letter';
 import { InboxHeader } from './__header/inbox-header';
 import { InboxFooter } from './__footer/inbox-footer';
-
-import './__messages/inbox__messages.css';
+import { getRandomFromRange, LoremIpsum } from '../util';
 import { InboxMessage } from './__messages/inbox-message';
 
+import './inbox.css';
+import './__messages/inbox__messages.css';
 import authorAvatar from '../../img/ya-default.svg';
-import { InboxLetter } from './__letter/inbox-letter';
 
 export class Inbox extends Component {
   static newMessageInfo(counter) {

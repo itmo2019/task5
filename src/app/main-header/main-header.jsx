@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
+import { ToolsIcon } from '../tools-icon/tools-icon';
+import { Search } from '../search/search';
+import { YandexMailLogo } from '../yandex-mail-logo/yandex-mail-logo';
 
 import './main-header.css';
 import './__icon/main-header__icon.css';
 import './__logo/main-header__logo.css';
 import './__search/main-header__search.css';
-import { ToolsIcon } from '../tools-icon/tools-icon';
-import { Search } from '../search/search';
-import { YandexMailLogo } from '../yandex-mail-logo/yandex-mail-logo';
 
 export class MainHeader extends Component {
   render() {

@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-
-import './yandex-mail-logo.css';
-
 import yandexLogo from '../../img/yandex.svg';
 import mailLogo from '../../img/mail.svg';
+
+import './yandex-mail-logo.css';
 
 export class YandexMailLogo extends Component {
   render() {

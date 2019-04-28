@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-
-import './app.css';
 import { MainHeader } from './main-header/main-header';
 import { PageContent } from './page-content/page-content';
+
+import './app.css';
 
 export class App extends Component {
   render() {

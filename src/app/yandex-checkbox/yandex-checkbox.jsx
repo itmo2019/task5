@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import './yandex-checkbox.css';
 
 export class YandexCheckbox extends Component {

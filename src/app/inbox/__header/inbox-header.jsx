@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { YandexCheckbox } from '../../yandex-checkbox/yandex-checkbox';
 
 import './inbox__checkbox-all.css';
 import './inbox__header.css';
 import './inbox__header-element.css';
-import { YandexCheckbox } from '../../yandex-checkbox/yandex-checkbox';
 
 export class InboxHeader extends Component {
   constructor(props) {
