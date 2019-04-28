@@ -69,12 +69,8 @@ export class Inbox extends Component {
 
   selectCheckbox(id) {
     const updatedMessages = this.state.messages.slice();
-    for (const message of updatedMessages) {
-      if (message.id === id) {
-        message.checked = !message.checked;
-        break;
-      }
-    }
+    const checkedMessage = updatedMessages.find(el => el.id === id);
+    checkedMessage.checked = !checkedMessage.checked;
     this.setState(() => ({
       messages: updatedMessages
     }));
