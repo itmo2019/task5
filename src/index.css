@@ -1,14 +1,14 @@
 @font-face {
   font-family: 'Yandex Sans';
   font-style: normal;
-  font-weight: 300;
+  font-weight: 100;
   src: url('fonts/YandexSansThin.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'Yandex Sans';
   font-style: normal;
-  font-weight: 400;
+  font-weight: 700;
   src: url('fonts/YandexSansBold.woff2') format('woff2');
 }
 
