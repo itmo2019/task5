@@ -25,7 +25,7 @@ export class InboxMessage extends Component {
 
   constructor(props) {
     super(props);
-    this.date = InboxMessage.getCurrentDate();
+    [this.timeISO, this.timeShort] = InboxMessage.getCurrentDate();
     this.openLetter = this.openLetter.bind(this);
   }
 
@@ -70,8 +70,8 @@ export class InboxMessage extends Component {
           >
             {this.props.message}
           </div>
-          <time className="inbox__message-date" dateTime={this.date[0]}>
-            {this.date[1]}
+          <time className="inbox__message-date" dateTime={this.timeISO}>
+            {this.timeShort}
           </time>
         </div>
       </div>
