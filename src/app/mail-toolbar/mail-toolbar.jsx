@@ -12,12 +12,24 @@ export class MailToolbar extends Component {
           <button className="mail-toolbar__button" type="button">
             Написать
           </button>
-          <div className="mail-toolbar__element">Входящие</div>
-          <div className="mail-toolbar__element">Отправленные</div>
-          <div className="mail-toolbar__element">Удалённые</div>
-          <div className="mail-toolbar__element">Спам</div>
-          <div className="mail-toolbar__element">Черновики</div>
-          <div className="mail-toolbar__element">Создать папку</div>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#inbox">
+            Входящие
+          </a>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#sent">
+            Отправленные
+          </a>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#trash">
+            Удалённые
+          </a>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#spam">
+            Спам
+          </a>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#draft">
+            Черновики
+          </a>
+          <a className="mail-toolbar__element" href="https://mail.yandex.ru#folder">
+            Создать папку
+          </a>
         </nav>
       </article>
     );
