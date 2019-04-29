@@ -1,27 +1,56 @@
-.app {
-  text-align: center;
+@font-face {
+  font-family: YandexSansBold;
+  src: url('../static/fonts/YandexSansDisplay-Bold.ttf');
 }
 
-.app-header {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-  color: #fff;
-  font-size: calc(10px + 2vmin);
+@font-face {
+  font-family: YandexSansThin;
+  src: url('../static/fonts/YandexSansDisplay-Thin.ttf');
 }
 
-.app-link {
-  color: #61dafb;
+@font-face {
+  font-family: HelveticaNeue;
+  src: url('../static/fonts/HelveticaNeueCyr-Medium.otf');
 }
 
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@font-face {
+  font-family: HelveticaNeueLight;
+  src: url('../static/fonts/HelveticaNeueCyr-Light.otf');
+}
+
+ul {
+  list-style-type: none;
+}
+
+a,
+a:active,
+a:visited,
+a:hover {
+  color: unset;
+  text-decoration: none;
+  position: unset !important;
+}
+
+.content_inline {
+  display: inline;
+}
+
+.content_text-overflow_hidden {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.content__ya-services-popup img {
+  position: relative;
+  bottom: 3px;
+  vertical-align: bottom;
+}
+
+.content {
+  position: relative;
+  width: 80%;
+  min-width: 800px;
+  min-height: 100%;
+  margin: 0 auto;
 }

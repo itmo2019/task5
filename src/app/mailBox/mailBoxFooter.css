@@ -1,0 +1,21 @@
+.content__footer-wrapper {
+  width: 100%;
+  height: 30px;
+  position: relative;
+}
+
+footer {
+  text-align: right;
+  font: 11px HelveticaNeueLight;
+  color: #9b9b9b;
+}
+
+footer nav a,
+footer span {
+  display: inline-block;
+  width: fit-content;
+  max-width: 150px;
+  margin-right: 20px;
+  line-height: 30px;
+  vertical-align: middle;
+}
