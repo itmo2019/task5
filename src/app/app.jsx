@@ -44,9 +44,7 @@ export class App extends Component {
       selectAllCheckbox: false,
 
       timeoutUpper: 10 * 60 * 1000,
-      timeoutLower: 5 * 60 * 1000,
-
-      messageIsOpen: false
+      timeoutLower: 5 * 60 * 1000
     };
   }
 
@@ -216,7 +214,6 @@ export class App extends Component {
           selectCheckbox={this.selectCheckbox}
           deleteSelected={this.deleteSelectedMessages}
           messagesList={this.state.messagesList}
-          messageIsOpen={this.state.messageIsOpen}
           selectAllCheckbox={this.state.selectAllCheckbox}
         />
       </div>
