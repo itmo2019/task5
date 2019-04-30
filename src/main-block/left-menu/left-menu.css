@@ -4,7 +4,7 @@
   min-width: 150px;
 }
 
-.write-letter-button {
+.left-menu__write-letter {
   overflow: hidden;
   height: 32px;
   padding: 0 10px;
@@ -19,6 +19,6 @@
   white-space: nowrap;
 }
 
-.write-letter-button:hover {
+.left-menu__write-letter:hover {
   cursor: pointer;
 }

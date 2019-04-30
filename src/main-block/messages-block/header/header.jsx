@@ -12,7 +12,7 @@ class Header extends React.Component {
           id="check-all"
           checked={this.props.selectAllCheckbox}
           onChange={() => {
-            this.props.selectAll();
+            this.props.handleSelectAll();
           }}
         />
         <button type="button" className="messages-block-header__action button-to-div">

@@ -6,7 +6,7 @@ import FoldersList from './folders-list/folders-list';
 function LeftMenu() {
   return (
     <div className="main-block__left-menu">
-      <div className="write-letter-button">Написать</div>
+      <div className="left-menu__write-letter">Написать</div>
       <FoldersList />
     </div>
   );

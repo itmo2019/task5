@@ -10,7 +10,7 @@ class MainBlock extends React.Component {
       <div className="mail-page__main-block">
         <LeftMenu />
         <MessagesBlock
-          selectAll={this.props.selectAll}
+          handleSelectAll={this.props.handleSelectAll}
           selectCheckbox={this.props.selectCheckbox}
           deleteSelected={this.props.deleteSelected}
           messagesList={this.props.messagesList}

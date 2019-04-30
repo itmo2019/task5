@@ -36,7 +36,7 @@ class MessagesBlock extends React.Component {
     return (
       <div className="messages-block">
         <Header
-          selectAll={this.props.selectAll}
+          handleSelectAll={this.props.handleSelectAll}
           deleteSelected={this.props.deleteSelected}
           selectAllCheckbox={this.props.selectAllCheckbox}
         />

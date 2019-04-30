@@ -9,7 +9,7 @@ export class App extends Component {
   constructor(props) {
     super(props);
     this.newMail = this.newMail.bind(this);
-    this.selectAll = this.selectAll.bind(this);
+    this.handleSelectAll = this.handleSelectAll.bind(this);
     this.deleteSelectedMessages = this.deleteSelectedMessages.bind(this);
 
     this.createAndRandom = this.createAndRandom.bind(this);
@@ -110,7 +110,7 @@ export class App extends Component {
     });
   }
 
-  selectAll() {
+  handleSelectAll() {
     this.setState(prevState => {
       const newMessagesList = prevState.messagesList;
       for (let i = 0; i < newMessagesList.length; i++) {
@@ -212,7 +212,7 @@ export class App extends Component {
       <div className="app">
         <Header newMailFunction={this.newMail} />
         <MainBlock
-          selectAll={this.selectAll}
+          handleSelectAll={this.handleSelectAll}
           selectCheckbox={this.selectCheckbox}
           deleteSelected={this.deleteSelectedMessages}
           messagesList={this.state.messagesList}
