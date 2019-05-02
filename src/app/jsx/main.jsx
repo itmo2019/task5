@@ -9,34 +9,16 @@ import '../styles/mails-placeholder.css';
 import '../styles/main.css';
 import '../styles/navigation.css';
 
-import logo from '../images/default.svg';
-import circle from '../images/circle.png';
 
 import {
-  findMail,
-  fromTemplate,
   getRandomValue,
-  innerTemplate,
-  randomDate,
-  selectAll,
-  titlesTemplate
+  generateNewMail
 } from '../scripts/init-global-vars';
+
 import {FooterItems} from './footer';
 
-import {Mail, MainMenu, MailsToolbar} from './componetns';
+import {Mail, MainMenu, MailsToolbar, PreviewPlaceholder} from './componetns';
 
-
-function PreviewPlaceholder(props) {
-  return (
-    <div className="inner-mail-viewer">
-      <div className="placeholder-for-close-button" onClick={props.closeClick}>X</div>
-      <div className="circle"><img src={circle} height="200" width="200"/></div>
-      <div id="mail-full-content" className="mail-content">
-        {props.mailText}
-      </div>
-    </div>
-  );
-}
 
 export class MainPlaceholder extends Component {
   constructor() {
@@ -45,12 +27,14 @@ export class MainPlaceholder extends Component {
     this.state = {
       mails: [],
       placeholder: false,
-      mailText: ''
+      mailText: '',
+      selectAll: false
     };
     this.commonId = 0;
     this.deleteMail = this.deleteMail.bind(this);
     this.newMail = this.newMail.bind(this);
     this.addNewMailByClick = this.addNewMailByClick.bind(this);
+    this.selectAll = this.selectAll.bind(this);
   }
 
   componentDidMount() {
@@ -63,38 +47,27 @@ export class MainPlaceholder extends Component {
   };
 
   addNewMailByClick = () => {
-    let mail = {
-      id: this.commonId,
-      select: false,
-      image: (() => {
-        if (Math.random() >= 0.5) {
-          return "//yastatic.net/mail/socialavatars/socialavatars/v4/ya-default.svg";
-        } else {
-          return logo;
-        }
-      })(),
-      title:
-        fromTemplate[getRandomValue(0, fromTemplate.length - 1)],
-      text:
-        titlesTemplate[getRandomValue(0, titlesTemplate.length - 1)] + " " + innerTemplate[getRandomValue(0, innerTemplate.length - 1)],
-      date:
-        randomDate(new Date(2007, 1, 1), new Date()).toLocaleDateString("ru-RU", {
-          month: 'short',
-          day: 'numeric'
-        }),
-      delete: false
-    };
-
     this.setState((state) => {
       let mails = [...state.mails];
-      mails.push(mail);
+      mails.unshift(generateNewMail(this.commonId));
       this.commonId++;
       state['mails'] = mails;
       return state;
     });
   };
 
-  deleteMail = (mail) => {
+  deleteMail = (e) => {
+    this.setState((state) => {
+      state['mails'] = state.mails.filter((item) => !item.select);
+      state['selectAll'] = false;
+      return state;
+    });
+    /*
+    this.state.selectAll = false;
+    this.forceUpdate();
+    console.log(this.state.selectAll);
+    */
+    /*
     let mailId = mail.getAttribute("id");
 
     this.setState((state) => {
@@ -113,72 +86,106 @@ export class MainPlaceholder extends Component {
         state['mails'] = state.mails.filter((item) => item.id.toString() !== mailId);
         return state;
       });
-    });
+    });*/
   };
 
+  readMail = () => {
+    this.setState((state) => {
+      state['mails'] = state.mails.map((item) => {
+          let tmp = item;
+          if (item.select) {
+            tmp.select = false;
+            tmp.read = true;
+          }
+          return tmp;
+        }
+      )
+      ;
+      state['selectAll'] = false;
+      return state;
+    });
+    console.log("ok");
+  };
   showMailContent = (id, text) => (e) => {
     let target = e.target;
     if (target === undefined || target.getAttribute("data-delete") === null) {
       return;
     }
-    console.log(id, text);
     this.setState((state) => {
       state['mailText'] = text;
       return state;
     });
     this.hidePlaceholders();
-    /*
-    let mail = findMail(target);
-    if (mail === null) {
-      return;
-    }
-    console.log(mail);
+  };
+
+
+  selectAll = () => {
+    let value = !this.state.selectAll;
+    console.log(value);
     this.setState((state) => {
-      return state
+      let mails = [...state.mails];
+      mails.forEach(item => {
+        item.select = value;
+      });
+      state['selectAll'] = value;
+      state['mails'] = mails;
+      return state;
     });
-    this.hidePlaceholders();*/
+    this.state.selectAll = value;
+    console.log(this.state);
+    this.forceUpdate();
   };
 
   hidePlaceholders = () => {
     this.setState((state) => {
-      let placeholder = !state.placeholder;
-      return {
-        mails: state.mails,
-        placeholder: placeholder
-      };
+      state['placeholder'] = !state.placeholder;
+      return state;
     });
+  };
+
+  changeStateMail = (mail) => () => {
+    mail['select'] = !mail['select'];
+    this.forceUpdate();
   };
 
   render() {
     let mails = this.state.mails.filter((item, index) => index < 30);
+    console.log("redraw" + this.state.selectAll);
     return (
       <main className="main">
         <MainMenu addNewLetter={this.addNewMailByClick}/>
         <div className="mails-placeholder">
-          <MailsToolbar deleteMail={this.deleteMail}/>
+          <MailsToolbar selectAll={this.selectAll} allChecked={this.state.selectAll} deleteMail={this.deleteMail}
+                        readMail={this.readMail}/>
           {
             this.state.placeholder ?
               <PreviewPlaceholder closeClick={this.hidePlaceholders} mailText={this.state.mailText}/> :
               <div id="mails-placeholder" className="list-of-mails">
                 {mails.map((mail) => {
                   if (mail.delete === false) {
-                    return <Mail select={mail.select}
+                    return <Mail key={mail.id.toString()}
+                                 select={mail.select}
                                  image={mail.image}
                                  title={mail.title}
                                  text={mail.text}
                                  date={mail.date}
                                  id={mail.id}
-                                 mailContent={this.showMailContent}
+                                 read={mail.read}
+                                 clickMailContent={this.showMailContent}
+                                 changeStateMail={this.changeStateMail(mail)}
                     />
                   }
                   else {
-                    return <Mail select={mail.select}
+                    return <Mail key={mail.id.toString()}
+                                 select={mail.select}
                                  image={mail.image}
                                  title={mail.title}
                                  text={mail.text}
                                  date={mail.date}
                                  id={mail.id}
-                                 mailContent={this.showMailContent}
+                                 read={mail.read}
+                                 clickMailContent={this.showMailContent}
+                                 changeStateMail={this.changeStateMail(mail)}
                                  cls="delete-animation"
                     />
                   }

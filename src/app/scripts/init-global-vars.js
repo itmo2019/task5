@@ -1,3 +1,5 @@
+import logo from "../images/default.svg";
+
 export var titlesTemplate = ["hello dudes!", "привет", "отчисления и переводы", "очень не интересный заголовок",
   "очень интеллектуальная генерация", "добрый день!", "Здравствуйте!", "Приветсвтую!", "Добрый вечер!", "HOLA!!!"];
 export var fromTemplate = ["Яндекс", "Яндекс.Почта", "Яндекс.Карты", "Яндекс.Музыка", "Яндекс.Поиск", "Яндекс.Переводчик",
@@ -59,11 +61,35 @@ export const findMail = (element) => {
   return null;
 };
 
-export const selectAll = (e) => {
-  let checkBox = document.querySelectorAll("[data-checkbox-select]");
-  Array.from(checkBox).forEach(item => item.checked = e.target.checked);
-};
 
 export const randomDate = (start, end) => {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+};
+
+export const generateNewMail = (commonId) => {
+  return {
+    id: commonId,
+    select: false,
+    image: (() => {
+      if (Math.random() >= 0.5) {
+        return "//yastatic.net/mail/socialavatars/socialavatars/v4/ya-default.svg";
+      } else {
+        return logo;
+      }
+    })(),
+    title:
+      fromTemplate[getRandomValue(0, fromTemplate.length - 1)],
+    text:
+      titlesTemplate[
+        getRandomValue(0, titlesTemplate.length - 1)]
+      + " " + innerTemplate[getRandomValue(0, innerTemplate.length - 1)],
+    date:
+      randomDate(new Date(2007, 1, 1), new Date()).toLocaleDateString("ru-RU", {
+        month: 'short',
+        day: 'numeric'
+      }),
+    delete: false,
+    read: false
+  };
+
 };

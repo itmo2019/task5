@@ -1,6 +1,7 @@
 import {Component} from "react";
 import React from "react";
-import {findMail, selectAll} from "../scripts/init-global-vars";
+import circle from "../images/circle.png";
+
 
 export class MenuButton extends Component {
   render() {
@@ -29,12 +30,14 @@ export class Mail extends Component {
 
   render() {
     return (
-      <div onClick={this.props.mailContent(this.props.id, this.props.text)}
-           className={this.props.cls ? "mail mail_status_not-read delete-animation " + this.props.cls : "mail mail_status_not-read"}
+      <div onClick={this.props.clickMailContent(this.props.id, this.props.text)}
+
+           className={(this.props.cls ? "mail delete-animation " + this.props.cls : "mail") + (this.props.read ? "" : " mail_status_not-read")}
            data-delete id={this.props.id}>
         <div className="mail__item mail__select">
           <label className="mails-checkbox">
-            <input className="mails-checkbox__checkbox" type="checkbox" data-checkbox-select/>
+            <input className="mails-checkbox__checkbox" type="checkbox" checked={this.props.select}
+                   onChange={this.props.changeStateMail}/>
             <span className="mails-checkbox__alternative-drawing">
           </span>
           </label>
@@ -68,38 +71,39 @@ export class MainMenu extends Component {
   }
 }
 
-export class MailsToolbar extends Component {
-  constructor(...args) {
-    super(...args);
-    this.deleteSelected = this.deleteSelected.bind(this);
-    this.selectAll = selectAll.bind(this);
-    this.stubFunc = () => {
-    };
-  }
-
-  deleteSelected = () => {
-    let tmp = document.querySelectorAll("[data-checkbox-select]");
-    let checkBox = Array.from(tmp).filter(item => item.checked);
-    checkBox.map(item => findMail(item)).filter(item => item !== null).forEach(item => this.props.deleteMail(item));
+export function MailsToolbar(props) {
+  let selectAll = props.selectAll;
+  let allChecked = props.allChecked;
+  let stubFunc = () => {
   };
-
-  render() {
-    return (
-      <div className="mails-action">
-        <div className="mails-action__item">
-          <label className="mails-checkbox">
-            <input className="mails-checkbox__checkbox" onChange={this.selectAll} type="checkbox"/>
-            <span className="mails-checkbox__alternative-drawing">
+  return (
+    <div className="mails-action">
+      <div className="mails-action__item">
+        <label className="mails-checkbox">
+          <input className="mails-checkbox__checkbox" checked={allChecked}
+                 onChange={selectAll}
+                 type="checkbox"/>
+          <span className="mails-checkbox__alternative-drawing">
             </span>
-          </label>
-        </div>
-        {[["Переслать", this.stubFunc], ["Удалить", this.deleteSelected],
-          ["Это спам!", this.stubFunc], ["Прочитано", this.stubFunc]]
-          .map((x) => {
-            return <ToolbarButton buttonName={x[0]} clickFunc={x[1]}/>
-          })}
+        </label>
       </div>
-    );
-  }
+      {[["Переслать", stubFunc], ["Удалить", props.deleteMail],
+        ["Это спам!", stubFunc], ["Прочитано", props.readMail]]
+        .map((x) => {
+          return <ToolbarButton buttonName={x[0]} clickFunc={x[1]}/>
+        })}
+    </div>
+  );
+}
 
+export const PreviewPlaceholder = (props) => {
+  return (
+    <div className="inner-mail-viewer">
+      <div className="placeholder-for-close-button" onClick={props.closeClick}>X</div>
+      <div className="circle"><img src={circle} height="200" width="200"/></div>
+      <div id="mail-full-content" className="mail-content">
+        {props.mailText}
+      </div>
+    </div>
+  );
 }
