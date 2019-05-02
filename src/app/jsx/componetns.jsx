@@ -26,13 +26,24 @@ export class Mail extends Component {
   constructor(props) {
     super(props);
     this.props = props;
+    this.node = React.createRef();
+  }
+
+  componentDidMount() {
+    console.log("redraw");
+    console.log(this.node.current.offsetHeight);
+
+    this.node.current.classList.add("create-animation");
   }
 
   render() {
+    let buildName = (this.props.delete ? " mail delete-animation " : " mail ")
+      + (this.props.read ? "" : " mail_status_not-read");
     return (
       <div onClick={this.props.clickMailContent(this.props.id, this.props.text)}
-
-           className={(this.props.cls ? "mail delete-animation " + this.props.cls : "mail") + (this.props.read ? "" : " mail_status_not-read")}
+           ref={this.node}
+           className={buildName}
+        onTransitionEnd={this.props.onTransitionEnd(this.props.id, this.props.delete)}
            data-delete id={this.props.id}>
         <div className="mail__item mail__select">
           <label className="mails-checkbox">

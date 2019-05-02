@@ -9,7 +9,6 @@ import '../styles/mails-placeholder.css';
 import '../styles/main.css';
 import '../styles/navigation.css';
 
-
 import {
   getRandomValue,
   generateNewMail
@@ -56,37 +55,28 @@ export class MainPlaceholder extends Component {
     });
   };
 
-  deleteMail = (e) => {
+  deleteMail = () => {
     this.setState((state) => {
-      state['mails'] = state.mails.filter((item) => !item.select);
+      state['mails'] = state.mails.map((item) => {
+        if (item.select) {
+          item.select = false;
+          item.delete = true;
+        }
+        return item;
+      });
       state['selectAll'] = false;
       return state;
     });
-    /*
-    this.state.selectAll = false;
-    this.forceUpdate();
-    console.log(this.state.selectAll);
-    */
-    /*
-    let mailId = mail.getAttribute("id");
+  };
 
+  onTransitionEnd = (id, was) => () => {
+    if (!was) {
+      return;
+    }
     this.setState((state) => {
-      state['mails'] = state.mails.map((item) => {
-        if (item.id.toString() !== mailId) {
-          return {...item};
-        }
-        let tmp = {...item};
-        tmp['delete'] = true;
-        return tmp;
-      });
+      state['mails'] = state.mails.filter((item) => item.id.toString() !== id.toString());
       return state;
     });
-    mail.addEventListener('transitionend', () => {
-      this.setState((state) => {
-        state['mails'] = state.mails.filter((item) => item.id.toString() !== mailId);
-        return state;
-      });
-    });*/
   };
 
   readMail = () => {
@@ -104,7 +94,6 @@ export class MainPlaceholder extends Component {
       state['selectAll'] = false;
       return state;
     });
-    console.log("ok");
   };
   showMailContent = (id, text) => (e) => {
     let target = e.target;
@@ -121,7 +110,6 @@ export class MainPlaceholder extends Component {
 
   selectAll = () => {
     let value = !this.state.selectAll;
-    console.log(value);
     this.setState((state) => {
       let mails = [...state.mails];
       mails.forEach(item => {
@@ -132,7 +120,6 @@ export class MainPlaceholder extends Component {
       return state;
     });
     this.state.selectAll = value;
-    console.log(this.state);
     this.forceUpdate();
   };
 
@@ -150,46 +137,32 @@ export class MainPlaceholder extends Component {
 
   render() {
     let mails = this.state.mails.filter((item, index) => index < 30);
-    console.log("redraw" + this.state.selectAll);
     return (
       <main className="main">
         <MainMenu addNewLetter={this.addNewMailByClick}/>
         <div className="mails-placeholder">
-          <MailsToolbar selectAll={this.selectAll} allChecked={this.state.selectAll} deleteMail={this.deleteMail}
+          <MailsToolbar selectAll={this.selectAll}
+                        allChecked={this.state.selectAll}
+                        deleteMail={this.deleteMail}
                         readMail={this.readMail}/>
           {
             this.state.placeholder ?
               <PreviewPlaceholder closeClick={this.hidePlaceholders} mailText={this.state.mailText}/> :
               <div id="mails-placeholder" className="list-of-mails">
-                {mails.map((mail) => {
-                  if (mail.delete === false) {
-                    return <Mail key={mail.id.toString()}
-                                 select={mail.select}
-                                 image={mail.image}
-                                 title={mail.title}
-                                 text={mail.text}
-                                 date={mail.date}
-                                 id={mail.id}
-                                 read={mail.read}
-                                 clickMailContent={this.showMailContent}
-                                 changeStateMail={this.changeStateMail(mail)}
-                    />
-                  }
-                  else {
-                    return <Mail key={mail.id.toString()}
-                                 select={mail.select}
-                                 image={mail.image}
-                                 title={mail.title}
-                                 text={mail.text}
-                                 date={mail.date}
-                                 id={mail.id}
-                                 read={mail.read}
-                                 clickMailContent={this.showMailContent}
-                                 changeStateMail={this.changeStateMail(mail)}
-                                 cls="delete-animation"
-                    />
-                  }
-                })}
+                {mails.map((mail) => <Mail key={mail.id.toString()}
+                                           select={mail.select}
+                                           image={mail.image}
+                                           title={mail.title}
+                                           text={mail.text}
+                                           date={mail.date}
+                                           id={mail.id}
+                                           read={mail.read}
+                                           delete={mail.delete}
+                                           created={mail.created}
+                                           clickMailContent={this.showMailContent}
+                                           changeStateMail={this.changeStateMail(mail)}
+                                           onTransitionEnd={this.onTransitionEnd}/>
+                )}
               </div>
           }
           <FooterItems/>

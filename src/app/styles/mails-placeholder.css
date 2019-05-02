@@ -33,6 +33,7 @@
 
 .list-of-footer-items {
   width: 100%;
+  height: 40px;
   white-space: nowrap;
   border-top: 2px solid #f0f0f0;
 }
