@@ -12,8 +12,22 @@ import '../styles/navigation.css';
 import logo from '../images/default.svg';
 import circle from '../images/circle.png';
 
-import {titlesTemplate, fromTemplate, innerTemplate, getRandomValue} from '../scripts/init-global-vars';
+import {titlesTemplate} from '../scripts/init-global-vars';
+import {fromTemplate} from '../scripts/init-global-vars';
+import {innerTemplate} from '../scripts/init-global-vars';
+import {getRandomValue} from '../scripts/init-global-vars';
+import {findMail} from '../scripts/init-global-vars';
+import {selectAll} from '../scripts/init-global-vars';
+import {randomDate} from '../scripts/init-global-vars';
 
+class MenuBatton extends Component {
+
+  render() {
+    return (
+      <button className="menu__action-button text_hide-by-size">{this.props.buttonName}</button>
+    );
+  }
+}
 
 class MainMenu extends Component {
   render() {
@@ -21,15 +35,12 @@ class MainMenu extends Component {
       <div className="menu">
         <button className="menu__write-letter-button text_hide-by-size">Написать</button>
         <nav className="menu__navigate-by-action">
-          <button className="menu__action-button text_hide-by-size">Входящие</button>
-          <button className="menu__action-button text_hide-by-size">Отправленные</button>
-          <button className="menu__action-button text_hide-by-size">Удалённые</button>
-          <button className="menu__action-button text_hide-by-size">Спам</button>
-          <button className="menu__action-button text_hide-by-size">Черновики</button>
-          <button className="menu__action-button text_hide-by-size">Создать папку</button>
-          <button className="menu__action-button text_hide-by-size" onClick={this.props.addNewLetter}>ДОБАВИТЬ
-            НОВОЕ
-            ПИСЬМО
+          {["Входящие", "Отправленные", "Удалённые", "Спам", "Черновики", "Создать папку"].map((x) => {
+            return <MenuBatton
+              buttonName={x}/>
+          })}
+          <button className="menu__action-button text_hide-by-size text_uppercase"
+                  onClick={this.props.addNewLetter}>добавить новое письмо
           </button>
         </nav>
       </div>
@@ -37,7 +48,7 @@ class MainMenu extends Component {
   }
 }
 
-function TemplateMail(props) {
+function Mail(props) {
   return (
     <div
       className={props.cls ? "mail mail_status_not-read delete-animation " + props.cls : "mail mail_status_not-read"}
@@ -58,33 +69,8 @@ function TemplateMail(props) {
   );
 }
 
-const findMail = (element) => {
-  let tmp = element;
-  while (tmp !== null) {
-    let classes = tmp.classList;
-    if (classes.contains('mail')) {
-      return tmp;
-    }
-    tmp = tmp.parentNode;
-  }
-  return null;
-};
-
-const selectAll = (e) => {
-  let checkBox = document.querySelectorAll("[data-checkbox-select]");
-  Array.from(checkBox).forEach(item => item.checked = e.target.checked);
-};
-
-const randomDate = (start, end) => {
-  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
-};
-
 class MailsAction extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  deleteSelected = (e) => {
+  deleteSelected = () => {
     let tmp = document.querySelectorAll("[data-checkbox-select]");
     let checkBox = Array.from(tmp).filter(item => item.checked);
     checkBox.map(item => findMail(item)).filter(item => item !== null).forEach(item => this.props.deleteMail(item));
@@ -123,12 +109,14 @@ function PreviewPlaceholder(props) {
     <div className="inner-mail-viewer">
       <div className="placeholder-for-close-button" onClick={props.closeClick}>X</div>
       <div className="circle"><img src={circle} height="200" width="200"/></div>
-      Круг -- геометрическое место точек плоскости, расстояние от которых до заданной точки<br/>
-      называется центром круга не превышает заданного неотрицательного числа,<br/>
-      называемого радиусом этого круга.<br/>
-      Если радиус равен нулю, то круг вырождается в точку.<br/>
-      При вращении плоскости относительно центра круг переходит сам в себя.<br/>
-      Круг является выпуклой фигурой.
+      <div id="mail-full-content" className="mail-content">
+        Круг -- геометрическое место точек плоскости, расстояние от которых до заданной точки
+        называется центром круга не превышает заданного неотрицательного числа,
+        называемого радиусом этого круга.
+        Если радиус равен нулю, то круг вырождается в точку.
+        При вращении плоскости относительно центра круг переходит сам в себя.
+        Круг является выпуклой фигурой.
+      </div>
     </div>
   );
 }
@@ -155,7 +143,7 @@ export class MainPlaceholder extends Component {
 
     this.state = {
       mails: [],
-      plaseholder: false
+      placeholder: false
     };
     this.commonId = 0;
   }
@@ -165,11 +153,11 @@ export class MainPlaceholder extends Component {
   }
 
   newMail = () => {
-    this.addNewMailBuClick();
+    this.addNewMailByClick();
     setTimeout(this.newMail, 5 * 1000 * 60 + getRandomValue(10, 1000 * 5));
   };
 
-  addNewMailBuClick = () => {
+  addNewMailByClick = () => {
     let mail = {
       id: this.commonId,
       image: (() => {
@@ -192,12 +180,12 @@ export class MainPlaceholder extends Component {
     };
 
     this.setState((state) => {
-      let mails = state.mails;
+      let mails = [...state.mails];
       mails.push(mail);
       this.commonId++;
       return {
         mails: mails,
-        plaseholder: state.plaseholder
+        placeholder: state.placeholder
       };
     });
   };
@@ -209,15 +197,14 @@ export class MainPlaceholder extends Component {
       let filtered = state.mails.map((item) => {
         if (item.id.toString() !== mailId) {
           return item;
-        } else {
-          let tmp = item;
-          tmp['delete'] = true;
-          return tmp;
         }
+        let tmp = item;
+        tmp['delete'] = true;
+        return tmp;
       });
       return {
         mails: filtered,
-        plaseholder: state.plaseholder
+        placeholder: state.placeholder
       };
     });
     mail.addEventListener('transitionend', () => {
@@ -225,7 +212,7 @@ export class MainPlaceholder extends Component {
         let filtered = state.mails.filter((item) => item.id.toString() !== mailId);
         return {
           mails: filtered,
-          plaseholder: state.plaseholder
+          placeholder: state.placeholder
         };
       });
     });
@@ -245,10 +232,10 @@ export class MainPlaceholder extends Component {
 
   hidePlaceholders = () => {
     this.setState((state) => {
-      let plaseholder = !state.plaseholder;
+      let placeholder = !state.placeholder;
       return {
         mails: state.mails,
-        plaseholder: plaseholder
+        placeholder: placeholder
       };
     });
   };
@@ -257,18 +244,18 @@ export class MainPlaceholder extends Component {
     let mails = this.state.mails.filter((item, index) => index < 30);
     return (
       <main className="main">
-        <MainMenu addNewLetter={this.addNewMailBuClick.bind(this)}/>
+        <MainMenu addNewLetter={this.addNewMailByClick.bind(this)}/>
         <div className="mails-placeholder">
           <MailsAction deleteMail={this.deleteMail}/>
-          {this.state.plaseholder ? <PreviewPlaceholder closeClick={this.hidePlaceholders}/> :
+          {this.state.placeholder ? <PreviewPlaceholder closeClick={this.hidePlaceholders}/> :
             <div id="mails-placeholder" className="list-of-mails" onClick={this.showMailContent}>
               {mails.map((mail, item) => {
                 if (mail.delete === false) {
-                  return <TemplateMail id={mail.id} image={mail.image} title={mail.title} text={mail.text}
+                  return <Mail id={mail.id} image={mail.image} title={mail.title} text={mail.text}
                                        date={mail.date}/>
                 }
                 else {
-                  return <TemplateMail id={mail.id} image={mail.image}
+                  return <Mail id={mail.id} image={mail.image}
                                        title={mail.title}
                                        text={mail.text}
                                        date={mail.date} cls="delete-animation"/>

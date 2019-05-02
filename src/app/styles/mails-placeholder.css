@@ -1,64 +1,74 @@
 .mails-action {
-    position: relative;
-    white-space: nowrap;
-    border-bottom: 2px solid #f0f0f0;
+  position: relative;
+  white-space: nowrap;
+  border-bottom: 2px solid #f0f0f0;
 }
 
 .mails-action__button {
-    width: 90px;
-    height: 16px;
-    color: #ccc;
-    font-family: HelveticaNeueLight, Arial;
-    font-size: 13px;
-    font-weight: 500;
-    background-color: transparent;
-    border: none;
-    outline: none;
+  width: 90px;
+  height: 16px;
+  color: #ccc;
+  font-family: HelveticaNeueLight, Arial;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: transparent;
+  border: none;
+  outline: none;
 }
 
 .mails-action__button:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .mails-action__item {
-    display: inline-block;
-    margin: 11px 0 11px 20px;
-    position: relative;
+  display: inline-block;
+  margin: 11px 0 11px 20px;
+  position: relative;
 }
 
 .list-of-mails {
-    overflow: hidden;
-    min-height: 450px;
+  overflow: hidden;
+  min-height: 450px;
 }
 
 .list-of-footer-items {
-    width: 100%;
-    white-space: nowrap;
-    border-top: 2px solid #f0f0f0;
+  width: 100%;
+  white-space: nowrap;
+  border-top: 2px solid #f0f0f0;
 }
 
 .list-of-footer-items__company-about {
-    float: right;
-    margin: 10px 20px 0 0;
-    text-decoration: none;
-    max-width: 180px;
-    color: #9b9b9b;
-    font-family: HelveticaNeueLight, Arial;
-    font-size: 11px;
+  float: right;
+  margin: 10px 20px 0 0;
+  text-decoration: none;
+  max-width: 180px;
+  color: #9b9b9b;
+  font-family: HelveticaNeueLight, Arial;
+  font-size: 11px;
 
+}
+
+.mail-content {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
+  margin-right: 30px;
 }
 
 .inner-mail-viewer {
-    height: 450px;
+  height: 450px;
 }
 
 .circle {
-    float: left;
-    shape-outside: circle();
+  float: left;
+  shape-outside: circle();
 }
 
 .placeholder-for-close-button {
-    display: inline;
-    background-color: red;
-    cursor: pointer;
+  display: inline;
+  background-color: red;
+  cursor: pointer;
+  float: right;
+  margin-right: 10px;
+  margin-top: 10px;
 }

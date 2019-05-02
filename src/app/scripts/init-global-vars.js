@@ -45,3 +45,25 @@ export function getRandomValue(left, right) {
   let mapping = random * dist;
   return Math.floor(mapping + left);
 }
+
+
+export const findMail = (element) => {
+  let tmp = element;
+  while (tmp !== null) {
+    let classes = tmp.classList;
+    if (classes.contains('mail')) {
+      return tmp;
+    }
+    tmp = tmp.parentNode;
+  }
+  return null;
+};
+
+export const selectAll = (e) => {
+  let checkBox = document.querySelectorAll("[data-checkbox-select]");
+  Array.from(checkBox).forEach(item => item.checked = e.target.checked);
+};
+
+export const randomDate = (start, end) => {
+  return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+};

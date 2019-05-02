@@ -48,3 +48,6 @@
     font-weight: 700;
     cursor: pointer;
 }
+.text_uppercase {
+  text-transform: uppercase;
+}
