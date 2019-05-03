@@ -83,13 +83,18 @@ const letterExamples = [
 
 let counter = 0;
 
-export function LetterCreation() {
-  const randomName = names[Math.floor(Math.random() * 5)];
-  const letter = letterExamples[Math.floor(Math.random() * 5)];
+export function CreateLetter() {
+  const randomName = names[Math.floor(Math.random() * names.length)];
+  const letter = letterExamples[Math.floor(Math.random() * names.length)];
   return {
     id: counter++,
-    author: randomName,
-    theme: letter.theme,
-    content: letter.body
+    bCheckbox: false,
+    bReaded: false,
+    bMarked: false,
+    info: {
+      author: randomName,
+      theme: letter.theme,
+      content: letter.body
+    }
   };
 }

@@ -16,7 +16,7 @@
   width: 30px;
   height: 30px;
   margin-right: 16px;
-  background-image: url('../../../../images/tempPhoto.png');
+  background-image: url('../../../images/tempPhoto.png');
   border-radius: 50%;
   pointer-events: none;
   vertical-align: middle;
