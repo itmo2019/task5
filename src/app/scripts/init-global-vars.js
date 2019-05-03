@@ -89,7 +89,8 @@ export const generateNewMail = (commonId) => {
         day: 'numeric'
       }),
     delete: false,
-    read: false
+    read: false,
+    animate: false
   };
 
 };

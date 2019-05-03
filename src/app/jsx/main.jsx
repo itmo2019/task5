@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+import '../styles/fonts.css';
 import '../styles/animation.css';
 import '../styles/body.css';
 import '../styles/components.css';
@@ -69,10 +70,22 @@ export class MainPlaceholder extends Component {
     });
   };
 
-  onTransitionEnd = (id, was) => () => {
+  onTransitionEnd = (id, was, animate) => () => {
+    if (!animate) {
+      this.setState((state) => {
+        state['mails'] = state.mails.map((item) => {
+          if (item.id.toString() === id.toString()) {
+            item['animate'] = true;
+          }
+          return item;
+        });
+        return state;
+      });
+    }
     if (!was) {
       return;
     }
+
     this.setState((state) => {
       state['mails'] = state.mails.filter((item) => item.id.toString() !== id.toString());
       return state;
@@ -101,6 +114,12 @@ export class MainPlaceholder extends Component {
       return;
     }
     this.setState((state) => {
+      state['mails'] = state.mails.map((item) => {
+        if (item.id.toString() === id.toString()) {
+          item['read'] = true;
+        }
+        return item;
+      });
       state['mailText'] = text;
       return state;
     });
@@ -159,6 +178,7 @@ export class MainPlaceholder extends Component {
                                            read={mail.read}
                                            delete={mail.delete}
                                            created={mail.created}
+                                           animate={mail.animate}
                                            clickMailContent={this.showMailContent}
                                            changeStateMail={this.changeStateMail(mail)}
                                            onTransitionEnd={this.onTransitionEnd}/>
