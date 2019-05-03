@@ -20,30 +20,30 @@ export class App extends Component {
     this.messagesPerPage = 30;
     this.overflowMessages = [];
 
+    this.timeoutUpper = 10 * 60 * 1000;
+    this.timeoutLower = 5 * 60 * 1000;
+
+    this.senders = ['Петя', 'Вася', 'Маша'];
+    this.subjects = ['Привет из России', 'Hello from England', 'Bonjour de France'];
+    this.texts = ['Привет!', 'Hello!', 'Bonjour!'];
+    this.months = [
+      'январь',
+      'февраль',
+      'март',
+      'апрель',
+      'май',
+      'июнь',
+      'июль',
+      'август',
+      'сентябрь',
+      'октябрь',
+      'ноябрь',
+      'декабрь'
+    ];
+
     this.state = {
-      senders: ['Петя', 'Вася', 'Маша'],
-      subjects: ['Привет из России', 'Hello from England', 'Bonjour de France'],
-      texts: ['Привет!', 'Hello!', 'Bonjour!'],
-      months: [
-        'январь',
-        'февраль',
-        'март',
-        'апрель',
-        'май',
-        'июнь',
-        'июль',
-        'август',
-        'сентябрь',
-        'октябрь',
-        'ноябрь',
-        'декабрь'
-      ],
-
       messagesList: [],
-      selectAllCheckbox: false,
-
-      timeoutUpper: 10 * 60 * 1000,
-      timeoutLower: 5 * 60 * 1000
+      selectAllCheckbox: false
     };
   }
 
@@ -60,7 +60,7 @@ export class App extends Component {
   newRandomMessage() {
     setTimeout(
       this.createAndRandom,
-      Math.random() * (this.state.timeoutUpper - this.state.timeoutLower) + this.state.timeoutLower
+      Math.random() * (this.timeoutUpper - this.timeoutLower) + this.timeoutLower
     );
   }
 
@@ -197,19 +197,19 @@ export class App extends Component {
     const currentDate = new Date();
 
     const id = currentDate.getTime();
-    const langInd = Math.floor(Math.random() * this.state.senders.length);
-    const hiddenText = this.state.texts[langInd];
+    const langInd = Math.floor(Math.random() * this.senders.length);
+    const hiddenText = this.texts[langInd];
 
     const monthInd = currentDate.getMonth().toLocaleString('rus');
-    const month = this.state.months[monthInd];
+    const month = this.months[monthInd];
     const day = currentDate.getDate();
 
-    const senderName = this.state.senders[Math.floor(Math.random() * this.state.senders.length)];
+    const senderName = this.senders[Math.floor(Math.random() * this.senders.length)];
     return {
       id,
       senderName,
       senderLogo: senderName[0],
-      subject: this.state.subjects[langInd],
+      subject: this.subjects[langInd],
       date: `${day} ${month.substr(0, 3)}`,
       hiddenText,
       selected: false,
