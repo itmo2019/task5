@@ -1,0 +1,87 @@
+.mail {
+  display: table;
+  table-layout: fixed;
+  height: 40px;
+  width: 100%;
+  padding: 0px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #000;
+  font-family: HelveticaNeueCyrLight;
+  border-bottom: solid 1px #e2e2e2;
+  border-bottom-width: 1px;
+}
+
+.mail__content_unread .mail__sender-name,
+.mail__content_unread .mail__title {
+  font-weight: bold;
+}
+
+.mail__content {
+  display: table-cell;
+  position: relative;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.mail__chooce {
+  margin-left: 20px;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+}
+
+.mail__sender-logo {
+  width: 30px;
+  height: 30px;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  font-size: 30px;
+  font-weight: 100;
+}
+
+.mail__sender-name__hidden-text,
+.mail__title__hidden-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.mail__sender-name {
+  width: 25%;
+  margin-left: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mail_unread-flag {
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 50%;
+  background-color: #6287bd;
+}
+
+.mail__title {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40%;
+}
+
+.mail__time {
+  right: 20px;
+  top: 13px;
+  position: absolute;
+}
+
+.mail__text {
+  display: none;
+}

@@ -1,0 +1,37 @@
+.mail-box {
+  width: 75%;
+  min-width: 589px;
+  min-height: 530px;
+  left: 189px;
+  margin: 0px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+  background-color: #fff;
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.mails {
+  min-height: 480px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.contacts {
+  height: 30px;
+  position: relative;
+  border-top: solid 1px #e2e2e2;
+}
+
+.contacts__info {
+  top: 9px;
+  right: 20px;
+  position: absolute;
+  font-family: YandexSanBold;
+  font-size: 12px;
+  color: #9b9b9b;
+}
+
+.contact__info-item {
+  padding: 15px;
+}
