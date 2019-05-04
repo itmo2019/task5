@@ -1,8 +1,8 @@
 import React from 'react';
 
-import './toolbar.css';
-
 import Checkbox from '../checkbox';
+
+import './toolbar.css';
 
 export default function Toolbar(props) {
   return (
