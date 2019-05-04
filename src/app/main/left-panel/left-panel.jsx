@@ -1,23 +1,14 @@
 import React from 'react';
+import { Folder } from './folder';
 
 import './left-panel.css';
 
-function Folder({ value }) {
-  return (
-    <li className="folders-panel__folder">
-      <a className="folders-panel__folder_link-decoration" href="#">
-        {value}
-      </a>
-    </li>
-  );
-}
-
-function LeftPanel() {
+export default function LeftPanel() {
   return (
     <div className="left-panel">
-      <button className="compose">Написать</button>
+      <button className="left-panel__compose-button">Написать</button>
       <nav>
-        <ul className="folders-panel">
+        <ul className="left-panel__folders">
           <Folder value="Входящие" />
           <Folder value="Отправленные" />
           <Folder value="Удаленные" />
@@ -29,5 +20,3 @@ function LeftPanel() {
     </div>
   );
 }
-
-export default LeftPanel;

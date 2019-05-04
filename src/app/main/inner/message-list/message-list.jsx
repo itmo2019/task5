@@ -11,16 +11,18 @@ export default class MessageList extends React.Component {
       openedMessageId: null,
       isMessageOpen: false
     };
+    this.openMessage = this.openMessage.bind(this);
+    this.closeMessage = this.closeMessage.bind(this);
   }
 
-  onOpenedMessageId(id) {
+  openMessage(id) {
     this.setState({
       isMessageOpen: true,
       openedMessageId: id
     });
   }
 
-  onCloseMessage() {
+  closeMessage() {
     this.setState({
       isMessageOpen: false,
       openedMessageId: null
@@ -39,10 +41,10 @@ export default class MessageList extends React.Component {
               image={message.image}
               contact={message.contact}
               subject={message.text}
-              handleOpen={this.onOpenedMessageId.bind(this)}
+              openMessage={this.openMessage}
               isRead={message.isRead}
               date={message.date}
-              onChangeCheckBox={this.props.onChangeCheckBox}
+              handleCheckBoxClick={this.props.handleCheckBoxClick}
             />
           );
         })}
@@ -50,16 +52,15 @@ export default class MessageList extends React.Component {
     ) : (
       <div className="message-list">
         <section className="message__content">
-          <button
-            className="message__close-button"
-            type="button"
-            onClick={this.onCloseMessage.bind(this)}
-          >
+          <button className="message__close-button" type="button" onClick={this.closeMessage}>
             ✖
           </button>
           <div className="message__page">
-            <p>От кого: {this.props.messages[this.state.openedMessageId].contact}</p>
-            <p>{this.props.messages[this.state.openedMessageId].text}</p>
+            <p>
+              От кого:{' '}
+              {this.props.messages.find(mess => mess.id === this.state.openedMessageId).contact}
+            </p>
+            <p>{this.props.messages.find(mess => mess.id === this.state.openedMessageId).text}</p>
           </div>
         </section>
       </div>

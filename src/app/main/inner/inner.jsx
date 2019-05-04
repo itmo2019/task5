@@ -1,7 +1,5 @@
 import React from 'react';
 
-import './inner.css';
-
 import Toolbar from './toolbar';
 import MessageList from './message-list';
 import Footer from './footer';
@@ -11,6 +9,9 @@ import {
   randomizeDate,
   randomizeImage
 } from './message-list/message/message__composer';
+
+import './inner.css';
+import main from '../main';
 
 let count = 1;
 
@@ -35,64 +36,35 @@ export default class Inner extends React.Component {
       isCheckedIdList: [true]
     };
 
-    this.randomMailIncoming();
+    this.selectAll = this.selectAll.bind(this);
+    this.newMail = this.newMail.bind(this);
+    this.deleteMessage = this.deleteMessage.bind(this);
+    this.handleCheckBoxClick = this.handleCheckBoxClick.bind(this);
   }
 
-  onChangeCheckBox(id) {
+  componentDidMount() {
+    this.randomTimer = setInterval(() => this.newMail(), 300000);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.randomTimer);
+  }
+
+  handleCheckBoxClick(id) {
     const check = this.state.isCheckedIdList;
     check[id] = !check[id];
-    this.setState({ isCheckedIdList: check });
-    // let counter = 0;
-    // this.state.messages.forEach(message => {
-    //   if (message.isChecked === true) {
-    //     counter++;
-    //   }
-    // });
-    if (this.state.messages.length === this.state.isCheckedIdList.length) {
-      this.setState({ isAllSelected: true });
-    } else {
-      this.setState({ isAllSelected: false });
-    }
+    const checker = check.every(Chk => {
+      return Chk === true;
+    });
+    this.setState(() => ({ isCheckedIdList: check, isAllSelected: checker }));
   }
 
   selectAll() {
-    const { messages } = this.state.messages;
-    this.state.messages.forEach(message => {
-      messages[message.id].isChecked = this.state.isAllSelected;
-    });
-    this.setState({ messages });
-  }
-
-  // onCheckBoxChange(checkId, isChecked) {
-  //   const isAllChecked = checkId === 'all' && isChecked;
-  //   const isAllUnChecked = checkId === 'all' && !isChecked;
-  //
-  //   const messages = this.state.messages.map(message => {
-  //     if (isAllChecked || message.id === checkId) {
-  //       return Object.assign({}, message, {
-  //         checked: isChecked
-  //       });
-  //     }
-  //     if (isAllUnChecked) {
-  //       return Object.assign({}, message, {
-  //         checked: false
-  //       });
-  //     }
-  //
-  //     return message;
-  //   });
-  //
-  //   const isAllSelected = messages.findIndex(item => item.checked === false) === -1 || isAllChecked;
-  //
-  //   this.setState({
-  //     isAllSelected
-  //   });
-  // }
-
-  async randomMailIncoming() {
-    const randomTimer = Math.random() * (300000 - 10) + 10;
-    setTimeout(await this.newMail(), randomTimer);
-    setTimeout(await this.randomMailIncoming, 300000 - randomTimer);
+    let mainCheck = this.state.isAllSelected;
+    mainCheck = !mainCheck;
+    const newCheckList = this.state.isCheckedIdList;
+    newCheckList.fill(mainCheck);
+    this.setState(() => ({ isCheckedIdList: newCheckList, isAllSelected: mainCheck }));
   }
 
   deleteMessage() {
@@ -109,6 +81,8 @@ export default class Inner extends React.Component {
     const contact = randomizeAuthor();
     const text = await randomizeText();
     const date = randomizeDate();
+    const check = this.state.isCheckedIdList;
+    check.push(false);
     this.setState(prevState => {
       return {
         messages: [
@@ -122,7 +96,8 @@ export default class Inner extends React.Component {
             isChecked: false
           },
           ...prevState.messages
-        ]
+        ],
+        isCheckedIdList: check
       };
     });
   }
@@ -132,14 +107,14 @@ export default class Inner extends React.Component {
       <div className="inner">
         <Toolbar
           isAllSelected={this.state.isAllSelected}
-          onChangeCheckBox={this.selectAll.bind(this)}
-          newMail={this.newMail.bind(this)}
-          deleteMessage={this.deleteMessage.bind(this)}
+          selectAll={this.selectAll}
+          newMail={this.newMail}
+          deleteMessage={this.deleteMessage}
           // setRead={setRead}
         />
         <MessageList
           messages={this.state.messages}
-          onChangeCheckBox={this.onChangeCheckBox.bind(this)}
+          handleCheckBoxClick={this.handleCheckBoxClick}
           isCheckedIdList={this.state.isCheckedIdList}
         />
         <Footer />

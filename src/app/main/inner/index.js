@@ -1,3 +1,1 @@
-import Inner from './inner';
-
-export default Inner;
+export { default } from './inner';

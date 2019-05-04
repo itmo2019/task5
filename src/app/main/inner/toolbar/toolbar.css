@@ -1,4 +1,3 @@
-/*TOOLBAR*/
 .toolbar {
     position: relative;
     line-height: 37px;
@@ -8,6 +7,7 @@
     overflow-y: hidden;
     font-weight: 500;
     box-sizing: border-box;
+  border-bottom: 2px solid #e6e6e6;
 }
 
 .toolbar__button {

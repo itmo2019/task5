@@ -7,7 +7,7 @@ import './header.css';
 import Pancakes from './header__pancakes.svg';
 import Logo from './header__logo.svg';
 
-function Header() {
+export default function Header() {
   return (
     <header className="header">
       <button className="header__pancakes">
@@ -22,5 +22,3 @@ function Header() {
     </header>
   );
 }
-
-export default Header;

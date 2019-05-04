@@ -4,17 +4,6 @@ import './toolbar.css';
 
 import Checkbox from '../checkbox';
 
-function ToolbarButton(props) {
-  return (
-    <input
-      className="toolbar__button"
-      type="button"
-      value={props.value}
-      onClick={props.onClick}
-    />
-  );
-}
-
 export default function Toolbar(props) {
   return (
     <div className="toolbar">
@@ -22,14 +11,23 @@ export default function Toolbar(props) {
         className="checkbox"
         id="checkbox__toolbar"
         checked={props.isAllSelected}
-        onChangeCheckBox={props.onChangeCheckBox}
+        onChangeCheckBox={props.selectAll}
       />
-      <ToolbarButton onClick={props.newMail} value="Новое письмо" />
-      <ToolbarButton value="Переслать" />
-      <ToolbarButton onClick={props.deleteMessage} value="Удалить" />
-      <ToolbarButton value="Это спам!" />
-      <ToolbarButton value="Прочитано" />
-      <hr className="hr" />
+      <input
+        className="toolbar__button"
+        type="button"
+        onClick={props.newMail}
+        value="Новое письмо"
+      />
+      <input className="toolbar__button" type="button" value="Переслать" />
+      <input
+        className="toolbar__button"
+        type="button"
+        onClick={props.deleteMessage}
+        value="Удалить"
+      />
+      <input className="toolbar__button" type="button" value="Это спам!" />
+      <input className="toolbar__button" type="button" value="Прочитано" />
     </div>
   );
 }

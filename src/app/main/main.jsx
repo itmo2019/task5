@@ -5,7 +5,7 @@ import LeftPanel from './left-panel';
 
 import './main.css';
 
-function Main() {
+export default function Main() {
   return (
     <main className="main">
       <LeftPanel />
@@ -13,5 +13,3 @@ function Main() {
     </main>
   );
 }
-
-export default Main;

@@ -1,3 +1,1 @@
-import Toolbar from './toolbar';
-
-export default Toolbar;
+export { default } from './toolbar';

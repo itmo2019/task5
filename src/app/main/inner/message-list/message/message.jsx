@@ -6,17 +6,19 @@ import Checkbox from '../../checkbox';
 export default function Message(props) {
   return (
     <section>
-      <div className={`message message_show ${!props.isRead ? 'message_not-read' : ''}`}>
+      <div className={`message ${!props.isRead ? 'message_not-read' : ''}`}>
         <Checkbox
           id={props.messageId}
-          className="checkbox checkbox_message"
+          className="checkbox checkbox__message"
           checked={props.isChecked}
-          onChangeCheckBox={() => props.onChangeCheckBox(props.messageId)}
+          onChangeCheckBox={() => {
+            props.handleCheckBoxClick(props.messageId);
+          }}
         />
         <span
           className="message__body"
           onClick={() => {
-            props.handleOpen(props.messageId);
+            props.openMessage(props.messageId);
           }}
         >
           <img alt="message logo" className="message__logo" src={props.image} />
@@ -28,7 +30,6 @@ export default function Message(props) {
           <div className="message__date">{props.date}</div>
         </span>
       </div>
-      <hr className="hr" />
     </section>
   );
 }

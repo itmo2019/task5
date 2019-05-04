@@ -5,7 +5,7 @@ import Main from './main';
 
 import './app.css';
 
-function App() {
+export default function App() {
   return (
     <div className="app">
       <Header />
@@ -13,5 +13,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
