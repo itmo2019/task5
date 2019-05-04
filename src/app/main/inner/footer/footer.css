@@ -3,6 +3,7 @@
     bottom: 0;
     width: 100%;
     text-align: right;
+  border-top: 2px solid #e6e6e6;
 }
 
 .footer_link {

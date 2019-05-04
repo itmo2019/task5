@@ -5,7 +5,6 @@ import './footer.css';
 export default function Footer() {
   return (
     <footer className="footer">
-      <hr className="hr" />
       <a className="footer_link" href="#">
         Помощь и обратная связь
       </a>
