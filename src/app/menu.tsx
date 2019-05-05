@@ -1,19 +1,23 @@
-import React from 'react';
+import * as React from 'react';
 import '../blocks/logo__picture.css';
 import '../blocks/menu.css';
 import '../blocks/logo.css';
 import '../blocks/menu__header.css';
 import { Hamburger } from './hamburger';
 import { MenuButton } from './menu-button';
-import logoPicture from '../logoYandex.png';
+import logo from '../images/logoYandex.png';
 
-export const Menu = ({ newMail }) => {
+interface MenuProps {
+  newMail: () => void
+}
+
+export const Menu = ({ newMail }: MenuProps) => {
   return (
     <div className="menu">
       <div className="menu__header">
         <Hamburger />
         <div className="logo">
-          <img alt="Яндекс.Почта" className="logo__picture" src={logoPicture} />
+          <img alt="Яндекс.Почта" className="logo__picture" src={logo} />
         </div>
       </div>
       <MenuButton action={newMail} special name="Новое письмо" />

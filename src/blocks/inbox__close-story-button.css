@@ -6,3 +6,7 @@
   float: right;
   font-size: 28px;
 }
+
+.inbox__close-story-button:hover {
+  cursor: pointer;
+}

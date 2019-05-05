@@ -9,6 +9,10 @@
   font-size: 13px;
 }
 
+.letter:hover {
+  cursor: pointer;
+}
+
 .letter__new {
   background-color: #61a2e7;
 }

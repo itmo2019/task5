@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import '../blocks/inbox__footer.css';
 import { InboxFooterLink } from './inbox-footer-item';
 

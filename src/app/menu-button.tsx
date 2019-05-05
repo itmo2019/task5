@@ -1,10 +1,17 @@
-import React from 'react';
+import * as React from 'react';
 
 import '../blocks/menu__button-current.css';
 import '../blocks/menu__button-special.css';
 import '../blocks/menu__button.css';
 
-export const MenuButton = ({ name, current, special, action }) => {
+interface MenuButtonProps {
+  name: string;
+  current?: boolean;
+  special?: boolean;
+  action?: () => void;
+}
+
+export const MenuButton = ({ name, current, special, action }: MenuButtonProps) => {
   let style;
   if (current) {
     style = 'menu__button-current';

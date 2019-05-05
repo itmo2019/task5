@@ -1,13 +1,31 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { data, months } from './data';
 import { Menu } from './menu';
 import { Main } from './main';
+import { Color } from 'csstype';
 
-export class App extends Component {
-  constructor(props) {
-    super(props);
+export interface ILetter {
+  key: number;
+  story?: boolean;
+  icon?: string;
+  author: string;
+  title: string;
+  date: string;
+  unread?: boolean;
+  selected?: boolean;
+  avatar?: string;
+  new?: boolean;
+  deleted?: boolean;
+  color?: Color;
+}
 
-    this.state = {
+interface AppState {
+  letters: ILetter[]
+}
+
+export class App extends Component<{}, AppState> {
+    readonly state: AppState = {
       letters: [
         {
           key: 0,
@@ -42,13 +60,12 @@ export class App extends Component {
         }
       ]
     };
-  }
 
   componentDidMount() {
     const this2 = this;
-    (function sendEmails([time1, time2]) {
-      const minute = x => x * 60 * 1000;
-      const ms = x => x;
+    (function sendEmails([time1, time2]: [number, number]) {
+      const minute = (x: number) => x * 60 * 1000;
+      const ms = (x: number) => x;
 
       let delay = Math.random() * minute(10) + ms(10);
       const time3 = new Date().getTime() + delay;
@@ -63,7 +80,7 @@ export class App extends Component {
   }
 
   allSelected = () => {
-    return this.state.letters.every(x => x.selected);
+    return this.state.letters.every(x => x.selected ? x.selected : false);
   };
 
   toggleAll = () => {
@@ -80,7 +97,7 @@ export class App extends Component {
   };
 
   deleteSelected = () => {
-    const deletedKeys = this.state.letters.filter(x => x.selected).map(x => x.key);
+    const deletedKeys = this.state.letters.filter(x => !!x.selected).map(x => x.key);
     this.setState(({ letters }) => {
       const after = letters.map(({ selected, ...rest }) => {
         if (selected) {
@@ -122,7 +139,7 @@ export class App extends Component {
     });
   };
 
-  toggleLetter = id => {
+  toggleLetter = (id: number) => {
     this.setState(({ letters }) => {
       return {
         letters: letters.map(({ key, selected, ...rest }) => {

@@ -1,11 +1,11 @@
-import React from 'react';
+import * as React from 'react';
 
 import '../blocks/main.css';
 import '../blocks/main__inbox-container.css';
-import { Inbox } from './inbox';
+import { Inbox, InboxProps } from './inbox';
 import { Finder } from './finder';
 
-export const Main = ({ ...props }) => {
+export const Main = ({ ...props }: InboxProps) => {
   return (
     <div className="main">
       <Finder />

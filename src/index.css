@@ -6,15 +6,6 @@ body {
   font-family: 'HelveticaNeue', sans-serif;
 }
 
-.inbox__header-checkbox:hover,
-.round:hover,
-.letter__author:hover,
-.letter__title:hover,
-.photo:hover,
-.inbox__close-story-button:hover {
-  cursor: pointer;
-}
-
 .inbox__show-story-checkbox {
   display: none;
 }
@@ -23,7 +14,7 @@ body {
   display: block;
 }
 
-.inbox__show-story-checkbox:checked ~ .mail-list {
+.inbox__show-story-checkbox:checked ~ .inbox__wrapper {
   display: none;
 }
 

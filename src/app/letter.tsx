@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import * as React from 'react'
+import { useEffect, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import '../blocks/letter__date.css';
@@ -10,10 +11,16 @@ import '../blocks/letter__title.css';
 import '../blocks/letter__icon.css';
 import '../blocks/letter__unread-indicator.css';
 import '../blocks/letter.css';
+import avatar from '../images/avatar.jpg';
 
-import avatar from '../avatar.JPG';
+import { ILetter } from './app';
 
-export const Letter = ({ letter, toggleLetter }) => {
+interface LetterProps {
+  letter: ILetter;
+  toggleLetter: (id: number) => void;
+}
+
+export const Letter = ({ letter, toggleLetter }: LetterProps) => {
   const [inProp, setIn] = useState(false);
   useEffect(() => {
     if (letter.new) {
@@ -66,7 +73,7 @@ export const Letter = ({ letter, toggleLetter }) => {
   );
 
   let letterJSX;
-  if (letter.special) {
+  if (letter.story) {
     letterJSX = (
       <li className={liClassList.join(' ')} key={letter.key}>
         <label className="letter__special-letter" htmlFor="show">

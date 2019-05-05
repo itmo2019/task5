@@ -13,7 +13,7 @@ export const months = [
   'дек'
 ];
 
-export const data = [
+export const data: {name: string, phrase: string}[] = [
   { name: 'Лопахин', phrase: ' Пришел поезд, слава богу. Который час?' },
   { name: 'Дуняша', phrase: ' Скоро два. (Тушит свечу.) Уже светло.' },
   {
