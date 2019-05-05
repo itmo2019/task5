@@ -1,27 +1,14 @@
-.app {
-  text-align: center;
-}
-
-.app-header {
-  display: flex;
+body {
+  font-family: "Helvetica Neue", "Arial" "Serif";
+  min-width: 800px;
+  margin: 0 auto;
+  background-color: #e5eaf0;
+  position: relative;
   min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-  color: #fff;
-  font-size: calc(10px + 2vmin);
 }
 
-.app-link {
-  color: #61dafb;
-}
-
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+body > .mail-box {
+  position: absolute;
+  left: 191px;
+  top: 56px;
 }

@@ -1,0 +1,33 @@
+.body {
+  font-family: "Helvetica Neue", "Arial" "Serif";
+  min-width: 800px;
+  position: relative;
+  margin: 0 auto;
+  background-color: #e5eaf0;
+}
+
+.body > .mail-box {
+  position: absolute;
+  left: 191px;
+  top: 56px;
+}
+
+.openable-message {
+  display: none;
+}
+
+.openable-message:checked ~ .messages-section {
+   display: none;
+}
+
+.openable-message:checked ~ .essay {
+   display: block;
+}
+
+.essay {
+   display: none;
+}
+
+.bold-text {
+  font-weight: 700;
+}
