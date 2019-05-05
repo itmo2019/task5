@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "react": "16.8.5",
-    "react-dom": "16.8.5"
+    "react-addons-css-transition-group": "15.6.2",
+    "react-dom": "16.8.5",
+    "react-transition-group": "4.0.0"
   },
   "devDependencies": {
     "@hellroot/eslint-config": "1.7.1",
