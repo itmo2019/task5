@@ -1,11 +1,7 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import messageReducer from './reducers';
+import { reducer } from './reducers';
 
 const middleware = [thunk];
 
-export const store = createStore(
-  combineReducers({ mailBox: messageReducer }),
-  {},
-  applyMiddleware(...middleware)
-);
+export const store = createStore(reducer, {}, applyMiddleware(...middleware));

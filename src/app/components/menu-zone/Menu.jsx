@@ -5,27 +5,73 @@ import '../../styles/menu-zone/menu-zone.css';
 import '../../styles/folders-list/folders-list.css';
 import '../../styles/folders-list/__item/folders-list__item.css';
 import '../../styles/folders-list/__item/folders-list__item_active.css';
-import { receiveMessage } from '../../store/actions';
+import {
+  receiveMessage,
+  setReceivedDisplayFormat,
+  setSentDisplayFormat,
+  setDeletedDisplayFormat,
+  setSpamDisplayFormat,
+  setDraftDisplayFormat
+} from '../../store/actions';
 
 class Menu extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      menuTitles: ['Входящие', 'Отправленные', 'Удаленные', 'Спам', 'Черновики', 'Создать папку'],
-      acitveIndex: 0
+      menuItems: [
+        {
+          name: 'Входящие',
+          action: () => {
+            this.setState({ activeIndex: 0 });
+            this.props.setReceivedDisplayFormat();
+          }
+        },
+        {
+          name: 'Отправленные',
+          action: () => {
+            this.setState({ activeIndex: 1 });
+            this.props.setSentDisplayFormat();
+          }
+        },
+        {
+          name: 'Удаленные',
+          action: () => {
+            this.setState({ activeIndex: 2 });
+            this.props.setDeletedDisplayFormat();
+          }
+        },
+        {
+          name: 'Спам',
+          action: () => {
+            this.setState({ activeIndex: 3 });
+            this.props.setSpamDisplayFormat();
+          }
+        },
+        {
+          name: 'Черновики',
+          action: () => {
+            this.setState({ activeIndex: 4 });
+            this.props.setDraftDisplayFormat();
+          }
+        },
+        { name: 'Создать папку', action: () => {} }
+      ],
+      activeIndex: 0
     };
   }
 
   render() {
-    const foldersList = this.state.menuTitles.map((value, index) => (
+    const foldersList = this.state.menuItems.map(({ name, action }, index) => (
       <li
         className={
-          index === this.state.acitveIndex ? 'folders-list__item_active' : 'folders-list__item'
+          index === this.state.activeIndex ? 'folders-list__item_active' : 'folders-list__item'
         }
-        key={value}
+        key={name}
       >
-        {value}
+        <div onClick={action} onKeyPress={action} tabIndex="0" role="button">
+          {name}
+        </div>
       </li>
     ));
 
@@ -53,5 +99,13 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { addMessage: receiveMessage }
+  {
+    addMessage: receiveMessage,
+    receiveMessage,
+    setReceivedDisplayFormat,
+    setSentDisplayFormat,
+    setDeletedDisplayFormat,
+    setSpamDisplayFormat,
+    setDraftDisplayFormat
+  }
 )(Menu);

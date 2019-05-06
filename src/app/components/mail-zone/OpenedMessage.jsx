@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import '../../styles/close-cross/close-cross.css';
 import '../../styles/message-item/__circle/message-item__circle.css';
 
 const OpenedMessage = ({ message, onCloseMessage }) => {
-  console.log(message);
   const getAuthorColor = author => {
     const hashCode = s => {
       return Math.abs(
@@ -13,6 +12,7 @@ const OpenedMessage = ({ message, onCloseMessage }) => {
         }, 0)
       );
     };
+    // eslint-disable-next-line no-bitwise
     return `#${(hashCode(author) & 0xffffff).toString(16)}`;
   };
   return (

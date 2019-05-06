@@ -18,8 +18,11 @@ export const Message = props => {
         }, 0)
       );
     };
+    // eslint-disable-next-line no-bitwise
     return `#${(hashCode(author) & 0xffffff).toString(16)}`;
   };
+
+  const markUnread = props.message.isRead ? '' : 'bold-text';
 
   return (
     <div className="message-item">
@@ -27,8 +30,8 @@ export const Message = props => {
         id={`select-message${props.message.id}`}
         type="checkbox"
         className="message-item__checkbox mail-box__input"
-        selected={props.selected}
-        onChange={() => props.onCheckBoxChange(props.message.id)}
+        checked={props.message.isSelected}
+        onChange={() => props.onCheckBoxChange([props.message.id])}
       />{' '}
       <div
         style={{ display: 'inline' }}
@@ -43,9 +46,12 @@ export const Message = props => {
         >
           {props.message.author}
         </span>{' '}
-        <p className="message-item__text_theme bold-text"> {props.message.theme} </p>{' '}
-        <span className="message-item__unread-circle" />{' '}
-        <p className="message-item__text_content bold-text"> {props.message.contentPreview} </p>{' '}
+        <p className={`message-item__text_theme ${markUnread}`}> {props.message.theme} </p>{' '}
+        {!props.message.isRead && <span className="message-item__unread-circle" />}{' '}
+        <p className={`message-item__text_content ${markUnread}`}>
+          {' '}
+          {props.message.contentPreview}{' '}
+        </p>{' '}
         <time className="message-item__time" dateTime={props.message.date}>
           6 авг
         </time>{' '}
