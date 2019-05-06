@@ -1,5 +1,4 @@
-import React from 'react';
-
+import React, { useEffect, useState } from 'react';
 import '../../styles/mail-box/__input/mail-box__input.css';
 import '../../styles/message-item/message-item.css';
 import '../../styles/message-item/__checkbox/message-item__checkbox.css';
@@ -22,10 +21,16 @@ export const Message = props => {
     return `#${(hashCode(author) & 0xffffff).toString(16)}`;
   };
 
+  const [messageOpacity, setMessageOpacity] = useState('0');
+
+  useEffect(() => {
+    setTimeout(() => setMessageOpacity('1'), 200);
+  }, []);
+
   const markUnread = props.message.isRead ? '' : 'bold-text';
 
   return (
-    <div className="message-item">
+    <div className="message-item" style={{ opacity: messageOpacity }}>
       <input
         id={`select-message${props.message.id}`}
         type="checkbox"
@@ -34,7 +39,7 @@ export const Message = props => {
         onChange={() => props.onCheckBoxChange([props.message.id])}
       />{' '}
       <div
-        style={{ display: 'inline' }}
+        style={{ display: 'inline', height: '42px' }}
         onClick={() => props.onOpenMessage(props.message.id)}
         onKeyPress={() => props.onOpenMessage(props.message.id)}
         role="button"

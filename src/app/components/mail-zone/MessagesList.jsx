@@ -5,14 +5,16 @@ import '../../styles/mail-box/__input/mail-box__input.css';
 import '../../styles/essay.css';
 
 const MessagesList = ({ onCheckBoxChange, messages, onOpenMessage }) => {
-  const messagesComponents = messages.map(message => (
-    <Message
-      message={message}
-      key={message.id}
-      onCheckBoxChange={onCheckBoxChange}
-      onOpenMessage={onOpenMessage}
-    />
-  ));
+  const messagesComponents = messages
+    .map(message => (
+      <Message
+        message={message}
+        key={message.id}
+        onCheckBoxChange={onCheckBoxChange}
+        onOpenMessage={onOpenMessage}
+      />
+    ))
+    .reverse();
 
   return (
     <section id="messages-setion" className="messages-section">
