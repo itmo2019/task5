@@ -13,6 +13,7 @@ import {
   setSpamDisplayFormat,
   setDraftDisplayFormat,
   toggleMailBoxView,
+  toggleAllMessagesSelect
 } from '../../store/actions';
 
 class Menu extends Component {
@@ -28,6 +29,9 @@ class Menu extends Component {
             if (this.props.mailBoxView === 'opened-message') {
               this.props.toggleMailBoxView();
             }
+            if (this.props.allMessagesSelect) {
+              this.props.toggleAllMessagesSelect();
+            }
             this.props.setReceivedDisplayFormat();
           }
         },
@@ -37,6 +41,9 @@ class Menu extends Component {
             this.setState({ activeIndex: 1 });
             if (this.props.mailBoxView === 'opened-message') {
               this.props.toggleMailBoxView();
+            }
+            if (this.props.allMessagesSelect) {
+              this.props.toggleAllMessagesSelect();
             }
             this.props.setSentDisplayFormat();
           }
@@ -48,6 +55,9 @@ class Menu extends Component {
             if (this.props.mailBoxView === 'opened-message') {
               this.props.toggleMailBoxView();
             }
+            if (this.props.allMessagesSelect) {
+              this.props.toggleAllMessagesSelect();
+            }
             this.props.setDeletedDisplayFormat();
           }
         },
@@ -58,6 +68,9 @@ class Menu extends Component {
             if (this.props.mailBoxView === 'opened-message') {
               this.props.toggleMailBoxView();
             }
+            if (this.props.allMessagesSelect) {
+              this.props.toggleAllMessagesSelect();
+            }
             this.props.setSpamDisplayFormat();
           }
         },
@@ -67,6 +80,9 @@ class Menu extends Component {
             this.setState({ activeIndex: 4 });
             if (this.props.mailBoxView === 'opened-message') {
               this.props.toggleMailBoxView();
+            }
+            if (this.props.allMessagesSelect) {
+              this.props.toggleAllMessagesSelect();
             }
             this.props.setDraftDisplayFormat();
           }
@@ -111,7 +127,8 @@ class Menu extends Component {
 
 const mapStateToProps = state => ({
   messages: state.mailBox.messages,
-  mailBoxView: state.mailBox.mailBoxView
+  mailBoxView: state.mailBox.mailBoxView,
+  allMessagesSelect: state.mailBox.allMessagesSelect
 });
 
 export default connect(
@@ -124,6 +141,7 @@ export default connect(
     setDeletedDisplayFormat,
     setSpamDisplayFormat,
     setDraftDisplayFormat,
-    toggleMailBoxView
+    toggleMailBoxView,
+    toggleAllMessagesSelect
   }
 )(Menu);

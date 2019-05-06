@@ -7,7 +7,8 @@ import {
   deleteMessages,
   spamMessages,
   readMessages,
-  toggleMailBoxView
+  toggleMailBoxView,
+  toggleAllMessagesSelect
 } from '../../store/actions';
 import MessagesList from './MessagesList';
 import OpenedMessage from './OpenedMessage';
@@ -39,8 +40,7 @@ class MailBox extends Component {
     super(props);
 
     this.state = {
-      openedMessage: -1,
-      selectedAll: false
+      openedMessage: -1
     };
 
     periodicFunctionCall(() => this.props.receiveMessage(null));
@@ -49,11 +49,17 @@ class MailBox extends Component {
   onOpenMessage(messageId) {
     this.setState({ openedMessage: messageId });
     this.props.toggleMailBoxView();
+    if (this.props.allMessagesSelect) {
+      this.props.toggleAllMessagesSelect();
+    }
   }
 
   onCloseMessage() {
-    this.setState({ openedMessage: -1, selectedAll: false });
+    this.setState({ openedMessage: -1 });
     this.props.toggleMailBoxView();
+    if (this.props.allMessagesSelect) {
+      this.props.toggleAllMessagesSelect();
+    }
   }
 
   render() {
@@ -64,17 +70,14 @@ class MailBox extends Component {
             this.props.onCheckBoxChange(
               this.props.messages
                 .map(message => {
-                  if (message.isSelected === this.state.selectedAll) {
+                  if (message.isSelected === this.props.allMessagesSelect) {
                     return message.id;
                   }
                   return -1;
                 })
                 .filter(id => id !== -1)
             );
-            const { selectedAll } = this.state;
-            this.setState({
-              selectedAll: !selectedAll
-            });
+            this.props.toggleAllMessagesSelect();
           }}
           actionsList={[
             { name: 'Переслать', action: () => {} },
@@ -124,7 +127,7 @@ class MailBox extends Component {
               }
             }
           ]}
-          selectedAll={this.state.selectedAll}
+          selectedAll={this.props.allMessagesSelect}
         />
         {this.state.openedMessage !== -1 && this.props.mailBoxView === 'opened-message' ? (
           <OpenedMessage
@@ -135,7 +138,9 @@ class MailBox extends Component {
           <MessagesList
             onCheckBoxChange={ids => {
               this.props.onCheckBoxChange(ids);
-              this.state.selectedAll = false;
+              if (this.props.allMessagesSelect) {
+                this.props.toggleAllMessagesSelect();
+              }
             }}
             onOpenMessage={messageId => this.onOpenMessage(messageId)}
             messages={this.props.messages}
@@ -157,7 +162,8 @@ const mapStateToProps = state => {
       return true;
     }),
     displayFormat: state.displayFormat,
-    mailBoxView: state.mailBox.mailBoxView
+    mailBoxView: state.mailBox.mailBoxView,
+    allMessagesSelect: state.mailBox.allMessagesSelect
   };
 };
 
@@ -169,6 +175,7 @@ export default connect(
     deleteMessages,
     spamMessages,
     readMessages,
-    toggleMailBoxView
+    toggleMailBoxView,
+    toggleAllMessagesSelect
   }
 )(MailBox);
