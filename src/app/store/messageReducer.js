@@ -3,7 +3,9 @@ import {
   MESSAGES_DELETED,
   MESSAGES_SELECT_TOGGLED,
   MESSAGES_SPAMED,
-  MESSAGES_READ
+  MESSAGES_READ,
+  ALL_MESSAGES_SELECT_TOGGLED,
+  MAILBOX_VIEW_TOGGLED
 } from './actions';
 
 const initialState = {
@@ -23,7 +25,10 @@ const initialState = {
       isSelected: false,
       isDeleted: false
     }
-  ]
+  ],
+
+  allMessagesSelect: false,
+  mailBoxView: 'messages-list'
 };
 
 function messageReducer(state = initialState, action) {
@@ -82,6 +87,18 @@ function messageReducer(state = initialState, action) {
             isRead: action.payload.ids.includes(message.id) ? true : message.isRead
           };
         })
+      };
+    }
+    case ALL_MESSAGES_SELECT_TOGGLED: {
+      return {
+        ...state,
+        allMessagesSelect: !state.allMessagesSelect
+      };
+    }
+    case MAILBOX_VIEW_TOGGLED: {
+      return {
+        ...state,
+        mailBoxView: state.mailBoxView === 'messages-list' ? 'opened-message' : 'messages-list'
       };
     }
     default:

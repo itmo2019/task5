@@ -6,7 +6,8 @@ import {
   receiveMessage,
   deleteMessages,
   spamMessages,
-  readMessages
+  readMessages,
+  toggleMailBoxView
 } from '../../store/actions';
 import MessagesList from './MessagesList';
 import OpenedMessage from './OpenedMessage';
@@ -47,10 +48,12 @@ class MailBox extends Component {
 
   onOpenMessage(messageId) {
     this.setState({ openedMessage: messageId });
+    this.props.toggleMailBoxView();
   }
 
   onCloseMessage() {
     this.setState({ openedMessage: -1, selectedAll: false });
+    this.props.toggleMailBoxView();
   }
 
   render() {
@@ -123,7 +126,7 @@ class MailBox extends Component {
           ]}
           selectedAll={this.state.selectedAll}
         />
-        {this.state.openedMessage !== -1 ? (
+        {this.state.openedMessage !== -1 && this.props.mailBoxView === 'opened-message' ? (
           <OpenedMessage
             message={this.props.messages.find(message => message.id === this.state.openedMessage)}
             onCloseMessage={() => this.onCloseMessage()}
@@ -153,7 +156,8 @@ const mapStateToProps = state => {
       }
       return true;
     }),
-    displayFormat: state.displayFormat
+    displayFormat: state.displayFormat,
+    mailBoxView: state.mailBox.mailBoxView
   };
 };
 
@@ -164,6 +168,7 @@ export default connect(
     receiveMessage,
     deleteMessages,
     spamMessages,
-    readMessages
+    readMessages,
+    toggleMailBoxView
   }
 )(MailBox);

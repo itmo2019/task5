@@ -12,6 +12,20 @@ export const MESSAGES_SELECT_TOGGLED = 'MESSAGES_SELECT_TOGGLED';
 export const MESSAGES_DELETED = 'MESSAGES_DELETED';
 export const MESSAGES_SPAMED = 'MESSAGES_SPAMED';
 export const MESSAGES_READ = 'MESSAGES_READ';
+export const MAILBOX_VIEW_TOGGLED = 'MAILBOX_VIEW_TOGGLED';
+export const ALL_MESSAGES_SELECT_TOGGLED = 'ALL_MESSAGES_SELECT_TOGGLED';
+
+export const toggleMailBoxView = () => dispatch => {
+  dispatch({
+    type: MAILBOX_VIEW_TOGGLED
+  });
+};
+
+export const toggleAllMessagesSelect = () => dispatch => {
+  dispatch({
+    type: ALL_MESSAGES_SELECT_TOGGLED
+  });
+};
 
 export const receiveMessage = message => dispatch => {
   let newMessage = { ...message };

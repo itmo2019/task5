@@ -11,7 +11,8 @@ import {
   setSentDisplayFormat,
   setDeletedDisplayFormat,
   setSpamDisplayFormat,
-  setDraftDisplayFormat
+  setDraftDisplayFormat,
+  toggleMailBoxView,
 } from '../../store/actions';
 
 class Menu extends Component {
@@ -24,6 +25,9 @@ class Menu extends Component {
           name: 'Входящие',
           action: () => {
             this.setState({ activeIndex: 0 });
+            if (this.props.mailBoxView === 'opened-message') {
+              this.props.toggleMailBoxView();
+            }
             this.props.setReceivedDisplayFormat();
           }
         },
@@ -31,6 +35,9 @@ class Menu extends Component {
           name: 'Отправленные',
           action: () => {
             this.setState({ activeIndex: 1 });
+            if (this.props.mailBoxView === 'opened-message') {
+              this.props.toggleMailBoxView();
+            }
             this.props.setSentDisplayFormat();
           }
         },
@@ -38,6 +45,9 @@ class Menu extends Component {
           name: 'Удаленные',
           action: () => {
             this.setState({ activeIndex: 2 });
+            if (this.props.mailBoxView === 'opened-message') {
+              this.props.toggleMailBoxView();
+            }
             this.props.setDeletedDisplayFormat();
           }
         },
@@ -45,6 +55,9 @@ class Menu extends Component {
           name: 'Спам',
           action: () => {
             this.setState({ activeIndex: 3 });
+            if (this.props.mailBoxView === 'opened-message') {
+              this.props.toggleMailBoxView();
+            }
             this.props.setSpamDisplayFormat();
           }
         },
@@ -52,6 +65,9 @@ class Menu extends Component {
           name: 'Черновики',
           action: () => {
             this.setState({ activeIndex: 4 });
+            if (this.props.mailBoxView === 'opened-message') {
+              this.props.toggleMailBoxView();
+            }
             this.props.setDraftDisplayFormat();
           }
         },
@@ -94,7 +110,8 @@ class Menu extends Component {
 }
 
 const mapStateToProps = state => ({
-  messages: state.mailBox.messages
+  messages: state.mailBox.messages,
+  mailBoxView: state.mailBox.mailBoxView
 });
 
 export default connect(
@@ -106,6 +123,7 @@ export default connect(
     setSentDisplayFormat,
     setDeletedDisplayFormat,
     setSpamDisplayFormat,
-    setDraftDisplayFormat
+    setDraftDisplayFormat,
+    toggleMailBoxView
   }
 )(Menu);
