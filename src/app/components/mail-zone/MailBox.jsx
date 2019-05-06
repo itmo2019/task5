@@ -50,7 +50,7 @@ class MailBox extends Component {
   }
 
   onCloseMessage() {
-    this.setState({ openedMessage: -1 });
+    this.setState({ openedMessage: -1, selectedAll: false });
   }
 
   render() {

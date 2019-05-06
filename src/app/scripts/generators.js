@@ -50,22 +50,3 @@ function GeneratorFreeMessageIdFactory(indicies) {
 }
 
 export const generateFreeMessageId = new GeneratorFreeMessageIdFactory([0]);
-
-function throttle(time, callback) {
-  let busy = false;
-  return () => {
-    if (!busy) {
-      callback();
-      busy = true;
-      setTimeout(() => {
-        busy = false;
-      }, time + Math.random() * 5000);
-    }
-  };
-}
-
-const periodicReceiveMessage = throttle(5000 * 60, () => {});
-
-const intervalId = setInterval(() => {
-  periodicReceiveMessage();
-}, 1000);
