@@ -1,0 +1,19 @@
+.mail-article {
+  min-height: 480px;
+}
+
+.mail-article__text {
+  position: absolute;
+  background-color: #fff;
+  width: 80%;
+  font-size: 16px;
+  margin: 5px;
+}
+
+.mail-article__close {
+  float: right;
+  margin: 5px;
+  font-size: 20px;
+  color: #708090;
+  cursor: pointer;
+}

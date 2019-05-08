@@ -18,11 +18,23 @@ header {
   top: 4px;
   position: absolute;
 }
-.service-logo__logo-img {
+
+.service-logo__logo {
   width: 150px;
   height: 31px;
-  left: 31px;
+  left: 35px;
+  position: relative;
+}
+
+.service-logo__company-img {
+  width: 70px;
+  height: 100%;
   position: absolute;
-  color: #010101;
-  font-size: 25px;
+}
+
+.service-logo__service-img {
+  width: 70px;
+  height: 100%;
+  left: 80px;
+  position: absolute;
 }

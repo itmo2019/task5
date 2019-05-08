@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
 
-// todo removeMarkedMails on delete
-// checkbox markAllMails and remove id later!!!
-
 import './MailAction.css';
 
 export class MailAction extends Component {
+  constructor(props) {
+    super(props);
+    this.markAll = this.markAll.bind(this);
+  }
+
+  markAll() {
+    if (!!this.props.markAll) this.props.markAll();
+  }
+
   render() {
     let actions = [
       { name: 'resend', title: 'Переслать' },
-      { name: 'delete', title: 'Удалить', func: 'removeMarkedMails()' },
-      { name: 'spam', title: 'Это спам!' },
-      { name: 'read', title: 'Прочитано' }
-    ].map(item => <Action name={item.name} title={item.title} clickFunc={item.func} />);
+      { name: 'delete', title: 'Удалить', func: this.props.removeMarkedMails },
+      { name: 'spam', title: 'Это спам!', func: this.props.spamMail },
+      { name: 'read', title: 'Прочитано', func: this.props.markRead }
+    ].map(item => (
+      <Action key={item.name} name={item.name} title={item.title} clickFunc={item.func} />
+    ));
+
+    let isMarkedAll = this.props.isAllMarked();
 
     return (
-      <div class="mail-action">
-        <input
-          type="checkbox"
-          class="mail-action__chooce_all"
-          id="mail-action__chooce_all-id"
-          onclick="markAllMails()"
-        />
-        <div class="mail-action__items">{actions}</div>
+      <div className="mail-action">
+        <div className="mail-action__items">
+          <input
+            type="checkbox"
+            className="mail-action__chooce_all"
+            checked={isMarkedAll}
+            onChange={this.markAll}
+          />
+          {actions}
+        </div>
       </div>
     );
   }
@@ -30,10 +42,9 @@ export class MailAction extends Component {
 
 function Action(props) {
   let classStr = `mail-action__button mail-action__${props.name}`;
-  let clickFunction = !!props.clickFunc ? props.clickFunc : null;
 
   return (
-    <button className={classStr} onClick={clickFunction}>
+    <button className={classStr} onClick={props.clickFunc}>
       {props.title}
     </button>
   );

@@ -1,3 +1,5 @@
+@import url('../fonts.css');
+
 a {
   color: unset;
   text-decoration: none;
@@ -49,7 +51,7 @@ ul {
   color: #555;
 }
 
-.menu__bar-item__hover,
+.menu_bar-item_selected,
 .menu__bar .menu__bar-item:hover {
   background-color: #cdd6e4;
 }

@@ -4,7 +4,7 @@ import { MailBox } from "./mailbox/MailBox";
 
 export function MainContent(props) {
   return (
-    <main class="main-content">
+    <main className="main-content">
         <Menu />
         <MailBox />
       </main>

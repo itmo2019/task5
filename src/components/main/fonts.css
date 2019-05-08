@@ -1,0 +1,26 @@
+@font-face {
+  font-family: YandexSansBold;
+  src: url('../../resources/fonts/YandexSansDisplay-Bold.ttf');
+}
+@font-face {
+  font-family: YandexSansThin;
+  src: url('../../resources/fonts/YandexSansDisplay-Thin.ttf');
+}
+@font-face {
+  font-family: HelveticaNeueCyrLight;
+  src: url('../../resources/fonts/HelveticaNeueCyr-Light.otf');
+}
+@font-face {
+  font-family: HelveticaNeueCyrMedium;
+  src: url('../../resources/fonts/HelveticaNeueCyr-Medium.otf');
+}
+
+@font-face {
+  font-family: HelveticaNeueLight;
+  src: url('../../resources/fonts/HelveticaNeueUltraLight.ttf');
+}
+
+@font-face {
+  font-family: YandexSansTextLight;
+  src: url('../../resources/fonts/YandexSansText-Light.ttf');
+}

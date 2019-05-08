@@ -1,3 +1,5 @@
+@import url('../fonts.css');
+
 .mail-box {
   width: 75%;
   min-width: 589px;
@@ -9,12 +11,6 @@
   background-color: #fff;
   margin-bottom: 14px;
   position: relative;
-}
-
-.mails {
-  min-height: 480px;
-  padding: 0px;
-  margin: 0px;
 }
 
 .contacts {
