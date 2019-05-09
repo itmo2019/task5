@@ -20,9 +20,6 @@ export class LetterHead extends Component {
     }
     if (this.props.deleteAnimation) {
       className.push('letter-head__animated-delete-line');
-      setTimeout(() => {
-        this.props.makeDelete(this.props.id);
-      }, 1500);
     }
 
     return className.join(' ');

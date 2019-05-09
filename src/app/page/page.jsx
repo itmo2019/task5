@@ -37,6 +37,7 @@ export class Page extends Component {
     this.makeDelete = this.makeDelete.bind(this);
     this.last = 0;
     this.newMail = this.newMail.bind(this);
+    this.removeAllCheckedLetters = this.removeAllCheckedLetters.bind(this);
 
     this.newMail();
   }
@@ -77,6 +78,15 @@ export class Page extends Component {
     return newLetters;
   };
 
+  removeAllCheckedLetters = (letters, checked) => {
+    const newLetters = letters.filter(a => !checked[a.id]);
+    for (let i = 0; i < newLetters.length; i++) {
+      newLetters[i].isVisible = i < MAX_LETTERS;
+    }
+
+    return newLetters;
+  };
+
   selectAll() {
     const newChecked = this.state.checked;
     for (let i = 0; i < Math.min(this.state.letters.length, MAX_LETTERS); i++) {
@@ -90,16 +100,9 @@ export class Page extends Component {
     });
   }
 
-  makeDelete(id) {
-    const tmp = this.state.letters;
-    const newLetters = tmp.filter(letter => letter.id !== id);
-    for (let i = 0; i < newLetters.length; i++) {
-      if (i < MAX_LETTERS) {
-        newLetters[i].isVisible = true;
-      }
-    }
-    this.setState({
-      letters: newLetters
+  makeDelete() {
+    this.setState(state => {
+      return { letters: this.removeAllCheckedLetters(state.letters, state.checked) };
     });
   }
 
@@ -137,50 +140,52 @@ export class Page extends Component {
       letters: newLetters,
       isSelectAll: false
     });
+
+    setTimeout(this.makeDelete, 1500);
   }
 
   newLetter() {
     const id = `letter-id-${this.state.count}`;
 
     this.setState(state => {
-      return { size: state.size + 1, count: state.count + 1 };
+      return { count: state.count + 1 };
     });
 
     const authorName = genAuthorName();
     const authorImage = genAuthorImage();
     const headText = genHeadText();
     const letterText = genText();
+
     const date = new Date();
     const headTagDate = getDate(date);
     const headDate = getHeadDate(date);
 
     const newChecked = this.state.checked;
     newChecked[id] = false;
+    const newLetters = this.state.letters;
+
+    const newLetter = {
+      id,
+      letterText,
+      authorName,
+      authorImage,
+      headText,
+      isChecked: false,
+      isVisible: true,
+      isRead: true,
+      addAnimation: true,
+      deleteAnimation: false,
+      headTagDate,
+      headDate
+    };
+
+    for (let i = 0; i < newLetters.length; i++) {
+      newLetters[i].isVisible = i < MAX_LETTERS - 1;
+    }
 
     this.setState(state => {
       return {
-        letters: this.setInvisible(state.letters)
-      };
-    });
-
-    this.setState(state => {
-      return {
-        letters: [
-          {
-            id,
-            letterText,
-            authorName,
-            authorImage,
-            headText,
-            isChecked: false,
-            isVisible: true,
-            isRead: true,
-            addAnimation: true,
-            deleteAnimation: false,
-            headDate,
-            headTagDate
-          }
-        ].concat(state.letters),
+        letters: [newLetter].concat(state.letters),
         checked: newChecked
       };
     });
@@ -215,7 +220,6 @@ export class Page extends Component {
           setText={this.setText}
           setRead={this.setRead}
           removeAddAnimation={this.removeAddAnimation}
-          makeDelete={this.makeDelete}
         />
       </div>
     );

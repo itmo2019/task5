@@ -57,7 +57,6 @@ export class Content extends Component {
           setText={this.props.setText}
           setRead={this.props.setRead}
           removeAddAnimation={this.props.removeAddAnimation}
-          makeDelete={this.props.makeDelete}
           display={this.state.lettersIsVisible}
           showLetter={this.showLetter}
         />
