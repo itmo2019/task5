@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  min-width: 574px;
+
+  border-top: solid 2px #e2e2e2;
+  font-family: HelveticaNeue, serif;
+}
+
+.footer__menu-link {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer__menu-text {
+  font-size: 11px;
+  font-weight: normal;
+}
+
+.footer__menu {
+  padding: 0;
+  margin: 0;
+  float: right;
+  list-style-type: none;
+}
+
+.footer__link {
+  color: #9b9b9b;
+}
+
+.footer__my-copy {
+  color: #9b9b9b;
+}
