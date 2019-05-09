@@ -18,15 +18,15 @@ export class Letter extends Component {
         style={{ display: this.props.display ? 'inline-block' : 'none' }}
       >
         <article className="letter__my-article">{letter}</article>
-        <a
-          href="#"
+        <button
+          type="button"
           id="close"
           onClick={() => {
             this.props.closeLetter();
           }}
         >
           <img className="letter__close-img" src={close} alt="close" />
-        </a>
+        </button>
       </div>
     );
   }

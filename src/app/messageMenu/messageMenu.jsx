@@ -8,28 +8,28 @@ export class MessageMenu extends Component {
     return (
       <ul className="message-menu">
         <li className="message-menu__text">
-          <a href="." className="page__my-link message-menu__link">
+          <button type="button" className="page__my-link message-menu__link">
             <p className="page__my-text">Переслать</p>
-          </a>
+          </button>
         </li>
         <li className="message-menu__text">
-          <a
-            href="#"
+          <button
+            type="button"
             className="page__my-link message-menu__link"
             onClick={() => this.props.deleteMessages()}
           >
             <p className="page__my-text">Удалить</p>
-          </a>
+          </button>
         </li>
         <li className="message-menu__text">
-          <a href="." className="page__my-link message-menu__link">
+          <button type="button" className="page__my-link message-menu__link">
             <p className="page__my-text">Это спам!</p>
-          </a>
+          </button>
         </li>
         <li className="message-menu__text">
-          <a href="." className="page__my-link message-menu__link">
+          <button type="button" className="page__my-link message-menu__link">
             <p className="page__my-text">Прочитанно</p>
-          </a>
+          </button>
         </li>
       </ul>
     );

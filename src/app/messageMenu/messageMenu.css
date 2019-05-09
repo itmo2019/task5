@@ -1,5 +1,12 @@
 .message-menu__link {
+  display: inline;
+  padding: 0;
+  margin: 0;
+
+  border: none;
+  background-color: transparent;
   color: #cccccc;
+  cursor: pointer;
 }
 
 .message-menu__text {

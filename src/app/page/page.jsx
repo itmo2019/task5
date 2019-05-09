@@ -63,31 +63,19 @@ export class Page extends Component {
     return val1;
   };
 
-  removeAddAnimation(id) {
-    const letters1 = this.state.letters;
-    const newLetters = letters1.map(value => {
-      const tmp = value;
-      if (tmp.id === id) {
-        tmp.addAnimation = false;
-      }
-      return tmp;
-    });
-    this.setState({
-      letters: newLetters
-    });
-  }
+  setChecked = (id, checked) => {
+    const newChecked = checked;
+    newChecked[id] = !newChecked[id];
+    return newChecked;
+  };
 
-  makeDelete(id) {
-    const newLetters = this.state.letters.filter(letter => letter.id !== id);
-    for (let i = 0; i < newLetters.length; i++) {
-      if (i < MAX_LETTERS) {
-        newLetters[i].isVisible = true;
-      }
+  setInvisible = letters => {
+    const newLetters = letters;
+    for (let i = MAX_LETTERS - 1; i < newLetters.length; i++) {
+      newLetters[i].isVisible = false;
     }
-    this.setState({
-      letters: newLetters
-    });
-  }
+    return newLetters;
+  };
 
   selectAll() {
     const newChecked = this.state.checked;
@@ -102,16 +90,42 @@ export class Page extends Component {
     });
   }
 
-  checkboxChange(id) {
-    const newChecked = this.state.checked;
-    newChecked[id] = !newChecked[id];
+  makeDelete(id) {
+    const tmp = this.state.letters;
+    const newLetters = tmp.filter(letter => letter.id !== id);
+    for (let i = 0; i < newLetters.length; i++) {
+      if (i < MAX_LETTERS) {
+        newLetters[i].isVisible = true;
+      }
+    }
     this.setState({
-      checked: newChecked
+      letters: newLetters
+    });
+  }
+
+  removeAddAnimation(id) {
+    const letters1 = this.state.letters;
+    const newLetters = letters1.map(value => {
+      const tmp = value;
+      if (tmp.id === id) {
+        tmp.addAnimation = false;
+      }
+      return tmp;
+    });
+    this.setState({
+      letters: newLetters
+    });
+  }
+
+  checkboxChange(id) {
+    this.setState(state => {
+      return { checked: this.setChecked(id, state.checked) };
     });
   }
 
   deleteMails() {
-    const newLetters = this.state.letters.map(letter => {
+    const tmp = this.state.letters;
+    const newLetters = tmp.map(letter => {
       const newLetter = letter;
       if (this.state.checked[newLetter.id]) {
         newLetter.deleteAnimation = true;
@@ -142,13 +156,11 @@ export class Page extends Component {
 
     const newChecked = this.state.checked;
     newChecked[id] = false;
-    const newLetters = this.state.letters;
-    for (let i = MAX_LETTERS - 1; i < newLetters.length; i++) {
-      newLetters[i].isVisible = false;
-    }
 
-    this.setState({
-      letters: newLetters
+    this.setState(state => {
+      return {
+        letters: this.setInvisible(state.letters)
+      };
     });
 
     this.setState(state => {
