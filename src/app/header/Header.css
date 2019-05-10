@@ -1,0 +1,32 @@
+.body__header {
+  position: static;
+  top: 12px;
+  right: 0;
+  left: 0;
+}
+
+.header {
+  width: 100%;
+  height: 56px;
+}
+
+.header__menu-logo {
+  width: 20px;
+  margin-top: 14px;
+  margin-left: 22px;
+  float: left;
+}
+
+.menu-logo__part {
+  width: 20px;
+  height: 2px;
+  margin-top: 4.8px;
+  background-color: #000;
+}
+
+.header__yandex-logo {
+  max-width: 267px;
+  margin-top: 12px;
+  margin-left: 11px;
+  float: left;
+}

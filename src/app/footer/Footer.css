@@ -1,0 +1,22 @@
+.body__footer {
+  margin-top: -44px;
+}
+
+.footer {
+  color: #9b9b9b;
+}
+
+.footer__text {
+  float: right;
+  margin-right: 40px;
+  margin-top: 8px;
+  font-size: 11px;
+  font-family: Helvetica Neue, sans-serif;
+}
+
+.footer__line {
+  margin-left: 191px;
+  margin-right: 20px;
+  width: auto;
+  border: solid 1px #e2e2e2;
+}

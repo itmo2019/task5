@@ -1,0 +1,120 @@
+.body__workplace {
+  margin: 0 20px 14px 191px;
+}
+
+.workplace {
+  width: auto;
+  height: calc(100% - 100px);
+  padding-bottom: 30px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+}
+
+.workplace__options {
+  margin: 0 0 0 0;
+}
+
+.options {
+  padding-top: 11px;
+  padding-bottom: 11px;
+
+  border-bottom: solid 1px #e2e2e2;
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 13px;
+}
+
+.options__elem {
+  display: inline;
+
+  margin-right: 20px;
+  margin-left: 20px;
+  color: #ccc;
+}
+
+.workplace__options-marker {
+  display: inline;
+
+  width: 16px;
+  height: 16px;
+  margin-top: 6px;
+  margin-right: 20px;
+  margin-left: 20px;
+
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  background-color: #fff;
+  border-radius: 3px;
+  color: #ccc;
+  float: left;
+  font-size: 13px;
+}
+
+.workplace__list-of-letters {
+  z-index: 1;
+
+  height: calc(100% - 37px);
+  margin-top: 0;
+  margin-left: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.list-of-letters__letter {
+  position: relative;
+
+  margin: 0 0 0 0;
+}
+
+.sender-label {
+  width: 30px;
+  height: 30px;
+
+  content: url('./yandexCircle.jpg');
+}
+
+.letter__sender-label {
+  position: absolute;
+
+  width: 30px;
+  height: 30px;
+  margin-left: 46px;
+}
+
+.letter__sender {
+  position: absolute;
+
+  overflow: hidden;
+  width: 155px;
+  margin-top: 6px;
+  margin-left: 86px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.letter__title {
+  position: absolute;
+
+  top: 11px;
+  right: 72px;
+  bottom: auto;
+  left: 285px;
+
+  overflow: hidden;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.letter__date {
+  overflow: hidden;
+  width: 50px;
+  margin: 8px 20px 8px auto;
+  color: #9b9b9b;
+  float: right;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.topic__axolotl {
+  float: left;
+  shape-outside: circle();
+}

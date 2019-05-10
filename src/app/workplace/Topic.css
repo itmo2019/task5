@@ -1,0 +1,35 @@
+.workplace__topic {
+  position: absolute;
+
+  width: calc(100% - 191px - 60px);
+  height: calc(100% - 68px - 56px - 14px);
+  opacity: 0;
+}
+
+.topic {
+  padding: 0 20px;
+  background: #fff;
+
+  overflow-y: auto;
+}
+
+.topic__close-topic {
+  margin-right: 20px;
+  margin-left: auto;
+  color: #ccc;
+  float: right;
+  font-size: 20px;
+}
+
+.workplace__open-topic {
+  display: none;
+}
+
+.workplace__open-topic:checked ~ .workplace__list-of-letters {
+  z-index: -1;
+}
+
+.workplace__open-topic:checked ~ .workplace__topic {
+  z-index: 1;
+  opacity: 1;
+}

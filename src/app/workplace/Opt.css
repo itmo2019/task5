@@ -1,0 +1,27 @@
+.workplace__options {
+  margin: 0 0 0 0;
+}
+
+.options {
+  padding-top: 11px;
+  padding-bottom: 11px;
+
+  border-bottom: solid 1px #e2e2e2;
+  font-family: Helvetica Neue, sans-serif;
+  font-size: 13px;
+}
+
+.options__elem {
+  display: inline;
+  margin-right: 20px;
+  margin-left: 20px;
+  color: #ccc;
+}
+
+.all-letters__marker {
+  display: inline;
+  margin-top: 0;
+  margin-right: 20px;
+  margin-left: 20px;
+  float: left;
+}
