@@ -1,0 +1,9 @@
+.yandex {
+    width: 153px;
+    height: 31px;
+}
+.body__yandex {
+    position: absolute;
+    margin-top: 12px;
+    margin-left: 53px;
+}

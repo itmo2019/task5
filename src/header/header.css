@@ -1,0 +1,15 @@
+.window__header {
+	margin-left: 20px; 
+	margin-top: 11px; 
+}
+
+.header__item {
+	background: #fff;
+	color: #ccc;
+	border: 0 none;
+}
+#delButton {
+	background: none;
+	border: none;
+	color: #ccc;
+}
