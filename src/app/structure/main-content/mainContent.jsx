@@ -12,13 +12,15 @@ import {
 } from './scripts/generator';
 import { Footer } from './footer/footer';
 
-const LETTERS_ON_PAGE = 5;
+const LETTERS_ON_PAGE = 30;
+let counter = 0;
 
 export class MainContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0,
+      isLetterOpened: false,
+      openedLetterText: null,
       letters: [],
       isAllChecked: false,
       checkedLetters: {}
@@ -29,8 +31,10 @@ export class MainContent extends Component {
     this.newMail = this.newMail.bind(this);
     this.deleteLetter = this.deleteLetter.bind(this);
     this.getRandomLetter = this.getRandomLetter.bind(this);
+    this.openLetter = this.openLetter.bind(this);
+    this.closeLetter = this.closeLetter.bind(this);
 
-    // setTimeout(this.getRandomLetter, 100);
+    setTimeout(this.getRandomLetter, 100);
   }
 
   onCheckboxChange(id) {
@@ -46,8 +50,8 @@ export class MainContent extends Component {
 
   getRandomLetter() {
     const t = randomInt(10, 300000) + 300000;
-    setTimeout(this.getRandomLetter, t);
     this.newMail();
+    setTimeout(this.getRandomLetter, t);
   }
 
   selectAll() {
@@ -66,11 +70,8 @@ export class MainContent extends Component {
   }
 
   newMail() {
-    console.log('get');
-    this.setState(state => {
-      return { counter: state.counter + 1 };
-    });
-    const id = this.state.counter;
+    counter++;
+    const id = counter;
     const author = randomSender();
 
     const text = generateText(author);
@@ -92,11 +93,12 @@ export class MainContent extends Component {
       return {
         letters: [
           {
-            key: id,
-            text: text,
-            author: author,
-            topic: topic,
-            date: date,
+            key: `id${id}`,
+            id: `id${id}`,
+            text,
+            author,
+            topic,
+            date,
             isChecked: false,
             isVisible: true
           },
@@ -109,9 +111,8 @@ export class MainContent extends Component {
   }
 
   deleteLetter() {
-    console.log('delete');
     const newLetters = this.state.letters.filter(letter => !this.state.checkedLetters[letter.key]);
-    for (let i = 0; i < Math.min(newLetters.length, LETTERS_ON_PAGE+1); i++) {
+    for (let i = 0; i < Math.min(newLetters.length, LETTERS_ON_PAGE + 1); i++) {
       newLetters[i].isVisible = true;
     }
     this.setState(() => {
@@ -122,10 +123,25 @@ export class MainContent extends Component {
     });
   }
 
+  openLetter(text) {
+    this.setState({
+      isLetterOpened: true,
+      openedLetterText: text
+    });
+  }
+
+  closeLetter() {
+    this.setState({
+      isLetterOpened: false,
+      openedLetterText: null
+    });
+  }
+
   render() {
     return (
       <div className="main-block">
         <AllFunctions
+          isLetterOpened={this.state.isLetterOpened}
           selectAll={this.selectAll}
           newMailOnClick={this.newMail}
           deleteLetter={this.deleteLetter}
@@ -133,7 +149,11 @@ export class MainContent extends Component {
         />
         <Letters
           letters={this.state.letters}
+          isLetterOpened={this.state.isLetterOpened}
           checkedLetters={this.state.checkedLetters}
+          openLetter={this.openLetter}
+          closeLetter={this.closeLetter}
+          openedLetterText={this.state.openedLetterText}
           onCheckboxChange={this.onCheckboxChange}
         />
         <Footer />

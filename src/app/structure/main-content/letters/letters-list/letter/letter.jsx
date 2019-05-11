@@ -13,7 +13,7 @@ export class Letter extends Component {
   constructor(props) {
     super(props);
     this.onCheckboxChange = this.props.onCheckboxChange.bind(this);
-    this.open = this.props.openLetter.bind(this);
+    this.openLetter = this.props.openLetter.bind(this);
     this.firms = {
       ebay: logo1,
       yandex: logo2,
@@ -32,10 +32,10 @@ export class Letter extends Component {
           <input
             type="checkbox"
             className="check"
-            onClick={() => this.onCheckboxChange(this.props.id)}
+            onChange={() => this.onCheckboxChange(this.props.id)}
             checked={this.props.isChecked}
           />
-          <div onClick={this.open}>
+          <div onClick={() => this.openLetter(this.props.text)}>
             <div className="main-block__img">
               <img src={this.firms[this.props.author]} alt={this.props.author} width="30" />
             </div>

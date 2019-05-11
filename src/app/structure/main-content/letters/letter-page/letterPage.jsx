@@ -21,7 +21,7 @@ export class LetterPage extends Component {
             this.closeLetter();
           }}
         />
-        <p className="main-block__paragraph">Некоторый текст</p>
+        <p className="main-block__paragraph">{this.props.text}</p>
       </div>
     );
   }

@@ -25,7 +25,9 @@ export class AllFunctions extends Component {
           type="checkbox"
           className="check"
           checked={this.props.isChecked}
-          onClick={this.selectAll}
+          onChange={() => {
+            if (!this.props.isLetterOpened) this.selectAll();
+          }}
         />
         <ul className="main-block__all-function">
           {actions.map(action => {
@@ -33,12 +35,12 @@ export class AllFunctions extends Component {
               <li className="main-block__func" key={action.act}>
                 <button
                   type="button"
-                  // href="#"
                   id={action.act}
                   className="main-block__ref-func"
                   onClick={() => {
-                    if (action.act === 'get-letter') this.newMailOnClick();
-                    if (action.act === 'remove') this.deleteLetter();
+                    if (action.act === 'get-letter' && !this.props.isLetterOpened)
+                      this.newMailOnClick();
+                    if (action.act === 'remove' && !this.props.isLetterOpened) this.deleteLetter();
                   }}
                 >
                   {action.title}
