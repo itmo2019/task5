@@ -1,0 +1,13 @@
+.header__menu-icon {
+  display: inline-block;
+}
+
+.header__yandex-logo {
+  display: inline-block;
+}
+
+.header__search-box {
+  display: inline-block;
+  vertical-align: top;
+  margin: 10px 10px 10px 114px;
+}

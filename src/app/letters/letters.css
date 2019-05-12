@@ -1,0 +1,23 @@
+.letters__control-panel-button {
+  display: inline-block;
+  vertical-align: top;
+  height: 16px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ccc;
+  margin: 11px 13px;
+}
+
+.letters__control-panel-button:hover {
+  color: #555;
+}
+
+.letters-list{
+  max-height: 1301px;
+  overflow: hidden;
+}
+
+.line {
+  height: 1px;
+  border-top: solid 1px #e2e2e2;
+}

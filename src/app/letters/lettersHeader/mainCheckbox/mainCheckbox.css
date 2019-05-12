@@ -1,0 +1,16 @@
+.hidden-checkbox {
+  position: absolute;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+
+  width: 25px;
+  height: 25px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.hidden-checkbox:checked + .decorative-checkbox {
+  background-image: url(./images/icons16.svg);
+}

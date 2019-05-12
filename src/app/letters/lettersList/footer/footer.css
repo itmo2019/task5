@@ -1,0 +1,9 @@
+.line {
+  height: 1px;
+  border-top: solid 1px #e2e2e2;
+}
+
+.footer__button {
+  display: inline-block;
+  margin: 10px 20px;
+}
