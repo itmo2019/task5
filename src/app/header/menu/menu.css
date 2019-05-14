@@ -1,0 +1,9 @@
+.page__ya-menu-logo{
+  margin-left: 22px;
+}
+
+.page__sidebar-menu{
+  position: relative;
+  vertical-align: bottom;
+  bottom: 3px;
+}

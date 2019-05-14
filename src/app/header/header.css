@@ -1,0 +1,8 @@
+.page__header {
+  display: inline-block;
+  width: 100%;
+  height: 31px;
+  position: relative;
+  margin-top: 13px;
+  margin-bottom: 13px;
+}

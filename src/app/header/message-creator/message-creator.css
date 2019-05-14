@@ -1,0 +1,7 @@
+.page__message-creator {
+  display: inline-block;
+  position: relative;
+  left: 18%;
+  opacity: 0.5;
+  cursor: pointer;
+}
