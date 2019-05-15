@@ -4,7 +4,8 @@ import './letter.css';
 import '../letterBox/letterBox.css';
 
 function LetterItem(props) {
-  return <li className={`letter__item ${props.className}`}>{props.children}</li>;
+  const { className, children } = props;
+  return <li className={`letter__item ${className}`}>{children}</li>;
 }
 
 export default class Letter extends Component {
@@ -20,14 +21,16 @@ export default class Letter extends Component {
   }
 
   componentDidMount() {
-    this.timerID = setTimeout(() => {
-      this.setState({ hasAddAnimation: true });
-    }, this.DELTA_TIME);
+    this.timerID = setTimeout(this.setAddAnimation, this.DELTA_TIME);
   }
 
   componentWillUnmount() {
     clearTimeout(this.timerID);
   }
+
+  setAddAnimation = () => {
+    this.setState({ hasAddAnimation: true });
+  };
 
   render() {
     const {
@@ -37,9 +40,11 @@ export default class Letter extends Component {
       topic,
       date,
       handleMailClick,
+      handleMailCheckClick,
       hiddenMail,
       hasRemoveAnimation,
-      isUnread
+      isUnread,
+      isChecked
     } = this.props;
     const { hasAddAnimation } = this.state;
     return (
@@ -54,7 +59,7 @@ export default class Letter extends Component {
       >
         <ul className="letter__line">
           <LetterItem>
-            <Check {...this.props} />
+            <Check onChange={handleMailCheckClick} isChecked={isChecked} />
           </LetterItem>
           <LetterItem className="letter__author">{authorLogo}</LetterItem>
           <LetterItem className="letter__author-name">{authorName}</LetterItem>

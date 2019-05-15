@@ -140,10 +140,10 @@ export default class LetterBox extends Component {
     this.setState(state => {
       const letters = state.letters.slice();
       const checked = letters[index].isChecked;
-      const isCheckAllNew = checked ? !checked : state.isCheckAll;
+      const isCheckAll = checked ? !checked : state.isCheckAll;
       const selectLetterCount = state.selectLetterCount + (checked ? -1 : 1);
       letters[index].isChecked = !checked;
-      return { letters, isCheckAll: isCheckAllNew, selectLetterCount };
+      return { letters, isCheckAll, selectLetterCount };
     });
   };
 
@@ -182,8 +182,8 @@ export default class LetterBox extends Component {
       letters,
       isMailVisible,
       mailContent,
-      isCheckAll,
-      selectLetterCount
+      selectLetterCount,
+      isCheckAll
     } = this.state;
 
     const listLetters = letters.map((letter, index) => (
@@ -200,25 +200,37 @@ export default class LetterBox extends Component {
           index >= curPage * this.MAX_MAIL_LIST_SIZE
         }
         hasRemoveAnimation={letter.hasRemoveAnimation}
-        handleMailCheckClick={this.handleMailCheckClick.bind(this, index)}
-        handleMailClick={this.handleMailClick.bind(this, index)}
+        handleMailCheckClick={() => this.handleMailCheckClick(index)}
+        handleMailClick={() => this.handleMailClick(index)}
         isUnread={letter.isUnread}
         isChecked={letter.isChecked}
       />
     ));
 
+    const toolbarItems = [
+      { type: 'checkbox', value: isCheckAll, onClick: this.handleCheckAllClick },
+      { type: 'button', value: 'Получить сообщение', onClick: this.newMail, isActive: true },
+      { type: 'button', value: 'Переслать', isActive: selectLetterCount },
+      {
+        type: 'button',
+        value: 'Удалить',
+        onClick: this.handleRemoveButtonClick,
+        isActive: selectLetterCount
+      },
+      { type: 'button', value: 'Это спам!', isActive: selectLetterCount },
+      {
+        type: 'button',
+        value: 'Прочитано',
+        onClick: this.handleUnmarkButtonClick,
+        isActive: selectLetterCount
+      }
+    ];
+
     return (
       <div className={`letter-box ${this.props.className}`}>
-        <Toolbar
-          isAnySelect={selectLetterCount > 0}
-          isChecked={isCheckAll}
-          handleAddMailButtonClick={this.newMail}
-          handleRemoveButtonClick={this.handleRemoveButtonClick}
-          handleUnmarkButtonClick={this.handleUnmarkButtonClick}
-          handleCheckAllClick={this.handleCheckAllClick}
-        />
+        <Toolbar isChecked={isCheckAll}>{toolbarItems}</Toolbar>
         <Hr />
-        <LetterDialog isMailVisible={isMailVisible} handleMailExitClick={this.handleMailExitClick}>
+        <LetterDialog isVisible={isMailVisible} onExitClick={this.handleMailExitClick}>
           {mailContent}
         </LetterDialog>
         <ul className="letter-box__letter-list">{listLetters}</ul>

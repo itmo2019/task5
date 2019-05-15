@@ -1,11 +1,12 @@
 .toolbar {
-  padding: 10px 20px;
+  padding: 0 20px;
   margin: 0;
   font-size: 13px;
 }
 
 .toolbar__item {
   display: inline-block;
+  line-height: 39px;
   list-style-type: none;
 }
 
@@ -26,12 +27,12 @@
   border: none;
   background-color: inherit;
   color: inherit;
-  cursor: pointer;
   font-family: inherit;
   font-size: inherit;
   outline: none;
 }
 
-.toolbar__button_has-select-letter {
+.toolbar__button_is-active {
   color: #000;
+  cursor: pointer;
 }

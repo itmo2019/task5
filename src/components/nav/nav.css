@@ -25,6 +25,15 @@
   text-decoration: none;
 }
 
+.nav__item_type_link {
+  display: block;
+  width: 87%;
+  padding: 5px 10px;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+}
+
 .nav__item:hover {
   background-color: #d8e1ef;
   border-radius: 3px;

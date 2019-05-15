@@ -2,10 +2,11 @@ import React from 'react';
 import './letterDialog.css';
 
 export default function LetterDialog(props) {
-  const { isMailVisible, handleMailExitClick, children } = props;
+  const { isVisible, onExitClick, children } = props;
+
   return (
-    <section className={`letter-dialog ${isMailVisible ? 'letter-dialog_visible' : ''}`}>
-      <div className="letter-dialog__exit" onClick={handleMailExitClick}>
+    <section className={`letter-dialog ${isVisible ? 'letter-dialog_visible' : ''}`}>
+      <div className="letter-dialog__exit" onClick={onExitClick}>
         ×
       </div>
       <div className="letter-dialog__content">{children}</div>
