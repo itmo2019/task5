@@ -56,7 +56,8 @@ export class MainPlaceholder extends Component {
 
   deleteMail = () => {
     this.setState((state) => {
-      state['mails'] = state.mails.map((item) => {
+      let mails = [...state.mails];
+      state['mails'] = mails.map((item) => {
         if (item.select) {
           item.select = false;
           item.delete = true;
@@ -71,7 +72,8 @@ export class MainPlaceholder extends Component {
   onTransitionEnd = (id, was, animate) => () => {
     if (!animate) {
       this.setState((state) => {
-        state['mails'] = state.mails.map((item) => {
+        let mails = [...state.mails];
+        state['mails'] = mails.map((item) => {
           if (item.id.toString() === id.toString()) {
             item['animate'] = true;
           }
@@ -85,14 +87,16 @@ export class MainPlaceholder extends Component {
     }
 
     this.setState((state) => {
-      state['mails'] = state.mails.filter((item) => item.id.toString() !== id.toString());
+      let mails = [...state.mails];
+      state['mails'] = mails.filter((item) => item.id.toString() !== id.toString());
       return state;
     });
   };
 
   readMail = () => {
     this.setState((state) => {
-      state['mails'] = state.mails.map((item) => {
+      let mails = [...state.mails];
+      state['mails'] = mails.map((item) => {
           let tmp = item;
           if (item.select) {
             tmp.select = false;
@@ -112,7 +116,8 @@ export class MainPlaceholder extends Component {
       return;
     }
     this.setState((state) => {
-      state['mails'] = state.mails.map((item) => {
+      let mails = [...state.mails];
+      state['mails'] = mails.map((item) => {
         if (item.id.toString() === id.toString()) {
           item['read'] = true;
         }
