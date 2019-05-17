@@ -12,7 +12,8 @@ import '../styles/navigation.css';
 
 import {
   getRandomValue,
-  generateNewMail
+  generateNewMail,
+  MAX_MAILS_PER_PAGE
 } from '../scripts/init-global-vars';
 
 import {FooterItems} from './footer';
@@ -155,7 +156,7 @@ export class MainPlaceholder extends Component {
   };
 
   render() {
-    let mails = this.state.mails.filter((item, index) => index < 30);
+    let mails = this.state.mails.slice(0, MAX_MAILS_PER_PAGE);
     return (
       <main className="main">
         <MainMenu addNewLetter={this.addNewMailByClick}/>

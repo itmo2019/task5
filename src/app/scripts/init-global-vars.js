@@ -94,3 +94,5 @@ export const generateNewMail = (commonId) => {
   };
 
 };
+
+export const MAX_MAILS_PER_PAGE = 30;
