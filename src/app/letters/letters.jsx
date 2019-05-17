@@ -5,13 +5,19 @@ import '../page/page.css';
 import { LetterHead } from '../letterHead/letterHead';
 
 export class Letters extends Component {
-  getClassName = () => {
+  constructor(props) {
+    super(props);
+
+    this.makeClassName = this.makeClassName.bind(this);
+  }
+
+  makeClassName = () => {
     return this.props.display ? 'letters' : 'letters letters_hidden';
   };
 
   render() {
     return (
-      <ul className={this.getClassName()}>
+      <ul className={this.makeClassName()}>
         {this.props.letters.map(letter => {
           if (letter.isVisible) {
             return (

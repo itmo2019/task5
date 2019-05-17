@@ -8,6 +8,7 @@ export class LetterHead extends Component {
     super(props);
 
     this.makeClassName = this.makeClassName.bind(this);
+    this.makeLinkClassName = this.makeLinkClassName.bind(this);
   }
 
   makeClassName() {
@@ -29,8 +30,11 @@ export class LetterHead extends Component {
     return className.join(' ');
   }
 
+  makeLinkClassName() {
+    return this.props.isRead ? 'letter-head__link letter-head_unread' : 'letter-head__link';
+  }
+
   render() {
-    /* TODO: нужен ли сдесь id? */
     return (
       <li className={this.makeClassName()}>
         <label htmlFor={`${this.props.id}-checkbox`}>
@@ -44,9 +48,7 @@ export class LetterHead extends Component {
         </label>
         <a
           href="#"
-          className={
-            this.props.isRead ? 'letter-head__link letter-head_unread' : 'letter-head__link'
-          }
+          className={this.makeLinkClassName()}
           onClick={() => {
             this.props.setText(this.props.letterText);
             this.props.showLetter();

@@ -6,7 +6,13 @@ import '../page/page.css';
 import close from '../../images/cross-symbol.png';
 
 export class Letter extends Component {
-  getClassName = () => {
+  constructor(props) {
+    super(props);
+
+    this.makeClassName = this.makeClassName.bind(this);
+  }
+
+  makeClassName = () => {
     return this.props.display ? 'letter' : 'letter letter_hidden';
   };
 
@@ -16,7 +22,7 @@ export class Letter extends Component {
       letter.push(<p>{this.props.text[i]}</p>);
     }
     return (
-      <div className={this.getClassName()}>
+      <div className={this.makeClassName()}>
         <article className="letter__my-article">{letter}</article>
         <button
           type="button"
