@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'YandexBold';
-  src: url('../../fonts/YandexSansDisplay-Regular.woff');
+  src: url('../../fonts/YandexSansText-Medium.woff');
 }
 
 .main {
@@ -376,4 +376,3 @@
   border: 0;
   border-radius: 3px;
 }
-
