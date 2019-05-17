@@ -5,31 +5,25 @@ import '../page/page.css';
 import { LetterHead } from '../letterHead/letterHead';
 
 export class Letters extends Component {
+  getClassName = () => {
+    return this.props.display ? 'letters' : 'letters letters_hidden';
+  };
+
   render() {
     return (
-      <ul className="letters" style={{ display: this.props.display ? 'inline-block' : 'none' }}>
-        {this.props.letters.map(a => {
-          if (a.isVisible) {
+      <ul className={this.getClassName()}>
+        {this.props.letters.map(letter => {
+          if (letter.isVisible) {
             return (
               <LetterHead
-                id={a.id}
-                key={a.id}
-                authorName={a.authorName}
-                authorImage={a.authorImage}
-                text={a.letterText}
-                headText={a.headText}
-                isVisible={a.isVisible}
-                isChecked={this.props.checked[a.id]}
+                {...letter}
+                key={letter.id}
+                isChecked={this.props.checked[letter.id]}
                 checkboxChange={this.props.checkboxChange}
                 setText={this.props.setText}
-                addAnimation={a.addAnimation}
                 removeAddAnimation={this.props.removeAddAnimation}
-                deleteAnimation={a.deleteAnimation}
-                unread={a.isRead}
                 setRead={this.props.setRead}
                 showLetter={this.props.showLetter}
-                headDate={a.headDate}
-                headTagDate={a.headTagDate}
               />
             );
           }

@@ -6,21 +6,21 @@ import '../page/page.css';
 import close from '../../images/cross-symbol.png';
 
 export class Letter extends Component {
+  getClassName = () => {
+    return this.props.display ? 'letter' : 'letter letter_hidden';
+  };
+
   render() {
     const letter = [];
     for (let i = 0; i < this.props.text.length; i++) {
       letter.push(<p>{this.props.text[i]}</p>);
     }
     return (
-      <div
-        id="main-letter"
-        className="letter"
-        style={{ display: this.props.display ? 'inline-block' : 'none' }}
-      >
+      <div className={this.getClassName()}>
         <article className="letter__my-article">{letter}</article>
         <button
           type="button"
-          id="close"
+          id="letter__close"
           onClick={() => {
             this.props.closeLetter();
           }}

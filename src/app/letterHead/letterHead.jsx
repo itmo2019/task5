@@ -22,20 +22,20 @@ export class LetterHead extends Component {
       className.push('letter-head__animated-delete-line');
     }
 
+    if (!this.props.isVisible) {
+      className.push('letter-head_hidden');
+    }
+
     return className.join(' ');
   }
 
   render() {
+    /* TODO: нужен ли сдесь id? */
     return (
-      <li
-        id={this.props.id}
-        className={this.makeClassName()}
-        key={this.props.id}
-        style={{ display: this.props.isVisible ? 'inline' : 'none' }}
-      >
-        <label htmlFor="letter-id-1-checkbox">
+      <li className={this.makeClassName()}>
+        <label htmlFor={`${this.props.id}-checkbox`}>
           <input
-            id="letter-id-1-checkbox"
+            id={`${this.props.id}-checkbox`}
             className="page__my-input letter-head__my-checkbox"
             type="checkbox"
             checked={this.props.isChecked}
@@ -45,10 +45,10 @@ export class LetterHead extends Component {
         <a
           href="#"
           className={
-            this.props.unread ? 'letter-head__link letter-head_unread' : 'letter-head__link'
+            this.props.isRead ? 'letter-head__link letter-head_unread' : 'letter-head__link'
           }
           onClick={() => {
-            this.props.setText(this.props.text);
+            this.props.setText(this.props.letterText);
             this.props.showLetter();
             this.props.setRead(this.props.id);
           }}

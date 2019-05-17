@@ -4,6 +4,10 @@
   min-height: 415px;
 }
 
+.letter_hidden {
+  display: none;
+}
+
 .letter__close-img {
   width: 9px;
   height: 9px;
@@ -27,7 +31,7 @@
   shape-outside: circle(50%);
 }
 
-#close {
+#letter__close {
   display: inline-block;
   padding: 0;
   margin: 0;

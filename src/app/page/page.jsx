@@ -13,7 +13,7 @@ import {
   getDate
 } from '../scripts/scripts';
 
-const MAX_LETTERS = 30;
+const MAX_LETTERS = 10;
 
 export class Page extends Component {
   constructor(props) {
@@ -70,14 +70,6 @@ export class Page extends Component {
     return newChecked;
   };
 
-  setInvisible = letters => {
-    const newLetters = letters;
-    for (let i = MAX_LETTERS - 1; i < newLetters.length; i++) {
-      newLetters[i].isVisible = false;
-    }
-    return newLetters;
-  };
-
   removeAllCheckedLetters = (letters, checked) => {
     const newLetters = letters.filter(a => !checked[a.id]);
     for (let i = 0; i < newLetters.length; i++) {
@@ -127,21 +119,20 @@ export class Page extends Component {
   }
 
   deleteMails() {
-    const tmp = this.state.letters;
-    const newLetters = tmp.map(letter => {
+    const oldLetters = this.state.letters;
+    const newLetters = oldLetters.map(letter => {
       const newLetter = letter;
       if (this.state.checked[newLetter.id]) {
         newLetter.deleteAnimation = true;
       }
       return newLetter;
     });
+    setTimeout(this.makeDelete, 1500);
 
     this.setState({
       letters: newLetters,
       isSelectAll: false
     });
-
-    setTimeout(this.makeDelete, 1500);
   }
 
   newLetter() {

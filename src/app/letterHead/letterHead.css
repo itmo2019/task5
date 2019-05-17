@@ -21,8 +21,13 @@
 }
 
 .letter-head {
+  display: block;
   min-width: 574px;
   height: 40px;
+}
+
+.letter-head_hidden {
+  display: none;
 }
 
 .letter-head__link {
@@ -66,7 +71,7 @@
   display: inline-block;
   overflow: hidden;
   width: calc(100% - 322px);
-  min-width: 260px;
+  min-width: 240px;
   height: 40px;
   margin-left: 10px;
   color: #000000;
@@ -87,11 +92,11 @@
 }
 
 .letter-head__animated-add-line {
-  animation: add 2s linear;
+  animation: add 1.5s linear;
 }
 
 .letter-head__animated-delete-line {
-  animation: delete 2s linear;
+  animation: delete 1.5s linear;
 }
 
 @keyframes add {

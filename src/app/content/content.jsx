@@ -13,8 +13,7 @@ export class Content extends Component {
     super(props);
 
     this.state = {
-      letterIsVisible: false,
-      lettersIsVisible: true
+      letterIsVisible: false
     };
 
     this.showLetter = this.showLetter.bind(this);
@@ -23,15 +22,13 @@ export class Content extends Component {
 
   showLetter() {
     this.setState({
-      letterIsVisible: true,
-      lettersIsVisible: false
+      letterIsVisible: true
     });
   }
 
   closeLetter() {
     this.setState({
-      letterIsVisible: false,
-      lettersIsVisible: true
+      letterIsVisible: false
     });
   }
 
@@ -57,7 +54,7 @@ export class Content extends Component {
           setText={this.props.setText}
           setRead={this.props.setRead}
           removeAddAnimation={this.props.removeAddAnimation}
-          display={this.state.lettersIsVisible}
+          display={!this.state.letterIsVisible}
           showLetter={this.showLetter}
         />
         <Letter
