@@ -13,7 +13,7 @@ import {
   getDate
 } from '../scripts/scripts';
 
-const MAX_LETTERS = 10;
+const MAX_LETTERS = 30;
 
 export class Page extends Component {
   constructor(props) {
