@@ -1,24 +1,21 @@
 import React, {Component} from 'react';
 
 import '../styles/fonts.css';
-import '../styles/animation.css';
-import '../styles/body.css';
-import '../styles/components.css';
-import '../styles/fonts.css';
-import '../styles/header.css';
 import '../styles/mails-placeholder.css';
 import '../styles/main.css';
-import '../styles/navigation.css';
+import '../styles/fonts.css';
 
 import {
   getRandomValue,
   generateNewMail,
   MAX_MAILS_PER_PAGE
-} from '../scripts/init-global-vars';
+} from '../scripts/utils';
 
 import {FooterItems} from './footer';
-
-import {Mail, MainMenu, MailsToolbar, PreviewPlaceholder} from './componetns';
+import {Mail} from  './components/mails';
+import {MainMenu} from "./components/main-menu";
+import {MailsToolbar} from "./components/mails-toolbar";
+import {PreviewPlaceholder} from "./components/preview-placeholder";
 
 
 export class MainPlaceholder extends Component {
@@ -168,7 +165,7 @@ export class MainPlaceholder extends Component {
           {
             this.state.placeholder ?
               <PreviewPlaceholder closeClick={this.hidePlaceholders} mailText={this.state.mailText}/> :
-              <div id="mails-placeholder" className="list-of-mails">
+              <div className="list-of-mails">
                 {mails.map((mail) => <Mail key={mail.id.toString()}
                                            select={mail.select}
                                            image={mail.image}

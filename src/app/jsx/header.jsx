@@ -1,13 +1,6 @@
 import React from 'react';
 
-import '../styles/animation.css';
-import '../styles/body.css';
-import '../styles/components.css';
-import '../styles/fonts.css';
 import '../styles/header.css';
-import '../styles/mails-placeholder.css';
-import '../styles/main.css';
-import '../styles/navigation.css';
 import logo from '../images/YaLogo.png';
 
 function ActionButton() {

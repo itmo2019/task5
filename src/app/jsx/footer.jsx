@@ -1,5 +1,8 @@
 import React from "react";
 
+import '../styles/mails-placeholder.css';
+import '../styles/components.css';
+
 export function FooterItems() {
   return (
     <div className="list-of-footer-items">

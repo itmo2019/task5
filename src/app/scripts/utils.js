@@ -48,20 +48,6 @@ export function getRandomValue(left, right) {
   return Math.floor(mapping + left);
 }
 
-
-export const findMail = (element) => {
-  let tmp = element;
-  while (tmp !== null) {
-    let classes = tmp.classList;
-    if (classes.contains('mail')) {
-      return tmp;
-    }
-    tmp = tmp.parentNode;
-  }
-  return null;
-};
-
-
 export const randomDate = (start, end) => {
   return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
 };
