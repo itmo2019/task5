@@ -1,0 +1,89 @@
+.menu {
+  width: 147px;
+}
+
+.content__menu {
+  margin-right: 22px;
+  float: left;
+}
+
+.send-button {
+  overflow: hidden;
+  width: 147px;
+  height: 32px;
+
+  border: none;
+  background-color: #6287bd;
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font: 12px Arial, sans-serif;
+  text-overflow: ellipsis;
+}
+
+.send-button:hover {
+  background-color: #4c76b7;
+}
+
+.send-button:focus {
+  outline-width: 0;
+}
+
+.menu__send-button {
+  margin-bottom: 8px;
+}
+
+.folders__folder {
+  display: block;
+  overflow: hidden;
+  width: 147px;
+  height: 22px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  border-radius: 3px;
+  color: #707070;
+  font: 11px/22px Arial, sans-serif;
+  line-height: 22px;
+  text-decoration: none;
+  text-overflow: ellipsis;
+}
+
+.folders__folder_active {
+  background-color: #cdd6e4;
+  color: #555;
+  font-weight: bold;
+}
+
+.folders__folder:hover:not(.folders__folder_active) {
+  background-color: #d9e0ea;
+}
+
+.menu__folders {
+  margin-bottom: 10px;
+}
+
+.menu__message-action-button {
+  margin-bottom: 10px;
+}
+
+.message-action-button {
+  overflow: hidden;
+  width: 147px;
+  height: 32px;
+
+  border: none;
+  background-color: rgb(86, 149, 209);
+  border-radius: 3px;
+  color: white;
+  cursor: pointer;
+  font: 12px Arial, sans-serif;
+  text-overflow: ellipsis;
+}
+
+.message-action-button:hover {
+  background-color: #4c76b7;
+}
+
+.message-action-button:focus {
+  outline-width: 0;
+}

@@ -1,0 +1,43 @@
+.message-controls__item {
+  display: inline-block;
+  overflow: hidden;
+  margin-right: 25px;
+  color: #ccc;
+  cursor: default;
+  font-size: 13px;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+}
+
+.message-controls__item_active {
+  color: black;
+  cursor: pointer;
+}
+
+.messages-container__message-controls {
+  height: 39px;
+  padding: 0 20px 0 0;
+
+  border-bottom: solid 1px #e2e2e2;
+  font: 0px Arial, sans-serif;
+  line-height: 39px;
+  white-space: nowrap;
+}
+
+.message-controls__checkbox-container {
+  width: 56px;
+}
+
+.message-controls__checkbox {
+  margin-right: 20px;
+}
+
+.message__base-checkbox:checked + .checkbox-container > .message-controls__checkbox {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='12' viewBox='0 0 24 24'%3E%3Cpath d='M20.285 2l-11.285 11.567-5.286-5.011-3.714 3.716 9 8.728 15-15.285z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+}
+
+.message__base-checkbox:focus + .checkbox-container > .message-controls__checkbox {
+  box-shadow: 0 0 4px 2px #ff0a;
+}

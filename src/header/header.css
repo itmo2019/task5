@@ -1,0 +1,18 @@
+.header {
+  overflow: hidden;
+  height: 32px;
+}
+
+.page__header {
+  margin-bottom: 13px;
+}
+
+.page-title-container {
+  position: relative;
+  font-size: 0;
+  white-space: nowrap;
+}
+
+.header__page-title-container {
+  float: left;
+}

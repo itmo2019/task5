@@ -1,0 +1,24 @@
+.page-title-container__burger-menu-button {
+  margin-right: 3px;
+}
+
+.burger-menu-button {
+  display: inline-block;
+  width: 20px;
+  height: 16.8px;
+  padding: 7px;
+  border-radius: 6px;
+  line-height: 31px;
+  vertical-align: middle;
+}
+
+.burger-menu-button:hover {
+  background-color: #d9e0ea;
+  cursor: pointer;
+}
+
+.burger-menu-button__item {
+  height: 2.4px;
+  margin-bottom: 4.8px;
+  background-color: black;
+}
