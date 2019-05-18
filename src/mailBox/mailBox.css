@@ -1,0 +1,12 @@
+.mail-box {
+  width: calc(100% - 211px);
+  min-width: 589px;
+  height: calc(100% - 70px);
+  min-height: 530px;
+  margin-right: 20px;
+  margin-bottom: 14px;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+  float: right;
+}

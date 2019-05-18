@@ -1,0 +1,80 @@
+.mail-box__links {
+  text-decoration: none;
+}
+
+.mail-box__upper-buttons {
+  min-height: 37px;
+}
+
+.mail-box__main-white-square {
+  margin-right: 0;
+  margin-bottom: 0;
+}
+
+.mail-box__white-square {
+  width: 16px;
+  height: 16px;
+  padding: 4px;
+  margin-top: 11px;
+  margin-left: 20px;
+
+  border: solid 1px rgba(0, 0, 0, 0.15);
+  -webkit-appearance: none;
+  background-color: #fff;
+  border-radius: 3px;
+  float: left;
+  outline: none;
+}
+
+.mail-box__white-square:checked {
+  background-clip: content-box;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+.mail-box__upper-text {
+  overflow: hidden;
+  height: 16px;
+  margin-top: 11px;
+  color: #ccc;
+  float: left;
+  font: normal 500 13px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.mail-box__forward {
+  width: 72px;
+  margin-left: 20px;
+}
+
+.mail-box__delete {
+  width: 72px;
+  margin-left: 26px;
+
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+.mail-box__this-is-spam {
+  width: 68px;
+  margin-left: 24px;
+}
+
+.mail-box__read {
+  width: 77px;
+  margin-left: 25px;
+}
+
+.mail-box__line {
+  width: calc(100% - 2px);
+  min-width: 587px;
+  height: 1px;
+  margin-top: 10px;
+
+  border: solid 1px #e2e2e2;
+  background-color: #e5eaf0;
+  float: left;
+}

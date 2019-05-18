@@ -1,0 +1,19 @@
+.inbox-letter {
+  display: none;
+  width: 100%;
+  min-height: 453px;
+  float: left;
+}
+
+.inbox-letter-text {
+  padding-left: 30px;
+}
+
+.inbox-letter-close {
+  width: 15px;
+  height: 15px;
+  padding-top: 10px;
+  padding-right: 10px;
+  float: right;
+  opacity: 0.15;
+}

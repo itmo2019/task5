@@ -1,0 +1,73 @@
+.left-buttons {
+  clear: left;
+  float: left;
+}
+
+.left-buttons__write {
+  width: 147px;
+  height: 32px;
+  margin-left: 22px;
+
+  border: none;
+  background-color: #6287bd;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.left-buttons__write-text {
+  overflow: hidden;
+  width: 61px;
+  height: 15px;
+  padding-top: 7px;
+  padding-left: 35px;
+  color: #fff;
+  font: normal 500 12px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.left-buttons__links {
+  text-decoration: none;
+}
+
+.left-buttons__inbox {
+  width: 147px;
+  height: 22px;
+  margin-top: 8px;
+  margin-left: 22px;
+  background-color: #cdd6e4;
+  border-radius: 3px;
+}
+
+.left-buttons__inbox-text {
+  overflow: hidden;
+  width: 130px;
+  height: 13px;
+  padding-top: 4px;
+  padding-left: 10px;
+  color: #555;
+  font: normal bold 11px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.left-buttons__button-text {
+  overflow: hidden;
+  width: 130px;
+  height: 13px;
+  margin-left: 32px;
+  color: #707070;
+  font: normal 500 11px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.left-buttons__other {
+  margin-top: 8px;
+}

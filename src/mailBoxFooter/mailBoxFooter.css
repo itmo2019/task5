@@ -1,0 +1,31 @@
+.footer__bottom-line {
+  position: absolute;
+
+  width: calc(100% - 213px);
+  min-width: 587px;
+  height: 1px;
+
+  border: solid 1px #e2e2e2;
+  background-color: #e5eaf0;
+}
+
+.footer {
+  width: 100%;
+  min-width: 500px;
+  min-height: 37px;
+  color: #9b9b9b;
+  float: right;
+  font: normal normal 11px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+}
+
+.footer__copyright,
+.footer__additional-link {
+  margin-top: 9px;
+  margin-right: 5px;
+  margin-left: 20px;
+  color: #9b9b9b;
+  float: right;
+  text-decoration: none;
+}

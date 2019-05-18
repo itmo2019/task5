@@ -1,0 +1,99 @@
+.letter__info {
+  overflow: hidden;
+  height: 16px;
+  float: left;
+  font: normal 13px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.letter__unreaded {
+  font-weight: bold;
+}
+
+.letter__sender-name {
+  min-width: 200px;
+  margin-top: 12px;
+  margin-left: 10px;
+  color: #000;
+}
+
+.letter__sender-avatar {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
+  margin-left: 10px;
+  border-radius: 50%;
+  float: left;
+}
+
+.letter_unreaded-circle {
+  width: 10px;
+  height: 10px;
+  margin-top: 14px;
+  margin-left: 20px;
+  background-color: #6287bd;
+  border-radius: 50%;
+  float: left;
+}
+
+.letter_readed-circle {
+  width: 10px;
+  height: 10px;
+  margin-top: 14px;
+  margin-left: 20px;
+  background-color: #fff;
+  border-radius: 50%;
+  float: left;
+}
+
+.letter__mail-text {
+  width: calc(100% - 420px);
+  min-width: 213px;
+  margin-top: 12px;
+  margin-left: 10px;
+  color: #000;
+}
+
+.letter__date {
+  width: 46px;
+  height: 15px;
+  margin-top: 13px;
+  color: #9b9b9b;
+  font-weight: normal;
+  text-align: right;
+}
+
+.hidden-letter {
+  display: none;
+}
+
+@keyframes delete-letter-animation {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.deleted-animated-letter {
+  animation-duration: 500ms;
+  animation-name: delete-letter-animation;
+}
+
+@keyframes add-letter-animation {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.added-animated-letter {
+  animation-duration: 2s;
+  animation-name: add-letter-animation;
+}
