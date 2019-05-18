@@ -38,7 +38,7 @@ export class Page extends Component {
     this.last = 0;
     this.newMail = this.newMail.bind(this);
     this.removeAllCheckedLetters = this.removeAllCheckedLetters.bind(this);
-
+    this.deleteLetter = this.deleteLetter.bind(this);
     this.newMail();
   }
 
@@ -127,7 +127,6 @@ export class Page extends Component {
       }
       return newLetter;
     });
-    setTimeout(this.makeDelete, 1500);
 
     this.setState({
       letters: newLetters,
@@ -195,6 +194,27 @@ export class Page extends Component {
     setTimeout(this.newMail, time);
   }
 
+  removeLetterById = (letters, id) => {
+    let newLetters = letters;
+    newLetters = newLetters.filter(letter => letter.id !== id);
+    let count = 0;
+    for (let i = 0; i < newLetters.length; i++) {
+      if (count < MAX_LETTERS) {
+        newLetters[i].isVisible = true;
+        count++;
+      } else {
+        newLetters[i].isVisible = false;
+      }
+    }
+    return newLetters;
+  };
+
+  deleteLetter(id) {
+    this.setState(state => {
+      return {letters: this.removeLetterById(state.letters, id)};
+    });
+  }
+
   render() {
     return (
       <div className="page">
@@ -211,6 +231,7 @@ export class Page extends Component {
           setText={this.setText}
           setRead={this.setRead}
           removeAddAnimation={this.removeAddAnimation}
+          deleteLetter={this.deleteLetter}
         />
       </div>
     );

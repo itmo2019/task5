@@ -9,15 +9,13 @@ export class LetterHead extends Component {
 
     this.makeClassName = this.makeClassName.bind(this);
     this.makeLinkClassName = this.makeLinkClassName.bind(this);
+    this.deleteAnimation = this.deleteAnimation.bind(this);
   }
 
   makeClassName() {
     const className = ['letter-head'];
     if (this.props.addAnimation) {
       className.push('letter-head__animated-add-line');
-      setTimeout(() => {
-        this.props.removeAddAnimation(this.props.id);
-      }, 1500);
     }
     if (this.props.deleteAnimation) {
       className.push('letter-head__animated-delete-line');
@@ -34,9 +32,18 @@ export class LetterHead extends Component {
     return this.props.isRead ? 'letter-head__link letter-head_unread' : 'letter-head__link';
   }
 
+  deleteAnimation() {
+    if (this.props.addAnimation) {
+      this.props.removeAddAnimation(this.props.id);
+    }
+    if (this.props.deleteAnimation) {
+      this.props.deleteLetter(this.props.id);
+    }
+  }
+
   render() {
     return (
-      <li className={this.makeClassName()}>
+      <li className={this.makeClassName()} onAnimationEnd={this.deleteAnimation}>
         <label htmlFor={`${this.props.id}-checkbox`}>
           <input
             id={`${this.props.id}-checkbox`}

@@ -56,6 +56,7 @@ export class Content extends Component {
           removeAddAnimation={this.props.removeAddAnimation}
           display={!this.state.letterIsVisible}
           showLetter={this.showLetter}
+          deleteLetter={this.props.deleteLetter}
         />
         <Letter
           text={this.props.text}

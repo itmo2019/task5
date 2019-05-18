@@ -30,6 +30,7 @@ export class Letters extends Component {
                 removeAddAnimation={this.props.removeAddAnimation}
                 setRead={this.props.setRead}
                 showLetter={this.props.showLetter}
+                deleteLetter={this.props.deleteLetter}
               />
             );
           }
