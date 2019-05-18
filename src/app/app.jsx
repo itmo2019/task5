@@ -21,12 +21,11 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    console.log('hello');
     this.state.lettersGlobal = json;
 
     setTimeout(this.sender.bind(this), 1000);
   }
-  
+
   addMessage = () => {
     const letterNum = Math.floor(Math.random() * 29);
     this.addMessageToState(
@@ -55,7 +54,6 @@ export class App extends Component {
 
   sender = letters => {
     const r = Math.floor(Math.random() * 590 + 10);
-    console.log(`${r} ${this.state.n} ${this.state.messages.length}`);
     this.setState({ n: this.state.n + 1 });
     this.setState({ k: this.state.k + 1 });
     this.addMessage(json);
@@ -120,7 +118,6 @@ export class App extends Component {
     this.state.messages.forEach(mes => {
       if (mes.id === id) {
         mes.checked = !mes.checked;
-        console.log('changeState ' + id + ' ' + mes.checked);
       }
     });
     const oldSmthToChange = this.state.smthToChange;
@@ -140,7 +137,6 @@ export class App extends Component {
       i >= Math.max(0, this.state.messages.length - 30 - 1);
       i--) {
       this.state.messages[i].checked = this.state.mainChecked;
-      console.log('setState ' + i + ' ' + this.state.mainChecked);
     }
   };
 
@@ -148,7 +144,6 @@ export class App extends Component {
     this.setState({
       filter: req
     });
-    console.log(this.state.filter);
   };
 
   deleteFilter = () => {
