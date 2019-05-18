@@ -51,7 +51,7 @@ MessageItem.propTypes = {
   showMessage: PropTypes.func.isRequired,
   deleted: PropTypes.object.isRequired,
   animBefore: PropTypes.object.isRequired,
-  read: PropTypes.object.isRequired
+  read: PropTypes.bool.isRequired
 };
 
 export default MessageItem;

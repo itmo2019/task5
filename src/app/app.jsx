@@ -6,8 +6,7 @@ import json from '../letter';
 
 export class App extends Component {
   state = {
-    n: 4,
-    k: 4,
+    k: 0,
     letterMap: new Map(),
     lettersGlobal: [],
     messages: [],
@@ -21,8 +20,10 @@ export class App extends Component {
   };
 
   componentDidMount() {
-    this.state.lettersGlobal = json;
-
+    //this.state.lettersGlobal = json;
+    this.setState({
+      lettersGlobal: json
+    });
     setTimeout(this.sender.bind(this), 1000);
   }
 
@@ -54,7 +55,6 @@ export class App extends Component {
 
   sender = letters => {
     const r = Math.floor(Math.random() * 590 + 10);
-    this.setState({ n: this.state.n + 1 });
     this.setState({ k: this.state.k + 1 });
     this.addMessage(json);
     const oldSmthToChange = this.state.smthToChange;
