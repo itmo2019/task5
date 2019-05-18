@@ -24,19 +24,9 @@ export class App extends Component {
     console.log('hello');
     this.state.lettersGlobal = json;
 
-    this.state.letterMap.set(1, 1);
-    this.state.letterMap.set(2, 2);
-    this.state.letterMap.set(3, 3);
-    this.state.letterMap.set(4, 4);
     setTimeout(this.sender.bind(this), 1000);
   }
-
-  /*
-    shouldComponentUpdate(nextProps) {
-      return this.state.messages.length !==
-        nextProps.messages.length;
-    }
-  */
+  
   addMessage = () => {
     const letterNum = Math.floor(Math.random() * 29);
     this.addMessageToState(
@@ -97,32 +87,12 @@ export class App extends Component {
       messageOrText: false,
       textM: newText
     });
-
-    /*console.log(this.state.letterMap.get(id));
-    this.setState({
-      messageListClass: 'message-block__message-list_hidden message-block__message-list '
-
-    });
-    setTimeout(() => {
-      this.setState(prevState => ({
-        //textM: this.state.lettersGlobal[prevState.letterMap.get(id)],
-        textM: newText,
-        textClass: 'message-block__message-text_visible message-block__message-text'
-      }));
-    }, 1000);*/
   };
 
   hideMessage = () => {
     this.setState({
       messageOrText: true
     });
-
-    /*this.setState({
-      messageListClass: 'message-block__message-list'
-    });
-    this.setState({
-      textClass: 'message-block__message-text'
-    });*/
   };
 
   deleteMessages = () => {
@@ -144,7 +114,7 @@ export class App extends Component {
     this.setState({
       messages: oldMessages.filter(message => !message.checked)
     });
-  }
+  };
 
   changeSelected = id => {
     this.state.messages.forEach(mes => {
