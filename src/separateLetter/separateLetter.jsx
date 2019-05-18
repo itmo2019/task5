@@ -9,6 +9,7 @@ export class SeparateLetter extends Component {
 
     this.setClassName = this.setClassName.bind(this);
     this.setReaded = this.setReaded.bind(this);
+    this.setAnimation = this.setAnimation.bind(this);
   }
 
   setClassName = () => {
@@ -18,15 +19,9 @@ export class SeparateLetter extends Component {
     }
     if (this.props.addAnimated) {
       list.push('added-animated-letter');
-      setTimeout(() => {
-        this.props.deleteAddAnimation(this.props.id);
-      }, 2000);
     }
     if (this.props.deleteAnimated) {
       list.push('deleted-animated-letter');
-      setTimeout(() => {
-        this.props.deleteLetters(this.props.id);
-      }, 500);
     }
     return list.join(' ');
   };
@@ -36,9 +31,18 @@ export class SeparateLetter extends Component {
     return 'letter_unreaded-circle';
   };
 
+  setAnimation() {
+    if (this.props.addAnimated) {
+      this.props.deleteAddAnimation(this.props.id);
+    }
+    if (this.props.deleteAnimated) {
+      this.props.deleteLetters();
+    }
+  }
+
   render() {
     return (
-      <li className={this.setClassName()}>
+      <li className={this.setClassName()} onAnimationEnd={this.setAnimation}>
         <label>
           <input
             type="checkbox"
