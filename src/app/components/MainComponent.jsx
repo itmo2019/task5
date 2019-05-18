@@ -31,6 +31,7 @@ class MainComponent extends Component {
           deleteMessages={this.props.deleteMessages}
           setCheckBoxes={this.props.setCheckBoxes}
           mainChecked={this.props.mainChecked}
+          messageOrText={this.props.messageOrText}
         />
       </div>
     );
@@ -47,7 +48,8 @@ MainComponent.propTypes = {
   showMessage: PropTypes.func.isRequired,
   deleteMessages: PropTypes.func.isRequired,
   setCheckBoxes: PropTypes.func.isRequired,
-  mainChecked: PropTypes.object.isRequired
+  mainChecked: PropTypes.object.isRequired,
+  messageOrText: PropTypes.object.isRequired
 }
 
 export default MainComponent;

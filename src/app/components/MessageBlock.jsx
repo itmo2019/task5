@@ -5,6 +5,19 @@ import PropTypes from 'prop-types';
 
 class MessageBlock extends Component {
   render() {
+
+    const pieceOfCode = this.props.messageOrText ?
+      <MessageList
+        messages={this.props.messages}
+        changeSelected={this.props.changeSelected}
+        messageListClass={this.props.messageListClass}
+        showMessage={this.props.showMessage}
+      />:
+      <MessageText
+        text={this.props.text}
+        textClass={this.props.textClass}
+        hideMessage={this.props.hideMessage}
+      />;
     return (
       <div className={'main__message-block'}>
         <div className="message-block__row message-block__upper-row">
@@ -28,17 +41,7 @@ class MessageBlock extends Component {
           <button className="upper-row__btn tooltip">Прочитано
             <span className="tooltip-text">Прочитано</span></button>
         </div>
-        <MessageText
-          text={this.props.text}
-          textClass={this.props.textClass}
-          hideMessage={this.props.hideMessage}
-        />
-        <MessageList
-          messages={this.props.messages}
-          changeSelected={this.props.changeSelected}
-          messageListClass={this.props.messageListClass}
-          showMessage={this.props.showMessage}
-        />
+        {pieceOfCode}
         <div className="message-block__lower-row">
           <div className="lower-row__item">Помощь и обратная связь</div>
           <div className="lower-row__item">Реклама</div>
@@ -59,7 +62,8 @@ MessageBlock.propTypes = {
   showMessage: PropTypes.func.isRequired,
   deleteMessages: PropTypes.func.isRequired,
   setCheckBoxes: PropTypes.func.isRequired,
-  mainChecked: PropTypes.object.isRequired
-}
+  mainChecked: PropTypes.object.isRequired,
+  messageOrText: PropTypes.object.isRequired
+};
 
 export default MessageBlock;

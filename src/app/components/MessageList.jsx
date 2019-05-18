@@ -19,6 +19,8 @@ class MessageList extends Component {
               changeSelected={this.props.changeSelected}
               showMessage={this.props.showMessage}
               deleted={message.deleted}
+              animBefore={message.animBefore}
+              read={message.read}
             />
           );
         })}

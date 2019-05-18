@@ -12,10 +12,12 @@ export class App extends Component {
     lettersGlobal: [],
     messages: [],
     textM: '',
-    textClass: 'message-block__message-text',
+    textClass: 'message-block__message-text_visible',
     messageListClass: 'message-block__message-list',
     mainChecked: true,
-    smthToChange: false
+    smthToChange: false,
+    messageOrText: true,
+    filter: ''
   };
 
   componentDidMount() {
@@ -44,7 +46,7 @@ export class App extends Component {
       json[letterNum],
       '6 авг'
     );
-    this.state.letterMap.set(this.state.k, letterNum);
+    this.state.letterMap.set(this.state.k - 1, letterNum);
   };
 
   addMessageToState = (id1, author1, theme1, text1, date1) => {
@@ -55,7 +57,9 @@ export class App extends Component {
       text: text1,
       date: date1,
       checked: false,
-      deleted: false
+      deleted: false,
+      animBefore: false,
+      read: false
     });
   };
 
@@ -69,29 +73,56 @@ export class App extends Component {
     this.setState({
       smthToChange: !oldSmthToChange
     });
-    setTimeout(this.sender.bind(this), 50000);
+    setTimeout(this.markAsAnimated, 500);
+    setTimeout(this.sender.bind(this), 10000);
+  };
+
+  markAsAnimated = () => {
+    this.state.messages.forEach(mes => {
+      if (mes.id === (this.state.k - 1)) {
+        mes.animBefore = true;
+      }
+    });
   };
 
   showMessage = id => {
+
     const newText = this.state.lettersGlobal[this.state.letterMap.get(id)];
-    console.log(this.state.letterMap.get(id));
+    this.state.messages.forEach(mes => {
+      if (mes.id === id) {
+        mes.read = true;
+      }
+    });
+    this.setState({
+      messageOrText: false,
+      textM: newText
+    });
+
+    /*console.log(this.state.letterMap.get(id));
+    this.setState({
+      messageListClass: 'message-block__message-list_hidden message-block__message-list '
+
+    });
     setTimeout(() => {
       this.setState(prevState => ({
-        messageListClass: 'message-block__message-list message-block__message-list_hidden',
         //textM: this.state.lettersGlobal[prevState.letterMap.get(id)],
         textM: newText,
         textClass: 'message-block__message-text_visible message-block__message-text'
       }));
-    }, 500);
+    }, 1000);*/
   };
 
   hideMessage = () => {
     this.setState({
+      messageOrText: true
+    });
+
+    /*this.setState({
       messageListClass: 'message-block__message-list'
     });
     this.setState({
       textClass: 'message-block__message-text'
-    });
+    });*/
   };
 
   deleteMessages = () => {
@@ -143,12 +174,28 @@ export class App extends Component {
     }
   };
 
+  filterMessages = (req) => {
+    this.setState({
+      filter: req
+    });
+    console.log(this.state.filter);
+  };
+
+  deleteFilter = () => {
+    this.setState({
+      filter: ''
+    });
+  };
+
   render() {
     return (
       <body className="mail_body">
-      <Header/>
+      <Header
+        filterMessages = {this.filterMessages}
+        deleteFilter={this.deleteFilter}
+      />
       <MainComponent
-        messages={this.state.messages}
+        messages={this.state.messages.filter(mes => mes.text.includes(this.state.filter))}
         changeSelected={this.changeSelected}
         hideMessage={this.hideMessage}
         text={this.state.textM}
@@ -158,6 +205,7 @@ export class App extends Component {
         deleteMessages={this.deleteMessages}
         setCheckBoxes={this.setCheckBoxes}
         mainChecked={this.mainChecked}
+        messageOrText={this.state.messageOrText}
       />
       </body>
     );

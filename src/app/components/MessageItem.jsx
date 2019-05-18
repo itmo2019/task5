@@ -8,9 +8,12 @@ class MessageItem extends Component {
       this.props.deleted
         ?
         'message-block__deleted message-block__row message-block__central-row message-block_central-row-unread'
-        :
-        'new-message__appear message-block__new-message message-block__central-row_unread message-block__row message-block__central-row';
-
+        : (this.props.animBefore ?
+        (this.props.read ?
+        'message-block__central-row_read message-block__row message-block__central-row' :
+        'message-block__central-row_unread message-block__row message-block__central-row'):
+        'new-message__appear message-block__new-message message-block__central-row_unread message-block__row message-block__central-row'
+  );
 
     return (
       <div id={this.props.id}
@@ -46,7 +49,9 @@ MessageItem.propTypes = {
   selected: PropTypes.object.isRequired,
   changeSelected: PropTypes.func.isRequired,
   showMessage: PropTypes.func.isRequired,
-  deleted: PropTypes.object.isRequired
+  deleted: PropTypes.object.isRequired,
+  animBefore: PropTypes.object.isRequired,
+  read: PropTypes.object.isRequired
 };
 
 export default MessageItem;
