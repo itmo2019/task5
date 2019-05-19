@@ -1,58 +1,57 @@
 import React, { Component } from 'react';
 
 import './mailBoxContent.css';
+import { Message } from './message';
+import { generateMessage } from '../../messageGen';
 
-import * as utils from '../../deletingMessage.js';
-
+const MAX_MESSAGES = 30;
 
 export class MailBoxContent extends Component {
   constructor(props) {
     super(props);
-    this.state = { messages: []};
-    utils.deleteClick = utils.deleteClick.bind(this);
+    this.state = { messages: [], clickedMessageContent: '' };
+  }
+
+  componentDidMount() {
+    // const timeout = 60 * 1000 * (5 + Math.floor(Math.random() * 5));
+    const timeout = 3000;
+    this.adderID = setInterval(() => this.newMail(), timeout);
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.adderID);
+  }
+
+  newMail() {
+    const newMessageObj = generateMessage();
+    this.setState(state => {
+      const updMessages = [newMessageObj].concat(state.messages);
+      return { messages: updMessages };
+    });
+  }
+
+  messageClickHandler(content) {
+    console.log(this);
+    this.setState({ clickedMessageContent: content });
   }
 
   render() {
     return (
       <div className="mail-box-content">
-        <input type="checkbox" id="message-click" />
+        <input type="checkbox" id="message-click"/>
         <div className="article mail-box-content__article">
           <label className="article__cross" htmlFor="message-click">
             X
           </label>
           <p className="article__content">
-            Поздравляем! Доступ к вашему аккаунту был успешно восстановлен.
+            {this.state.clickedMessageContent}
           </p>
         </div>
         <ul className="messages-list">
-          <li className="message-snippet messages-list__message-snippet messages-snippet_bold">
-            <input
-              className="message-snippet__part message-snippet__message-tick content_checkbox"
-              type="checkbox"
-            />
-            <label className="message-clickable-area" htmlFor="message-click">
-              <img
-                className="message-snippet__part message-snippet__avatar"
-                src={require('../../static/avatars/ya-default.svg')}
-                width="30"
-                height="30"
-                alt=""
-              />
-              <span className="message-snippet__part message-snippet__sender-name content_text-overflow_hidden">
-                Яндекс.Почта
-              </span>
-              <div className="message-snippet__part message-snippet__message-item" />
-              <span className="message-snippet__part message-snippet__message-topic content_text-overflow_hidden">
-                Доступ к аккаунту восстановлен
-              </span>
-              <time
-                className="message-snippet__part message-snippet__message-time content_text-overflow_hidden"
-                dateTime="2018-08-06"
-              >
-                6 авг
-              </time>
-            </label>
-          </li>
+          {this.state.messages.slice(0, MAX_MESSAGES).map(msg => {
+            return <Message message={msg} key={msg.id}
+                            messageClickHandler={() => this.messageClickHandler(msg.content)}/>;
+          })}
         </ul>
       </div>
     );
