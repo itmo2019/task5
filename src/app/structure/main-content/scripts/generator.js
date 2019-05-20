@@ -1,5 +1,5 @@
 const companies = ['ebay', 'facebook', 'live', 'yandex', 'live', 'reddit', 'twitter', 'youtube'];
-const topic = [
+const topics = [
   'Внимание!',
   'Добро пожаловать!',
   'Обновление',
@@ -53,6 +53,8 @@ const adjectives = [
   'ваш'
 ];
 
+let counter = 0;
+
 export function randomInt(min, max) {
   return Math.floor((max - min) * Math.random() + min);
 }
@@ -61,7 +63,7 @@ function randFromList(list) {
   return list[randomInt(0, list.length)];
 }
 
-export const randomDate = () => {
+const randomDate = () => {
   const m = randomInt(1, 12);
   let day = randomInt(1, 30);
   if (m === 2) day = Math.min(28, day);
@@ -82,7 +84,7 @@ export const randomDate = () => {
   return `${String(day)} ${String(month[m - 1])}`;
 };
 
-export const generateText = sender => {
+const generateText = sender => {
   const textContent = [
     `${randFromList(hello)} ${randFromList(word1)} ${randFromList(firstName)} ${randFromList(
       secondName
@@ -96,10 +98,22 @@ export const generateText = sender => {
   return textContent;
 };
 
-export const randomSender = () => {
-  return randFromList(companies);
-};
+export const generateNewLetter = () => {
+  counter++;
+  const id = counter;
+  const author = randFromList(companies);
+  const text = generateText(author);
+  const topic = randFromList(topics);
+  const date = randomDate();
 
-export const randomTopic = () => {
-  return randFromList(topic);
+  return {
+    key: `id${id}`,
+    id: `id${id}`,
+    text,
+    author,
+    topic,
+    date,
+    isChecked: false,
+    isVisible: true
+  };
 };

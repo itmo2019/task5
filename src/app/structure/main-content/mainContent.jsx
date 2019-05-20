@@ -3,17 +3,10 @@ import React, { Component } from 'react';
 import './mainContent.css';
 import { Letters } from './letters/letters';
 import { AllFunctions } from './all-functions/allFunctions';
-import {
-  generateText,
-  randomDate,
-  randomSender,
-  randomTopic,
-  randomInt
-} from './scripts/generator';
+import { generateNewLetter, randomInt } from './scripts/generator';
 import { Footer } from './footer/footer';
 
 const LETTERS_ON_PAGE = 30;
-let counter = 0;
 
 export class MainContent extends Component {
   constructor(props) {
@@ -38,8 +31,8 @@ export class MainContent extends Component {
   }
 
   onCheckboxChange(id) {
-    const newCheckedLetters = this.state.checkedLetters;
-    this.setState(() => {
+    this.setState(prevState => {
+      const newCheckedLetters = prevState.checkedLetters;
       newCheckedLetters[id] = !newCheckedLetters[id];
       return {
         isAllChecked: false,
@@ -55,55 +48,33 @@ export class MainContent extends Component {
   }
 
   selectAll() {
-    const newCheckedLetters = this.state.checkedLetters;
-    this.state.letters.forEach(letter => {
-      if (letter.isVisible) {
-        newCheckedLetters[letter.key] = !this.state.isAllChecked;
-      }
-    });
-    this.setState(state => {
+    this.setState(prevState => {
+      const newCheckedLetters = prevState.checkedLetters;
+      prevState.letters.forEach(letter => {
+        if (letter.isVisible) {
+          newCheckedLetters[letter.key] = !prevState.isAllChecked;
+        }
+      });
       return {
-        isAllChecked: !state.isAllChecked,
+        isAllChecked: !prevState.isAllChecked,
         checkedLetters: newCheckedLetters
       };
     });
   }
 
   newMail() {
-    counter++;
-    const id = counter;
-    const author = randomSender();
-
-    const text = generateText(author);
-
-    const topic = randomTopic();
-    const date = randomDate();
-
-    const newCheckedLetters = this.state.checkedLetters;
-    newCheckedLetters[id] = false;
-    const newLetters = this.state.letters;
-    for (let i = 0; i < newLetters.length; i++) {
-      if (i >= LETTERS_ON_PAGE) {
+    const newLetter = generateNewLetter();
+    this.setState(prevState => {
+      const newCheckedLetters = prevState.checkedLetters;
+      const newLetters = prevState.letters;
+      newCheckedLetters[newLetter.id] = false;
+      for (let i = newLetters.length - 1; i >= LETTERS_ON_PAGE - 1; i--) {
         newLetters[i].isVisible = false;
         newLetters[i].isChecked = false;
         newCheckedLetters[newLetters[i].key] = false;
       }
-    }
-    this.setState(() => {
       return {
-        letters: [
-          {
-            key: `id${id}`,
-            id: `id${id}`,
-            text,
-            author,
-            topic,
-            date,
-            isChecked: false,
-            isVisible: true
-          },
-          ...newLetters
-        ],
+        letters: [newLetter, ...newLetters],
         checkedLetters: newCheckedLetters,
         isAllChecked: false
       };
@@ -111,11 +82,11 @@ export class MainContent extends Component {
   }
 
   deleteLetter() {
-    const newLetters = this.state.letters.filter(letter => !this.state.checkedLetters[letter.key]);
-    for (let i = 0; i < Math.min(newLetters.length, LETTERS_ON_PAGE + 1); i++) {
-      newLetters[i].isVisible = true;
-    }
-    this.setState(() => {
+    this.setState(prevState => {
+      const newLetters = prevState.letters.filter(letter => !prevState.checkedLetters[letter.key]);
+      for (let i = 0; i < Math.min(newLetters.length, LETTERS_ON_PAGE); i++) {
+        newLetters[i].isVisible = true;
+      }
       return {
         letters: newLetters,
         isAllChecked: false
