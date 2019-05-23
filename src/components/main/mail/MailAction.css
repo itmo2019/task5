@@ -1,0 +1,52 @@
+.actions {
+  height: 37px;
+}
+
+.actions_view {
+  overflow: hidden;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.actions__chose-all {
+  width: 16px;
+  height: 16px;
+}
+
+.actions__chose-all {
+  float: left;
+}
+
+.chose_view {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.actions__choose-all {
+  width: 16px;
+  height: 16px;
+}
+
+.actions_option {
+  margin: 11px 10px;
+  float: left;
+  font: normal 500 13px normal HelveticaNeue;
+  font-stretch: normal;
+  letter-spacing: normal;
+  color: #cccccc;
+}
+
+.no-button-decoration {
+  padding: 0;
+  border: none;
+  background: none;
+}
+
+.no-button-decoration:focus{
+  outline: 0;
+}
+
+.no-button-decoration:hover {
+  border-radius: 3px;
+  background-color: #cdd6e4;
+}
+

@@ -1,0 +1,20 @@
+.mail-body {
+  min-height: 480px;
+}
+
+.mail-body__text {
+  position: absolute;
+  background-color: #fff;
+  width: 95%;
+  text-align: justify;
+  font-size: 16px;
+  margin: 10px;
+}
+
+.mail-body__close {
+  float: right;
+  margin: 5px;
+  font-size: 20px;
+  color: #708090;
+  cursor: pointer;
+}

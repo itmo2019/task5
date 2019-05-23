@@ -2,6 +2,7 @@
   text-align: center;
 }
 
+
 .app-header {
   display: flex;
   min-height: 100vh;
@@ -24,4 +25,19 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.input {
+  transition: width .35s linear;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 20px;
+  width: 150px;
+  background-color: #dddddd;
+}
+
+.input-focused {
+  width: 240px;
 }

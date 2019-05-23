@@ -1,0 +1,46 @@
+.mail-content {
+  width: 70%;
+  min-width: 730px;
+  min-height: 500px;
+  height: 90vh;
+}
+
+.mail-content_view {
+  position: relative;
+  margin-left: 180px;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+  background-color: #fff;
+}
+
+.footer_view {
+  border-top: 1px solid #e2e2e2;
+  bottom: 0;
+  height: 33px;
+  position: absolute;
+}
+
+.footer {
+  width: 100%;
+}
+
+.footer__site-information {
+  width: 345px;
+  height: 12px;
+  float: right;
+}
+
+.footer__site-information_view {
+  margin: 1% 1% 0 0;
+  color: #9b9b9b;
+  font: normal 500 11px normal HelveticaNeue;
+  letter-spacing: normal;
+  font-stretch: normal;
+  text-align: right;
+}
+
+.footer__link_view {
+  color: #9b9b9b;
+  margin-right: 20px;
+  text-decoration: none;
+}

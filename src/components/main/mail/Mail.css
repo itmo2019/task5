@@ -1,0 +1,115 @@
+.mail__sender-logo {
+  float: left;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+  background-color: #f33;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.mail__author {
+  width: 25%;
+  height: 30px;
+  float: left;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mail__author_view {
+  margin: 10px 20px 13px 0;
+}
+
+.mail__unread {
+  font-weight: bold;
+}
+
+.read-status {
+  float: left;
+  width: 10px;
+  height: 10px;
+
+}
+
+.read-status_view {
+  margin: 14px 10px 15px 0;
+  border-radius: 50%;
+  background-color: #6287bd;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.read-status_not-read {
+  visibility: visible;
+}
+
+.read-status_read {
+  visibility: hidden;
+}
+
+.mail {
+  height: 0px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: solid 1px #e2e2e2;
+  transition: all 1.2s ease-out;
+}
+
+.mail__text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.just-added {
+  height: 30px;
+  opacity: 0;
+}
+
+.already-added {
+  height: 30px;
+  opacity: 1;
+}
+
+.mail__message-body {
+  display: inline-block;
+  vertical-align: middle;
+  width: 40%;
+}
+
+.mail__checkbox {
+  width: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  height: 16px;
+}
+
+.chose {
+  float: left;
+}
+
+.chose_view {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.message-date {
+  right: 20px;
+  top: 13px;
+  float: right;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.message-date_view {
+  margin-right: 20px;
+}
+
+.mail_deleted {
+  transition: all 0.6s ease-out;
+  opacity: 0;
+}
