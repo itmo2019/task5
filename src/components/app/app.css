@@ -1,0 +1,20 @@
+.app {
+  position: absolute;
+
+  width: 100%;
+  min-width: 800px;
+  height: 100%;
+  min-height: 600px;
+}
+
+.app__menu {
+  position: relative;
+
+  margin-left: 22px;
+  float: left;
+}
+
+.app__content-block {
+  margin-right: 22px;
+  margin-left: 191px;
+}

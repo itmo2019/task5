@@ -1,0 +1,23 @@
+.header {
+  width: 100%;
+  height: 56px;
+}
+
+.header__burger-menu {
+  margin-top: 19px;
+  margin-left: 22px;
+  float: left;
+}
+
+.header__yandex-logo-image {
+  margin-top: 12px;
+  margin-left: 10px;
+  float: left;
+}
+
+.header__search {
+  position: relative;
+  top: 15%;
+  left: 16%;
+  float: left;
+}

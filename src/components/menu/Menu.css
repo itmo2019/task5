@@ -1,0 +1,9 @@
+.menu {
+  width: 147px;
+  height: calc(100% - 70px);
+}
+
+.menu__buttons-list {
+  padding: 0;
+  margin: 0;
+}
