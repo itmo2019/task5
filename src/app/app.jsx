@@ -30,7 +30,8 @@ export class App extends Component {
     this.maxTime = 1000 * 60 * 10 - this.minTime;
 
     this.state = {
-      messageList: []
+      messageList: [],
+      allSelected: false
     };
   }
 
@@ -104,7 +105,8 @@ export class App extends Component {
             return updMessage;
           }
           return message;
-        })
+        }),
+        allSelected: false
       };
     });
     setTimeout(() => {
@@ -124,7 +126,8 @@ export class App extends Component {
       }
 
       return {
-        messageList: newMessageList
+        messageList: newMessageList,
+        allSelected: !prevState.allSelected
       };
     });
   }
@@ -149,6 +152,7 @@ export class App extends Component {
           deleteSelected={this.deleteSelected}
           selectCheckBox={this.selectCheckBox}
           selectAll={this.selectAll}
+          allSelected={this.state.allSelected}
         />
       </div>
     );

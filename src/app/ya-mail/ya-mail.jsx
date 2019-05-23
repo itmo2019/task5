@@ -13,6 +13,7 @@ export class YaMail extends Component {
         <ContentTopBar
           deleteSelected={this.props.deleteSelected}
           selectAll={this.props.selectAll}
+          allSelected={this.props.allSelected}
         />
         <ContentMessages
           messageList={this.props.messageList}

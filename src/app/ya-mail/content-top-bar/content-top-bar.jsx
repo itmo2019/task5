@@ -10,8 +10,9 @@ export class ContentTopBar extends Component {
           <li className="content-top-bar__action ya-mail__select-all">
             <input
               type="checkbox"
+              checked={this.props.allSelected}
               className="page_checkbox ya-mail__select-all-check"
-              onClick={this.props.selectAll}
+              onChange={() => this.props.selectAll()}
             />
           </li>
           <li className="content-top-bar__action page_text-overflow_hide">
