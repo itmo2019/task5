@@ -1,0 +1,45 @@
+.page__ya-sidebar{
+  position: relative;
+  float: left;
+  width: 200px;
+  vertical-align: top;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 11px;
+  font-weight: 500px;
+  color: #707070;
+}
+
+.ya-sidebar__nav-sidebar{
+  margin-left: 22px;
+  margin-top: 0px;
+  padding: 0px;
+}
+
+.ya-sidebar__action{
+  width: 137px;
+  height: 22px;
+  margin-left: 0px;
+  padding-left: 10px;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 22px;
+}
+
+.ya-sidebar__action:hover{
+  background-color: #cdd6e4;
+}
+
+.ya-sidebar__compose-message{
+  width: 147px;
+  height: 32px;
+  background-color: #6287bd;
+  border-radius: 3px;
+  margin-bottom: 8px;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 32px;
+}

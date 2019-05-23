@@ -1,0 +1,39 @@
+.ya-mail__content-top-bar{
+  position: relative;
+  padding: 0;
+  width: 100%;
+  height: 37px;
+  line-height: 37px;
+  font-family: HelveticaNeue, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  vertical-align: middle;
+  color: #cccccc;
+}
+
+.content-top-bar__top-content-list{
+  cursor: pointer;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.ya-mail__select-all{
+  display: inline-block;
+  height: 100%;
+  width: 30px;
+}
+
+.ya-mail__select-all-check{
+  margin: 0;
+  height: 100%;
+}
+
+.content-top-bar__action{
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+  max-width: 85px;
+  padding-left: 20px;
+}

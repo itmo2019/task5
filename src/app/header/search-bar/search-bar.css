@@ -1,0 +1,18 @@
+.page__ya-search{
+  display: inline-block;
+  position: relative;
+  min-width: 301px;
+  width: 38%;
+  height: 32px;
+  left: 18%;
+  opacity: 0.5;
+  padding-left: 16px;
+  font-family: YandexSanThin, sans-serif;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  line-height: 2.13;
+  color: #000000;
+}
