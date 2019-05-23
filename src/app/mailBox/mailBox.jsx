@@ -22,7 +22,7 @@ export class MailBox extends Component {
     // const timeout = 60 * 1000 * (5 + Math.floor(Math.random() * 5));
     const timeout = 3000;
     this.adderID = setInterval(() => this.newMail(), timeout);
-    this.cleaner = setInterval(() => this.cleanUp(), timeout * 10);
+    this.cleaner = setInterval(() => this.cleanUp(), 0.5 * timeout);
   }
 
   componentWillUnmount() {
@@ -74,7 +74,7 @@ export class MailBox extends Component {
     const newVal = e.target.checked;
     this.setState(state => {
       const updMessages = Array.from(state.messages);
-      updMessages.forEach((e, i) => {
+      updMessages.slice(0, MAX_MESSAGES).forEach((e, i) => {
         updMessages[i].checked = newVal;
       });
       return { messages: updMessages };

@@ -19,6 +19,12 @@ function httpGETRequest(url) {
   return xmlHttp.responseText;
 }
 
+async function httpGETRequestAsync(url) {
+  const proxyurl = 'https://cors-anywhere.herokuapp.com/';
+  const response = await fetch(proxyurl + url);
+  return await response.text();
+}
+
 function getMachineTime(time) {
   const format = function(n) {
     return n < 10 ? `0${n}` : `${n}`;
