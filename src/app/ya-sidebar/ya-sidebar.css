@@ -10,15 +10,15 @@
 }
 
 .ya-sidebar__nav-sidebar{
-  margin-left: 22;
+  margin-left: 22px;
   margin-top: 0px;
-  padding: 0;
+  padding: 0px;
 }
 
 .ya-sidebar__action{
   width: 137px;
   height: 22px;
-  margin-left: 0;
+  margin-left: 0px;
   padding-left: 10px;
   text-align: left;
   vertical-align: middle;

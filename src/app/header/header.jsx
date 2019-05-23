@@ -14,7 +14,7 @@ export class Header extends Component {
         <Menu />
         <YaMailLogo />
         <SearchBar />
-        <MessageCreator newMailFunction={this.props.newMailFunction} />
+        <MessageCreator createMessage={this.props.createMessage} />
       </header>
     );
   }

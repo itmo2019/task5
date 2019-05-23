@@ -1,0 +1,16 @@
+.ya-mail__content-messages{
+  width: 100%;
+  min-height: 456px;
+  height: fit-content;
+  border-top: solid 1px #e2e2e2;
+  border-bottom: solid 1px #e2e2e2;
+}
+
+.content-messages__message-list{
+  margin: 0;
+  padding: 0;
+}
+
+#message-select1{
+  display: none;
+}

@@ -55,3 +55,44 @@ a, a:active, a:visited, a:hover {
   width: 16px;
   height: 16px;
 }
+
+.create_animation{
+  animation: add 1s forwards;
+}
+
+.delete_animation{
+  animation: remove 1s forwards;
+}
+
+@keyframes add{
+  0%{
+      height: 0;
+      opacity: 0;
+  }
+
+  50%{
+      height: 500px;
+      opacity: 0.5;
+  }
+
+  100%{
+      opacity: 1;
+  }
+}
+
+@keyframes remove{
+  0%{
+      height: 22px;
+      opacity: 1;
+  }
+
+  50%{
+      height: 500px;
+      opacity: 0.5;
+  }
+
+  100%{
+      height: 0px;
+      opacity: 0;
+  }
+}
