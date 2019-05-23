@@ -1,0 +1,9 @@
+.yandex-logo-image {
+  display: block;
+  width: 153px;
+  height: 31px;
+  background-image: url(../../../images/Shape@4x.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}

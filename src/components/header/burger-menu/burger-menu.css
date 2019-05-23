@@ -1,0 +1,15 @@
+.burger-menu {
+  width: 20px;
+  height: 17px;
+}
+
+.burger-menu__element {
+  width: 20px;
+  height: 3px;
+  margin-top: 4px;
+  background-color: #000;
+}
+
+.burger-menu__element_without-top-margine {
+  margin-top: 0;
+}

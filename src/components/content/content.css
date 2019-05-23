@@ -1,0 +1,155 @@
+.content-block {
+  height: calc(100% - 70px);
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.34);
+}
+
+.content-block__content-menu {
+  position: relative;
+}
+
+.content-block__new-page {
+  position: absolute;
+}
+
+.content-block__open-email-page:checked ~ .content-block__new-page {
+  display: block;
+}
+
+.content-block__footer {
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}
+
+.emails-block {
+  width: 100%;
+  height: calc(100% - 73px);
+  overflow-y: auto;
+}
+
+.emails-block_invisible {
+  display: none;
+}
+
+.emails-list {
+  width: 100%;
+  height: 100%;
+  list-style-type: none;
+}
+
+.emails-block__emails-list {
+  z-index: 0;
+
+  padding: 0;
+  margin: 0;
+}
+
+.animated-enter {
+  height: 1px;
+  opacity: 0;
+}
+
+.animated-enter.animated-enter-active {
+  height: 42px;
+  opacity: 1;
+  transition: height 0.5s linear 0s, opacity 1s linear 0.3s;
+}
+
+.animated-leave {
+  margin-top: 0;
+  opacity: 1;
+}
+
+.animated-leave.animated-leave-active {
+  margin-top: -45px;
+  opacity: 0;
+  transition: opacity 0.5s linear 0s, margin-top 1s linear 0.3s;
+}
+
+.emails-list__element {
+  width: 100%;
+
+  border: solid 0px;
+  border-bottom-width: 2px;
+  border-bottom-color: #e2e2e2;
+  font-family: HelveticaNeue, sans-serif;
+  line-height: 40px;
+}
+
+.emails-list__element_nonvisible {
+  display: none;
+}
+
+.emails-list__check-view {
+  display: inline-block;
+  margin-left: 20px;
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.emails-list__logo {
+  display: inline-block;
+  width: 30px;
+  max-width: 100%;
+  height: 30px;
+  margin-left: 10px;
+  vertical-align: middle;
+}
+
+.emails-list__title {
+  display: inline-block;
+  overflow: hidden;
+  width: calc((100% - 206px) * 0.2);
+  margin-left: 10px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.emails-list__read-circle-indicator {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-left: 10px;
+  background-color: white;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.emails-list__preview {
+  display: inline-block;
+  overflow: hidden;
+  width: calc((100% - 206px) * 0.8);
+  margin-left: 10px;
+  font-size: 13px;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.emails-list__date {
+  display: inline-block;
+  overflow: hidden;
+  width: 45px;
+  margin-left: 10px;
+  color: #9b9b9b;
+  font-size: 13px;
+  font-weight: 500;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.emails-list__element_highlighted {
+  font-weight: 700;
+}
+
+.emails-list__read-circle-indicator_not-read {
+  background-color: #6287bd;
+}
