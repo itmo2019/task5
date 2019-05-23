@@ -28,19 +28,6 @@ function getMachineTime(time) {
 
 export function generateMessage() {
   const newMessage = { id: nextId++ };
-  let response = httpGETRequest(
-    'https://ru.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&prop=extracts&exintro&explaintext&grnlimit=1'
-  );
-  if (response == null) {
-    newMessage.topic = 'Доступ к аккаунту восстановлен';
-    newMessage.content = 'Поздравляем! Доступ к вашему аккаунту был успешно восстановлен.';
-    return newMessage;
-  }
-  response = JSON.parse(response);
-  const article = response.query.pages[Object.keys(response.query.pages)[0]];
-  newMessage.topic = article.title;
-  newMessage.content = article.extract;
-
   const avatars = [
     'google.png',
     'fb.png',
@@ -53,7 +40,6 @@ export function generateMessage() {
   const senderIdx = Math.floor(Math.random() * avatars.length);
   newMessage.senderAvatar = avatars[senderIdx];
   newMessage.senderName = names[senderIdx];
-
   const now = new Date();
   const months = [
     'янв',
@@ -71,5 +57,19 @@ export function generateMessage() {
   ];
   newMessage.time = `${now.getDate()} ${months[now.getMonth()]}`;
   newMessage.machineTime = getMachineTime(now);
+  newMessage.checked = false;
+  newMessage.deleted = false;
+  let response = httpGETRequest(
+    'https://ru.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&prop=extracts&exintro&explaintext&grnlimit=1'
+  );
+  if (response == null) {
+    newMessage.topic = 'Доступ к аккаунту восстановлен';
+    newMessage.content = 'Поздравляем! Доступ к вашему аккаунту был успешно восстановлен.';
+    return newMessage;
+  }
+  response = JSON.parse(response);
+  const article = response.query.pages[Object.keys(response.query.pages)[0]];
+  newMessage.topic = article.title;
+  newMessage.content = article.extract;
   return newMessage;
 }

@@ -16,21 +16,19 @@ export class Message extends Component {
     setTimeout(triggerAnimation, 0);
   }
 
-  componentWillUnmount() {
-
-  }
-
   render() {
     const message = this.props.message;
+    let className = 'message-snippet messages-list__message-snippet messages-snippet_bold';
+    if (message.deleted) {
+      className += ' messages-list__message-snippet_deleted';
+    }
     return (
-      <li
-        onClick={this.props.messageClickHandler}
-        ref={this.messageRef}
-        className="message-snippet messages-list__message-snippet messages-snippet_bold"
-      >
+      <li onClick={this.props.messageClickHandler} ref={this.messageRef} className={className}>
         <input
           className="message-snippet__part message-snippet__message-tick content_checkbox"
           type="checkbox"
+          checked={message.checked}
+          onChange={this.props.checkHandler}
         />
         <label className="message-clickable-area" htmlFor="message-click">
           <img
