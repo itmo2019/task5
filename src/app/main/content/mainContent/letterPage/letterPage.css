@@ -1,0 +1,22 @@
+.letter-page__close {
+  margin-top: 10px;
+  margin-right: 10px;
+  float: right;
+}
+
+.letter-page__del-line {
+  text-decoration: none;
+}
+
+.letter-page__cross {
+  width: 15px;
+  height: 15px;
+  margin-top: -8px;
+  margin-right: 10px;
+  float: right;
+  opacity: 0.15;
+}
+
+.letter-page__text-letter {
+  margin: 30px;
+}

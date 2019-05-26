@@ -1,0 +1,14 @@
+.header {
+  display: inline-block;
+  width: 100%;
+  min-width: 800px;
+  height: 5%;
+}
+
+.header__yp-logo {
+  display: inline-block;
+  width: 200px;
+  margin-left: 11px;
+  font-size: 170%;
+  vertical-align: text-bottom;
+}
