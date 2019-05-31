@@ -1,11 +1,11 @@
 header {
   width: 100%;
-  font-size: 15px;
   height: 56px;
-  text-align: center;
   box-sizing: border-box;
   padding: 0px 20px 0px 22px;
-  font-family: Yandex Sans;
+  font-family: Yandex Sans, sans-serif;
+  font-size: 15px;
+  text-align: center;
 }
 
 .header__inline-element {

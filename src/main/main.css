@@ -1,13 +1,14 @@
 main {
   position: absolute;
-  min-width: inherit;
-  min-height: inherit;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  padding: 56px 20px 14px 22px;
+
+  min-width: inherit;
+  min-height: inherit;
   box-sizing: border-box;
+  padding: 56px 20px 14px 22px;
 }
 
 .article__sova {

@@ -1,20 +1,21 @@
 .side-panel {
-  float: left;
   margin-right: 22px;
-  font-family: Helvetica Neue;
+  float: left;
+  font-family: Helvetica Neue, sans-serif;
 }
 
 button {
-  cursor: pointer;
   display: inherit;
+  padding: inherit;
+
   border: inherit;
   background-color: inherit;
-  text-align: inherit;
-  font-family: inherit;
   color: inherit;
+  cursor: pointer;
   font: inherit;
-  padding: inherit;
+  font-family: inherit;
   outline: inherit;
+  text-align: inherit;
 }
 
 .side-panel__button {
@@ -25,22 +26,22 @@ button {
 }
 
 .side-panel__button_primary {
-  text-align: center;
-  font-size: 12px;
   height: 32px;
-  line-height: 32px;
+  margin-bottom: 8px;
   background-color: #6287bd;
   color: white;
-  margin-bottom: 8px;
+  font-size: 12px;
+  line-height: 32px;
+  text-align: center;
 }
 
 .side-panel__button_secondary {
   height: 22px;
+  margin: 1px 0;
+  color: #707070;
   font-size: 11px;
   font-weight: 500;
   line-height: 22px;
-  color: #707070;
-  margin: 1px 0;
 }
 
 .side-panel__button_active {

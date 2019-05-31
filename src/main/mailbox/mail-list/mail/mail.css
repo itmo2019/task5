@@ -1,10 +1,11 @@
 .mailbox__mail {
-  font-size: 13px;
-  height: 40px;
-  line-height: 40px;
   width: 100%;
-  color: #cccccc;
+  height: 40px;
+
   border-bottom: 1px solid #e2e2e2;
+  color: #cccccc;
+  font-size: 13px;
+  line-height: 40px;
   overflow-y: hidden;
 }
 
@@ -19,25 +20,25 @@
 }
 
 .pic__img {
-  vertical-align: middle;
-  height: 30px;
   width: 30px;
+  height: 30px;
+  vertical-align: middle;
 }
 
 .mail__author {
   width: 155px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   color: black;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .mail__title {
-  color: black;
-  padding-left: 10px;
-  box-sizing: border-box;
   width: calc(100% - 355px);
-  white-space: nowrap;
+  box-sizing: border-box;
+  padding-left: 10px;
+  color: black;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .mail__new {
@@ -45,11 +46,11 @@
 }
 
 .mail__dot {
-  visibility: hidden;
   width: 10px;
   height: 10px;
   background-color: #6287bd;
   border-radius: 50%;
+  visibility: hidden;
 }
 
 .mail__new .mail__dot {
@@ -57,41 +58,43 @@
 }
 
 .mail__time {
-  float: right;
-  text-align: right;
   width: 50px;
-  font-weight: 500;
   margin-right: 20px;
   color: #969799;
+  float: right;
+  font-weight: 500;
+  text-align: right;
 }
 
 @keyframes collapse {
   to {
-      height: 0px;
-      border: none;
+    height: 0px;
+
+    border: none;
   }
 }
 
-.mailbox__mail[data-state="collapsed"] {
+.mailbox__mail[data-state='collapsed'] {
   animation: collapse 0.4s 1 ease-out forwards;
 }
 
-.mailbox__mail[data-state="hidden"] {
+.mailbox__mail[data-state='hidden'] {
   height: 0px;
+
   border-width: 0px;
 }
 
 @keyframes appearance {
   from {
-      height: 0px;
-      background-color: #6287bd;
+    height: 0px;
+    background-color: #6287bd;
   }
   to {
-      height: 40px;
-      background-color: white;
+    height: 40px;
+    background-color: white;
   }
 }
 
-.mailbox__mail[data-state="appearing"] {
+.mailbox__mail[data-state='appearing'] {
   animation: appearance 0.4s 1 ease-out forwards;
 }

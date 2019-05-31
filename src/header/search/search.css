@@ -3,25 +3,25 @@
 }
 
 .search {
-  background-color: white;
   width: 301px;
   height: 32px;
-  line-height: 32px;
+  background-color: white;
   box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.2);
+  line-height: 32px;
 }
 
 .search__text {
-  margin: auto 0 auto 16px;
-  width: 255px;
   overflow: hidden;
+  width: 255px;
+  margin: auto 0 auto 16px;
+  color: black;
   float: left;
   font-weight: 400;
-  color: black;
 }
 
 .search__close {
   margin: auto 9px;
+  color: grey;
   float: right;
   font-size: 20px;
-  color: grey;
 }

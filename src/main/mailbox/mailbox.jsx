@@ -147,7 +147,7 @@ export class MailBox extends Component {
         <MailBoxList mails={this.state.mails} updateState={this.updateState} />
         <div className="mailbox__mail-contents">
           <label className="mailbox__msg-close" htmlFor="mailbox__trigger">
-            ×
+            <input type="hidden" />×
           </label>
           <div
             className="mail-contents__html"
