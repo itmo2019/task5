@@ -162,7 +162,8 @@ function getDate() {
 }
 
 function getImg() {
-  return `https://thiscatdoesnotexist.com/?${getCurrentTime()}`;
+  const size = 100 + (getCurrentTime() % 200);
+  return `http://placekitten.com/${size}/${size}`;
 }
 
 function sendRequest(link) {
