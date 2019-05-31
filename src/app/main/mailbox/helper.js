@@ -1,6 +1,6 @@
 let mailCnt = 0;
 
-export class Mail {
+class Mail {
   constructor(img, author, title, date, text, old, state = 'hidden') {
     this.img = img;
     this.author = author;
@@ -191,6 +191,8 @@ function getText() {
   );
 }
 
-export function generateMail() {
+function generateMail() {
   return new Mail(getImg(), getAuthor(), getTitle(), getDate(), getText());
 }
+
+export { Mail, generateMail, getCurrentTime, getRandomInt };

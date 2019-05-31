@@ -2,16 +2,26 @@ import React, { Component } from 'react';
 import Footer from './footer/footer';
 import MailBoxList from './mail-list/mail-list';
 
-import { Mail, generateMail } from './helper';
+import { Mail, generateMail, getCurrentTime, getRandomInt } from './helper';
 import './mailbox.css';
 
-const MAX_VISIBLE_MAILS = 5;
+const MAX_VISIBLE_MAILS = 30;
+const MIN_AUTO_MAIL_INTERVAL = 10;
+const MIN_AUTO_MAIL_CONSEQUENT_SPAN_INTERVAL = 3000;
+const MAX_AUTO_MAIL_INTERVAL = 6000;
 
 export class MailBox extends Component {
   constructor() {
     super();
+
+    // local non-concurrent data
+    this.previousMailTime = 0;
+    this.penultimateMailTime = 0;
+
+    // binding methods
     this.updateState = this.updateState.bind(this);
     this.newMail = this.newMail.bind(this);
+    this.autoMails = this.autoMails.bind(this);
     this.deleteSelected = this.deleteSelected.bind(this);
     this.updateVisibility = mails => {
       let visibleMails = MAX_VISIBLE_MAILS;
@@ -32,6 +42,7 @@ export class MailBox extends Component {
         return newMail;
       });
     };
+
     this.state = {
       currentMail: 0,
       mails: [
@@ -77,6 +88,10 @@ export class MailBox extends Component {
         )
       ]
     };
+
+    // initialize automatic generation of mails
+    const timeout = getRandomInt(MIN_AUTO_MAIL_INTERVAL, MAX_AUTO_MAIL_INTERVAL);
+    setTimeout(this.autoMails, timeout);
   }
 
   componentDidMount() {
@@ -87,15 +102,31 @@ export class MailBox extends Component {
     this.setState(prevState => genState(prevState));
   }
 
+  autoMails() {
+    const currentTime = getCurrentTime();
+    const timeout = getRandomInt(
+      Math.max(
+        MIN_AUTO_MAIL_INTERVAL,
+        Math.min(currentTime - this.penultimateMailTime, MIN_AUTO_MAIL_CONSEQUENT_SPAN_INTERVAL)
+      ),
+      MAX_AUTO_MAIL_INTERVAL
+    );
+    this.penultimateMailTime = this.previousMailTime;
+    this.previousMailTime = currentTime + timeout;
+    this.newMail();
+    setTimeout(this.autoMails, timeout);
+  }
+
   newMail() {
     const newMail = generateMail();
     newMail.state = 'appearing';
 
     this.updateState(prevState => {
-      const newMails = prevState.mails;
+      const { mails, currentMail } = prevState;
+      const newMails = mails;
       newMails.unshift(newMail);
       return {
-        currentMail: 0,
+        currentMail,
         mails: this.updateVisibility(newMails)
       };
     });
@@ -103,7 +134,8 @@ export class MailBox extends Component {
 
   deleteSelected() {
     this.updateState(prevState => {
-      const newMails = prevState.mails.map(mail => {
+      const { mails, currentMail } = prevState;
+      const newMails = mails.map(mail => {
         const newMail = mail;
         if (mail.checked) {
           newMail.state = 'collapsed';
@@ -112,7 +144,7 @@ export class MailBox extends Component {
         return newMail;
       });
       return {
-        currentMail: 0,
+        currentMail,
         mails: this.updateVisibility(newMails)
       };
     });
