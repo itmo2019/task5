@@ -36,7 +36,7 @@ export class MailBox extends Component {
         if (visibleMails > 0) {
           visibleMails--;
           if (mail.state === 'collapsed') {
-            newMail.state = 'appearing';
+            newMail.state = 'showed';
           }
         } else if (mail.state === 'showed') {
           newMail.state = 'collapsed';
@@ -81,7 +81,7 @@ export class MailBox extends Component {
 
   newMail() {
     const newMail = generateMail();
-    newMail.state = 'appearing';
+    newMail.state = 'init';
 
     this.updateState(prevState => {
       const { mails, currentMail } = prevState;
@@ -155,11 +155,8 @@ export class MailBox extends Component {
                 this.updateState(prevState => {
                   const { currentMail, mails } = prevState;
                   let newMails = mails;
-                  if (mail.state === 'appearing') {
+                  if (mail.state === 'init') {
                     newMails[index].state = 'showed';
-                  }
-                  if (mail.state === 'collapsed') {
-                    newMails[index].state = 'hidden';
                   }
                   if (mail.deleted) {
                     newMails = mails.filter(curMail => curMail.id !== mail.id);
