@@ -1,4 +1,4 @@
-export const MAX_VISIBLE_MAILS = 30;
+export const MAX_VISIBLE_MAILS = 5;
 export const MIN_AUTO_MAIL_INTERVAL = 10;
 export const MIN_AUTO_MAIL_CONSEQUENT_SPAN_INTERVAL = 300000;
 export const MAX_AUTO_MAIL_INTERVAL = 600000;

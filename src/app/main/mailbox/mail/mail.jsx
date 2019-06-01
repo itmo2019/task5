@@ -9,51 +9,14 @@ export class Mail extends Component {
   }
 
   render() {
-    const { mail, updateState } = this.props;
+    const { mail, onClick, onAnimationEnd } = this.props;
     const checkboxId = `checkbox_${mail.id}`;
-
-    const animationHandler = () => {
-      const mapMailState = (mails, newState) =>
-        mails.map(curMail => {
-          if (curMail.id === mail.id) {
-            const newMail = curMail;
-            newMail.state = newState;
-            return newMail;
-          }
-          return curMail;
-        });
-
-      updateState(prevState => {
-        const { currentMail, mails } = prevState;
-        let newMails = mails;
-        if (mail.state === 'appearing') {
-          newMails = mapMailState(mails, 'showed');
-        }
-        if (mail.state === 'collapsed') {
-          newMails = mapMailState(mails, 'hidden');
-        }
-        if (mail.deleted) {
-          newMails = mails.filter(curMail => curMail.id !== mail.id);
-        }
-        return {
-          currentMail,
-          mails: newMails
-        };
-      });
-    };
 
     return (
       <label
         ref={this.trigger}
         htmlFor="mailbox__trigger"
-        onClick={() => {
-          updateState(prevState => {
-            return {
-              currentMail: mail.id,
-              mails: prevState.mails
-            };
-          });
-        }}
+        onClick={onClick}
         role="row"
         tabIndex="0"
         onKeyDown={event => {
@@ -65,7 +28,7 @@ export class Mail extends Component {
         <div
           className={`mailbox__mail${!mail.old ? ' mail__new' : ''}`}
           data-state={mail.state}
-          onAnimationEnd={animationHandler}
+          onAnimationEnd={onAnimationEnd}
         >
           <label className="checkbox" htmlFor={checkboxId}>
             <input
