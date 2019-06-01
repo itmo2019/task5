@@ -1,0 +1,14 @@
+.info {
+  float: right;
+}
+
+.info__option {
+  display: inline-block;
+  margin-right: 20px;
+  padding-left: 18px;
+  line-height: 35px;
+  font-size: 12px;
+  color: #9b9b9b;
+  text-decoration: none;
+}
+

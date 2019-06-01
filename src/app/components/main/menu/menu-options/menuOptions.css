@@ -1,0 +1,29 @@
+.menu__options {
+  margin-top: 7px;
+  padding-left: 0;
+}
+
+.menu__option {
+  list-style-type: none;
+  height: 18px;
+  padding-left: 8px;
+  padding-top: 5px;
+  border-radius: 3px;
+  font-size: 11px;
+  color: #707070;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.menu__link {
+  text-decoration: none;
+  color: #707070;
+}
+
+.menu__incoming {
+  background-color: #cdd6e4;
+  font-weight: bold;
+  color: #555555;
+}
+
