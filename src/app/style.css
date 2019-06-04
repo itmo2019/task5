@@ -262,7 +262,7 @@ header {
   border-bottom: 1px solid #e2e2e2;
   font-size: 0;
   text-overflow: ellipsis;
-  transition: all 3s;
+  transition: all 0.5s;
   white-space: nowrap;
 }
 

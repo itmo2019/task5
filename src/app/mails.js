@@ -71,8 +71,9 @@ export class Mails extends Component {
     let date = randomDate();
     let copyOfLetters = this.state.letters.slice();
     copyOfLetters.unshift({sender:sender, content:content, read: false, chosen: false, date : date, hide: true});
-    copyOfLetters[0].hide = false;
+    //copyOfLetters[0].hide = false;
     this.setState({letters : copyOfLetters});
+    this.state.letters[0].hide = false;
     setTimeout(this.runLetterTimer(), deleteTimeout);
   }
 
@@ -123,11 +124,22 @@ export class Mails extends Component {
     ];
   }
 
+  inProocessOfDelete = false;
   deleteChosenLetters() {
+    if (this.inProocessOfDelete) {
+      return
+    }
+    this.inProocessOfDelete = true;
     let copyOfLetters = this.state.letters.slice();
-    copyOfLetters = copyOfLetters.filter((letter, idx) => !this.mailsRefs[idx].state.chosen);
+    copyOfLetters.forEach((letter, idx) => {letter.hide = this.mailsRefs[idx].state.chosen})
     this.setState({letters : copyOfLetters});
-    this.unchoseAllLetters();
+
+    setTimeout(() => {
+      const copyOfLetters = this.state.letters.filter((letter, idx) => !this.mailsRefs[idx].state.hide);
+      this.setState({letters : copyOfLetters});
+      this.unchoseAllLetters();
+      this.inProocessOfDelete = false;
+    }, 500);
   }
 
   choseAllLetters() {
@@ -156,6 +168,7 @@ export class Mails extends Component {
       <div className="tab mails default-tab" id="mails">
         { this.state.letters.map((letter, idx) =>
           <Mail
+            key={letter.sender + letter.date + letter.content}
             onLetterClick={() => this.props.onLetterOpened(letter.sender, letter.content)}
             onCheckboxClick={() => this.mCheckboxClicked(idx)}
             sender={letter.sender} content={letter.content} read={letter.read} date={letter.date} chosen={letter.chosen} hide={letter.hide}
