@@ -1,0 +1,16 @@
+.profileImage {
+  display: flex;
+
+  width: 30px;
+  height: 30px;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #9b9b9b;
+  background-size: contain;
+  border-radius: 50%;
+
+  color: #fff;
+  font: 500 16px/35px 'Yandex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
