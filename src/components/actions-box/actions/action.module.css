@@ -1,0 +1,17 @@
+.action {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+
+  color: inherit;
+  font: 500 13px/37px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.action:disabled {
+  color: #ccc;
+  cursor: initial;
+}
+
+.action:enabled:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

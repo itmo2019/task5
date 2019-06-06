@@ -1,119 +1,82 @@
-import React, { createContext, useCallback, useMemo } from 'react';
-import { useSessionStorage } from '../../react-utils';
-import { generateLetter } from '../../utils/generators';
+import React, { createContext } from 'react';
+import { useSessionStorage, cb, mem } from '../../react-utils';
+import { mergeObjects } from '../../utils';
+
+export const LetterState = Object.freeze({
+  NEW: 1,
+  COMMON: 2,
+  WILL_BE_DELETED: 3
+});
+
+const createLetter = (letterContent, id) => ({
+  id,
+  state: LetterState.NEW,
+  unread: true,
+  checked: false,
+  content: letterContent
+});
 
 export const LettersContext = createContext(null);
 
 export const LettersProvider = ({ children }) => {
   const [state, setState] = useSessionStorage('letters', { counter: 0, letters: [] });
 
-  const onPage = useMemo(() => 1500, []);
+  const getLetters = cb(() => state.letters).deps(state);
 
-  const merge = useCallback((obj1, obj2) => Object.assign({}, obj1, obj2), []);
+  const getLetterByID = cb(id => getLetters().find(letter => letter.id === id)).deps(getLetters);
 
-  const createLetter = useCallback(
-    (letterContent, id) => ({
-      id,
-      state: 1, // 1 - just received, 2 - usual, 3 - gonna be removed
-      unread: true,
-      checked: false,
-      content: letterContent
-    }),
-    [state]
+  const changeState = cb((counterFunc, lettersFunc) =>
+    setState(({ counter, letters }) => ({
+      counter: counterFunc(counter, letters),
+      letters: lettersFunc(letters, counter)
+    }))
+  ).deps(setState);
+
+  const setLetters = cb(lettersFunc => changeState(counter => counter, lettersFunc)).deps(
+    changeState
   );
 
-  const getLetters = useCallback(() => state.letters.slice(0, onPage), [state]);
+  const filterLetters = cb(pred => setLetters(letters => letters.filter(pred))).deps(setLetters);
 
-  const getLetterByID = useCallback(id => getLetters().find(letter => letter.id === id), [
-    getLetters
-  ]);
+  const mapLetters = cb(func =>
+    setLetters(letters => letters.map(letter => mergeObjects(letter, func(letter))))
+  ).deps(setLetters);
 
-  const setStateSlice = useCallback(
-    (counterFunc, lettersFunc) =>
-      setState(prevState => ({
-        counter: counterFunc(prevState.counter),
-        letters: lettersFunc(prevState.letters.slice(0, onPage)).concat(
-          prevState.letters.slice(onPage)
-        )
-      })),
-    [setState]
-  );
+  const addLetter = cb(letterContent =>
+    changeState(
+      counter => counter + 1,
+      (letters, counter) => [createLetter(letterContent, counter), ...letters]
+    )
+  ).deps(setLetters, createLetter);
 
-  const setLettersSlice = useCallback(
-    lettersFunc => setStateSlice(counter => counter, lettersFunc),
-    [setStateSlice]
-  );
+  const deleteLetterByID = cb(id => filterLetters(letter => letter.id !== id)).deps(filterLetters);
 
-  const filterLetters = useCallback(
-    predicate => setLettersSlice(letters => letters.filter(predicate)),
-    [setLettersSlice]
-  );
-
-  const mapLetters = useCallback(
-    func => setLettersSlice(letters => letters.map(letter => merge(letter, func(letter)))),
-    [setLettersSlice]
-  );
-
-  const addLetter = useCallback(
-    letterContent =>
-      setStateSlice(
-        counter => counter + 1,
-        letters => [createLetter(letterContent, state.counter), ...letters]
-      ),
-    [setLettersSlice, createLetter]
-  );
-
-  const generateRandomLetters = useCallback(
-    count =>
-      setState(() => {
-        const newState = { counter: 0, letters: [] };
-        for (let i = 0; i < count; i++) {
-          const newLetter = createLetter(generateLetter(), newState.counter);
-          newLetter.state = 2;
-          newState.letters.unshift(newLetter);
-          newState.counter++;
-        }
-        return newState;
-      }),
-    [setState, createLetter, generateLetter]
-  );
-
-  const deleteLetterByID = useCallback(id => filterLetters(letter => letter.id !== id), [
+  const deleteLettersByIDs = cb(ids => filterLetters(letter => !ids.includes(letter.id))).deps(
     filterLetters
-  ]);
-
-  const deleteLettersByIDs = useCallback(ids => filterLetters(letter => !ids.includes(letter.id)), [
-    filterLetters
-  ]);
-
-  const changeLetterByID = useCallback(
-    (id, func) => mapLetters(letter => (letter.id === id ? func(letter) : letter)),
-    [mapLetters]
   );
 
-  const changeLetters = useCallback(func => mapLetters(func), [mapLetters]);
+  const changeLetterByID = cb((id, func) =>
+    mapLetters(letter => (letter.id === id ? func(letter) : letter))
+  ).deps(mapLetters);
 
-  const contextValue = useMemo(
-    () => ({
-      getLetters,
-      getLetterByID,
-      addLetter,
-      deleteLetterByID,
-      deleteLettersByIDs,
-      changeLetterByID,
-      changeLetters,
-      generateRandomLetters
-    }),
-    [
-      getLetters,
-      getLetterByID,
-      addLetter,
-      deleteLetterByID,
-      deleteLettersByIDs,
-      changeLetterByID,
-      changeLetters,
-      generateRandomLetters
-    ]
+  const changeLetters = cb(func => mapLetters(func)).deps(mapLetters);
+
+  const contextValue = mem(() => ({
+    getLetters,
+    getLetterByID,
+    addLetter,
+    deleteLetterByID,
+    deleteLettersByIDs,
+    changeLetterByID,
+    changeLetters
+  })).deps(
+    getLetters,
+    getLetterByID,
+    addLetter,
+    deleteLetterByID,
+    deleteLettersByIDs,
+    changeLetterByID,
+    changeLetters
   );
 
   return <LettersContext.Provider value={contextValue}>{children}</LettersContext.Provider>;

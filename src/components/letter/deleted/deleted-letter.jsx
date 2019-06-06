@@ -1,21 +1,17 @@
-import React, { useContext } from 'react';
-import { LettersContext } from '../../contexts/lettersContext';
+import React from 'react';
+import { pure } from 'recompose';
+
 import { Letter } from '../letter';
-import styles from './deleting-letter.module.css';
+import styles from './deleted-letter.module.css';
+import { AnimationWrapper } from '../../animation-wrapper';
 
-export const DeletingLetter = props => {
-  const { changeLetter, deleteLetters } = useContext(LettersContext);
-
-  const handleAnimationEnd = () => {
-    deleteLetters([props.id]);
-  };
-
+export const DeletedLetter = pure(props => {
   return (
-    <div
-      className={styles.deletingLetter}
-      onAnimationEnd={handleAnimationEnd}
+    <AnimationWrapper
+      animationClass={styles.deletedLetter}
+      handleAnimationEnd={props.handleAnimationEnd}
     >
       <Letter {...props} />
-    </div>
+    </AnimationWrapper>
   );
-};
+});

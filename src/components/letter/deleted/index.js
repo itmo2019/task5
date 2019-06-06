@@ -1,1 +1,1 @@
-export * from './deletingLetter';
+export * from './deleted-letter';

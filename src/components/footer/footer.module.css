@@ -1,0 +1,14 @@
+.footer {
+  display: flex;
+  height: 100%;
+
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.item {
+  margin-right: 30px;
+
+  color: #9b9b9b;
+  font: 11px/31px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

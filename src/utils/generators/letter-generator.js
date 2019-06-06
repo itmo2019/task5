@@ -1,8 +1,8 @@
 import generateText from './text-generator';
-import random from './random';
 import generateUser from './user-generator';
+import random from './random';
 
-export default function generateLetter() {
+export function generateLetter() {
   return {
     user: generateUser(),
     content: {

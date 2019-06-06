@@ -1,26 +1,23 @@
 import random from './random';
 
 const names = {
-  ru: {
-    firstNames: [],
-    lastNames: []
-  },
-  en: {
-    firstNames: [],
-    lastNames: []
-  }
+  firstNames: ['Богдан', 'Виктор', 'Елисей', 'Ринат', 'Сидор', 'Фёдор'],
+  lastNames: ['Иванов', 'Смирнов', 'Кузнецов', 'Васильев', 'Петров', 'Михайлов', 'Федоров']
 };
 
 function randomName() {
-  const lang = random.boolean() ? 'ru' : 'en';
-  const firstName = random.element(names[lang].firstNames);
-  const lastName = random.element(names[lang].lastNames);
+  const firstName = random.element(names.firstNames);
+  const lastName = random.element(names.lastNames);
 
   return `${firstName} ${lastName}`;
 }
 
+function randomImgUrl() {
+  return `https://randomuser.me/api/portraits/men/${random.int(0, 100)}.jpg`;
+}
+
 function imageOrNull() {
-  return random.boolean() ? 'https://thispersondoesnotexist.com/image' : null;
+  return random.boolean() ? randomImgUrl() : null;
 }
 
 export default function generateUser() {

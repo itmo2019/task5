@@ -1,1 +1,1 @@
-export * from './with-overflow-ellipsis';
+export * from './text';

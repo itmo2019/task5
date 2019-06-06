@@ -10,9 +10,19 @@
 }
 
 .actions_box {
+  box-sizing: border-box;
+  padding: 0 20px;
+
   border-bottom: 1px solid #e2e2e2;
 }
 
+.list {
+  min-height: calc(100vh - 200px);
+}
+
 .footer {
+  box-sizing: border-box;
+  padding: 0 20px;
+
   border-top: 1px solid #e2e2e2;
 }

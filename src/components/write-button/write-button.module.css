@@ -1,0 +1,9 @@
+.writeButton {
+  display: block;
+
+  background-color: #6287bd;
+  border-radius: 3px;
+  color: #fff;
+
+  font: 500 12px/32px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}

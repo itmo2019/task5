@@ -1,14 +1,21 @@
 import React, { useContext } from 'react';
+import { cb, mem } from '../../../../react-utils';
+
 import { Action } from '../action';
-import { LettersContext } from '../../../contexts/lettersContext';
+import { LettersContext } from '../../../letters-context';
 
 export const DeleteLetterAction = props => {
-  const { letters, changeLetter } = useContext(LettersContext);
+  const { getLetters, changeLetters } = useContext(LettersContext);
+  const letters = mem(() => getLetters()).deps(getLetters);
 
-  const handleAction = () => {
+  const handleAction = cb(() => {
     const ids = letters.filter(letter => letter.checked).map(letter => letter.id);
-    ids.forEach(id => changeLetter(id, () => ({ deleting: true })));
-  };
+    changeLetters(letter => (ids.includes(letter.id) ? { state: 3, checked: false } : {}));
+  }).deps(letters, changeLetters);
 
-  return <Action {...props} handleAction={handleAction} />;
+  return (
+    <Action {...props} handleAction={handleAction}>
+      Удалить
+    </Action>
+  );
 };

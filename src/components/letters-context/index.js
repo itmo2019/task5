@@ -1,1 +1,1 @@
-export * from './lettersContext';
+export * from './letters-context';

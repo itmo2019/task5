@@ -1,45 +1,40 @@
-import React, { Component } from 'react';
-import classNames from 'classnames';
+import React from 'react';
+import classNames from 'classnames/bind';
 
-import styles from './menu.module.css';
+import { List } from '../list';
+import { Link } from '../link';
+import { Button } from '../button';
+import { Text } from '../text';
 
-export class Menu extends Component {
-  render() {
-    return (
-      <nav className={this.props.styles}>
-        <ul className={styles.list}>
-          <li className={styles.item}>
-            <a className={classNames(styles.clickable, styles.link, styles.active)} href="/">
-              Входящие
-            </a>
-          </li>
-          <li className={styles.item}>
-            <a className={classNames(styles.clickable, styles.link)} href="/">
-              Отправленные
-            </a>
-          </li>
-          <li className={styles.item}>
-            <a className={classNames(styles.clickable, styles.link)} href="/">
-              Удаленные
-            </a>
-          </li>
-          <li className={styles.item}>
-            <a className={classNames(styles.clickable, styles.link)} href="/">
-              Спам
-            </a>
-          </li>
-          <li className={styles.item}>
-            <a className={classNames(styles.clickable, styles.link)} href="/">
-              Черновики
-            </a>
-          </li>
-          <li className={styles.item}>
-            <button className={classNames(styles.clickable, styles.button)} type="button">
-              Создать папку
-            </button>
-          </li>
-        </ul>
-      </nav>
-    );
-  }
-}
+import styles from './nav.module.css';
+
+const cx = classNames.bind(styles);
+
+export const Nav = ({ className }) => {
+  return (
+    <nav className={className}>
+      <List className={styles.list} itemClassName={styles.item}>
+        <LinkItem href="/inbox" isActive>
+          Входящие
+        </LinkItem>
+        <LinkItem href="/sent">Отправленные</LinkItem>
+        <LinkItem href="/delete">Удаленные</LinkItem>
+        <LinkItem href="/spam">Спам</LinkItem>
+        <LinkItem href="/draft">Черновики</LinkItem>
+        <ButtonItem>Создать папку</ButtonItem>
+      </List>
+    </nav>
+  );
+};
+
+const LinkItem = ({ href, isActive, children }) => (
+  <Link className={cx({ clickable: true, active: isActive })} href={href}>
+    <Text withOverflow>{children}</Text>
+  </Link>
+);
+
+const ButtonItem = ({ children }) => (
+  <Button className={classNames(styles.clickable)}>
+    <Text withOverflow>{children}</Text>
+  </Button>
+);

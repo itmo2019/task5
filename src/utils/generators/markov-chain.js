@@ -21,10 +21,10 @@ function generateChain(text) {
     }
   }
 
-  for (const from of graph.keys()) {
+  for (const from of Object.keys(graph)) {
     let sum = 0;
-    for (const to of graph[from].keys()) sum += graph[from][to];
-    for (const to of graph[from].keys()) graph[from][to] /= sum;
+    for (const to of Object.keys(graph[from])) sum += graph[from][to];
+    for (const to of Object.keys(graph[from])) graph[from][to] /= sum;
   }
 
   return graph;
@@ -39,7 +39,7 @@ export default function createMarkovChain(sampleText) {
         const prob = Math.random();
 
         let sum = 0;
-        for (const to of probs.keys()) {
+        for (const to of Object.keys(probs)) {
           if (prob < sum + probs[to]) return to;
           sum += probs[to];
         }

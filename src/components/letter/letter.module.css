@@ -1,0 +1,76 @@
+.letter {
+  display: grid;
+
+  align-items: center;
+  justify-content: start;
+
+  padding: 0 20px;
+
+  border-bottom: 1px solid #e2e2e2;
+  column-gap: 15px;
+  grid-template: 40px / 16px 30px 165px 10px 1fr 60px;
+}
+
+.letterActive {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.deletedLetter {
+  animation: delete-letter-animation 1s cubic-bezier(0.5, 0, 0, 0);
+}
+
+@keyframes delete-letter-animation {
+  0% {
+    height: 41px;
+    opacity: 1;
+  }
+
+  30% {
+    height: 41px;
+    opacity: 0;
+  }
+
+  100% {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.newLetter {
+  animation: new-letter-animation 1s cubic-bezier(1, 1, 0.5, 1);
+}
+
+@keyframes new-letter-animation {
+  0% {
+    height: 0;
+    opacity: 0;
+  }
+
+  50% {
+    height: 40px;
+    opacity: 0;
+  }
+
+  100% {
+    height: 40px;
+    opacity: 1;
+  }
+}
+
+.link {
+  display: block;
+  height: auto;
+}
+
+.text {
+  color: #000;
+  font: 13px 'Helvetica Neue', Arial, sans-serif;
+}
+
+.textUnread {
+  font-weight: bold;
+}
+
+.date {
+  justify-self: end;
+}
