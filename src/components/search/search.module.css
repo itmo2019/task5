@@ -1,0 +1,26 @@
+.search {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+
+  box-sizing: border-box;
+  padding-right: 30px;
+  padding-left: 15px;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+
+  font: 15px/32px 'Yandex Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  opacity: 0.5;
+}
+
+.clearIcon {
+  position: absolute;
+
+  top: calc(50% - 5px);
+  right: 15px;
+
+  width: 10px;
+  height: 10px;
+}

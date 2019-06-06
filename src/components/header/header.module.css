@@ -1,0 +1,25 @@
+.header {
+  display: grid;
+  align-items: center;
+  grid-template: 100% / auto 12px auto 1fr;
+  grid-template-areas: 'hamburger . logo search';
+  justify-items: center;
+}
+
+.hamburger {
+  grid-area: hamburger;
+}
+
+.logo {
+  grid-area: logo;
+}
+
+.search {
+  width: 40%;
+  min-width: 300px;
+  max-width: 600px;
+
+  margin: 0 60px;
+
+  grid-area: search;
+}

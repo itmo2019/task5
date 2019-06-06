@@ -1,0 +1,56 @@
+.content {
+  width: 100%;
+  min-width: 700px;
+  max-width: calc(100vw - 250px);
+  height: auto;
+  box-sizing: border-box;
+  padding: 0 15%;
+}
+
+.body {
+  width: 100%;
+  height: auto;
+
+  box-sizing: border-box;
+  padding-bottom: 30px;
+
+  font: 16px/30px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: justify;
+}
+
+.header {
+  width: 100%;
+  height: auto;
+
+  margin-bottom: 20px;
+}
+
+.subject {
+  width: 100%;
+  font: 400 24px/80px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.profileImage {
+  width: 50px;
+  height: 50px;
+  grid-area: image;
+}
+
+.messageInfo {
+  display: grid;
+
+  grid-column-gap: 20px;
+  grid-template-areas: 'image name date';
+  grid-template-columns: 50px 300px 1fr;
+  grid-template-rows: 50px;
+}
+
+.name {
+  font: 700 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  grid-area: name;
+}
+
+.date {
+  grid-area: date;
+  justify-self: end;
+}

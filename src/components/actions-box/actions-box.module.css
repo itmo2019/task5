@@ -1,0 +1,35 @@
+.actions_box {
+  display: flex;
+
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.checkbox {
+  flex: 0 0 auto;
+  margin: 0 10px 0 20px;
+}
+
+.actionsList {
+  display: flex;
+  height: 100%;
+  flex: 0 0 auto;
+}
+
+.action {
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
+
+  color: inherit;
+  font: 500 13px/37px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+.action:disabled {
+  color: #ccc;
+  cursor: initial;
+}
+
+.action:enabled:hover {
+  background: rgba(0, 0, 0, 0.05);
+}

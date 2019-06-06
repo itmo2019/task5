@@ -1,0 +1,28 @@
+.letters_page {
+  display: flex;
+  min-width: 600px;
+  flex-direction: column;
+
+  background-color: #fff;
+
+  border-radius: 3px;
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.34);
+}
+
+.actions_box {
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.list {
+  min-height: calc(100vh - 200px);
+}
+
+.footer {
+  box-sizing: border-box;
+  padding: 0 20px;
+
+  border-top: 1px solid #e2e2e2;
+}
