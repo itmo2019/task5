@@ -1,4 +1,4 @@
-import React, { Component, createRef } from 'react';
+import React, { Component } from 'react';
 import Mails from "./mails";
 import LetterContent from "./letterContent";
 
@@ -13,7 +13,6 @@ export class Main extends Component {
       letterStartOfText: "",
       allLettersChosen: false
     };
-    // this.mailRef = createRef();
   }
 
   render() {
@@ -35,7 +34,9 @@ export class Main extends Component {
             <button className={"checkmark options__checkmark checkmark--" + (this.state.allLettersChosen ? "chosen" : "unchosen")}
                     id="choose_all" onClick={ () => {
               this.mailRef.choseAllLetters();
-              this.state.allLettersChosen = true;
+              this.setState({
+                allLettersChosen: true,
+              });
             }
             }/>
             <li className="options__action" onClick={
@@ -47,20 +48,21 @@ export class Main extends Component {
             <li className="options__action">Это спам</li>
             <li className="options__action">Прочитано</li>
           </ul>
-          { this.state.isLetterOpened ?
-            <LetterContent
-              onClose={() => this.setState({ isLetterOpened: false })}
-              letterSender={this.state.letterSender}
-              letterStartOfText={this.state.letterStartOfText}
-            />
-            :
-            <Mails
-              onLetterOpened={(sender, startOfText) => this.setState({letterSender: sender, letterStartOfText: startOfText, isLetterOpened: true})}
-              letters={this.state.letters}
-              mCheckboxClicked={idx => this.mCheckboxClicked(idx)}
-              ref={mailRef => {this.mailRef = mailRef}}
-            />
+          {
+            this.state.isLetterOpened ?
+              <LetterContent
+                onClose={() => this.setState({ isLetterOpened: false })}
+                letterSender={this.state.letterSender}
+                letterStartOfText={this.state.letterStartOfText}
+              /> : ""
           }
+          <Mails
+            hideMails={this.state.isLetterOpened}
+            onLetterOpened={(sender, startOfText) => this.setState({letterSender: sender, letterStartOfText: startOfText, isLetterOpened: true})}
+            letters={this.state.letters}
+            mCheckboxClicked={idx => this.mCheckboxClicked(idx)}
+            mailRef={ mailRef => {this.mailRef = mailRef}}
+          />
           <footer className="footer">
             <ul className="help">
               <li className="help__item">

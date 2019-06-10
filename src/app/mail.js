@@ -10,8 +10,6 @@ export class Mail extends Component {
   }
 
   render() {
-    console.log('MAIL', this.props.sender, 'hide?', this.props.hide)
-
     return (
       <article className={"mail " + (this.props.hide ? "hide" : "mail__open")} onClick={() => this.props.onLetterClick()}>
         <button className={"mail__checkmark checkmark checkmark--" + (this.state.chosen ? "chosen" : "unchosen")} onClick={ e => {

@@ -17,6 +17,8 @@ const maxContentSize = 100;
 const possibleDifferenceOfTimeBetweenNewMessages = 10000;
 const minSizeOfTimeBetweenNewMessages = 10000;
 
+let idCounter = 6;
+
 function getHolePositiveNum() {
   let rand = Math.random() * 10000000;
   if (rand < 0) {
@@ -62,7 +64,12 @@ export class Mails extends Component {
   }
 
   componentDidMount() {
+    this.props.mailRef(this)
     this.runLetterTimer();
+  }
+
+  componentWillUnmount() {
+    this.props.mailRef(undefined);
   }
 
   addRandomLetter = () => {
@@ -70,10 +77,13 @@ export class Mails extends Component {
     let content = randomString(minContentSize, maxContentSize);
     let date = randomDate();
     let copyOfLetters = this.state.letters.slice();
-    copyOfLetters.unshift({sender:sender, content:content, read: false, chosen: false, date : date, hide: true});
-    //copyOfLetters[0].hide = false;
+    copyOfLetters.unshift({sender:sender, content:content, read: false, chosen: false, date : date, hide: true, uniqId: idCounter});
+    idCounter++;
     this.setState({letters : copyOfLetters});
-    this.state.letters[0].hide = false;
+    setTimeout(() => {
+      copyOfLetters[0].hide = false;
+      this.setState({letters : copyOfLetters});
+    }, 600);
     setTimeout(this.runLetterTimer(), deleteTimeout);
   }
 
@@ -91,35 +101,45 @@ export class Mails extends Component {
         content: "Я к вам пишу - чего же боле? Что я могу ещё сказать?",
         read: false,
         date: "8 фев",
-        hide: false
+        chosen: false,
+        hide: false,
+        uniqId: 1
       },
       {
         sender: "Яндекс.Паспорт.Длинное название",
         content: "Доступ к аккаунту восстановлен",
         read: false,
         date: "6 авг",
-        hide: false
+        chosen: false,
+        hide: false,
+        uniqId: 2
       },
       {
         sender: "Яндекс.Паспорт.Длинное название",
         content: "Как читать почту с мобильного. И допустим дальше очень длинное название которое не должно влезть",
         read: false,
         date: "6 авг",
-        hide: false
+        chosen: false,
+        hide: false,
+        uniqId: 3
       },
       {
         sender: "Команда Яндекс.Почты",
         content: "Как читать почту с мобильного",
         read: true,
         date: "6 июл",
-        hide: false
+        chosen: false,
+        hide: false,
+        uniqId: 4
       },
       {
         sender: "Яндекс",
         content: "Соберите всю почту в этот ящик",
         read: true,
         date: "6 июл",
-        hide: false
+        chosen: false,
+        hide: false,
+        uniqId: 5
       }
     ];
   }
@@ -134,21 +154,19 @@ export class Mails extends Component {
     copyOfLetters.forEach((letter, idx) => {letter.hide = this.mailsRefs[idx].state.chosen})
     this.setState({letters : copyOfLetters});
 
-    setTimeout(() => {
-      const copyOfLetters = this.state.letters.filter((letter, idx) => !this.mailsRefs[idx].state.hide);
+    setTimeout (() => {
+      copyOfLetters = this.state.letters.filter(letter => !letter.hide);
       this.setState({letters : copyOfLetters});
       this.unchoseAllLetters();
       this.inProocessOfDelete = false;
-    }, 500);
+      }, 600
+    )
   }
 
   choseAllLetters() {
     this.state.letters.forEach((letter, idx) => {
       this.mailsRefs[idx].setState({chosen: true});
     });
-    // let copyOfLetters = this.state.letters.slice();
-    // copyOfLetters.forEach(letter => {letter.chosen = true});
-    // this.setState({letters : copyOfLetters});
   }
 
   unchoseAllLetters() {
@@ -165,10 +183,10 @@ export class Mails extends Component {
 
   render() {
     return (
-      <div className="tab mails default-tab" id="mails">
+      <div className={"tab default-tab" + (this.props.hideMails ? " mails__hide": "")} id="mails">
         { this.state.letters.map((letter, idx) =>
           <Mail
-            key={letter.sender + letter.date + letter.content}
+            key={letter.uniqId}
             onLetterClick={() => this.props.onLetterOpened(letter.sender, letter.content)}
             onCheckboxClick={() => this.mCheckboxClicked(idx)}
             sender={letter.sender} content={letter.content} read={letter.read} date={letter.date} chosen={letter.chosen} hide={letter.hide}
