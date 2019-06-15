@@ -1,0 +1,27 @@
+.header {
+  display: inline-block;
+  width: 100%;
+  min-width: 800px;
+  height: 5%;
+}
+
+.header__ypLogo {
+  display: inline-block;
+  width: 200px;
+  margin-left: 11px;
+  font-size: 170%;
+  vertical-align: text-bottom;
+}
+
+.header__burgerMenu {
+  display: inline-block;
+  margin-top: 7px;
+}
+
+.header__line {
+  width: 20px;
+  height: 3px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  background-color: #000000;
+}
