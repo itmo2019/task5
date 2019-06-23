@@ -64,7 +64,6 @@ export class BlockInner extends Component {
       date: dateAndFormatedDate[0],
       formatedDate: dateAndFormatedDate[1],
       checked: false,
-      deleting: false,
       ref: React.createRef()
     };
     const curDisplayed = new Set(this.state.displayed);
@@ -156,12 +155,9 @@ export class BlockInner extends Component {
                 message={letter.message}
                 checked={letter.checked}
                 date={letter.date}
-                deleting={letter.deleting}
                 formatedDate={letter.formatedDate}
                 openLetter={this.openLetter}
                 closeLetter={this.closeLetter}
-                numOfLetters={this.state.numOfLetters}
-                maxNumLetters={this.maxNumLetters}
                 openedId={this.state.openedId}
                 changeChecking={this.changeChecking}
                 displayed={this.state.displayed}

@@ -18,7 +18,6 @@ export class Letter extends Component {
         })),
       20
     );
-    this.addLetter = this.addLetter.bind(this);
     this.openLetter = this.openLetter.bind(this);
     this.closeLetter = this.closeLetter.bind(this);
     this.changeChecking = this.changeChecking.bind(this);
@@ -35,10 +34,6 @@ export class Letter extends Component {
         deletingLeft: true
       }));
     }
-  }
-
-  addLetter() {
-    this.props.addLetter();
   }
 
   closeLetter() {
@@ -76,8 +71,8 @@ export class Letter extends Component {
             <div className="mail-opened__text">{this.props.text}</div>
           </div>
           <input
-            type="checkbox"
             checked={this.props.checked}
+            type="checkbox"
             onChange={this.changeChecking}
             className="letter__checkbox"
           />
