@@ -1,23 +1,19 @@
 import React, { Component } from 'react';
 
-import './app.css';
+import { Header } from '../components/header/header';
+import { BlockInner } from '../components/window/window';
+
+// import './app.css';
+// import './css/animation.css';
+// import './css/common-styles.css';
 
 export class App extends Component {
   render() {
     return (
       <div className="app">
         <header className="app-header">
-          <p>
-            Edit <code>src/app/app.jsx</code> and save to reload.
-          </p>
-          <a
-            className="app-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+          <Header />
+          <BlockInner />
         </header>
       </div>
     );
