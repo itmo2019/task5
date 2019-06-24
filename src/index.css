@@ -1,6 +1,6 @@
-@import url(./app/fonts/fonts.css);
-@import url(./app/css/animation.css);
-@import url(./app/css/common-styles.css);
+@import url(./components/fonts/fonts.css);
+@import url(./components/css/animation.css);
+@import url(./components/css/common-styles.css);
 
 body {
   min-width: 630px;

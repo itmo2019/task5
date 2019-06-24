@@ -6,7 +6,7 @@ import { Footer } from '../footer/footer';
 import { Letter } from '../letter/letter';
 import { GenerateLetter } from '../genLetter';
 
-import './block-inner.css';
+import './window.css';
 
 export class BlockInner extends Component {
   constructor(props) {
@@ -142,9 +142,9 @@ export class BlockInner extends Component {
     return (
       <div>
         <Actions addLetter={this.addLetter} />
-        <div className="block-inner">
+        <div className="window">
           <CanDo selectAll={this.selectAll} deleteLetter={this.deleteLetter} />
-          <div className="block-inner__letters letters">
+          <div className="window__letters letters">
             {this.state.letters.map(letter => (
               <Letter
                 ref={letter.ref}

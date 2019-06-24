@@ -1,4 +1,4 @@
-.block-inner {
+.window {
   position: absolute;
 
   display: inline;
@@ -15,7 +15,7 @@
   white-space: nowrap;
 }
 
-.block-inner__letters {
+.window__letters {
   position: absolute;
 
   display: inline;
@@ -30,7 +30,7 @@
   white-space: nowrap;
 }
 
-.block-inner__footer {
+.window__footer {
   position: absolute;
   right: 0;
   bottom: 0;

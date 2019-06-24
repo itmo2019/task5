@@ -63,10 +63,8 @@ export class Letter extends Component {
             className="letter__mail-opened mail-opened"
             id={`${this.props.openedId === this.props.id ? 'letter__choose' : ''}`}
           >
-            <label>
-              <div className="mail-opened__close2" onClick={this.closeLetter}>
-                ×
-              </div>
+            <label className="mail-opened__close2" onClick={this.closeLetter}>
+              ×
             </label>
             <div className="mail-opened__text">{this.props.text}</div>
           </div>

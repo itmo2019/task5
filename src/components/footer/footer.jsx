@@ -4,7 +4,7 @@ import './footer.css';
 
 export function Footer() {
   return (
-    <footer className="block-inner__footer footer">
+    <footer className="window__footer footer">
       <a href="." className="footer__links">
         Помощь и обратная связь
       </a>

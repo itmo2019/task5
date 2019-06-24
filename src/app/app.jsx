@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
-import { Header } from './header/header';
-import { BlockInner } from './block-inner/block-inner';
+import { Header } from '../components/header/header';
+import { BlockInner } from '../components/window/window';
 
 // import './app.css';
 // import './css/animation.css';
