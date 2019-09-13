@@ -1,27 +1,273 @@
 .app {
-  text-align: center;
+  width: auto;
+  height: 100%;
+  background-color: #e5eaf0;
 }
 
 .app-header {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #282c34;
-  color: #fff;
-  font-size: calc(10px + 2vmin);
+  position: relative;
+  top: 2%;
+  left: 2%;
+
+  width: 100%;
+  height: 5.2%;
 }
 
-.app-link {
-  color: #61dafb;
+.img {
+  position: absolute;
+  top: 20%;
+
+  height: auto;
+  float: left;
 }
 
-@keyframes app-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.search {
+  position: relative;
+  top: 5%;
+
+  width: 70%;
+  height: 100%;
+  float: left;
+}
+
+.search__search-form {
+  position: relative;
+
+  width: 65%;
+  height: 100%;
+  margin-left: 18%;
+  font-family: 'YSText-Regular', serif;
+  font-size: 100%;
+  font-weight: 400;
+  line-height: 100%;
+  opacity: 0.5033;
+}
+
+.logo {
+  position: relative;
+  top: 0;
+
+  display: inline-block;
+
+  width: auto;
+  height: auto;
+  float: left;
+}
+
+.logo__img {
+  position: relative;
+  float: left;
+}
+
+.content {
+  position: relative;
+  top: 8%;
+  left: 2%;
+
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
+.menu {
+  position: relative;
+  top: 0;
+
+  width: 15%;
+  height: 100%;
+  float: left;
+}
+
+.menu__button_write {
+  position: relative;
+  top: 0;
+
+  height: 5.1%;
+  padding-top: 6%;
+  background: #6287bd;
+  border-radius: 5px;
+  color: white;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  font-size: 100%;
+  text-align: center;
+  vertical-align: center;
+}
+
+.options {
+  height: 25%;
+  margin-top: 6%;
+}
+
+.option {
+  display: table;
+  height: 18%;
+  padding-top: 3%;
+  padding-left: 5%;
+  border-radius: 5px;
+  color: #707070;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  font-size: 100%;
+  vertical-align: center;
+}
+
+.option:hover {
+  background: #cccccc;
+}
+
+.option:active {
+  background: #cdd6e4;
+}
+
+.main {
+  width: 70%;
+  height: 80%;
+  background: white;
+  border-radius: 0.5%;
+  box-shadow: 0 2px 6px black;
+  float: left;
+}
+
+.actions {
+  width: 100%;
+  height: 3.125%;
+  padding-left: 1%;
+
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.checkbox {
+  height: calc(70% - 0px);
+  float: left;
+  vertical-align: middle;
+}
+
+.action {
+  display: table;
+  height: 100%;
+  padding: 0 2%;
+  color: #cccccc;
+  float: left;
+  font-family: HelveticaNeue-Medium, sans-serif;
+  font-size: 100%;
+  line-height: 100%;
+  text-align: center;
+}
+
+.action:hover {
+  background: #e5eaf0;
+}
+
+.letters {
+  height: 93.75%;
+}
+
+.letter {
+  width: 100%;
+  height: 3.3%;
+  padding: 0 1%;
+
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 100%;
+  overflow-y: hidden;
+  transition: height 0.6s, background-color 0.6s;
+}
+
+.letter__contact {
+  float: left;
+}
+
+.letter[data-state='deleted'] {
+  animation: deletion 0.6s 1 ease forwards;
+}
+
+.letter[data-state='hidden'] {
+  height: 0%;
+
+  border-width: 0px;
+}
+
+.letter[data-state='showed'] {
+  animation: addition 0.6s 1 ease forwards;
+}
+
+.letter__text {
+  display: none;
+  width: 0;
+}
+
+.letter_hidden {
+  display: none;
+}
+
+.icon {
+  width: 2%;
+  height: 100%;
+  padding: 0.15% 0 0 0.5%;
+  float: left;
+  vertical-align: middle;
+}
+
+.from {
+  display: table;
+  overflow: hidden;
+  width: calc(20% - 0px);
+  height: calc(100% - 0px);
+  padding: 0 0 0 1.5%;
+  float: left;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text_overflow {
+  display: table-cell;
+  overflow: hidden;
+  max-width: 0;
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.theme {
+  display: table;
+  overflow: hidden;
+  width: calc(35% - 0px);
+  height: calc(100% - 0px);
+  padding: 0 2%;
+  float: left;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.data {
+  display: table;
+  overflow: hidden;
+  width: 15%;
+  height: calc(100% - 0px);
+  padding: 0 2%;
+  float: right;
+  font-family: HelveticaNeue-Bold, sans-serif;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+
+  height: 3.125%;
+  padding-right: 2%;
+
+  border-top: 1px solid #e2e2e2;
+}
+
+.link {
+  padding: 0 2%;
+  color: #9b9b9b;
+  cursor: pointer;
+  float: right;
+  font-family: HelveticaNeue, sans-serif;
 }
